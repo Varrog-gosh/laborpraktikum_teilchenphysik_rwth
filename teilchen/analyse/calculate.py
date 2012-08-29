@@ -34,7 +34,7 @@ from math import pi,sqrt
 r = ufloat((30e-6,25e-6))
 m = 4./3*pi*r**3*2700 # kg
 
-qm_grav = g * d /u_g / e
+qm_grav = g * d /u_g
 printError(qm_grav)
 
 #### resonanz ####
@@ -42,8 +42,10 @@ printError(qm_grav)
 w_res = ufloat((5,1))
 w = ufloat((30,1))
 u_x = ufloat((400,10))
-d = 2 * ufloat((0.02 , 0.001))
 K = 8
 
 qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
-print qm_res_vak
+printError( qm_res_vak )
+
+## mit luft ##
+A = ufloat(( 0.0001, 0.00001 ))

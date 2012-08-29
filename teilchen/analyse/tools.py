@@ -1,18 +1,24 @@
 #!/usr/bin/python
 # coding=utf8
 
-def printError ( value, error ):
+def printError( value, error = 0 ):
 	'''
 	Prints error in a nice semiscientific way
+	Input: value and error or uncertainties.value
 	'''
+	from uncertainties import AffineScalarFunc
+	if type( value ) == AffineScalarFunc:
+		error = value.std_dev()
+		value = value.nominal_value
+
 	exponent = int ( format ( error, 'e').split('e')[1] ) - 1
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
-	if exponent_val == 0 or exponent_val == 1 or exponent_val == -1:
+	if exponent_val in [ -1, 0, 1 ]: # this is not the real scientifiy notation, but nicer to read
 		print ( "{0} ± {1}".format ( value, error ) )
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{2}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val ) )
+		print ( "( {0} ± {1} ) \cdot 10^{{{2}}}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val ) )
 
 def readFile( filename ):
 	'''
@@ -63,8 +69,8 @@ class linearRegression:
 		for i in range( len( self.x ) ):
 			print func.Eval(self.x[i])
 
-a = readFile('testfile')
-x = linearRegression(a[0], a[1], [.2,.3,.4,0.1],[1,1,1,0.5])
-x.graph.Draw("ap")
-x.residuals()
+#a = readFile('testfile')
+#x = linearRegression(a[0], a[1], [.2,.3,.4,0.1],[1,1,1,0.5])
+#x.graph.Draw("ap")
+#x.residuals()
 
