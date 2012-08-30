@@ -1,8 +1,10 @@
 #!/usr/bin/python
 # coding=utf8
 
+from tools import *
 from uncertainties import ufloat
-from tools import printError
+from Styles import tdrStyle
+tdrStyle()
 def abweichung( x1, x2 ):
 	''' calculates the derivations in σ from two values.
 	Input are two ufloat variables from the package uncertainties
@@ -31,8 +33,8 @@ e = 1.6e-19
 
 # a typical mass
 from math import pi,sqrt
-r = ufloat((30e-6,25e-6))
-m = 4./3*pi*r**3*2700 # kg
+#r = ufloat((30e-6,25e-6))
+#m = 4./3*pi*r**3*2700 # kg
 
 qm_grav = g * d /u_g
 printError(qm_grav)
@@ -48,4 +50,64 @@ qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
 printError( qm_res_vak )
 
 ## mit luft ##
-A = ufloat(( 0.0001, 0.00001 ))
+#A = ufloat(( 0.0001, 0.00001 ))
+# keine ahnung
+
+
+#### Stabilitätsdiagramm ####
+
+## ohne Luft ##
+from numpy import array
+uxList = array([900.,800.,700.,600.,500.])
+ugList = array([400.,325.,260.,185.,120.])
+from uncertainties.unumpy import uarray
+x = uarray(( uxList, [1.]*len(uxList)))
+y = uarray(( ugList, [1.]*len(ugList)))
+
+x = 6 * K * x**2 / ( w**2 * d**2 )
+
+reg = linearRegression(x, y)
+reg.func.SetParNames('a','b')
+reg.draw(";12 K U_{x}^{2} / (#Omega^{2} d^{2});U_{g} [V]")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

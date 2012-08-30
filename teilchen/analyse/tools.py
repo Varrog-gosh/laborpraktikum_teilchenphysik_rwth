@@ -43,34 +43,51 @@ def readFile( filename ):
 	return map( list, zip( *data ) )
 
 class linearRegression:
-
-	def __init__( self, xlist, ylist ):
-		from ROOT import TGraph
-		import numpy
-		length = len(xlist)
-		self.x = numpy.array( xlist )
-		self.y = numpy.array( ylist )
-		self.graph = TGraph( length, self.x, self.y )
+	def __init__( self, x, y):
+		from uncertainties import unumpy
+		self.__x = x
+		self.__y = y
+		from ROOT import TGraphErrors
+		self.graph = TGraphErrors( len(x), unumpy.nominal_values(x), unumpy.nominal_values(y) , unumpy.std_devs(x), unumpy.std_devs(y))
 		self.graph.Fit('pol1')
-
-	def __init__( self, xlist, ylist, exlist, eylist ):
-		from ROOT import TGraph, TGraphErrors
-		from numpy import array
-		length = len(xlist)
-		self.x = array( xlist )
-		self.y = array( ylist )
-		self.ex =array( exlist )
-		self.ey = array( eylist )
-		self.graph = TGraphErrors( length, self.x, self.y, self.ex, self.ey )
-		self.graph.Fit('pol1')
+		self.func = self.graph.GetFunction('pol1')
 
 	def residuals(self):
-		func = self.graph.GetFunction("pol1")
-		for i in range( len( self.x ) ):
-			print func.Eval(self.x[i])
+		from uncertainties import unumpy
+		from numpy import array
+		from ROOT import TGraph
+		residuals = array( range( len( self.__x ) ) ,'float')
+		for i in range( len( unumpy.nominal_values(self.__x) ) ):
+			residuals[i] = self.func.Eval( unumpy.nominal_values(self.__x)[i]) - unumpy.nominal_values(self.__y)[i] / unumpy.std_devs(self.__y)[i]
+		self.resgraph = TGraph( len( self.__x ), unumpy.nominal_values(self.__x), residuals)
 
-#a = readFile('testfile')
-#x = linearRegression(a[0], a[1], [.2,.3,.4,0.1],[1,1,1,0.5])
-#x.graph.Draw("ap")
-#x.residuals()
+	def draw(self, title):
+		self.residuals()
+		from ROOT import TCanvas, TPad, TLine
+		self.canvas = TCanvas("canvas", "Linear Regression", 768, 800)
+		hPad = TPad("fitPad", "Fit", 0, 0.2, 1, 1)
+		hPad.SetFillStyle(4000)
+		hPad.SetBorderSize(0)
+		hPad.Draw()
+		hPad.cd()
+		self.graph.SetTitle( title )
+		self.graph.Draw("ap")
+
+		self.canvas.cd()
+		residualPad = TPad("resPad", "Residuals", 0, 0, 1, 0.2)
+		residualPad.SetFillStyle(4000)
+		residualPad.SetFrameFillStyle(4000)
+		residualPad.SetBorderSize(0)
+		residualPad.Draw()
+		residualPad.cd()
+		self.resgraph.SetTitle( ';' + title.split(';')[1] + '; residuals' )
+		xaxis = self.resgraph.GetXaxis()
+		xaxis.SetTitleSize(.15)
+		xaxis.SetTitleOffset(.3)
+		self.resgraph.GetYaxis().SetTitleSize(.25)
+		self.resgraph.GetYaxis().SetTitleOffset(.13)
+		self.resgraph.GetYaxis().SetLabelSize(.2)
+		self.resgraph.Draw("ap")
+		self.line = TLine( xaxis.GetXmin(), 0, xaxis.GetXmax(), 0 )
+		self.line.Draw()
 
