@@ -41,7 +41,7 @@ from numpy import array
 u_g = arrayToUncertainty( [388, 417, 378, 294, 361, 369, 332, 395, 417, 313] )
 print 'u_g: ', u_g
 u_g = ufloat ( ( 130, 20 ))
-d = ufloat( ( 0.003, 0.0003 ) )# m
+d = ufloat( ( 0.00305, 0.00025 ) )# m
 g = 9.81 # m/s²
 e = 1.6e-19
 
@@ -52,8 +52,6 @@ e = 1.6e-19
 qm_grav = g * d /u_g
 printError(qm_grav, unit = 'C/kg')
 
-import sys
-sys.exit()
 #### resonanz ####
 ## ohne luft ##
 w_res = ufloat((5,1))
@@ -73,16 +71,16 @@ printError( qm_res_vak )
 
 ## ohne Luft ##
 from numpy import array
-uxList = array([900.,800.,700.,600.,500.])
-ugList = array([400.,325.,260.,185.,120.])
+uxList = array([1230, 1140, 1000])
+ugList = array([115, 100, 85])
 from uncertainties.unumpy import uarray
-x = uarray(( uxList, [1.]*len(uxList)))
-y = uarray(( ugList, [1.]*len(ugList)))
+x = uarray(( uxList, [10.]*len(uxList)))
+y = uarray(( ugList, [10.]*len(ugList)))
 
 #x = 6 * K * x**2 / ( w**2 * d**2 )
 
 reg = linearRegression(x**2, y)
-reg.func.SetParNames('a','b')
+reg.func.SetParNames('a','- #frac{q}{m} [#frac{C}{kg}]')
 reg.draw(";12 K U_{x}^{2} / (#Omega^{2} d^{2});U_{g} [V]")
 
 

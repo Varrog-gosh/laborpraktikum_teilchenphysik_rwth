@@ -12,13 +12,14 @@ def printError( value, error = 0 , unit = ''):
 		value = value.nominal_value
 
 	exponent = int ( format ( error, 'e').split('e')[1] ) - 1
+	print value
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
 	if exponent_val in [ -1, 0, 1 ]: # this is not the real scientifiy notation, but nicer to read
 		print ( "{0} ± {1}".format ( value, error ) )
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit ) )
+		print ( "( {0} ± {1} ) \cdot 10^{{{2}}}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val ) )
 
 def readFile( filename ):
 	'''
@@ -58,7 +59,7 @@ class linearRegression:
 		from ROOT import TGraph
 		residuals = array( range( len( self.__x ) ) ,'float')
 		for i in range( len( unumpy.nominal_values(self.__x) ) ):
-			residuals[i] = self.func.Eval( unumpy.nominal_values(self.__x)[i]) - unumpy.nominal_values(self.__y)[i] / unumpy.std_devs(self.__y)[i]
+			residuals[i] = (self.func.Eval( unumpy.nominal_values(self.__x)[i]) - unumpy.nominal_values(self.__y)[i] )/ unumpy.std_devs(self.__y)[i]
 		self.resgraph = TGraph( len( self.__x ), unumpy.nominal_values(self.__x), residuals)
 
 	def draw(self, title):
@@ -85,7 +86,7 @@ class linearRegression:
 		xaxis.SetTitleSize(.15)
 		xaxis.SetTitleOffset(.3)
 		self.resgraph.GetYaxis().SetTitleSize(.25)
-		self.resgraph.GetYaxis().SetTitleOffset(.13)
+		self.resgraph.GetYaxis().SetTitleOffset(.23)
 		self.resgraph.GetYaxis().SetLabelSize(.2)
 		self.resgraph.Draw("ap")
 		self.line = TLine( xaxis.GetXmin(), 0, xaxis.GetXmax(), 0 )
