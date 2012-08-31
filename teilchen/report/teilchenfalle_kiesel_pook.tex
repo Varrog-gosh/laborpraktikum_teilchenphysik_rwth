@@ -29,8 +29,11 @@ Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die
 Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches elektrisches Feld nicht ausreichend, da man damit keine Potentialminima schaffen kann.
 Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
 
-
-
+Für jede räumliche Komponente $i\in\{x,y,z\}$ lautet die Bewegungsgleichung
+\begin{align*}
+	\frac{4}{mΩ^2} |\vec{F}_i| + \left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
+\end{align*}
+wobei $Ω$ die Winkelfrequenz der Dreiphasenspannung, $ω_W$ die Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung.
 
 
 \section{Aufbau und Durchführung}

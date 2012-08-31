@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf8
 
-def printError( value, error = 0 ):
+def printError( value, error = 0 , unit = ''):
 	'''
 	Prints error in a nice semiscientific way
 	Input: value and error or uncertainties.value
@@ -18,7 +18,7 @@ def printError( value, error = 0 ):
 	if exponent_val in [ -1, 0, 1 ]: # this is not the real scientifiy notation, but nicer to read
 		print ( "{0} ± {1}".format ( value, error ) )
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{{{2}}}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val ) )
+		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit ) )
 
 def readFile( filename ):
 	'''

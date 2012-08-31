@@ -24,21 +24,36 @@ def shortBeta(a,q):
 	from uncertainties.umath import sqrt
 	return 1.*sqrt(a+q**2/2)
 
+def arrayToUncertainty( values ):
+	'''
+	values: list of values
+	'''
+	from numpy import array
+	data = array( values )
+	from uncertainties import ufloat
+	return ufloat( ( data.mean(), data.std() ) )
+
+
 #### kompensation der gewichtskraft ######
 
-u_g = ufloat( ( 500, 5 ) )# volt
-d = ufloat( ( 3, 0.0003 ) )# m
+from math import pi,sqrt
+from numpy import array
+u_g = arrayToUncertainty( [388, 417, 378, 294, 361, 369, 332, 395, 417, 313] )
+print 'u_g: ', u_g
+u_g = ufloat ( ( 130, 20 ))
+d = ufloat( ( 0.003, 0.0003 ) )# m
 g = 9.81 # m/s²
 e = 1.6e-19
 
-# a typical mass
-from math import pi,sqrt
+'''# a typical mass
 #r = ufloat((30e-6,25e-6))
-#m = 4./3*pi*r**3*2700 # kg
+#m = 4./3*pi*r**3*2700 # kg'''
 
 qm_grav = g * d /u_g
-printError(qm_grav)
+printError(qm_grav, unit = 'C/kg')
 
+import sys
+sys.exit()
 #### resonanz ####
 ## ohne luft ##
 w_res = ufloat((5,1))
