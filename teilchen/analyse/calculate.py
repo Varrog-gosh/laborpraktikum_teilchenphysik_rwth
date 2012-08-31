@@ -64,9 +64,9 @@ from uncertainties.unumpy import uarray
 x = uarray(( uxList, [1.]*len(uxList)))
 y = uarray(( ugList, [1.]*len(ugList)))
 
-x = 6 * K * x**2 / ( w**2 * d**2 )
+#x = 6 * K * x**2 / ( w**2 * d**2 )
 
-reg = linearRegression(x, y)
+reg = linearRegression(x**2, y)
 reg.func.SetParNames('a','b')
 reg.draw(";12 K U_{x}^{2} / (#Omega^{2} d^{2});U_{g} [V]")
 
