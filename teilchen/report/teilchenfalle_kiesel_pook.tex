@@ -25,8 +25,8 @@
 \newpage
 \tableofcontents
 \setcounter{page}{1}
-\newpage 
-
+\newpage
+%
 \section{Ziel der Messung} % max 1 Seite
 Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Ladungs-Massen Verhältnisses.
 Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches elektrisches Feld nicht ausreichend, da man damit keine Potentialminima schaffen kann.
@@ -42,7 +42,7 @@ dem Antribskoeffienzenten $B = \frac{2qU_W}{r_0mΩ^2}$,
 dem Luftreibungskoeffizient $k_L = \frac{6πηR}{mΩ}$, der Winkelfrequenz der Dreiphasenspannung $Ω$,
 der Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung $ω_W$
 und der normalisierten Zeit $ξ = \frac{Ωt}{2}$.
-Die Kraft $\vec{F}$ ist die Gewichtskraft (die nur auf die z-Komponente Auswirkungen hat).
+$\vec{F}$ ist eine konstante äußere Kraft, zum Beispiel bei der z-Komponente die Gewichtskraft.
 Die Grundschwingung der Lösung wird durch $β_i = \sqrt{a_i + \frac{q_i^2}{2}}$ beschrieben.
 Durch Anlegen geeigneter Frequenzen und Spannungen und das Beobachten der Entstehenden Teilchenbewegungen kann mit unterschiedlichen Methoden das Verhältnis von Ladung zur Masse bestimmt werden.
 
@@ -98,7 +98,7 @@ Figur. Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom F
 , Kristallstrukturen, Elipsen: Spannungen nicht gleich\dots
 \subsection{Kompensation der Gewichtskraft}
 In Gleichung (\ref{mastergleichung}) wird der Einfluss der Luftreibung vernachlässigt und ein Näherungsansatz der Form $z(ξ_z) = Z(ξ_z)+d(ξ_z)$ durchgeführt.
-Die z-Komponente wird nun durch 
+Die z-Komponente wird nun durch
 \begin{align*}
 	Z(ξ) = Z_0\sin(β_zξ) - \frac{4|\vec{F_z}|}{mβ_zΩ^2}
 \end{align*}
@@ -116,8 +116,8 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 		\caption{Schaltbild Z-Kompensation}
 		\label{schalt-z}
 \end{figure}
-Die Fokussierspannung 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft 
+Die Fokussierspannung
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft
 kompensiert wird. Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der Z-Komponente der 3-Phasenspannung nicht mehr ändert.
 Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
 \begin{align*}\label{zspezm}
@@ -130,7 +130,7 @@ zur abschätzung des Fehlers genutzt.
 \begin{table}[position specifier]
 	\centering
 	\begin{tabular}{ l | c | c | r }
-		$U_{G} [V]$ & $\frac{\sigma_{U_{G}}}{U_{G}}$ &  $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}}$\\
+		$U_{G} [V]$ & $\frac{\sigma_{U_{G}}}{U_{G}}$ &  $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}$\\
 		\hline
 		4 & 5 & 6 \\
 		7 & 8 & 9 \\
@@ -143,6 +143,24 @@ zur abschätzung des Fehlers genutzt.
 \subsection{Resonanz}
 
 \subsection{Stabilitätsdiagramm}
+Wie Gleichung (\ref{mastergleichung}) zu entnehmen, ist die Grundschwingung der Teilchen gegeben durch $β$.
+Wenn $β$ imaginär ist ($ \Leftrightarrow a + \frac12q^2 >0$), werden die Winkelfunktionen zu Expotentialfunktionen, was zum Austritt der Teilchen aus der Falle führt.
+Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z$ die Spannung $U_G$ gesucht, bei der das Teilchen entkommt.
+Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt und es somit leicht entkommen kann.
+Für jedes Teilchen wird $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
+Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultieren sich in einer Verschiebung der Geraden nach unten, sodass die Steigung nicht stark beeinflusst wird.
+Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
+\begin{figure}[htb]
+		\centering
+		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet1.pdf}
+		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet2.pdf}\\
+		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet3.pdf}\\
+		\caption{Lineare Regressionen zur Stabilitätsuntersuchung.
+		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
+		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}
+\end{figure}
+Am $χ^2/ndf$ sieht man, dass die Spannungen tendensiell zu vorsichtig abgeschätzt wurden
+
 
 
 
