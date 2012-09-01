@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 17:59
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 20:52
 entering extended mode
  %&-line parsing enabled.
 **teilchenfalle_kiesel_pook.tex
@@ -742,7 +742,26 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 (/usr/share/texmf-texlive/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+(/usr/share/texmf-texlive/tex/generic/babel/ngermanb.ldf
+Language: ngermanb 2008/07/06 v2.6n new German support from the babel system
+
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count100
+\U@D=\dimen114
+)
+
+Package babel Warning: No hyphenation patterns were loaded for
+(babel)                the language `ngerman'
+(babel)                I will use the patterns loaded for \language=0 instead.
+
+\l@ngerman = a dialect from \language0
+\l@naustrian = a dialect from \language\l@ngerman 
+Package babel Info: Making " an active character on input line 92.
+)) (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
 
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
@@ -763,9 +782,9 @@ O)
 (/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
 Package: xcolor-patch 2009/10/02 xcolor patch
 ))
-\@linkdim=\dimen114
-\Hy@linkcounter=\count100
-\Hy@pagecounter=\count101
+\@linkdim=\dimen115
+\Hy@linkcounter=\count101
+\Hy@pagecounter=\count102
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
@@ -832,9 +851,9 @@ Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 )))
-\Fld@menulength=\count102
-\Field@Width=\dimen115
-\Fld@charsize=\dimen116
+\Fld@menulength=\count103
+\Field@Width=\dimen116
+\Fld@charsize=\dimen117
 \Field@toks=\toks23
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
@@ -847,14 +866,14 @@ Package hyperref Info: PDF/A mode OFF on input line 4407.
 (/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 )
-\Hy@abspage=\count103
-\c@Item=\count104
-\c@Hfootnote=\count105
+\Hy@abspage=\count104
+\c@Item=\count105
+\c@Hfootnote=\count106
 )
 *hyperref using default driver hpdftex*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count106
+\Fld@listcount=\count107
 )
 (/usr/share/texmf-texlive/tex/latex/units/units.sty
 Package: units 1998/08/04 v0.9b Typesetting units
@@ -870,13 +889,13 @@ Package: nicefrac 1998/08/04 v0.9b Nice fractions
 ))
 (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
 Package: geometry 2008/12/21 v4.2 Page Geometry
-\Gm@cnth=\count107
-\Gm@cntv=\count108
-\c@Gm@tempcnt=\count109
-\Gm@bindingoffset=\dimen117
-\Gm@wd@mp=\dimen118
-\Gm@odd@mp=\dimen119
-\Gm@even@mp=\dimen120
+\Gm@cnth=\count108
+\Gm@cntv=\count109
+\c@Gm@tempcnt=\count110
+\Gm@bindingoffset=\dimen118
+\Gm@wd@mp=\dimen119
+\Gm@odd@mp=\dimen120
+\Gm@even@mp=\dimen121
 \Gm@dimlist=\toks24
 )
 
@@ -886,58 +905,58 @@ See the keyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.16 }}
+l.17 }}
        
 ? 
 (./teilchenfalle_kiesel_pook.aux)
 \openout1 = `teilchenfalle_kiesel_pook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 23.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen121
+\scratchcounter=\count111
+\scratchdimen=\dimen122
 \scratchbox=\box28
-\nofMPsegments=\count111
-\nofMParguments=\count112
+\nofMPsegments=\count112
+\nofMParguments=\count113
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen122
-\MPnumerator=\count114
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen123
+\MPnumerator=\count115
 \everyMPtoPDFconversion=\toks26
 )
-Package hyperref Info: Link coloring OFF on input line 22.
+Package hyperref Info: Link coloring OFF on input line 23.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count115
+\c@section@level=\count116
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
 
 (./teilchenfalle_kiesel_pook.out) (./teilchenfalle_kiesel_pook.out)
 \@outlinefile=\write3
@@ -986,11 +1005,11 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -1005,34 +1024,28 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 \newpage
+l.29 \newpage
               [1]
-Overfull \hbox (8.94525pt too wide) in paragraph at lines 38--48
-\OT1/cmss/m/n/12 mit dem gle-ich-stromabh^^?angigen Ko-ef-fizien-ten $\OML/cmm/
-m/it/12 a[] \OT1/cmr/m/n/12 = []$\OT1/cmss/m/n/12 , dem wech-sel-stromabh^^?ang
-igen
+Overfull \hbox (8.68546pt too wide) in paragraph at lines 39--49
+\OT1/cmss/m/n/12 mit dem gle-ich-stromabh[]angigen Ko-ef-fizien-ten $\OML/cmm/m
+/it/12 a[] \OT1/cmr/m/n/12 = []$\OT1/cmss/m/n/12 , dem wech-sel-stromabh[]angig
+en
  []
 
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 56.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 57.
 
-LaTeX Font Info:    Try loading font information for TS1+cmss on input line 56.
+LaTeX Font Info:    Try loading font information for TS1+cmss on input line 57.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 
-LaTeX Warning: Command \textdegree invalid in math mode on input line 56.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 57.
 
 Missing character: There is no ° in font cmr12!
 
-Overfull \hbox (0.30986pt too wide) in paragraph at lines 53--57
-\OT1/cmss/m/n/12 gek-lebt. Nach dem Anl^^?oten und Isolieren der An-schlussk-a-
-bel wird die Falle mit schwarzem
- []
-
-
-LaTeX Warning: File `falle.jpg' not found on input line 60.
+LaTeX Warning: File `falle.jpg' not found on input line 61.
 
 
 ! Package pdftex.def Error: File `falle.jpg' not found.
@@ -1041,16 +1054,16 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.60 ...degraphics[width=0.3\textwidth]{falle.jpg}
+l.61 ...degraphics[width=0.3\textwidth]{falle.jpg}
                                                   
 ? 
 <Schaltbild_3Phasen.png, id=62, 324.412pt x 102.784pt>
 File: Schaltbild_3Phasen.png Graphic file (type png)
 
 <use Schaltbild_3Phasen.png> [2]
-Overfull \hbox (11.1861pt too wide) in paragraph at lines 88--91
-\OT1/cmss/m/n/12 ganz-zahli-gen Bruch darstellen l^^?asst. In diesem Fall bilde
-t die Teilchen-bahn eine geschlossene
+Overfull \hbox (9.01799pt too wide) in paragraph at lines 89--92
+\OT1/cmss/m/n/12 ganz-zahli-gen Bruch darstellen l[]asst. In diesem Fall bildet
+ die Teilchen-bahn eine geschlossene
  []
 
 <lisa1.jpg, id=78, 240.9pt x 180.675pt>
@@ -1058,12 +1071,12 @@ File: lisa1.jpg Graphic file (type jpg)
  <use lisa1.jpg>
 
 LaTeX Warning: Reference `mastergleichung' on page 3 undefined on input line 10
-0.
+1.
 
 
-Overfull \hbox (7.5563pt too wide) in paragraph at lines 100--102
+Overfull \hbox (7.5563pt too wide) in paragraph at lines 101--103
 \OT1/cmss/m/n/12 In Gle-ichung ([]) wird der Ein-fluss der Luftrei-bung ver-nac
-hl^^?assigt und ein N^^?aherungsansatz
+hl[]assigt und ein N[]aherungsansatz
  []
 
 [3 <./Schaltbild_3Phasen.png>]
@@ -1075,17 +1088,48 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.110 \end{align*}
+l.111 \end{align*}
                   
 ? 
 <Schaltbild_Z_Kompensation.png, id=85, 182.281pt x 102.784pt>
 File: Schaltbild_Z_Kompensation.png Graphic file (type png)
 
-<use Schaltbild_Z_Kompensation.png>
+<use Schaltbild_Z_Kompensation.png> [4 <./lisa1.jpg> <./Schaltbild_Z_Kompensati
+on.png>]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.137 ... des Bahnmittelpunkt bei Ã¤nderung von U_
+                                                  z  \\
+? 
+! Extra }, or forgotten $.
+<template> \unskip }
+                    \hskip \tabcolsep \endtemplate 
+l.138 		\hline
+              
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.138 		\hline
+              
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.138 		\hline
+              
+? 
 
-LaTeX Warning: Reference `kraftgleichgew' on page 4 undefined on input line 122
+LaTeX Warning: Reference `kraftgleichgew' on page 5 undefined on input line 148
 .
 
+! Undefined control sequence.
+<argument> g\cdotcd 
+                    d
+l.151 \end{align*}
+                  
+? 
 
 ! Package amsmath Error: Multiple \label's: label 'kraftgleichgew' will be lost
 .
@@ -1094,13 +1138,22 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.125 \end{align*}
+l.151 \end{align*}
                   
 ? 
-[4 <./lisa1.jpg> <./Schaltbild_Z_Kompensation.png>]
+! Undefined control sequence.
+<argument> g\cdotcd 
+                    d
+l.151 \end{align*}
+                  
+? 
 
-LaTeX Warning: Reference `mastergleichung' on page 5 undefined on input line 14
-4.
+LaTeX Warning: Reference `z-komp-result' on page 5 undefined on input line 153.
+
+
+
+LaTeX Warning: Reference `mastergleichung' on page 5 undefined on input line 17
+5.
 
 
 ! Package amsmath Error: Multiple \label's: label 'zspezm' will be lost.
@@ -1109,11 +1162,11 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.147 \end{align*}
+l.178 \end{align*}
                   
 ? 
 
-LaTeX Warning: Reference `resgleichung' on page 5 undefined on input line 148.
+LaTeX Warning: Reference `resgleichung' on page 5 undefined on input line 179.
 
 
 ! Package amsmath Error: Multiple \label's: label 'resgleichung' will be lost.
@@ -1122,28 +1175,39 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.155 \end{align*}
+l.186 \end{align*}
+                  
+? 
+[5]
+
+! Package amsmath Error: Multiple \label's: label 'resgleichung' will be lost.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.197 \end{align*}
                   
 ? 
 
-Overfull \hbox (11.33942pt too wide) in paragraph at lines 163--166
-\OT1/cmss/m/n/12 Die Ver-suchs-durchf^^?uhrung war dadurch gepr^^?agt das die S
-pan-nungsquelle nur stark schwank-
+Overfull \hbox (11.33942pt too wide) in paragraph at lines 206--209
+\OT1/cmss/m/n/12 Die Ver-suchs-durchf[]uhrung war dadurch gepr[]agt das die Spa
+n-nungsquelle nur stark schwank-
  []
 
-[5] (./teilchenfalle_kiesel_pook.aux)
+[6] (./teilchenfalle_kiesel_pook.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6651 strings out of 495061
- 90111 string characters out of 1182621
- 165114 words of memory out of 3000000
- 9680 multiletter control sequences out of 15000+50000
+ 6975 strings out of 495061
+ 94088 string characters out of 1182621
+ 175502 words of memory out of 3000000
+ 9991 multiletter control sequences out of 15000+50000
  13504 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,11n,36p,411b,312s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,36p,411b,329s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/
@@ -1156,9 +1220,9 @@ xmf-texlive/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texmf-texlive
 pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmtt12.pfb>
-Output written on teilchenfalle_kiesel_pook.pdf (6 pages, 193911 bytes).
+Output written on teilchenfalle_kiesel_pook.pdf (7 pages, 200845 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
+ 154 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
  88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
