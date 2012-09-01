@@ -6,16 +6,20 @@ def printError( value, error = 0 , unit = ''):
 	Prints error in a nice semiscientific way
 	Input: value and error or uncertainties.value
 	'''
+	not_scientific_exponents = [ -1, 0, 1 ] # 30 looks nicer than 3e1
+	valid_digits = 1
+
+	# cast uncertainy in value ± error
 	from uncertainties import AffineScalarFunc, Variable
 	if type( value ) in [ Variable, AffineScalarFunc ]:
 		error = value.std_dev()
 		value = value.nominal_value
 
-	exponent = int ( format ( error, 'e').split('e')[1] ) - 1
+	exponent = int ( format ( error, 'e').split('e')[1] ) + 1 - valid_digits
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
-	if exponent_val in [ -1, 0, 1 ]: # this is not the real scientifiy notation, but nicer to read
+	if exponent_val in not_scientific_exponents:
 		print ( "( {0} ± {1} ) {2}".format ( value, error, unit ) )
 	else:
 		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit ) )
@@ -54,6 +58,10 @@ class linearRegression:
 		self.func = self.graph.GetFunction('pol1')
 
 	def residuals(self):
+		'''
+		usually called by draw()
+		calculates residuals
+		'''
 		from uncertainties import unumpy
 		from numpy import array
 		from ROOT import TGraph
@@ -63,6 +71,9 @@ class linearRegression:
 		self.resgraph = TGraph( len( self.__x ), unumpy.nominal_values(self.__x), residuals)
 
 	def draw(self, title):
+		'''
+		draws regression and residuals in one canvas
+		'''
 		self.residuals()
 		from ROOT import TCanvas, TPad, TLine
 		self.canvas = TCanvas("canvas", "Linear Regression", 768, 800)
