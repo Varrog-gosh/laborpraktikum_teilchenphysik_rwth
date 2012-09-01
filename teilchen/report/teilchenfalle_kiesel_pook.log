@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 16:56
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 17:59
 entering extended mode
  %&-line parsing enabled.
 **teilchenfalle_kiesel_pook.tex
@@ -1098,12 +1098,35 @@ l.125 \end{align*}
                   
 ? 
 [4 <./lisa1.jpg> <./Schaltbild_Z_Kompensation.png>]
-! Extra }, or forgotten $.
-l.133 ...frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}]}
-                                                  $\\
+
+LaTeX Warning: Reference `mastergleichung' on page 5 undefined on input line 14
+4.
+
+
+! Package amsmath Error: Multiple \label's: label 'zspezm' will be lost.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147 \end{align*}
+                  
 ? 
 
-Overfull \hbox (11.33942pt too wide) in paragraph at lines 152--155
+LaTeX Warning: Reference `resgleichung' on page 5 undefined on input line 148.
+
+
+! Package amsmath Error: Multiple \label's: label 'resgleichung' will be lost.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \end{align*}
+                  
+? 
+
+Overfull \hbox (11.33942pt too wide) in paragraph at lines 163--166
 \OT1/cmss/m/n/12 Die Ver-suchs-durchf^^?uhrung war dadurch gepr^^?agt das die S
 pan-nungsquelle nur stark schwank-
  []
@@ -1114,10 +1137,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6650 strings out of 495061
- 90097 string characters out of 1182621
+ 6651 strings out of 495061
+ 90111 string characters out of 1182621
  165114 words of memory out of 3000000
- 9679 multiletter control sequences out of 15000+50000
+ 9680 multiletter control sequences out of 15000+50000
  13504 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,11n,36p,411b,312s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1131,10 +1154,11 @@ sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/te
 xmf-texlive/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texmf-texlive
 /fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmtt12.pfb>
-Output written on teilchenfalle_kiesel_pook.pdf (6 pages, 182918 bytes).
+amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmtt12.pfb>
+Output written on teilchenfalle_kiesel_pook.pdf (6 pages, 193911 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
  88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

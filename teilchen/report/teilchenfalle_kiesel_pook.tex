@@ -117,22 +117,25 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 		\label{schalt-z}
 \end{figure}
 Die Fokussierspannung 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft 
-kompensiert wird. Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der Z-Komponente der 3-Phasenspannung nicht mehr ändert.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen 
+(siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft 
+kompensiert wird. Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung 
+der Amplitude der Z-Komponente der 3-Phasenspannung nicht mehr ändert.
 Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
 \begin{align*}\label{zspezm}
 	\frac{q}{m} = \frac{g\cdot d}{U_{G}}
 \end{align*}
-Beim berechnen der Ergebnisse wurde die Erdbeschleunigung als Fehlerfrei angenommen, der Plattenabstand wurde zu $\unit[(3.05±0.02)]{cm}$ ageschätzt. Die Gleichspannung hat während des Versuchs teilweise 
-stark geschwankt. Die effektive Spannung wurde durch notieren der angezeigten Werte in einem Zeitraum von ca. $\unit[(20)]{s}$ und anschliessendem Mitteln bestimmt und die Varianz dieser Stichprobe wird 
-zur abschätzung des Fehlers genutzt.
-
-\begin{table}[position specifier]
+Beim berechnen der Ergebnisse wurde die Erdbeschleunigung als Fehlerfrei angenommen, der Plattenabstand wurde zu $\unit[(3.05±0.02)]{cm}$ ageschätzt. 
+Die Gleichspannung hat während des Versuchs teilweise 
+stark geschwankt. Die effektive Spannung wurde durch notieren der angezeigten Werte in einem Zeitraum 
+von ca. $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. Da die Teilchen oft wegen spontaner Spannugsschwankungen 
+der Quelle verloren gegangen sind konnte der Bereich, in dem die Gravitationskraft kompensiert wird, nicht in feineren Spannungsabschnitten untersucht werden.
+Als 
 	\centering
 	\begin{tabular}{ l | c | c | r }
-		$U_{G} [V]$ & $\frac{\sigma_{U_{G}}}{U_{G}}$ &  $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}}$\\
+		$U_{G} [V]$ & $\frac{\sigma_{U_{G}}}{U_{G}}$ &  $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}$\\
 		\hline
-		4 & 5 & 6 \\
+		45 & 11\% &  \\
 		7 & 8 & 9 \\
 	\end{tabular}
 \caption{Ergebnisse der spezifischen Masse Messung mit der Z-Kompensation Methode}
@@ -141,7 +144,18 @@ zur abschätzung des Fehlers genutzt.
 
 
 \subsection{Resonanz}
-
+In diesem Versuchsteil wurde zusätzlich zur Fokusierspannung noch eine Wechselspannung zwischen dem Flächenpaar entlang der X-Achse angelegt. Damit vereinfacht sich \ref{mastergleichung} zu: 
+\begin{align*}\label{resgleichung}
+	\left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
+\end{align*}
+Die Teilchenbahn wird also durch eine erzwungene Schwingung moduliert, die Lösung von \ref{resgleichung} ist gegben durch:
+\begin{align*}\label{resgleichung}
+	X(\xi_x) = X_0( \beta_x,\omega_W ) \cdot B \cdot cos(2\frac{\omega_W}{\Omega}\xi_x - \Phi(\beta_x,\omega_W))
+	\\
+	 tan\Phi(\beta_x,\omega_W) = \frac{4 k_L \Omega \omega_W}{\beta_x^{2}\Omega_x^{2}} 
+	 \\
+	  X_0 = \frac{1}{\sqrt{16\omega^{4}_W\Omega^{-4}+\beta^{4}_x+16\Omega^{-2}k_L\omega^{2}_W-8\Omega^{-2}\beta^{2}_x\omega^{2}_W}}
+\end{align*}
 \subsection{Stabilitätsdiagramm}
 
 
