@@ -10,12 +10,15 @@ from ROOT import TGraphErrors
 from ROOT import TCanvas
 from ROOT import TPaveText
 from ROOT import gROOT
+from ROOT import TMultigraph
 
 gROOT.Reset()
 
 def waitForInput():
     raw_input("Press any key to continue!")
     return
+ 
+final = TMultigraph()
     
 canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
 #~ canv.SetFillColor(0)
@@ -35,19 +38,21 @@ fplot.Print()
 Nbins = fplot.GetXaxis().GetNbins()
 for bi in range(1,Nbins):
 	fplot.GetXaxis().SetBinLabel(bi,"")
-step = int(Nbins/6)
+step = int(Nbins/7)
 fplot.Draw("ap")
 for i in (1,2):
-	fplot.GetXaxis().SetBinLabel(step+3*(i-1),"Z-Kompensation")
-	fplot.GetXaxis().SetBinLabel(step*2+3*(i-1),"Stabilität")
-	fplot.GetXaxis().SetBinLabel(step*3+3*(i-1),"Resonanz")
+	fplot.GetXaxis().SetBinLabel(step+Nbins/2*(i-1),"Z-Kompensation")
+	fplot.GetXaxis().SetBinLabel(step*2+Nbins/2*(i-1),"Stabilitaet")
+	fplot.GetXaxis().SetBinLabel(step*3+Nbins/2*(i-1),"Resonanz")
+fplot.GetXaxis().LabelsOption("h")
+fplot.SetTitle("Zusammenfassung der Ergebnisse")
 
-textair = TPaveText(0.15,0.8,0.4,0.88,"")
+textair = TPaveText(0.1,0.8,0.35,0.88,"NDC")
 textair.AddText("Luft")
 textair.SetFillColor(0)
 textair.SetBorderSize(0)
 textair.Draw("same")
-textvac = TPaveText(0.65,0.8,0.9,0.88,"")
+textvac = TPaveText(0.55,0.8,0.88,0.88,"NDC")
 textvac.SetFillColor(0)
 textvac.SetBorderSize(0)
 textvac.AddText("Vakuum")
