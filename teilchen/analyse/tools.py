@@ -6,20 +6,19 @@ def printError( value, error = 0 , unit = ''):
 	Prints error in a nice semiscientific way
 	Input: value and error or uncertainties.value
 	'''
-	from uncertainties import AffineScalarFunc
-	if type( value ) == AffineScalarFunc:
+	from uncertainties import AffineScalarFunc, Variable
+	if type( value ) in [ Variable, AffineScalarFunc ]:
 		error = value.std_dev()
 		value = value.nominal_value
 
 	exponent = int ( format ( error, 'e').split('e')[1] ) - 1
-	print value
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
 	if exponent_val in [ -1, 0, 1 ]: # this is not the real scientifiy notation, but nicer to read
-		print ( "{0} ± {1}".format ( value, error ) )
+		print ( "( {0} ± {1} ) {2}".format ( value, error, unit ) )
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{{{2}}}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val ) )
+		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit ) )
 
 def readFile( filename ):
 	'''
@@ -50,6 +49,7 @@ class linearRegression:
 		self.__y = y
 		from ROOT import TGraphErrors
 		self.graph = TGraphErrors( len(x), unumpy.nominal_values(x), unumpy.nominal_values(y) , unumpy.std_devs(x), unumpy.std_devs(y))
+		self.graph.Fit('pol1')
 		self.graph.Fit('pol1')
 		self.func = self.graph.GetFunction('pol1')
 
