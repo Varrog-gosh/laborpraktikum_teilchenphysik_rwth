@@ -10,12 +10,15 @@ from ROOT import TGraphErrors
 from ROOT import TCanvas
 from ROOT import TPaveText
 from ROOT import gROOT
+from ROOT import TMultigraph
 
 gROOT.Reset()
 
 def waitForInput():
     raw_input("Press any key to continue!")
     return
+ 
+final = TMultigraph()
     
 canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
 #~ canv.SetFillColor(0)

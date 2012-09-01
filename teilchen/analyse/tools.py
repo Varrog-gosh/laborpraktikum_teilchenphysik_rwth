@@ -20,9 +20,9 @@ def printError( value, error = 0 , unit = ''):
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
 	if exponent_val in not_scientific_exponents:
-		print ( "( {0} ± {1} ) {2}".format ( value, error, unit ) )
+		print ( "( {0} ± {1} ) {2} rel. {3}".format ( value, error, unit,float(error/value) ) )
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit ) )
+		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3} rel. {4}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit,float(error/value) ) )
 
 def readFile( filename ):
 	'''
