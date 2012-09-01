@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 16:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.23)  1 SEP 2012 16:56
 entering extended mode
  %&-line parsing enabled.
 **teilchenfalle_kiesel_pook.tex
@@ -1014,7 +1014,19 @@ igen
  []
 
 
-Overfull \hbox (0.30986pt too wide) in paragraph at lines 53--56
+LaTeX Warning: Command \textdegree invalid in math mode on input line 56.
+
+LaTeX Font Info:    Try loading font information for TS1+cmss on input line 56.
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 56.
+
+Missing character: There is no ° in font cmr12!
+
+Overfull \hbox (0.30986pt too wide) in paragraph at lines 53--57
 \OT1/cmss/m/n/12 gek-lebt. Nach dem Anl^^?oten und Isolieren der An-schlussk-a-
 bel wird die Falle mit schwarzem
  []
@@ -1032,38 +1044,29 @@ Type  H <return>  for immediate help.
 l.60 ...degraphics[width=0.3\textwidth]{falle.jpg}
                                                   
 ? 
+<Schaltbild_3Phasen.png, id=62, 324.412pt x 102.784pt>
+File: Schaltbild_3Phasen.png Graphic file (type png)
 
-LaTeX Warning: File `falle.jpg' not found on input line 70.
-
-
-! Package pdftex.def Error: File `falle.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.70 ...degraphics[width=0.3\textwidth]{falle.jpg}
-                                                  
-? 
-[2]
-Overfull \hbox (18.30595pt too wide) in paragraph at lines 84--87
-\OT1/cmss/m/n/12 Lissajous Fig-uren Lis-sajous Fig-uren entste-hen bei der []Ub
-erlagerung har-monis-cher Schwingun-
+<use Schaltbild_3Phasen.png> [2]
+Overfull \hbox (11.1861pt too wide) in paragraph at lines 88--91
+\OT1/cmss/m/n/12 ganz-zahli-gen Bruch darstellen l^^?asst. In diesem Fall bilde
+t die Teilchen-bahn eine geschlossene
  []
 
-<lisa1.jpg, id=71, 240.9pt x 180.675pt>
+<lisa1.jpg, id=78, 240.9pt x 180.675pt>
 File: lisa1.jpg Graphic file (type jpg)
  <use lisa1.jpg>
 
-LaTeX Warning: Reference `mastergleichung' on page 3 undefined on input line 96
-.
+LaTeX Warning: Reference `mastergleichung' on page 3 undefined on input line 10
+0.
 
 
-Overfull \hbox (7.5563pt too wide) in paragraph at lines 96--98
+Overfull \hbox (7.5563pt too wide) in paragraph at lines 100--102
 \OT1/cmss/m/n/12 In Gle-ichung ([]) wird der Ein-fluss der Luftrei-bung ver-nac
 hl^^?assigt und ein N^^?aherungsansatz
  []
 
+[3 <./Schaltbild_3Phasen.png>]
 
 ! Package amsmath Error: Multiple \label's: label 'mastergleichung' will be los
 t.
@@ -1072,15 +1075,15 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.106 \end{align*}
+l.110 \end{align*}
                   
 ? 
-[3] <Schaltbild_Z_Kompensation.png, id=77, 182.281pt x 102.784pt>
+<Schaltbild_Z_Kompensation.png, id=85, 182.281pt x 102.784pt>
 File: Schaltbild_Z_Kompensation.png Graphic file (type png)
 
 <use Schaltbild_Z_Kompensation.png>
 
-LaTeX Warning: Reference `kraftgleichgew' on page 4 undefined on input line 117
+LaTeX Warning: Reference `kraftgleichgew' on page 4 undefined on input line 122
 .
 
 
@@ -1091,23 +1094,33 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.120 \end{align*}
+l.125 \end{align*}
                   
 ? 
 [4 <./lisa1.jpg> <./Schaltbild_Z_Kompensation.png>]
-(./teilchenfalle_kiesel_pook.aux)
+! Extra }, or forgotten $.
+l.133 ...frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}]}
+                                                  $\\
+? 
+
+Overfull \hbox (11.33942pt too wide) in paragraph at lines 152--155
+\OT1/cmss/m/n/12 Die Ver-suchs-durchf^^?uhrung war dadurch gepr^^?agt das die S
+pan-nungsquelle nur stark schwank-
+ []
+
+[5] (./teilchenfalle_kiesel_pook.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6620 strings out of 495061
- 89337 string characters out of 1182621
+ 6650 strings out of 495061
+ 90097 string characters out of 1182621
  165114 words of memory out of 3000000
- 9657 multiletter control sequences out of 15000+50000
- 13161 words of font info for 51 fonts, out of 3000000 for 9000
+ 9679 multiletter control sequences out of 15000+50000
+ 13504 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,36p,367b,312s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,36p,411b,312s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/
@@ -1119,9 +1132,9 @@ xmf-texlive/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texmf-texlive
 /fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/
 amsfonts/cm/cmtt12.pfb>
-Output written on teilchenfalle_kiesel_pook.pdf (5 pages, 159493 bytes).
+Output written on teilchenfalle_kiesel_pook.pdf (6 pages, 182918 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 143 PDF objects out of 1000 (max. 8388607)
+ 21 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
