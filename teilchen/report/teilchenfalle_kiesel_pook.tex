@@ -25,13 +25,13 @@
 \newpage
 \tableofcontents
 \setcounter{page}{1}
-\newpage
+\newpage 
 
 \section{Ziel der Messung} % max 1 Seite
 Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Ladungs-Massen Verhältnisses.
 Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches elektrisches Feld nicht ausreichend, da man damit keine Potentialminima schaffen kann.
 Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
-
+Konkret wurden beim durchgeführten Experiment der meta-stabile Bereich eines rotierenden Sattelpotential genutzt um Teilchen zu speichern.
 Für jede räumliche Komponente $i\in\{x,y,z\}$ lautet die Bewegungsgleichung
 \begin{align*}\label{mastergleichung}
 	\frac{4}{mΩ^2} |\vec{F}_i| + \left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
@@ -53,7 +53,7 @@ Die z-Achse verläuft vertikal, die y-Achse ist die Blickrichtung, und die x-Ach
 Die Falle wird aus sechs Kupferringen und 12 Verbindungsstücken zu einem Würfel geklebt.
 Nach dem Anlöten und Isolieren der Anschlusskabel wird die Falle mit schwarzem Lack angemalt, um Steulicht in der Kammer zu verringern.
 Die Falle wird mittig über der Öffnung für die Spritze an den Anschlusskabeln befestigt, und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Bild \ref{fallenbild}), welche je nach Hebelstellung die Gleichspannungen oder die zusätzliche Wechselspannung zur Dreiphasenspannung hinzufügt.
-
+Die Dreiphasenspannung, im folgenden auch Fokussierspannung genannt, besteht aus drei Wechselpannungsquellen die mit einem konstanten Phasenunterschied von $120°$ betrieben werden. Die Amplitude kann dabei für jedes Flächenpaar individuell eingestellt werden. 
 
 \begin{figure}[htb]
 		\centering
@@ -67,13 +67,13 @@ Man kann sie auf den beiden gegenüber liegenden Seiten oder zwischen zwei gegen
 Die Verschaltung kann man Bild \ref{verschaltung} entnehmen.
 \begin{figure}[htb]
 		\centering
-		\includegraphics[width=0.3\textwidth]{falle.jpg}
+		\includegraphics{Schaltbild_3Phasen.png}
 		\caption{Verschaltung im Generator}
 		\label{verschaltung}
 \end{figure}
 
 Aus Sicherheitsgründen wird die Falle durch eine durchsichtige Acrylhaube abgedeckt. Die Haube wurde zusätzlich mit schwarzem Klebeband verkleidet, mit zwei Öffnungen eine für die seitliche Beobachtung der Falle und eine für die von oben angebrachte Lampe.  
-Der Versuch wird mit Aluminum Pulver durchgeführt, dieses wird mittels einer Spritze durch eine Öffnung unterhalb der Falle eingebracht. Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von ca. 2.5 cm  besteht wurden die Teilchen durch anschnippsen der Spritze in die Falle geschleudert.
+Der Versuch wird mit Aluminum Pulver durchgeführt, dieses wird mittels einer Spritze durch eine Öffnung unterhalb der Falle eingebracht. Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von ca. $\unit(2.5){cm}$  besteht wurden die Teilchen durch anschnippsen der Spritze in die Falle geschleudert.
 
 
 
@@ -81,22 +81,53 @@ Der Versuch wird mit Aluminum Pulver durchgeführt, dieses wird mittels einer Sp
 \section{Ergebnisse}
 Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $\unit[(3.05±0.02)]{cm}$ abgeschätzt.
 \subsection{Bahnbeschreibung}
+Ellipsen
+In den meisten Fällen beschreiben die einefangenen Teilchen eine elliptische Teilchenbahn, dabei lässt sich der Radius und die Exzentrizität durch das Verhältnis der angelegten Potenziale in der Fokusierspannung
+
+
 Lissajous Figuren
 Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen wenn das Verhältnis der Frequenzen rational ist, sich also durch einen ganzzahligen Bruch darstellen lässt. In diesem Fall bildet die Teilchenbahn eine geschlossene
 Figur. Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom Frequenzverhältnis und dem Phasenunterschied der Schwingungen ab. 
+
+\begin{figure}[htb]
+		\centering
+		\includegraphics{lisa1.jpg}
+		\caption{Beispiel für das auftreten einer Lissajous Figur}
+		\label{Lissjous}
+\end{figure}
 , Kristallstrukturen, Elipsen: Spannungen nicht gleich\dots
 \subsection{Kompensation der Gewichtskraft}
 In Gleichung (\ref{mastergleichung}) wird der Einfluss der Luftreibung vernachlässigt und ein Näherungsansatz der Form $z(ξ_z) = Z(ξ_z)+d(ξ_z)$ durchgeführt.
-Die z-Komponente wird nun durch
+Die z-Komponente wird nun durch 
 \begin{align*}
 	Z(ξ) = Z_0\sin(β_zξ) - \frac{4|\vec{F_z}|}{mβ_zΩ^2}
 \end{align*}
 beschrieben.
 Man sieht, dass die Schwingung um einen konstanten Term verschoben ist, der von $a_z$ und $q_z$ abhängt.
-Diese Abhängigkeit besteht nicht mehr, wenn $|\vec{F}_{z}| = |\vec{F_G} + \vec{F_{qE}}| = 0$ ist.
+Diese Abhängigkeit besteht nicht mehr, wenn gilt:
+\begin{align*}\label{kraftgleichgew}
+	|\vec{F}_{z}| = |\vec{F_G} + \vec{F_{qE}}| = 0
+\end{align*}
 
 % vorzeichen?
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen, die die Gewichtskraft kompensieren soll.
+\begin{figure}[htb]
+		\centering
+		\includegraphics{Schaltbild_Z_Kompensation.png}
+		\caption{Schaltbild Z-Kompensation}
+		\label{schalt-z}
+\end{figure}
+Die Fokussierspannung 
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft 
+kompensiert wird. Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der Z-Komponente der 3-Phasenspannung nicht mehr ändert.
+Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
+\begin{align*}\label{zspezm}
+	\frac{q}{m} = \frac{g\cdot d}{U_{G}}
+\end{align*}
+Beim berechnen der Ergebnisse wurde die Erdbeschleunigung als Fehlerfrei angenommen, der Plattenabstand wurde zu $\unit[(3.05±0.02)]{cm}$ ageschätzt. Die Gleichspannung hat während des Versuchs teilweise 
+stark geschwankt. Die effektive Spannung wurde durch notieren der angezeigten Werte in einem Zeitraum von ca. $\unit[(20)]{s}$ und anschliessendem Mitteln bestimmt und die Varianz dieser Stichprobe wird 
+zur abschätzung des Fehlers genutzt.
+
+
 
 
 \subsection{Resonanz}
