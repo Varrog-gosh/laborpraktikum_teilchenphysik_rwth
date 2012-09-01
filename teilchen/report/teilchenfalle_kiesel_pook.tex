@@ -1,8 +1,11 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb,amsmath,uniinput,graphicx,placeins}
+\usepackage{amssymb,amsmath,uniinput,graphicx}
+\usepackage[section]{placeins}
 % for uniinput: https://wiki.neo-layout.org/browser/latex/Standard-LaTeX
-\usepackage{hyperref,multirow}
+\usepackage{hyperref}
+%\usepackage{multirow}
+\usepackage{units}
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 \setlength{\belowcaptionskip}{6pt}
@@ -30,40 +33,76 @@ Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches
 Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
 
 Für jede räumliche Komponente $i\in\{x,y,z\}$ lautet die Bewegungsgleichung
-\begin{align*}
+\begin{align*}\label{mastergleichung}
 	\frac{4}{mΩ^2} |\vec{F}_i| + \left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
 \end{align*}
-wobei $Ω$ die Winkelfrequenz der Dreiphasenspannung, $ω_W$ die Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung.
+mit dem gleichstromabhängigen Koeffizienten $a_i = \frac{16KqU_{G,i}}{3Ω^2mr_0^2}$,
+dem wechselstromabhängigen Koeffizienten  $q_i = -\frac{4kqU_i}{Ω^2mr_0^2}$,
+dem Antribskoeffienzenten $B = \frac{2qU_W}{r_0mΩ^2}$,
+dem Luftreibungskoeffizient $k_L = \frac{6πηR}{mΩ}$, der Winkelfrequenz der Dreiphasenspannung $Ω$,
+der Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung $ω_W$
+und der normalisierten Zeit $ξ = \frac{Ωt}{2}$.
+Die Kraft $\vec{F}$ ist die Gewichtskraft (die nur auf die z-Komponente Auswirkungen hat).
+Die Grundschwingung der Lösung wird durch $β_i = \sqrt{a_i + \frac{q_i^2}{2}}$ beschrieben.
+Durch Anlegen geeigneter Frequenzen und Spannungen und das Beobachten der Entstehenden Teilchenbewegungen kann mit unterschiedlichen Methoden das Verhältnis von Ladung zur Masse bestimmt werden.
 
 
 \section{Aufbau und Durchführung}
-%Bild der Falle
-%Schaltplan
-%Evakuierung
-%Erhebung dar Daten
-%Maßstab zum Filmen
-%Koordinatensystem
-%nomenklaur: eg, xi, \dots
+Die z-Achse verläuft vertikal, die y-Achse ist die Blickrichtung, und die x-Achse liegt senkrecht zu den beiden übrigen.
 
+Die Falle wird aus sechs Kupferringen und 12 Verbindungsstücken zu einem Würfel geklebt.
+Nach dem Anlöten und Isolieren der Anschlusskabel wird die Falle mit schwarzem Lack angemalt, um Steulicht in der Kammer zu verringern.
+Die Falle wird mittig über der Öffnung für die Spritze an den Anschlusskabeln befestigt, und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Bild \ref{fallenbild}), welche je nach Hebelstellung die Gleichspannungen oder die zusätzliche Wechselspannung zur Dreiphasenspannung hinzufügt.
 
-\section{Auswertung}
-% bahnbeschreibung
-\section{Diskussion}
 
 \begin{figure}[htb]
 		\centering
-%		\includegraphics[scale=0.3]{}
-%		\caption{\cite{fig:lhc}}
-		\label{fig:lhc}
+		\includegraphics[width=0.3\textwidth]{falle.jpg}
+		\caption{Versuchsaufbau der Paulschen Teilchenfalle}
+		\label{fallenbild}
 \end{figure}
-\FloatBarrier
+
+Im Spannungsgenerator gibt es mehrere Möglichkeiten die Gleichspannung anzulegen:
+Man kann sie auf den beiden gegenüber liegenden Seiten oder zwischen zwei gegenüberliegenden Seiten anbringen.
+Die Verschaltung kann man Bild \ref{verschaltung} entnehmen.
+\begin{figure}[htb]
+		\centering
+		\includegraphics[width=0.3\textwidth]{falle.jpg}
+		\caption{Verschaltung im Generator}
+		\label{verschaltung}
+\end{figure}
+
+Zuerst wird die unekakurierte falle
+deckel mit tape abdunkeln
+lampe leuchtet von oben
+spritze mit aluminium, spritze schnipsen
 
 
-% Fragen:
-% schaltplan richtig? was groß ist widerstand wenn u_g = 0
-% wann fängt der versuch an?
-% theorie im protokoll?
 
+\section{Ergebnisse}
+Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $\unit[(3.05±0.02)]{cm}$ abgeschätzt.
+\subsection{Bahnbeschreibung}
+Lissajous Figuren, Kristallstrukturen, Elipsen: Spannungen nicht gleich\dots
+\subsection{Kompensation der Gewichtskraft}
+In Gleichung (\ref{mastergleichung}) wird der Einfluss der Luftreibung vernachlässigt und ein Näherungsansatz der Form $z(ξ_z) = Z(ξ_z)+d(ξ_z)$ durchgeführt.
+Die z-Komponente wird nun durch
+\begin{align*}
+	Z(ξ) = Z_0\sin(β_zξ) - \frac{4|\vec{F_z}|}{mβ_zΩ^2}
+\end{align*}
+beschrieben.
+Man sieht, dass die Schwingung um einen konstanten Term verschoben ist, der von $a_z$ und $q_z$ abhängt.
+Diese Abhängigkeit besteht nicht mehr, wenn $|\vec{F}_{z}| = |\vec{F_G} + \vec{F_{qE}}| = 0$ ist.
+
+% vorzeichen?
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen, die die Gewichtskraft kompensieren soll.
+
+
+\subsection{Resonanz}
+\subsection{Stabilitätsdiagramm}
+
+
+
+\section{Vergleich der Messungen}
 
 
 
