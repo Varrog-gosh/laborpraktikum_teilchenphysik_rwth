@@ -76,8 +76,12 @@ class linearRegression:
 		'''
 		self.residuals()
 		from ROOT import TCanvas, TPad, TLine
-		self.canvas = TCanvas("canvas", "Linear Regression", 768, 800)
-		hPad = TPad("fitPad", "Fit", 0, 0.2, 1, 1)
+		from random import randint
+		from sys import maxint
+
+		random_name = randint(0,maxint)
+		self.canvas = TCanvas("canvas{}".format( random_name), "Linear Regression", 768, 800)
+		hPad = TPad("fitPad{}".format( random_name ), "Fit", 0, 0.2, 1, 1)
 		hPad.SetFillStyle(4000)
 		hPad.SetBorderSize(0)
 		hPad.Draw()
@@ -86,7 +90,7 @@ class linearRegression:
 		self.graph.Draw("ap")
 
 		self.canvas.cd()
-		residualPad = TPad("resPad", "Residuals", 0, 0, 1, 0.2)
+		residualPad = TPad("resPad{}".format( random_name ), "Residuals", 0, 0, 1, 0.2)
 		residualPad.SetFillStyle(4000)
 		residualPad.SetFrameFillStyle(4000)
 		residualPad.SetBorderSize(0)
