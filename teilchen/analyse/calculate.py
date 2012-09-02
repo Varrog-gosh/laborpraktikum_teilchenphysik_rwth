@@ -50,8 +50,7 @@ u_g.append( arrayToUncertainty( [230, 227, 228, 235, 230, 223, 225, 229] ) ) # 3
 u_g.append( arrayToUncertainty( [284, 264, 271, 277, 271, 277, 270, 271, 276] ) ) # 3 droppt, 4 erst kaum bewegung, dann dropp es auch
 
 for u in u_g:
-	pass
-	#printError(u, unit = 'V')
+	printError(u, unit = 'V')
 
 d = ufloat( ( 0.00305, 0.00025 ) )# m
 g = 9.81 # m/s²
@@ -59,7 +58,7 @@ g = 9.81 # m/s²
 for u in [ u_g[1], u_g[4] ]:
 	qm_grav = g * d / u
 	#printError(qm_grav, unit = 'C/kg')
-
+exit()
 #### resonanz ####
 ## ohne luft ##
 w_res = ufloat((5,1))
