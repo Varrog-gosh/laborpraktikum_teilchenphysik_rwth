@@ -36,64 +36,6 @@ def arrayToUncertainty( values ):
 	from uncertainties import ufloat
 	return ufloat( ( data.mean(), data.std() ) )
 
-
-#### kompensation der gewichtskraft ######
-
-from math import pi,sqrt
-from numpy import array
-from sys import exit
-u_g = []
-u_g.append( arrayToUncertainty( [52, 44, 41, 36, 47, 50] ) ) # 3,4 bewegen sich
-u_g.append( arrayToUncertainty( [86, 91, 101, 85, 82, 92, 88, 107] ) ) # 3 still, 4 bewegt sich
-u_g.append( arrayToUncertainty( [174, 167, 163, 170, 169, 172, 172, 167, 160] ) ) # 3,4 bewegen sich
-u_g.append( arrayToUncertainty( [230, 227, 228, 235, 230, 223, 225, 229] ) ) # 3+4 bewegen sich
-u_g.append( arrayToUncertainty( [284, 264, 271, 277, 271, 277, 270, 271, 276] ) ) # 3 droppt, 4 erst kaum bewegung, dann dropp es auch
-
-for u in u_g:
-	printError(u, unit = 'V')
-
-d = ufloat( ( 0.00305, 0.00025 ) )# m
-g = 9.81 # m/s²
-
-for u in [ u_g[1], u_g[4] ]:
-	qm_grav = g * d / u
-	printError(qm_grav, unit = 'C/kg')
-exit()
-#### resonanz ####
-## ohne luft ##
-w_res = ufloat((5,1))
-w = ufloat((30,1))
-u_x = ufloat((400,10))
-K = 8
-A = 0.0001
-u_w = 200
-r = d/2
-
-qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
-#PrintError( qm_res_vak )
-
-
-## mit luft ##
-def qm_res():
-	'''
-	solves the quadritic formular to compute q/m in air
-	the list can obtain up to 2 values, depending on the discriminant of the quadratic formular
-	'''
-	diskriminant = (u_w*r*w)**4 - 4*(4*K*u_x*A*w_res)**4
-	if diskriminant < 0:
-		return []
-	x1 = ( 4*u_w**2*r**6*w**4 + 4*r**4*w**2 * umath.sqrt( diskriminant ) ) / (128*A**2*(K*u_x)**4)
-	x2 = ( 4*u_w**2*r**6*w**4 - 4*r**4*w**2 * umath.sqrt( diskriminant ) ) / (128*A**2*(K*u_x)**4)
-	result = []
-	for x in [x1, x2]:
-		if x > 0:
-			result.append( umath.sqrt(x) )
-	return result
-
-#for qm in qm_res():
-#	printError( qm )
-
-
 #### Stabilitätsdiagramm ####
 
 ## mit luft ##
