@@ -52,7 +52,6 @@ u_g.append( arrayToUncertainty( [284, 264, 271, 277, 271, 277, 270, 271, 276] ) 
 for u in u_g:
 	printError(u, unit = 'V')
 
-
 d = ufloat( ( 0.00305, 0.00025 ) )# m
 g = 9.81 # m/s²
 
@@ -99,56 +98,33 @@ def qm_res():
 
 ## mit luft ##
 from numpy import array
-x0 = ( [1280, 1175, 1070, 905] ,
-	[79, 68, 50, 44]) #Attention: only changed vx, not vz or vy, so do NOT use this measurement if not ok.
-x1 = ( [700, 800, 900, 1000, 1100, 1200],
-	[36, 68, 127, 162, 250, 375] )
-x2 = ( [1230, 1140, 1000],
-	[115, 100, 85] )
-x3 = ( [1200, 1100, 1000],
-	[280, 260, 320] )
+stab_mes = []
+stab_mes.append(
+	( [1280, 1175, 1070, 905] ,
+	[79, 68, 50, 44])) #Attention: only changed vx, not vz or vy, so do NOT use this measurement if not ok.
+stab_mes.append(
+	( [700, 800, 900, 1000, 1100, 1200],
+	[36, 68, 127, 162, 250, 375] ) )
+stab_mes.append(
+	( [1230, 1140, 1000],
+	[115, 100, 85] ) )
+stab_mes.append(
+	( [1200, 1100, 1000],
+	[280, 260, 320] ) )
 
 regs = []
-for messung in [x0, x1, x2, x3]:
-	x = uarray(( array( messung[0] ), [10.]*len( messung[0] )))
-	y = uarray(( array( messung[1] ), [10.]*len( messung[0] )))
-	x = 6 * K * x**2 / ( w**2 * d**2 )
+for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
+	x = uarray(( array( stab_mes[i][0] ), [5.]*len( stab_mes[i][0] )))
+	y = uarray(( array( stab_mes[i][1] ), [5.]*len( stab_mes[i][0] )))
+	x = x**2 # * 6 * K  / ( w**2 * d**2 )
 
 	regs.append(linearRegression(x, y))
-	regs[0].func.SetParNames('a','- #frac{q}{m} [#frac{C}{kg}]')
-	regs[0].draw(";12 K U_{x}^{2} / (#Omega^{2} d^{2});U_{g} [V]")
+	regs[-1].func.SetParNames('a','b')
+	regs[-1].draw(";U_{i} [V^{2}];U_{g} [V]")
+	regs[-1].canvas.SaveAs('stabilitaet%s.pdf'%i)
 
 
 ## ohne Luft ##
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
