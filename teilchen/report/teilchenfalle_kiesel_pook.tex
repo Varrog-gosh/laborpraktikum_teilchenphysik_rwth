@@ -33,9 +33,9 @@ Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches
 Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
 Konkret wurden beim durchgeführten Experiment der meta-stabile Bereich eines rotierenden Sattelpotential genutzt um Teilchen zu speichern.
 Für jede räumliche Komponente $i\in\{x,y,z\}$ lautet die Bewegungsgleichung
-\begin{align*}\label{mastergleichung}
+\begin{align}\label{mastergleichung}
 	\frac{4}{mΩ^2} |\vec{F}_i| + \left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
-\end{align*}
+\end{align}
 mit dem gleichstromabhängigen Koeffizienten $a_i = \frac{16KqU_{G,i}}{3Ω^2mr_0^2}$,
 dem wechselstromabhängigen Koeffizienten  $q_i = -\frac{4kqU_i}{Ω^2mr_0^2}$,
 dem Antribskoeffienzenten $B = \frac{2qU_W}{r_0mΩ^2}$,
@@ -118,9 +118,10 @@ Die z-Komponente wird nun durch
 beschrieben.
 Man sieht, dass die Schwingung um einen konstanten Term verschoben ist, der von $a_z$ und $q_z$ abhängt.
 Diese Abhängigkeit besteht nicht mehr, wenn gilt:
-\begin{align*}\label{kraftgleichgew}
-	|\vec{F}_{z}| = |\vec{F}_G} + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
-\end{align*}
+\begin{align}
+	\label{kraftgleichgew}
+	|\vec{F}_{z}| = |\vec{F}_G + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
+\end{align}
 
 \begin{figure}[htb]
 		\centering
@@ -156,9 +157,9 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 \end{table}
 
 Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
-\begin{align*}\label{zspezm}
+\begin{align}\label{zspezm}
 	\frac{q}{m} = \frac{g \cdot  d}{U_{G}}
-\end{align*}
+\end{align}
 wobei $g = \unit[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
 Die erechneten Werte können \ref{z-komp-result} entnommen werden.
 
@@ -181,17 +182,17 @@ Die erechneten Werte können \ref{z-komp-result} entnommen werden.
 
 \subsection{Resonanz}
 In diesem Versuchsteil wurde zusätzlich zur Fokusierspannung  eine Wechselspannung zwischen dem Flächenpaar entlang der X-Achse angelegt. Damit vereinfacht sich \ref{mastergleichung} zu: 
-\begin{align*}\label{resgleichung}
+\begin{align}\label{resgleichung}
 	\left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
-\end{align*}
+\end{align}
 Die Teilchenbahn wird also durch eine erzwungene Schwingung moduliert, die Lösung von \ref{resgleichung} ist gegben durch:
-\begin{align*}\label{resgleichung}
+\begin{align}\label{resgleichung}
 	X(\xi_x) = X_0( \beta_x,\omega_W ) \cdot B \cdot cos(2\frac{\omega_W}{\Omega}\xi_x - \Phi(\beta_x,\omega_W))
 	\\
 	 tan\Phi(\beta_x,\omega_W) = \frac{4 k_L \Omega \omega_W}{\beta_x^{2}\Omega_x^{2}} 
 	 \\
 	  X_0 = \frac{1}{\sqrt{16\omega^{4}_W\Omega^{-4}+\beta^{4}_x+16\Omega^{-2}k_L\omega^{2}_W-8\Omega^{-2}\beta^{2}_x\omega^{2}_W}}
-\end{align*}
+\end{align}
 bei einer Frequenz von $\omega^{res}_W = \frac{\Omega}{2}\sqrt{\beta^{2}_x-2k^{2}_L} $ tritt eine resonante 
 Verstärkung der Oszillation auf und die Teilchenbahn erreicht ihre maximale Auslenkung.
 Mit einer Digitalkamera wurden jeweils Fotos des Teilchens gemacht für eine spätere digitale Vermessung der Auslenkung.
