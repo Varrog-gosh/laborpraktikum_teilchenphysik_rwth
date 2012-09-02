@@ -155,9 +155,9 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 
 Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
 \begin{align}\label{zspezm}
-	\frac{q}{m} = \frac{g \cdot  d}{U_{G}}
+	\frac{q}{m} = -\frac{g \cdot  d}{U_{G}}
 \end{align}
-wobei $g = \unit[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
+wobei $g = \unitfrac[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
 Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden.
 
 
@@ -175,34 +175,64 @@ Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden.
 \end{table}
 
 \subsection{Resonanz}
-In diesem Versuchsteil wurde zusätzlich zur Fokusierspannung  eine Wechselspannung zwischen dem Flächenpaar entlang der X-Achse angelegt. Damit vereinfacht sich \ref{mastergleichung} zu: 
-\begin{align}\label{resgleichung}
-	\left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
+In diesem Versuchsteil wurde zusätzlich zur Fokusierspannung  eine Wechselspannung zwischen dem Flächenpaar entlang der x-Achse angelegt.
+Die Gleichspannung wird auf $0$ geregelt.
+
+%%%%%% Warum brauchen wir die ganzen Gleichungen???
+%Damit vereinfacht sich Gleichung (\ref{mastergleichung}) zu
+%\begin{align}\label{resgleichung}
+%	\left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right).
+%\end{align}
+%Die Teilchenbahn wird also durch eine erzwungene Schwingung moduliert, die Lösung von \ref{resgleichung} ist gegben durch:
+%\begin{align}\label{resgleichung}
+%	X(\xi_x) = X_0( \beta_x,\omega_W ) \cdot B \cdot cos(2\frac{\omega_W}{\Omega}\xi_x - \Phi(\beta_x,\omega_W))
+%	\\
+%	 tan\Phi(\beta_x,\omega_W) = \frac{4 k_L \Omega \omega_W}{\beta_x^{2}\Omega_x^{2}}
+%	 \\
+%	  X_0 = \frac{1}{\sqrt{16\omega^{4}_W\Omega^{-4}+\beta^{4}_x+16\Omega^{-2}k_L\omega^{2}_W-8\Omega^{-2}\beta^{2}_x\omega^{2}_W}}
+%\end{align}
+Bei einer Frequenz von
+\begin{align}\label{w_res}
+	\omega^{res}_W = \frac{\Omega}{2}\sqrt{\beta^{2}_x-2k^{2}_L}
 \end{align}
-Die Teilchenbahn wird also durch eine erzwungene Schwingung moduliert, die Lösung von \ref{resgleichung} ist gegben durch:
-\begin{align}\label{resgleichung}
-	X(\xi_x) = X_0( \beta_x,\omega_W ) \cdot B \cdot cos(2\frac{\omega_W}{\Omega}\xi_x - \Phi(\beta_x,\omega_W))
-	\\
-	 tan\Phi(\beta_x,\omega_W) = \frac{4 k_L \Omega \omega_W}{\beta_x^{2}\Omega_x^{2}} 
-	 \\
-	  X_0 = \frac{1}{\sqrt{16\omega^{4}_W\Omega^{-4}+\beta^{4}_x+16\Omega^{-2}k_L\omega^{2}_W-8\Omega^{-2}\beta^{2}_x\omega^{2}_W}}
+tritt eine resonante Verstärkung der Oszillation auf und die Teilchenbahn erreicht ihre maximale Auslenkung
+\begin{align}\label{Amax}
+	A_{max} = \frac{B}{2k_L\sqrt{\beta^{2}_x-k^{2}_L}}.
 \end{align}
-bei einer Frequenz von $\omega^{res}_W = \frac{\Omega}{2}\sqrt{\beta^{2}_x-2k^{2}_L} $ tritt eine resonante 
-Verstärkung der Oszillation auf und die Teilchenbahn erreicht ihre maximale Auslenkung.
-\begin{align*}\label{Amax}
-	A_{max} = \frac{B}{2k_L\sqrt{\beta^{2}_x-k^{2}_L}}
-\end{align*}
-Zur späteren digitalen Vermessung der Auslenkung wurden mit einer Digitalkamera Fotos der Teilchenbahn angefertigt.
-Dazu wurde vor durchführung des Versuchs die Falle entfernt und eine Längenskala auf Höhe der Fallenmitte senkrecht zur Kamerablickrichtung platziert.  
-Da sowohl die Kameraposition als auch die Teilchenfalle nicht mehr bewegt werden, kann aus diesen Bildern ein Zusammenhang zwischen Pixeln pro cm in der Beobachtungsebene 
-bestimmt werden.
-\\
-Aus den gemessenen Werten für $\omega^{res}_W$ und $A_{max}$ lässt sich eine weitere Formel zur bestimmmung der spezifischen Masse des Teilchen herleiten. 
-Für die Vakuummessung, bzw. als Näherung für den Aufbau in Luft, kann die Luftreibung vernachlässigt werden ($k_L = 0$).  
-\begin{align*}\label{resspezm}
-	\frac{q}{m} = -\frac{\Omega r^{2}_0 \omega^{res}_W}{\sqrt{2} K U_x}
-\end{align*}
-Bei der Durchführung des Versuch wurde die Wechselspannung variiert bis die maximale Auslenkung für das Teilchen beobachtet wurde 
+Durch Eliminieren von $k_L$ in Gleichung \ref{w_res} und \ref{Amax} erhält man
+\begin{align}\label{res_luft}
+	\frac{q}{m} = ±\sqrt{
+		\frac{
+			U_w^2r^6Ω^4 ± r^4Ω^2\sqrt{
+				(U_wrΩ)^4 - 4(4KU_xA_{max}ω)^4
+			} %sqrt
+		}{
+			128A_{max}^2(KU_x)^4
+		} % frac
+	}. % sqrt
+\end{align}
+Für die Lösung im Vakuum reicht es in Gleichung (\ref{w_res}) $k_L=0$ zu setzen, und man erhält
+\begin{align}\label{res_vak}
+	\frac{q}{m} = -\frac{\Omega r^{2}_0 \omega^{res}_W}{\sqrt{2} K U_x}.
+\end{align}
+
+Um die Resonanzfrequenz zu messen, wird die Wechselspannung variiert bis das Teilchen maximale Auslenkung zeigt.
+In Luft wird zusätzlich die maximale Amplitude bestimmt, indem mit einer Digitalkamera Fotos der Teilchenbahn angefertigt werden.
+Es wird vor Durchführung des Versuchs die Falle entfernt und eine Längenskala auf Höhe der Fallenmitte senkrecht zur Kamerablickrichtung platziert und ein Vergleichsbild aufgenommen.
+Da sowohl die Kameraposition, Kameraeinstellungen als auch die Teilchenfalle nicht mehr bewegt werden,
+kann aus diesen Bildern ein Zusammenhang zwischen Pixeln pro cm in der Beobachtungsebene bestimmt werden.
+
+
+
+%%%Ergebnisse
+
+\subsubsection{Messung in Luft}
+Wenn man die Ladung zu Masse Verhältnisse in Luft mit Gleichung (\ref{res_luft}) ausrechnet, erhält man zwei Lösungen, von der man diejenige nimmt, die näher am genäherten Wert von Gleichung (\ref{res_vak}) liegt.
+Der Fehler beider Lösungen ist fast immer in der gleichen Größenordnung wie der Wert.
+Dies liegt daran, dass die Formel Differenzen von hohen Potenzen beinhaltet, was einen großen relativen Fehler ergibt.
+
+
+
 \subsection{Stabilitätsdiagramm}
 Wie Gleichung (\ref{mastergleichung}) zu entnehmen, ist die Grundschwingung der Teilchen gegeben durch $β$.
 Wenn $β$ imaginär ist ($ \Leftrightarrow a + \frac12q^2 >0$), werden die Winkelfunktionen zu Expotentialfunktionen, was zum Austritt der Teilchen aus der Falle führt.
