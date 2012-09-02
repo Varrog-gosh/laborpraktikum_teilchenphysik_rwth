@@ -88,7 +88,7 @@ Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von 
 
 
 \section{Ergebnisse}
-Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $\unit[(3.05±0.02)]{cm}$ abgeschätzt.
+Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $d = \unit[(3.05±0.02)]{cm}$ abgeschätzt.
 \subsection{Bahnbeschreibung}
 In den meisten Fällen beschreiben die eingefangenen Teilchen eine elliptische Teilchenbahn deren Radius und die Exzentrizität durch das Verhältnis der angelegten Potenziale in der Fokusierspannung erklärt werden können.
 Viele Teilchen beschreiben zudem sehr kleine Bahnen und sind deshalb nur noch als Punkte wahrzunehmen.
@@ -131,31 +131,17 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 \end{figure}
 
 Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
-Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der Z-Komponente der Dreiphasenspannung nicht mehr ändert.
-Die Fokussierspannung wird bei $\unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
-Zu der Fokussierspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen
-(siehe \ref{schalt-z}), dieser wird solange erhöht bis die Gravitationskraft
-kompensiert wird. Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung
-der Amplitude der Z-Komponente der 3-Phasenspannung nicht mehr ändert.
-Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
-\begin{align*}\label{zspezm}
-	\frac{q}{m} = \frac{g\cdot d}{U_{G}}
-\end{align*}
-Beim berechnen der Ergebnisse wurde die Erdbeschleunigung als Fehlerfrei angenommen, der Plattenabstand wurde zu $\unit[(3.05±0.02)]{cm}$ ageschätzt.
-Die Gleichspannung hat während des Versuchs teilweise
-stark geschwankt. Die effektive Spannung wurde durch notieren der angezeigten Werte in einem Zeitraum
-von ca. $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. Da die Teilchen oft wegen spontaner Spannugsschwankungen
-Die Gleichspannung hat während des Versuchs teilweise
-stark geschwankt. Die effektive Spannung wurde durch notieren der angezeigten Werte in einem Zeitraum
-von ca. $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. Da die Teilchen oft wegen spontaner Spannugsschwankungen
-der Quelle verloren gegangen sind konnte der Bereich, in dem die Gravitationskraft kompensiert wird, nicht in feineren Spannungsabschnitten untersucht werden.
-Da so nicht abzuschätzen ist wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wurde, wird als Fehler die mittlere Differenz zu den nächstliegenden
-$UG$ gewählt, bei dem wieder Bewegungen des Schwingungsmittelpunkt bei variation  der Fokussierspannung $U_z$ zu beobachten sind.
-Die Messung wurde für mehrere gleichzeitig gefangene Teilchen durchgeführt und die Spannung erhöht bis alle Teilchen den Stabilitätsbereich verlassen haben.
-Wegen den bereits erwähnten Schwankungen konnte die Messung nur für 2 Teilchen erfolgreich durchgeführt werden.
-% vorzeichen?
+Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
+Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
-	\begin{table}
+Weil die Gleichspannung stark schwankend ist, wird die effektive Spannung durch notieren der angezeigten Werte in einem Zeitraum von ungefähr $\unit[20]{s}$ und anschliessendem Mitteln bestimmt.
+Da man die Teilchen oft wegen spontaner Spannugsschwankungen der Quelle verliert, kann der Bereich, in dem die Gravitationskraft kompensiert wird, nicht in feineren Spannungsabschnitten untersucht werden.
+Da so nicht abzuschätzen ist wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wird,
+wird als Fehler die mittlere Differenz zu den nächstliegenden $U_G$ gewählt, bei dem wieder Bewegungen des Schwingungsmittelpunkt bei Variation der Fokussierspannung $U_z$ zu beobachten sind.
+Die Messung wurde für mehrere gleichzeitig gefangene Teilchen durchgeführt und die Spannung erhöht bis alle Teilchen den Stabilitätsbereich verlassen haben.
+Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle und ist für alle beobachteten Teilchen negativ, was mit der Theorie übereinstimmt.
+
+\begin{table}
 	\centering
 	\begin{tabular}{ l | c | r }
 		$U_{G} [V]$ & $\sigma_{U_{G}}[V]$ & Verhalten des Bahnmittelpunkt bei änderung von $U_z$  \\
@@ -168,14 +154,16 @@ Wegen den bereits erwähnten Schwankungen konnte die Messung nur für 2 Teilchen
 \caption{Messpunkte der Z-Kompensationsmessung}
 \label{tab:z-komp-measure}
 \end{table}
+
 Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
 \begin{align*}\label{zspezm}
 	\frac{q}{m} = \frac{g \cdot  d}{U_{G}}
 \end{align*}
-Beim berechnen der Ergebnisse wurde die Erdbeschleunigung mit $9.81$ als fehlerfrei angenommen, der Plattenabstand wurde zu $\unit[(3.05±0.02)]{cm}$ abgeschätzt. 
+wobei $g = \unit[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
 Die erechneten Werte können \ref{z-komp-result} entnommen werden.
 
-	\begin{table}
+
+\begin{table}
 	\centering
 	\begin{tabular}{ l | c | c| r }
 		$U_{G,komp} [V]$ & $\sigma_{U_{G,komp}}[V]$ & $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}$  \\
@@ -190,9 +178,6 @@ Die erechneten Werte können \ref{z-komp-result} entnommen werden.
 \caption{Messpunkte der Z-Kompensationsmessung}
 \label{tab:z-komp-result}
 \end{table}
-
-
-
 
 \subsection{Resonanz}
 In diesem Versuchsteil wurde zusätzlich zur Fokusierspannung  eine Wechselspannung zwischen dem Flächenpaar entlang der X-Achse angelegt. Damit vereinfacht sich \ref{mastergleichung} zu: 
