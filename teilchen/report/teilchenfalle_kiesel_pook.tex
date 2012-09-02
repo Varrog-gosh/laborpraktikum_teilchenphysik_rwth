@@ -1,11 +1,8 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb,amsmath,uniinput,graphicx}
+\usepackage{amssymb,amsmath,uniinput,graphicx,hyperref, multirow,units}
 \usepackage[section]{placeins}
 \usepackage[ngerman]{babel}
-\usepackage{hyperref}
-%\usepackage{multirow}
-\usepackage{units}
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 \setlength{\belowcaptionskip}{6pt}
@@ -21,14 +18,14 @@
 
 \begin{document}
 \maketitle
+\vspace{5cm}
+\tableofcontents
 \thispagestyle{empty}
 \newpage
-\tableofcontents
 \setcounter{page}{1}
-\newpage
 
 \section{Ziel der Messung} % max 1 Seite
-Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Verhältnisses von Ladung zu Massen.
+Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Verhältnisses von Ladung zu Masse.
 Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches elektrisches Feld nicht ausreichend, da man damit keine Potentialminima schaffen kann.
 Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
 Konkret wurden beim durchgeführten Experiment der meta-stabile Bereich eines rotierenden Sattelpotential genutzt um Teilchen zu speichern.
@@ -86,7 +83,6 @@ Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von 
 
 
 
-
 \section{Ergebnisse}
 Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $d = \unit[(3.05±0.02)]{cm}$ abgeschätzt.
 \subsection{Bahnbeschreibung}
@@ -131,7 +127,7 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 		% wollen wir die schlaltung oben beim versuchsaufbau erklären?
 \end{figure}
 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe \ref{schalt-z}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Bild \ref{schalt-z}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
@@ -144,39 +140,37 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 
 \begin{table}
 	\centering
-	\begin{tabular}{ l | c | r }
-		$U_{G} [V]$ & $\sigma_{U_{G}}[V]$ & Verhalten des Bahnmittelpunkt bei änderung von $U_z$  \\
-		45 & 5 & Teilchen 1,2 Bewegung   \\
-		92 & 8 & Teilchen 1 still,Teilchen 2 Bewegung \\
-		168 & 4 & Teilchen 1,2 Bewegung    \\
-		228 & 3 & Teilchen 1,2 Bewegung \\
-		273 & 5 & Teilchen 1 verloren , Teilchen 2 still \\
+	\begin{tabular}{ l | c | l | l }
+		$U_{G} [V]$ & $\sigma_{U_{G}}[V]$ & \multicolumn{2}{l}{Verhalten des Bahnmittelpunkts bei Änderung von $U_z$}  \\
+		\hline
+		45 & 5 & Bewegung &  Bewegung   \\
+		92 & 8 & still  & Bewegung \\
+		168 & 4 & Bewegung & Bewegung    \\
+		228 & 3 & Bewegung & Bewegung \\
+		273 & 5 & verloren & still \\
 	\end{tabular}
-\caption{Messpunkte der Z-Kompensationsmessung}
+\caption{Verhalten von beiden Teilchen bei unterschiedlichen Gleichspannungen zur Bestimmung der z-Kompensation}
 \label{tab:z-komp-measure}
 \end{table}
 
-Aus \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
+Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
 \begin{align}\label{zspezm}
 	\frac{q}{m} = \frac{g \cdot  d}{U_{G}}
 \end{align}
 wobei $g = \unit[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
-Die erechneten Werte können \ref{z-komp-result} entnommen werden.
+Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden.
 
 
 \begin{table}
 	\centering
-	\begin{tabular}{ l | c | c| r }
-		$U_{G,komp} [V]$ & $\sigma_{U_{G,komp}}[V]$ & $\frac{q}{m}[\frac{C}{kg}]$ & $\frac{\sigma_{\frac{q}{m}}}{\frac{q}{m}}$  \\
+	\begin{tabular}{ l | c | c }
+		Teilchen &$U_{G,komp} [V]$ & $\frac{q}{m}[\frac{mC}{kg}]$  \\
 		\hline
+		1 &  92 ± 8 &  0.33 ± 0.04  \\
 		\hline
-		Teilchen 1 \\
-		92 & 61.5 & 0.0 & 0.0 \\
-		\hline
-		Teilchen 2 \\
-		273 & 45 & 0.0 & 0.0 \\
+		2 & 273 ± 5 &  0.109 ± 0.009  \\
 	\end{tabular}
-\caption{Messpunkte der Z-Kompensationsmessung}
+\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
 \label{tab:z-komp-result}
 \end{table}
 
@@ -222,7 +216,7 @@ Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
 		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}
 \end{figure}
-Am $χ^2/ndf$ sieht man, dass die Spannungen tendensiell zu vorsichtig abgeschätzt wurden
+Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschätzt wurden
 
 
 

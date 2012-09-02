@@ -57,7 +57,7 @@ g = 9.81 # m/s²
 
 for u in [ u_g[1], u_g[4] ]:
 	qm_grav = g * d / u
-	#printError(qm_grav, unit = 'C/kg')
+	printError(qm_grav, unit = 'C/kg')
 exit()
 #### resonanz ####
 ## ohne luft ##
