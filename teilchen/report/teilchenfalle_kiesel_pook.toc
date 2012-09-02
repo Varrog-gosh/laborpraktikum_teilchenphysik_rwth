@@ -1,0 +1,11 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Ziel der Messung}{1}{section.1}
+\contentsline {section}{\numberline {2}Aufbau und Durchf\IeC {\"u}hrung}{1}{section.2}
+\contentsline {section}{\numberline {3}Ergebnisse}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Bahnbeschreibung}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Kompensation der Gewichtskraft}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Resonanz}{5}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Messung in Luft}{6}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Stabilit\IeC {\"a}tsdiagramm}{6}{subsection.3.4}
+\contentsline {section}{\numberline {4}Vergleich der Messungen}{8}{section.4}
+\contentsline {section}{\numberline {5}Fazit}{8}{section.5}
