@@ -21,7 +21,7 @@ def waitForInput():
 def Fillx (ylist,xlist,exlist,xval):
 	for i in range(len(ylist)):
 		xlist.append(xval+1/len(ylist)*i)
-		xlist.append(0.0)
+		exlist.append(0.0)
 	return
 	
 		 
@@ -55,30 +55,53 @@ yrv = array('d')
 yrv.append(4320)
 yrv.append(420)
 
+eysl = array('d')
+eysl.append(0.15*100)
+eysl.append(0.15*1000)
+
+eyzl = array('d')
+eyzl.append(0.15*100)
+eyzl.append(0.15*1200)
+
+eyrl = array('d')
+eyrl.append(0.15*123)
+eyrl.append(0.15*1223)
+
+eysv = array('d')
+eysv.append(0.15*21293)
+eysv.append(0.15*2123)
+
+eyzv = array('d')
+eyzv.append(0.15*5239)
+eyzv.append(0.15*523)
+
+eyrv = array('d')
+eyrv.append(0.15*4320)
+eyrv.append(0.15*420)
+
 xsl = array('d')
 exsl = array('d')
-Fillx(ysl,xsl,exsl,1)
+Fillx(ysl,xsl,exsl,4)
 
 xzl = array('d')
 exzl = array('d')
-Fillx(yzl,xzl,exzl,2)
+Fillx(yzl,xzl,exzl,5)
 
 xrl = array('d')
-exzl = array('d')
-Fillx(yrl,xrl,exzl,3)
+exrl = array('d')
+Fillx(yrl,xrl,exrl,6.5)
 
 
 xsv = array('d')
 exsv = array('d')
-Fillx(ysv,xsv,exsv,5)
+Fillx(ysv,xsv,exsv,8)
 
 xzv = array('d')
 exzv = array('d')
-Fillx(yzv,xzv,exzv,6)
-
+Fillx(yzv,xzv,exzv,9.1)
 xrv = array('d')
 exrv = array('d')
-Fillx(yrv,xrv,exrv,7)
+Fillx(yrv,xrv,exrv,10.3)
 
 x = array("d")
 y = array('d')
@@ -91,12 +114,13 @@ for i in range(nvalues):
 	ey.append(y[-1]*0.01)
 fplot = TGraphErrors (nvalues,x,y,ex,ey)
 
-svGraph = TGraphErrors (len(ysv),xsv,ysv,exsv,eysv)
+svGraph = TGraphErrors (2,xsv,ysv,exsv,eysv)
 svGraph.SetMarkerStyle(23)
 svGraph.SetMarkerColor(2)
 svGraph.SetMarkerSize(1.0)
 
-rvGraph = TGraphErrors (len(ylv),xlv,ylv,exlv,eylv)
+
+rvGraph = TGraphErrors (len(yrv),xrv,yrv,exrv,eyrv)
 rvGraph.SetMarkerStyle(23)
 rvGraph.SetMarkerColor(3)
 rvGraph.SetMarkerSize(1.0)
@@ -111,7 +135,7 @@ slGraph.SetMarkerStyle(23)
 slGraph.SetMarkerColor(2)
 slGraph.SetMarkerSize(1.0)
 
-rlGraph = TGraphErrors (len(yll),xll,yll,exll,eyll)
+rlGraph = TGraphErrors (len(yrl),xrl,yrl,exrl,eyrl)
 rlGraph.SetMarkerStyle(23)
 rlGraph.SetMarkerColor(3)
 rlGraph.SetMarkerSize(1.0)
@@ -128,6 +152,9 @@ final.Add(zvGraph)
 final.Add(slGraph)
 final.Add(rlGraph)
 final.Add(zlGraph)
+
+final.Draw("ap")
+svGraph.SetTitle("Zusammenfassung der Ergebnisse")
 Nbins = final.GetXaxis().GetNbins()
 for bi in range(1,Nbins):
 	final.GetXaxis().SetBinLabel(bi,"")
@@ -139,9 +166,9 @@ for i in (1,2):
 	final.GetXaxis().SetBinLabel(step*2+Nbins/2*(i-1),"Stabilitaet")
 	final.GetXaxis().SetBinLabel(step*3+Nbins/2*(i-1),"Resonanz")
 final.GetXaxis().LabelsOption("h")
+final.GetXaxis().SetMinimum(0.0)
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
-final.Draw("ap")
 textair = TPaveText(0.2,0.8,0.35,0.88,"NDC")
 textair.AddText("Luft")
 textair.SetFillColor(0)
