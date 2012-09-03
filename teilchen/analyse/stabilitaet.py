@@ -65,7 +65,8 @@ for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
 	regs[-1].draw(";U_{i} [V^{2}];U_{g} [V]")
 	regs[-1].canvas.SaveAs('stabilitaet%s.pdf'%i)
 
-
+import ROOT
+ROOT.gROOT.SetBatch()
 ## ohne Luft ##
 
 
