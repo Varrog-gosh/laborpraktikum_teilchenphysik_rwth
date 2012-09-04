@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # coding=utf8
 
-def printError( value, error = 0 , unit = ''):
+def printError( value, error = 0 , unit = '', relative = False ):
 	'''
 	Prints error in a nice semiscientific way
 	Input: value and error or uncertainties.value
 	'''
-	not_scientific_exponents = [ -1, 0, 1 ] # 30 looks nicer than 3e1
+	not_scientific_exponents = [ -1, 0, 1, 2 ] # 30 looks nicer than 3e1
 	valid_digits = 1
 
 	# cast uncertainy in value ± error
@@ -19,10 +19,14 @@ def printError( value, error = 0 , unit = ''):
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
+	valstring = "( {0} ± {1} )".format( value, error )
 	if exponent_val in not_scientific_exponents:
-		print ( "( {0} ± {1} ) {2} rel. {3}".format ( value, error, unit,float(error/value) ) )
+		valstring = valstring + ' ' + unit
 	else:
-		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3} rel. {4}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit,float(error/value) ) )
+		valstring = "( {0} ± {1} ) \cdot 10^{{{2}}} {3}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit)
+	if relative:
+		valstring = valstring + ' relative Error: ' + str( 1. * error / value )
+	print( valstring )
 
 def listToUncertainty( values ):
 	'''

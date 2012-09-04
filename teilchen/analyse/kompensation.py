@@ -79,7 +79,7 @@ for i in [1,6,10]:
 print "U_G"
 ug_new.reverse()
 ug_new.append([273,55,4])
-d = ufloat( ( 0.00305, 0.00025 ) )# m
+d = ufloat( ( 0.0305, 0.002 ) )# m
 g = 9.81 # m/s²
 
 

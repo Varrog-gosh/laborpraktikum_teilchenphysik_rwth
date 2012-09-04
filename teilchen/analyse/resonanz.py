@@ -2,62 +2,43 @@
 # coding=utf8
 
 from tools import *
+from math import pi, sqrt
 from uncertainties import ufloat
 from uncertainties import umath
 from Styles import tdrStyle
 from uncertainties.unumpy import uarray
 tdrStyle()
-def abweichung( x1, x2 ):
-	''' calculates the derivations in σ from two values.
-	Input are two ufloat variables from the package uncertainties
-	Output is a float
-	'''
-	x = abs( x1 - x2 )
-	try:
-		return 1. * x.nominal_value / x.std_dev()
-	except:
-		return 0
 
-def longBeta(a, q):
-	from uncertainties.umath import sqrt
-	return 1.*sqrt( a - (a-1)*q**2 / (2*(a-1)**2-q**2) - (5*a+7)*q**4 / (32*(a-1)**3*(a-4)) - (9*a**2+58*a+29)*q**6 / (64*(a-1)**5*(a-4)*(a-9) ) )
-
-def shortBeta(a,q):
-	from uncertainties.umath import sqrt
-	return 1.*sqrt(a+q**2/2)
-
-def arrayToUncertainty( values ):
-	'''
-	values: list of values
-	returns ufloat with mean and std of input data
-	'''
-	from numpy import array
-	data = array( values )
-	from uncertainties import ufloat
-	return ufloat( ( data.mean(), data.std() ) )
-d = ufloat( ( 0.00305, 0.00025 ) )# m
-w_res = ufloat((5,1))
-w = ufloat((30,1))
-u_x = ufloat((400,10))
-K = 8
-A = 0.0001
-u_w = 200
+d = ufloat( ( 0.0305, 0.002 ) )# plattenabstand in m
+f_res = ufloat((5,1)) # resonanzfrequenz für alle versuch in Hz
+w_res = 2 * pi * f_res # winkelfrequenz
+F = ufloat((30,1)) # fokusierfrequenz
+w = 2 * pi * F # winkelfrequenz
+V_x = ufloat((400,10)) # u_x = u_y = u…z
+u_x = sqrt( 2 ) * V_x # effektive spannung in ampilitude
+K = 8 # geometriefaktor
 r = d/2
 
+## Bestimmung von A
+# bestimmung mit bild vak_falle_teilcen_res.jpg
+# innendurchmesser der scheibe * pixelverhältnis von amplitude durch mittlere pixelanzahl scheiben
+A = ufloat(( 0.012, 0.005 )) * ufloat(( 0.9, 0.1 )) * 2 / ( ufloat(( 18, 0.1 )) + ufloat(( 15, 0.1 )) )
+printError(A)
 
+## Bestimmung der Amplitude der Wecheslspannung
+v1 = [ 159,151,153,199,130,201,151,170,130,150,190,160 ] # 160±20
+v2 = [ 120,160,110,160,170,170,140,140,130,120,140,130 ] # 140±20
+# da die beiden listen mit fehler vereinbar sind, werden die listen als eine betrachtet
+
+# auch hier müssen wir aus der effektiven spannug die amplitude bestimmen
+u_w = sqrt(2) * listToUncertainty( v1 + v2  )
+
+
+
+#vakuum
 qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
-#PrintError( qm_res_vak )
 
-##Rauschmessungen U_W Montag
-U_W1 = arrayToUncertainty( [ 159,151,153,199,130,201,151,170,130,150190,160 ] )
-U_W2 = arrayToUncertainty( [120,160,110,160,170,170,140,140,130,120,140,130] )
-
-for u in [U_W1,U_W2]:
-	printError(u, unit = 'V')
-
-
-
-## mit luft ##
+# luft
 def qm_res():
 	'''
 	solves the quadritic formular to compute q/m in air
@@ -74,7 +55,9 @@ def qm_res():
 			result.append( umath.sqrt(x) )
 	return result
 
-#for qm in qm_res():
-#	printError( qm )
+for qm in qm_res():
+	printError( qm )
+
+printError( qm_res_vak, unit = 'C / kg' )
 
 

@@ -265,26 +265,27 @@ Für die Lösung im Vakuum reicht es in Gleichung (\ref{w_res}) $k_L=0$ zu setze
 
 Um die Resonanzfrequenz zu messen, wird die Wechselspannung variiert bis das Teilchen maximale Auslenkung zeigt.
 In Luft wird zusätzlich die maximale Amplitude bestimmt, indem mit einer Digitalkamera Fotos der Teilchenbahn angefertigt werden.
-Es wird vor Durchführung des Versuchs die Falle entfernt und eine Längenskala auf Höhe der Fallenmitte senkrecht zur Kamerablickrichtung platziert und ein Vergleichsbild aufgenommen.
-Da sowohl die Kameraposition, Kameraeinstellungen als auch die Teilchenfalle nicht mehr bewegt werden,
-kann aus diesen Bildern ein Zusammenhang zwischen Pixeln pro cm in der Beobachtungsebene bestimmt werden.
 
-Die Amplitude der Wechselspannung hat stark geschwankt und ließ sich nicht durch den dafür vorgesehenen Drehschalter regeln.
- Zwei Rauschmessungen bei einer Frequenzvon $\omega_w = 5$ liefern Messwerte
- von $U_{W1} = \unit[(xx±ex)]{V}$ und $U_{W2} = \unit[(xx±ex)]{V}$. 
- %~ Sollen wir das so machen?
- Die im weiteren genutzte Wechselspannung $U_W = \unit[(xx±ex)]{V}$ wird als gewichtetes Mittel dieser beiden Messungen gebidet.
- Alle gemessenen Teilchen zeigen ihre maximale Auslenkung bei $\omega_W = \unit[(5±1)]{Hz}$ , dabei handelt es sich um
- die minimal an der Spannungsquelle einstellbare Frequenz. Die wahre Resonanzfrequenz wird wohl in einigen Fällen unter
- diesem Wert liegen. Diese Limitierung der Wechselspanuungsfrequenz in Verbindung mit der stark schwankenden Amplitude 
- lassen große Zweifel an der Vertrauenswürdigkeit der gewonnenen Ergebnisse entstehen. 
+Bei niedriger Fokusierfrequenz erhöht sich der relative Fehler und bei hoher Fokusierfrequenz wird die Stabilitätsgrenze schneller erreicht,
+darum wurde eine Frequenz von $Ω = (503±6)\unit{Hz}$ und eine Fokusierfrequenz von $\unit[(1414±7)]{V}$ gewählt.
+Die Amplitude der Wechselspannung unterliegt starken Schwankungen
+( $ \unit[( 210 ± 30 )]{V} $ )
+und lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
+Der Ausschlag der Teilchen wird über das Verhältnis der Amplitude zum Innendurchmesser der Falle $d_{innen}$ bestimmt.
+$$A_{max} = \frac{A_{max}\text{ [Pixel]}}{d_{innen}\text{[ Pixel]}} \cdot d_{innen}= \unit[( 0.7 ± 0.4 )]{mm} $$
+Alle gemessenen Teilchen zeigen ihre maximale Auslenkung bei $\omega_W < \unit[(31±6)]{Hz}$ ,
+dabei handelt es sich um die minimal an der Spannungsquelle einstellbare Frequenz.
+Die wahre Resonanzfrequenz wird wohl in einigen Fällen unter diesem Wert liegen.
+Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
+Man erhält mit gausscher Fehlerfortplanzung in Luft
+$$\frac{q}{m} < \unitfrac[( -2.0 ± 2.0 ) \cdot 10^{-4}]{C}{kg}$$
+und mit der Näherung für Vakuum
+$$\frac{q}{m} < \unitfrac[( -2.2 ± 0.5 ) \cdot 10^{-4}]{C}{kg}.$$
+Der hohe Fehler bei der genauen Lösung ist durch die Differenzen von hohen Potenzen fehlerbehafteter Größen in Gleichung (\ref{res_luft}) bedingt.
+Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für das Verhältnisses von Ladung zu Masse dar, da die Resonanzfrequenz nicht weiter regulierbar ist.
 
-%~ Dies liegt daran, dass die Formel Differenzen von hohen Potenzen beinhaltet, was einen großen relativen Fehler ergibt.
-
-%~ Wenn man stattdessen die Näherung für Vakuum verwendet, erscheinen die Fehler auf den ersten Blick sinnvoller, enthalten aber keine Information über die Luft.
-
-
-
+%Diese Limitierung der Wechselspanuungsfrequenz in Verbindung mit der stark schwankenden Amplitude
+%lassen große Zweifel an der Vertrauenswürdigkeit der gewonnenen Ergebnisse entstehen.
 
 \subsection{Stabilitätsdiagramm}
 Wie Gleichung (\ref{mastergleichung}) zu entnehmen, ist die Grundschwingung der Teilchen gegeben durch $β$.
