@@ -24,6 +24,27 @@ def printError( value, error = 0 , unit = ''):
 	else:
 		print ( "( {0} ± {1} ) \cdot 10^{{{2}}} {3} rel. {4}".format ( value/10**exponent_val, error/10**exponent_val, exponent_val, unit,float(error/value) ) )
 
+def listToUncertainty( values ):
+	'''
+	values: list of values
+	returns ufloat with mean and std of input data
+	'''
+	from numpy import array
+	data = array( values )
+	from uncertainties import ufloat
+	return ufloat( ( data.mean(), data.std() ) )
+
+def abweichung( x1, x2 ):
+	''' calculates the derivations in σ from two values.
+	Input are two ufloat variables from the package uncertainties
+	Output is a float
+	'''
+	x = abs( x1 - x2 )
+	try:
+		return 1. * x.nominal_value / x.std_dev()
+	except:
+		raise ZeroDivisionError('std == 0')
+
 def readFile( filename ):
 	'''
 	opens a datafile and returns values in lists
