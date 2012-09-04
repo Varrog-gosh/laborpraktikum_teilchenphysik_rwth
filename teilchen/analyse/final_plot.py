@@ -23,10 +23,9 @@ def Fillx (ylist,xlist,exlist,xval):
 		xlist.append(xval+1/len(ylist)*i)
 		exlist.append(0.0)
 	return
-	
-		 
+
 final = TMultiGraph()
-    
+
 canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
 canv.SetLogy()
 canv.cd()
@@ -166,7 +165,7 @@ for i in (1,2):
 	final.GetXaxis().SetBinLabel(step*2+Nbins/2*(i-1),"Stabilitaet")
 	final.GetXaxis().SetBinLabel(step*3+Nbins/2*(i-1),"Resonanz")
 final.GetXaxis().LabelsOption("h")
-final.GetXaxis().SetMinimum(0.0)
+final.SetMinimum(1)
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
 textair = TPaveText(0.2,0.8,0.35,0.88,"NDC")
@@ -190,4 +189,4 @@ canv.GetFrame().SetFillColor( 0 )
 canv.GetFrame().SetBorderSize( 12 )
 canv.Modified()
 canv.Update()
-canv.SaveAs("test.pdf")
+#canv.SaveAs("test.pdf")
