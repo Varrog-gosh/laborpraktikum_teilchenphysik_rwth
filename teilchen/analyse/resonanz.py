@@ -23,7 +23,7 @@ r = d/2
 # bestimmung mit bild vak_falle_teilcen_res.jpg
 # innendurchmesser der scheibe * pixelverhältnis von amplitude durch mittlere pixelanzahl scheiben
 A = ufloat(( 0.012, 0.005 )) * ufloat(( 0.9, 0.1 )) * 2 / ( ufloat(( 18, 0.1 )) + ufloat(( 15, 0.1 )) )
-printError(A)
+#printError(A)
 
 ## Bestimmung der Amplitude der Wecheslspannung
 v1 = [ 159,151,153,199,130,201,151,170,130,150,190,160 ] # 160±20
@@ -32,11 +32,11 @@ v2 = [ 120,160,110,160,170,170,140,140,130,120,140,130 ] # 140±20
 
 # auch hier müssen wir aus der effektiven spannug die amplitude bestimmen
 u_w = sqrt(2) * listToUncertainty( v1 + v2  )
-
+#printError( u_w)
 
 
 #vakuum
-qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
+qm_res_vak = - w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
 
 # luft
 def qm_res():
@@ -58,6 +58,6 @@ def qm_res():
 for qm in qm_res():
 	printError( qm )
 
-printError( qm_res_vak, unit = 'C / kg' )
+printError( qm_res_vak )
 
 

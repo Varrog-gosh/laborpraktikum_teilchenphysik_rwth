@@ -2,18 +2,20 @@
 # coding=utf8
 
 import ROOT
-ROOT.gROOT.SetBatch()
-
 from tools import *
-from uncertainties import ufloat
 from uncertainties import umath
-from Styles import tdrStyle
 from uncertainties.unumpy import uarray
-tdrStyle()
-#### Stabilitätsdiagramm ####
-
-## mit luft ##
+from Styles import tdrStyle
 from numpy import array
+
+#nice looking style
+tdrStyle()
+
+#in the batch mode no canvas is drawn
+# I use this option for avoiding resolution problems when saving
+#ROOT.gROOT.SetBatch()
+
+
 stab_mes = []
 #Messungen Freitag :
 stab_mes.append(
@@ -47,7 +49,7 @@ stab_mes.append(
 	[280, 260, 320] ) )
 
 regs = []
-for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
+for i in range(len(stab_mes) - 8 ): #last meausurement is corrupted
 	x = uarray(( array( stab_mes[i][0] ), [5.]*len( stab_mes[i][0] )))
 	y = uarray(( array( stab_mes[i][1] ), [5.]*len( stab_mes[i][0] )))
 	x = x**2 # * 6 * K  / ( w**2 * d**2 )
@@ -55,7 +57,8 @@ for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
 	regs.append(linearRegression(x, y))
 	regs[-1].func.SetParNames('a','b')
 	regs[-1].draw(";U^{2}_{i} [V^{2}];U_{g} [V]")
-	regs[-1].canvas.SaveAs('linReg%s.pdf'%i)
+	#regs[-1].canvas.SaveAs('linReg%s.pdf'%i)
+	raw_input()
 
 
 

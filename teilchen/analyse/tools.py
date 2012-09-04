@@ -92,7 +92,7 @@ class linearRegression:
 		from ROOT import TGraphErrors
 		residuals = array( range( len( self.__x ) ) ,'float')
 		for i in range( len( unumpy.nominal_values(self.__x) ) ):
-			residuals[i] = self.func.Eval( unumpy.nominal_values(self.__x)[i] ) - unumpy.nominal_values(self.__y)[i]
+			residuals[i] = unumpy.nominal_values(self.__y)[i] - self.func.Eval( unumpy.nominal_values(self.__x)[i] )
 		self.resgraph = TGraphErrors( len( self.__x ), unumpy.nominal_values(self.__x), residuals, unumpy.std_devs(self.__x), unumpy.std_devs(self.__y) )
 
 	def draw(self, title):
@@ -121,10 +121,14 @@ class linearRegression:
 		residualPad.SetBorderSize(0)
 		residualPad.Draw()
 		residualPad.cd()
-		self.resgraph.SetTitle( ';' + title.split(';')[1] + '; residuals' )
+		# get y-label for residuals
+		from re import search
+
+		self.resgraph.SetTitle( title + ' - fit' )
 		xaxis = self.resgraph.GetXaxis()
-		xaxis.SetTitleSize(.15)
+		xaxis.SetTitleSize(.05)
 		xaxis.SetTitleOffset(.3)
+		xaxis.SetNdivisions( 0, 0, 99 )
 		self.resgraph.GetYaxis().SetTitleSize(.25)
 		self.resgraph.GetYaxis().SetTitleOffset(.23)
 		self.resgraph.GetYaxis().SetLabelSize(.2)
