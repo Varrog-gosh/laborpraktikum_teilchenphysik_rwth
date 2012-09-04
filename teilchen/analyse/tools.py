@@ -85,11 +85,11 @@ class linearRegression:
 		'''
 		from uncertainties import unumpy
 		from numpy import array
-		from ROOT import TGraph
+		from ROOT import TGraphErrors
 		residuals = array( range( len( self.__x ) ) ,'float')
 		for i in range( len( unumpy.nominal_values(self.__x) ) ):
-			residuals[i] = (self.func.Eval( unumpy.nominal_values(self.__x)[i]) - unumpy.nominal_values(self.__y)[i] )/ unumpy.std_devs(self.__y)[i]
-		self.resgraph = TGraph( len( self.__x ), unumpy.nominal_values(self.__x), residuals)
+			residuals[i] = self.func.Eval( unumpy.nominal_values(self.__x)[i] ) - unumpy.nominal_values(self.__y)[i]
+		self.resgraph = TGraphErrors( len( self.__x ), unumpy.nominal_values(self.__x), residuals, unumpy.std_devs(self.__x), unumpy.std_devs(self.__y) )
 
 	def draw(self, title):
 		'''
