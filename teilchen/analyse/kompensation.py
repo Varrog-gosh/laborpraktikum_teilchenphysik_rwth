@@ -39,7 +39,6 @@ def arrayToUncertainty( values ):
 	from uncertainties import ufloat
 	return ufloat( ( data.mean(), data.std() ) )
 
-
 #### kompensation der gewichtskraft ######
 
 from math import pi,sqrt
@@ -67,11 +66,11 @@ print "test"
 print u_g[3]
 for u in u_g:
 	print u_g
-	printError(u, unit = 'V')
+	#~ printError(u, unit = 'V')
 	
 ug_new = []
 ug_new2 = []
-for i in [2,6,10]:
+for i in [1,6,10]:
 	#~ print u_g[i+1] - u_g[i-1]
 	diff  = (u_g[i+1] - u_g[i-1])/2
 	ug_new.append( [ u_g[i].nominal_value , diff.nominal_value,i] )
@@ -83,6 +82,7 @@ ug_new.append([273,55,4])
 d = ufloat( ( 0.00305, 0.00025 ) )# m
 g = 9.81 # m/s²
 
+
 #~ for u in ug:
 	 #~ qm_grav = g * d / u
 	 #~ printError(qm_grav, unit = 'C/kg')
@@ -91,7 +91,7 @@ edval = d.std_dev()
 print "Messung 1 bei 450mbar"
 for i,u in enumerate(ug_new):
 	print i+1
-	print "U_g: %d +- %d (stat.) +- %d (sys.) V"%(u[0],u_g[u[2]].std_dev(),u[1])
+	print "U_g: %f +- %f (stat.) +- %f (sys.) V"%(u[0],u_g[u[2]].std_dev(),u[1])
 	qm_grav = g * d.nominal_value / u_g[u[2]]
 	qm = g * dval / u[0]
 	print "q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,qm_grav.std_dev(),usysqm(g,dval,edval,u[0],u[1]))

@@ -35,7 +35,7 @@ def arrayToUncertainty( values ):
 	data = array( values )
 	from uncertainties import ufloat
 	return ufloat( ( data.mean(), data.std() ) )
-
+d = ufloat( ( 0.00305, 0.00025 ) )# m
 w_res = ufloat((5,1))
 w = ufloat((30,1))
 u_x = ufloat((400,10))
@@ -44,8 +44,17 @@ A = 0.0001
 u_w = 200
 r = d/2
 
+
 qm_res_vak = w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
 #PrintError( qm_res_vak )
+
+##Rauschmessungen U_W Montag
+U_W1 = arrayToUncertainty( [ 159,151,153,199,130,201,151,170,130,150190,160 ] )
+U_W2 = arrayToUncertainty( [120,160,110,160,170,170,140,140,130,120,140,130] )
+
+for u in [U_W1,U_W2]:
+	printError(u, unit = 'V')
+
 
 
 ## mit luft ##
