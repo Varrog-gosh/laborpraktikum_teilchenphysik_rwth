@@ -40,7 +40,7 @@ dem wechselstromabhängigen Koeffizienten  $q_i = -\frac{4kqU_i}{Ω^2mr_0^2}$,
 dem Antribskoeffienzenten $B = \frac{2qU_W}{r_0mΩ^2}$,
 dem Luftreibungskoeffizient $k_L = \frac{6πηR}{mΩ}$, der Winkelfrequenz der Dreiphasenspannung $Ω$,
 der Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung $ω_W$
-und der normalisierten Zeit $ξ = \frac{Ωt}{2}$.
+und der normalisierten Zeit $ξ_i = \frac{Ωt}{2} + \frac{iπ}{3}$.
 $\vec{F}$ ist eine konstante äußere Kraft, zum Beispiel bei der z-Komponente die Gewichtskraft.
 Die Grundschwingung der Lösung wird durch
 $$β_i = \sqrt{a_i + \frac{q_i^2}{2}}$$
@@ -53,24 +53,24 @@ Die z-Achse verläuft vertikal, die y-Achse ist die Blickrichtung, und die x-Ach
 
 Die Falle wird aus sechs Kupferringen und 12 Verbindungsstücken zu einem Würfel geklebt.
 Nach dem Anlöten und Isolieren der Anschlusskabel wird die Falle mit schwarzem Lack angestrichen, um Steulicht in der Kammer zu verringern.
-Die Falle wird mittig über der Öffnung für die Spritze an den Anschlusskabeln befestigt und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Abbildung \ref{fallenbild}), 
+Die Falle wird mittig über der Öffnung für die Spritze an den Anschlusskabeln befestigt und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Abbildung \ref{fallenbild}),
 welche je nach Hebelstellung die Gleichspannungen oder die zusätzliche Wechselspannung zur Dreiphasenspannung hinzufügt.
 Die Dreiphasenspannung, im folgenden auch Fokussierspannung genannt, wird aus drei Wechselpannungsquellen die mit einem konstanten Phasenunterschied von $120^\circ$ betrieben werden, geliefert (siehe Abbildung \ref{verschaltung3phase}).
 Die Amplitude kann dabei für jedes Flächenpaar individuell eingestellt werden.
 
 \begin{figure}[htb]
 		\centering
-		\includegraphics[width=0.3\textwidth]{aufbau.jpg}
+		\includegraphics[width=0.8\textwidth]{aufbau.jpg}
 		\caption{Versuchsaufbau der Paulschen Teilchenfalle}
 		\label{fallenbild}
 \end{figure}
 
 Es gibt mehrere Möglichkeiten die Gleichspannung anzulegen:
-Man kann sie auf den beiden gegenüber liegenden Seiten (siehe Abbildung \ref{verschaltungstab}) oder zwischen zwei 
+Man kann sie auf den beiden gegenüber liegenden Seiten (siehe Abbildung \ref{verschaltungstab}) oder zwischen zwei
 gegenüberliegenden Seiten (siehe Abbildung \ref{verschaltungz}) anbringen.
-Die Wechselspannung wird zwischen zwei gegenüberliegenden Flächen angelegt (siehe Abbildung \ref{verschaltungres}), Frequenz und Amplitude sind einzeln regelbar. 
+Die Wechselspannung wird zwischen zwei gegenüberliegenden Flächen angelegt (siehe Abbildung \ref{verschaltungres}), Frequenz und Amplitude sind einzeln regelbar.
 Die Verschaltung ist jedoch schon vorgefertigt und kann mit Schaltern hinzugeschaltet werden.
-%Die Verschaltung kann man Bild \ref{verschaltung} entnehmen.
+
 \begin{figure}[htb]
 		\centering
 		\includegraphics{Schaltbild_3Phasen.png}
@@ -80,16 +80,16 @@ Die Verschaltung ist jedoch schon vorgefertigt und kann mit Schaltern hinzugesch
 
 \begin{figure}[htb]
 		\centering
-		\includegraphics{Schaltbild_Z_Kompensation.png}
-		\caption{Verschaltung im Generator für die Gleichspannung zwischen zwei Flächen}
-		\label{verschaltungz}
+		\includegraphics{Schaltbild_Stabilitaet.png}
+		\caption{Verschaltung im Generator für eine Gleichspannung auf zwei Flächen}
+		\label{verschaltungstab}
 \end{figure}
 
 \begin{figure}[htb]
 		\centering
-		\includegraphics{Schaltbild_Stabilitaet.png}
-		\caption{Verschaltung im Generator für eine Gleichspannung auf zwei Flächen}
-		\label{verschaltungstab}
+		\includegraphics{Schaltbild_Z_Kompensation.png}
+		\caption{Verschaltung im Generator für die Gleichspannung zwischen zwei Flächen}
+		\label{verschaltungz}
 \end{figure}
 
 \begin{figure}[htb]
@@ -109,6 +109,10 @@ Die Kammer besitzt mehrere Öffnungen an denen Beobachtungsfenster,Stromversorgu
  Da während der Versuchsdurchführung die Vakuumpumpe defekt war 
 konnten Messungen lediglich bei vermindertem Luftdruck, im Bereich zwischen $\unit[300]{mbar} - \unit[450]{mbar}$, durchgeführt werden.  
 
+Es gibt auch eine vorgefertigte Falle, die sich in einer Vakuumkammer befindet.
+Diese kann man mit einem einer normalen Turbinenpumpe und bei niedrigeren Drücken mit einer Turbo-Molekularpumpe vakuumisieren und den Druck mithilfe eines Drucksensors überprüfen.
+Durch Scheiben kann man die Falle ebenso anleuchten und beobachten.
+
 
 
 \section{Ergebnisse}
@@ -117,6 +121,7 @@ Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $d = \unit[
 In den meisten Fällen beschreiben die eingefangenen Teilchen eine elliptische Teilchenbahn deren Radius und die Exzentrizität durch das Verhältnis der angelegten Potenziale in der Fokusierspannung erklärt werden können.
 Viele Teilchen beschreiben zudem sehr kleine Bahnen und sind deshalb nur noch als Punkte wahrzunehmen.
 
+\subsubsection*{Lissajous Figuren}
 Manchmal bilden sich auch Lissajou Figuren. Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen, wenn das Verhältnis der Frequenzen rational ist.
 In diesem Fall bildet die Teilchenbahn eine geschlossene Figur.
 Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom Frequenzverhältnis und dem Phasenunterschied der Schwingungen ab.
@@ -129,9 +134,27 @@ Ein Beispiel ist in Bild \ref{Lissjous} zu sehen.
 		\label{Lissjous}
 \end{figure}
 
+\subsubsection*{Kristallstruktur}
 Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal pseudo Kristallstrukturen erkennen:
 Die Teilchen stoßen sich gegenseitig ab und suchen energetisch günstige Zustände, ebenso wie in einem Kristall.
-Maximal wurden vier Teilchen auf einmal eingefangen, die alle ähnliche Abstände zueinander hatten, leider sind das noch zu wenige, um eine definitive Aussage über die genaue Kristallstruktur zu machen.
+Überlagert zu diesem Effekt sieht man in Bild \ref{pseudokristall} noch die Auswirkungen des Feldes.
+In der hier sichtbaren $x = 0$ und $z = 0$ Ebene werden keine Teilchen gehalten, wie man auch Gleichung (\ref{mastergleichung}) entnehmen kann.
+
+\begin{figure}[htb]
+		\centering
+		\includegraphics{pseudo_kristall.png}
+		\caption{Beispiel zur Pseudokristallstruktur}
+		\label{pseudokristall}
+\end{figure}
+
+\subsubsection*{Fangen von Teilchen im Vakuum}
+Beim vakuumisieren der Kammer kann der gewünschte Druck von einigen $\unit{μbar}$ erreicht werden.
+Die Frontanzeige liefert bei Erreichen von $90μbar$ auf einen Fehlercode und auch auf der Rückseite des Sensors ist der Druck immer noch zu groß.
+Auch das Halten von Teilchen in der Falle gestaltet sich bei diesen Einstellungen noch als schwierig, man kann erahnen wie die Teilchen immer zu einer Seite abgesaugt werden.
+Grund dafür könnte ein Leck an der Vakuumskammer sein, ein defekt der Turbo-Molekularpumpe ist aber auch nicht ausgeschlossen.
+Da das Saugen der Pumpe jede Speicherung während des Pumpens unmöglich macht, ist die eingize Möglichkeit, Teilchen in der Vakuumfalle zu halten, die Pumpe auszuschalten.
+Der Druck fällt rasch auf ein paar $\unit[100] {mbar}$ ab und ist dann relativ stabil, was einem das einfangen von Teichen erlaubt.
+
 
 \subsection{Kompensation der Gewichtskraft}
 In Gleichung (\ref{mastergleichung}) wird der Einfluss der Luftreibung vernachlässigt und ein Näherungsansatz der Form $z(ξ_z) = Z(ξ_z)+d(ξ_z)$ durchgeführt.
@@ -146,16 +169,8 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 	\label{kraftgleichgew}
 	|\vec{F}_{z}| = |\vec{F}_G + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
 \end{align}
-%
-%\begin{figure}[htb]
-%		\centering
-		%~ \includegraphics{Schaltbild_Z_Kompensation.png}
-		%~ \caption{Schaltbild Z-Kompensation}
-		%~ \label{schalt-z}
-		% wollen wir die schlaltung oben beim versuchsaufbau erklären?
-%~ \end{figure}
 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Bild \ref{schalt-z}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Bild \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
@@ -294,9 +309,9 @@ Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultie
 Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 \begin{figure}[htb]
 		\centering
-		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet1.pdf}
-		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet2.pdf}\\
-		\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet3.pdf}\\
+		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet1.pdf}
+		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet2.pdf}\\
+		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet3.pdf}\\
 		\caption{Lineare Regressionen zur Stabilitätsuntersuchung.
 		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
 		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}

@@ -41,7 +41,7 @@ stab_mes.append(
 stab_mes.append(
 	( [850,750,680,600,510,400], #Omega = 30 Hz p=400-450 mbar
 	[460, 375, 300,220,160,50] ) )
-### Dumpmessung Freitag			
+### Dumpmessung Freitag
 stab_mes.append(
 	( [1200, 1100, 1000],
 	[280, 260, 320] ) )
@@ -54,10 +54,9 @@ for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
 
 	regs.append(linearRegression(x, y))
 	regs[-1].func.SetParNames('a','b')
-	regs[-1].draw(";U_{i} [V^{2}];U_{g} [V]")
-	regs[-1].canvas.SaveAs('stabilitaet%s.pdf'%i)
+	regs[-1].draw(";U^{2}_{i} [V^{2}];U_{g} [V]")
+	regs[-1].canvas.SaveAs('linReg%s.pdf'%i)
 
-## ohne Luft ##
 
 
 
