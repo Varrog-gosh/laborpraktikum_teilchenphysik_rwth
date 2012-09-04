@@ -153,11 +153,15 @@ Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwisch
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
-Weil die Gleichspannung stark schwankend ist, wird die effektive Spannung durch notieren der angezeigten Werte in einem Zeitraum von ungefähr $\unit[20]{s}$ und anschliessendem Mitteln bestimmt.
+
+Weil die Gleichspannung stark schwankend ist, wird die effektive Spannung durch notieren der angezeigten Werte in einem Zeitraum von ungefähr $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. 
+Der Fehler auf die Stichprobe wird im folgenden als statistischer Fehler angenommen.
 Da man die Teilchen oft wegen spontaner Spannugsschwankungen der Quelle verliert, kann der Bereich, in dem die Gravitationskraft kompensiert wird, nicht in feineren Spannungsabschnitten untersucht werden.
-Da so nicht abzuschätzen ist wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wird,
-wird als Fehler die mittlere Differenz zu den nächstliegenden $U_G$ gewählt, bei dem wieder Bewegungen des Schwingungsmittelpunkt bei Variation der Fokussierspannung $U_z$ zu beobachten sind.
-Die Messung wurde für mehrere gleichzeitig gefangene Teilchen durchgeführt und die Spannung erhöht bis alle Teilchen den Stabilitätsbereich verlassen haben.
+Dies führt dazu, dass nicht abgeschätzt werden kann wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wird.
+Die mittlere Differenz zu den nächstliegenden $U_G$ Messwerten, bei denen wieder Bewegungen des Schwingungsmittelpunkt bei Variation der Fokussierspannung $U_z$ zu beobachten sind,
+wird deshalb als systematischer Fehler angenommen.
+Die Messungen wurde teilweise für mehrere gleichzeitig gefangene Teilchen durchgeführt und die Spannung erhöht bis alle Teilchen den Stabilitätsbereich verlassen haben. Die Messergebnisse sind in
+Tabelle \ref{tab:z-komp-measure} aufgeführt, dabei wurden für die einzelnen Messungen unterschiedliche Teilchen benutzt.
 Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle und ist für alle beobachteten Teilchen negativ, was mit der Theorie übereinstimmt.
 
 \begin{table}
@@ -165,11 +169,24 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 	\begin{tabular}{ l | c | l | l }
 		$U_{G} [V]$ & $\sigma_{U_{G}}[V]$ & \multicolumn{2}{l}{Verhalten des Bahnmittelpunkts bei Änderung von $U_z$}  \\
 		\hline
+		\hline
+		Messung 1 (2 Teilchen)\\
 		45 & 5 & Bewegung &  Bewegung   \\
 		92 & 8 & still  & Bewegung \\
 		168 & 4 & Bewegung & Bewegung    \\
 		228 & 3 & Bewegung & Bewegung \\
 		273 & 5 & verloren & still \\
+		\hline
+		Messung 2 (1 Teilchen)\\
+		33 & 5 & Bewegung \\
+		50 & 4 & still\\
+		60 & 5 & Bewegung \\
+		79 & 7 & Bewegung\\
+		\hline
+		Messung 3 (1 Teilchen)\\
+		25 & 3 & Bewegung\\
+		68 & 3 & still\\
+		79 & 7 & Bewegung\\
 	\end{tabular}
 \caption{Verhalten von beiden Teilchen bei unterschiedlichen Gleichspannungen zur Bestimmung der z-Kompensation}
 \label{tab:z-komp-measure}
@@ -179,8 +196,9 @@ Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezi
 \begin{align}\label{zspezm}
 	\frac{q}{m} = -\frac{g \cdot  d}{U_{G}}
 \end{align}
-wobei $g = \unitfrac[9.81]{m}{s^2}$ die Erdbeschleunigung ist und als fehlerfrei angenommen wird.
-Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden.
+Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden. Hierbei wurde die Erdbeschleunigung 
+$g = \unitfrac[(9.81)]{m}{s}$ als fehlerfrei angenommen und die Unsicherheit auf den Fallendurchmesser als weitere
+unabhängige systematische Fehlerquelle betrachtet.
 
 
 \begin{table}
@@ -188,9 +206,7 @@ Die errechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden.
 	\begin{tabular}{ l | c | c }
 		Teilchen &$U_{G,komp} [V]$ & $\frac{q}{m}[\frac{mC}{kg}]$  \\
 		\hline
-		1 &  92 ± 8 &  0.33 ± 0.04  \\
-		\hline
-		2 & 273 ± 5 &  0.109 ± 0.009  \\
+		1 &  92 ± 8(stat.) ± 8 (sys.) &  0.33 ± 0.04(stat.) ± 0.04(sys)  \\
 	\end{tabular}
 \caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
 \label{tab:z-komp-result}
@@ -246,13 +262,17 @@ kann aus diesen Bildern ein Zusammenhang zwischen Pixeln pro cm in der Beobachtu
 
 Die Amplitude der Wechselspannung hat stark geschwankt und ließ sich nicht durch den dafür vorgesehenen Drehschalter regeln.
  Es wurden 2 Rauschmessungen bei einer Frequenzvon $\omega_w = 5$ durchgeführt diese Lieferten Messwerte
- von $U_w1 = \unit[(xx±ex)]{V}$ und $U_w2 = \unit[(xx±ex)]{V}$. 
+ von $U_{w1} = \unit[(xx±ex)]{V}$ und $U_{W2} = \unit[(xx±ex)]{V}$. 
  %~ Sollen wir das so machen?
  Die im weiteren genutzte Wechselspannung $U_W = \unit[(xx±ex)]{V}$ wird als gewichtetes Mittel dieser beiden Messungen gebidet.
+ Alle gemessenen Teilchen zeigten ihre maximale Auslenkung bei $\omega_W = \unit[(5±1)]{Hz}$ , dabei handelt es sich um
+ die minimal an der Spannungsquelle einstellbare Frequenz. Die wahre Resonanzfrequenz wird wohl in einigen Fällen unter
+ diesem Wert liegen. Diese Limitierung der Wechselspanuungsfrequenz in Verbindung mit der stark schwankenden Amplitude 
+ lassen große Zweifel an der vertrauenswürdigkeit der gewonnenen Ergebnisse entstehen. 
 
-Dies liegt daran, dass die Formel Differenzen von hohen Potenzen beinhaltet, was einen großen relativen Fehler ergibt.
+%~ Dies liegt daran, dass die Formel Differenzen von hohen Potenzen beinhaltet, was einen großen relativen Fehler ergibt.
 
-Wenn man stattdessen die Näherung für Vakuum verwendet, erscheinen die Fehler auf den ersten Blick sinnvoller, enthalten aber keine Information über die Luft.
+%~ Wenn man stattdessen die Näherung für Vakuum verwendet, erscheinen die Fehler auf den ersten Blick sinnvoller, enthalten aber keine Information über die Luft.
 
 
 
@@ -263,7 +283,7 @@ Wenn $β$ imaginär ist ($ \Leftrightarrow a + \frac12q^2 >0$), werden die Winke
 Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z$ die Spannung $U_G$ gesucht, bei der das Teilchen entkommt.
 Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt und es somit leicht entkommen kann.
 Für jedes Teilchen wird $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
-Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultieren sich in einer Verschiebung der Geraden nach unten, sodass die Steigung nicht stark beeinflusst wird.
+Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultieren in einer Verschiebung der Geraden nach unten, sodass die Steigung nicht stark beeinflusst wird.
 Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 \begin{figure}[htb]
 		\centering
