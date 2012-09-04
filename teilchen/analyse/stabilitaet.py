@@ -1,41 +1,15 @@
 #!/usr/bin/python
 # coding=utf8
 
+import ROOT
+ROOT.gROOT.SetBatch()
+
 from tools import *
 from uncertainties import ufloat
 from uncertainties import umath
 from Styles import tdrStyle
 from uncertainties.unumpy import uarray
 tdrStyle()
-def abweichung( x1, x2 ):
-	''' calculates the derivations in σ from two values.
-	Input are two ufloat variables from the package uncertainties
-	Output is a float
-	'''
-	x = abs( x1 - x2 )
-	try:
-		return 1. * x.nominal_value / x.std_dev()
-	except:
-		return 0
-
-def longBeta(a, q):
-	from uncertainties.umath import sqrt
-	return 1.*sqrt( a - (a-1)*q**2 / (2*(a-1)**2-q**2) - (5*a+7)*q**4 / (32*(a-1)**3*(a-4)) - (9*a**2+58*a+29)*q**6 / (64*(a-1)**5*(a-4)*(a-9) ) )
-
-def shortBeta(a,q):
-	from uncertainties.umath import sqrt
-	return 1.*sqrt(a+q**2/2)
-
-def arrayToUncertainty( values ):
-	'''
-	values: list of values
-	returns ufloat with mean and std of input data
-	'''
-	from numpy import array
-	data = array( values )
-	from uncertainties import ufloat
-	return ufloat( ( data.mean(), data.std() ) )
-
 #### Stabilitätsdiagramm ####
 
 ## mit luft ##
@@ -83,12 +57,7 @@ for i in range(len(stab_mes) - 1 ): #last meausurement is corrupted
 	regs[-1].draw(";U_{i} [V^{2}];U_{g} [V]")
 	regs[-1].canvas.SaveAs('stabilitaet%s.pdf'%i)
 
-import ROOT
-ROOT.gROOT.SetBatch()
 ## ohne Luft ##
-
-
-
 
 
 
@@ -99,6 +68,4 @@ ROOT.gROOT.SetBatch()
 #e = 1.6e-19
 #r = ufloat((30e-6,25e-6))
 #m = 4./3*pi*r**3*2700 # kg'''
-
-
 
