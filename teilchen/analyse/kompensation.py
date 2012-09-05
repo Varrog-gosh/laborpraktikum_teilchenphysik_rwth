@@ -95,4 +95,4 @@ for i,u in enumerate(ug_new):
 	qm_grav = g * d.nominal_value / u_g[u[2]]
 	qm = g * dval / u[0]
 	#~ print "uncertain q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,qm_grav.std_dev(),usysqm(g,dval,edval,u[0],u[1]))
-	print "byhand q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,usysqm( g,dval,0,u[0],u_g[u[2]].std_dev() ),usysqm( g,dval,edval,u[0],u[1]) )
+	print "byhand q/m: %e +- %e (stat.) +- %e (sys.) +- %e (comb.)C/kg \n"%(qm,usysqm( g,dval,0,u[0],u_g[u[2]].std_dev() ),usysqm( g,dval,edval,u[0],u[1]),sqrt(pow(usysqm( g,dval,0,u[0],u_g[u[2]].std_dev() ),2) + pow(usysqm( g,dval,edval,u[0],u[1]),2) ) )

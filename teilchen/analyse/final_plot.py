@@ -20,7 +20,7 @@ def waitForInput():
     return
 def Fillx (ylist,xlist,exlist,xval):
 	for i in range(len(ylist)):
-		xlist.append(xval+1/len(ylist)*i)
+		xlist.append(xval+0.5/len(ylist)*i)
 		exlist.append(0.0)
 	return
 
@@ -31,76 +31,68 @@ canv.SetLogy()
 canv.cd()
 nvalues = int(10.0)
 ysl = array('d')
-ysl.append(100)
-ysl.append(1000)
+
 
 yzl = array('d')
-yzl.append(100)
-yzl.append(1200)
+yzl.append(5.95)
+yzl.append(3.27)
+yzl.append(1.09)
 
 yrl = array('d')
-yrl.append(123)
-yrl.append(1223)
+yrl.append(0.2)
 
 ysv = array('d')
-ysv.append(21293)
-ysv.append(2123)
 
 yzv = array('d')
-yzv.append(5239)
-yzv.append(523)
+yzv.append(4.4)
 
 yrv = array('d')
-yrv.append(4320)
-yrv.append(420)
+yrv.append(0.22)
 
 eysl = array('d')
-eysl.append(0.15*100)
-eysl.append(0.15*1000)
 
 eyzl = array('d')
-eyzl.append(0.15*100)
-eyzl.append(0.15*1200)
+eyzl.append(1.75)
+eyzl.append(2.23)
+eyzl.append(0.23)
 
 eyrl = array('d')
-eyrl.append(0.15*123)
-eyrl.append(0.15*1223)
+eyrl.append(0.02)
 
 eysv = array('d')
-eysv.append(0.15*21293)
-eysv.append(0.15*2123)
 
 eyzv = array('d')
-eyzv.append(0.15*5239)
-eyzv.append(0.15*523)
+eyzv.append(1.76)
 
 eyrv = array('d')
-eyrv.append(0.15*4320)
-eyrv.append(0.15*420)
+eyrv.append(0.05)
 
-xsl = array('d')
-exsl = array('d')
-Fillx(ysl,xsl,exsl,4)
+
 
 xzl = array('d')
 exzl = array('d')
-Fillx(yzl,xzl,exzl,5)
+Fillx(yzl,xzl,exzl,1.)
+
+xsl = array('d')
+exsl = array('d')
+Fillx(ysl,xsl,exsl,2.5)
 
 xrl = array('d')
 exrl = array('d')
-Fillx(yrl,xrl,exrl,6.5)
+Fillx(yrl,xrl,exrl,3.5)
 
-
-xsv = array('d')
-exsv = array('d')
-Fillx(ysv,xsv,exsv,8)
 
 xzv = array('d')
 exzv = array('d')
-Fillx(yzv,xzv,exzv,9.1)
+Fillx(yzv,xzv,exzv,7.5)
+
+xsv = array('d')
+exsv = array('d')
+Fillx(ysv,xsv,exsv,9)
+
 xrv = array('d')
 exrv = array('d')
-Fillx(yrv,xrv,exrv,10.3)
+Fillx(yrv,xrv,exrv,10.5)
 
 x = array("d")
 y = array('d')
@@ -113,12 +105,12 @@ for i in range(nvalues):
 	ey.append(y[-1]*0.01)
 fplot = TGraphErrors (nvalues,x,y,ex,ey)
 
-svGraph = TGraphErrors (2,xsv,ysv,exsv,eysv)
-svGraph.SetMarkerStyle(23)
-svGraph.SetMarkerColor(2)
-svGraph.SetMarkerSize(1.0)
-
-
+#~ svGraph = TGraphErrors (len(ysv),xsv,ysv,exsv,eysv)
+#~ svGraph.SetMarkerStyle(23)
+#~ svGraph.SetMarkerColor(2)
+#~ svGraph.SetMarkerSize(1.0)
+#~ 
+#~ 
 rvGraph = TGraphErrors (len(yrv),xrv,yrv,exrv,eyrv)
 rvGraph.SetMarkerStyle(23)
 rvGraph.SetMarkerColor(3)
@@ -129,11 +121,11 @@ zvGraph.SetMarkerStyle(23)
 zvGraph.SetMarkerColor(4)
 zvGraph.SetMarkerSize(1.0)
 
-slGraph = TGraphErrors (len(ysl),xsl,ysl,exsl,eysl)
-slGraph.SetMarkerStyle(23)
-slGraph.SetMarkerColor(2)
-slGraph.SetMarkerSize(1.0)
-
+#~ slGraph = TGraphErrors (len(ysl),xsl,ysl,exsl,eysl)
+#~ slGraph.SetMarkerStyle(23)
+#~ slGraph.SetMarkerColor(2)
+#~ slGraph.SetMarkerSize(1.0)
+#~ 
 rlGraph = TGraphErrors (len(yrl),xrl,yrl,exrl,eyrl)
 rlGraph.SetMarkerStyle(23)
 rlGraph.SetMarkerColor(3)
@@ -144,20 +136,28 @@ zlGraph.SetMarkerStyle(23)
 zlGraph.SetMarkerColor(4)
 zlGraph.SetMarkerSize(1.0)
 
-final.Add(svGraph)
+#~ final.Add(svGraph)
 final.Add(rvGraph)
 final.Add(zvGraph)
 
-final.Add(slGraph)
+#~ final.Add(slGraph)
 final.Add(rlGraph)
 final.Add(zlGraph)
 
+
 final.Draw("ap")
-svGraph.SetTitle("Zusammenfassung der Ergebnisse")
+final.GetYaxis().SetTitle("#frac{q}{m}[#frac{mC}{kg}]")
+final.GetYaxis().RotateTitle(False)
+final.GetXaxis().SetLimits(0.0,12.0)
+
+final.SetTitle("Zusammenfassung der Ergebnisse")
+
+final.SetMaximum(2e2)
+final.SetMinimum(8e-7)
 Nbins = final.GetXaxis().GetNbins()
 for bi in range(1,Nbins):
 	final.GetXaxis().SetBinLabel(bi,"")
-step = int(Nbins/7)
+step = int(Nbins/8)
 
 
 for i in (1,2):
@@ -165,7 +165,6 @@ for i in (1,2):
 	final.GetXaxis().SetBinLabel(step*2+Nbins/2*(i-1),"Stabilitaet")
 	final.GetXaxis().SetBinLabel(step*3+Nbins/2*(i-1),"Resonanz")
 final.GetXaxis().LabelsOption("h")
-final.SetMinimum(1)
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
 textair = TPaveText(0.2,0.8,0.35,0.88,"NDC")
@@ -189,4 +188,4 @@ canv.GetFrame().SetFillColor( 0 )
 canv.GetFrame().SetBorderSize( 12 )
 canv.Modified()
 canv.Update()
-#canv.SaveAs("test.pdf")
+canv.SaveAs("final_plot.pdf")
