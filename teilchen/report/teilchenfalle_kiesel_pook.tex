@@ -125,7 +125,7 @@ Viele Teilchen beschreiben zudem sehr kleine Bahnen und sind deshalb nur noch al
 Manchmal bilden sich auch Lissajou Figuren. Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen, wenn das Verhältnis der Frequenzen rational ist.
 In diesem Fall bildet die Teilchenbahn eine geschlossene Figur.
 Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom Frequenzverhältnis und dem Phasenunterschied der Schwingungen ab.
-Ein Beispiel ist in Bild \ref{Lissjous} zu sehen.
+Ein Beispiel ist in Abbildung \ref{Lissjous} zu sehen.
 
 \begin{figure}[htb]
 		\centering
@@ -137,7 +137,7 @@ Ein Beispiel ist in Bild \ref{Lissjous} zu sehen.
 \subsubsection*{Kristallstruktur}
 Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal pseudo Kristallstrukturen erkennen:
 Die Teilchen stoßen sich gegenseitig ab und suchen energetisch günstige Zustände, ebenso wie in einem Kristall.
-Überlagert zu diesem Effekt sieht man in Bild \ref{pseudokristall} noch die Auswirkungen des Feldes.
+Überlagert zu diesem Effekt sieht man in Abbildung \ref{pseudokristall} noch die Auswirkungen des Feldes.
 In der hier sichtbaren $x = 0$ und $z = 0$ Ebene werden keine Teilchen gehalten, wie man auch Gleichung (\ref{mastergleichung}) entnehmen kann.
 
 \begin{figure}[htb]
@@ -170,7 +170,7 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 	|\vec{F}_{z}| = |\vec{F}_G + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
 \end{align}
 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Bild \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Abbildung \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
@@ -308,9 +308,8 @@ Wie Gleichung (\ref{mastergleichung}) zu entnehmen, ist die Grundschwingung der 
 Wenn $β$ imaginär ist, was äquivalent zu $ a + \frac12q^2 >0$ ist, werden die Winkelfunktionen zu Expotentialfunktionen, was zum Austritt der Teilchen aus der Falle führt.
 Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z = U_i$ die Spannung $U_G$ gesucht, bei der das Teilchen entkommt.
 Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt und es somit leicht entkommen kann.
-Für jedes Teilchen wird $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
-Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultieren in einer Verschiebung der Geraden nach unten, sodass die Steigung nicht stark beeinflusst wird.
-Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
+Für jedes Teilchen wird bei konstantem $Ω =\unit[188]{Hz}$ die Gleichspannung $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
+Die Anpassungen sind in Abbildung \ref{linReg} zu sehen.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[height = 0.3\textheight]{linRegLuft1.pdf}
@@ -319,10 +318,38 @@ Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 		\includegraphics[height = 0.3\textheight]{linReg425bar2.pdf}\\
 		\includegraphics[height = 0.3\textheight]{linReg425bar.pdf}
 		\includegraphics[height = 0.3\textheight]{linReg375bar.pdf}
-		\caption{Lineare Regressionen zur Stabilitätsuntersuchung.
-		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
-		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}
+		\caption{Lineare Regressionen und Residuen zur Stabilitätsuntersuchung für unterschiedliche Luftdrücke und Teilchen.
+			Oben links wird der letzte Datenpunkt nicht für die Anpassung benutzt, da das Teilchen die Falle schon verlassen hat.
+			Unten rechts wurde die maximale Spannung erreicht, ohne das die Stabilitätsgrenze erreicht wurde.
+		}
+		\label{linReg}
 \end{figure}
+
+Da der Luftdrucksensor nur $\unit[50]{mbar}$ auflösen konnte, sind die Druckangaben mit einem Fehler von $\unit[14]{mbar}$ behaftet.
+Für Messungen, bei denen die Druckanzeige geschwankt hat, wurde der Mittelwert aus beiden Drücken genommen.
+
+
+Für $U_i$ wird ein Fehler von $\unit[10]{V}$ verwendet, für die Gleichspannung ein Fehler von $\unit[15]{V}$, da sie nicht nur schwankt, sondern auch nur ein geringer Zeitraum zum Ablesen bestand, da die Teilchen die Falle schnell verlassen.
+
+In der Anpassung unten rechts wird der letzte Datenpunkt nicht verwendet, da die Maximale Amplitude der Gleichspannung erreicht wurde.
+Das eigentliche Verlassen des Stabilitätsbereichs findet bei einer höheren Spannung statt.
+Da durch den genaueren Aufbau der Vakuumfalle besonders viele Teilchen gefangen werden, müssen am Anfang viele Teichen aus dem Stabilitätsbereich gebracht werden, damit man die Teichen auseinander halten kann.
+Dies führt dazu, dass man nur noch sehr stabile Teilchen in der Falle hat, mit denen man schnell das Maximum der Gleichspannung erreicht.
+
+Zugleich möchte man aber auch über das ganze Spektrum der Gleichspannung, da bei niedrigen Spannungen der relative Fehler und damit auch die Fehler auf die Anpassungsergebnisse steigen, was man oben rechts in der Abbildung sehen kann.
+
+
+In der Anpassung oben links wird der letzte Datenpunkt nicht für die Anpassung verwendet, weil bei dem Punkt das Teichen schon entkommen war.
+Man kann über den Abstand des letzen Punktes zur Anpassungsgerade die Spannung abschätzen die nötig gewesen wäre, ein Teichen tatsächlich aus der Falle zu bringen.
+Dies spiegelt sich auch im y-Achsenabschnitt wieder, der im Mittel $komisceh zahl$ beträgt.
+% noch mehr text dazu?
+Durch die lineare Regression kann also der systematische Fehler durch das konservative Abschätzen der Entweichspannung verringert werden.
+
+
+Das $χ^2/ndf$ ist eher etwas zu klein, besonders an den Graphen, die nur Messwerte bei niedrige Gleichspannung beinhalten, da wie oben beschrieben der relative Fehler hier größer wird.
+Insgesamt sind die Anpassungen gut mit einer Geraden vereinbar.
+
+
 
 Luft1: q/m = -5.0786e-06 ± 3.90e-07 (stat) ± 6.66e-08 (sys) ± 3.96e-07 (gesamt) C/kg
 Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesamt) C/kg
@@ -331,13 +358,6 @@ Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesam
 425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
 425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
 
-
-Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschätzt wurden
-
-
-bei niedigen spannungen ist der relative fehler größer
-immer schritte von 500 bar, also 250 = schwanken zwischen zwei schritten
-für alle versuche ist $Ω = 2*pi*30 hz$
 
 
 
