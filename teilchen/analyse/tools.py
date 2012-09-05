@@ -72,15 +72,19 @@ def readFile( filename ):
 	return map( list, zip( *data ) )
 
 class linearRegression:
-	def __init__( self, x, y):
+	def __init__( self, x, y, execludeLast = False ):
 		from uncertainties import unumpy
 		self.__x = x
 		self.__y = y
-		from ROOT import TGraphErrors
+		from ROOT import TGraphErrors, TF1
 		self.graph = TGraphErrors( len(x), unumpy.nominal_values(x), unumpy.nominal_values(y) , unumpy.std_devs(x), unumpy.std_devs(y))
-		self.graph.Fit('pol1')
-		self.graph.Fit('pol1')
-		self.func = self.graph.GetFunction('pol1')
+		if execludeLast:
+			self.func = TF1('fitfunc', 'pol1', 0, unumpy.nominal_values(self.__x)[-1]-1 )
+			self.graph.Fit('fitfunc', 'RQ')
+		else:
+			self.graph.Fit('pol1', 'Q')
+			self.func = self.graph.GetFunction('pol1')
+
 
 	def residuals(self):
 		'''
@@ -122,14 +126,16 @@ class linearRegression:
 		residualPad.Draw()
 		residualPad.cd()
 		# get y-label for residuals
-		from re import search
-
-		self.resgraph.SetTitle( title + ' - fit' )
+		from re import match
+		splittitle = title.split(';')
+		val, unit = match( '(.*)\[(.*)\]', splittitle[2] ).groups()
+		restitle = splittitle[0] + ';' + splittitle[1] + ';' + val + '- fit [' + unit + ']'
+		self.resgraph.SetTitle( restitle )
 		xaxis = self.resgraph.GetXaxis()
-		xaxis.SetTitleSize(.05)
+		xaxis.SetTitleSize(.15)
 		xaxis.SetTitleOffset(.3)
-		xaxis.SetNdivisions( 0, 0, 99 )
-		self.resgraph.GetYaxis().SetTitleSize(.25)
+		self.resgraph.GetYaxis().SetNdivisions( 8,0 ,0 )
+		self.resgraph.GetYaxis().SetTitleSize(.18)
 		self.resgraph.GetYaxis().SetTitleOffset(.23)
 		self.resgraph.GetYaxis().SetLabelSize(.2)
 		self.resgraph.Draw("ap")
