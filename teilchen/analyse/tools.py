@@ -72,15 +72,19 @@ def readFile( filename ):
 	return map( list, zip( *data ) )
 
 class linearRegression:
-	def __init__( self, x, y):
+	def __init__( self, x, y, execludeLast = False ):
 		from uncertainties import unumpy
 		self.__x = x
 		self.__y = y
-		from ROOT import TGraphErrors
+		from ROOT import TGraphErrors, TF1
 		self.graph = TGraphErrors( len(x), unumpy.nominal_values(x), unumpy.nominal_values(y) , unumpy.std_devs(x), unumpy.std_devs(y))
-		self.graph.Fit('pol1', 'Q')
-		self.graph.Fit('pol1', 'Q')
-		self.func = self.graph.GetFunction('pol1')
+		if execludeLast:
+			self.func = TF1('fitfunc', 'pol1', 0, unumpy.nominal_values(self.__x)[-1]-1 )
+			self.graph.Fit('fitfunc', 'RQ')
+		else:
+			self.graph.Fit('pol1', 'Q')
+			self.func = self.graph.GetFunction('pol1')
+
 
 	def residuals(self):
 		'''
