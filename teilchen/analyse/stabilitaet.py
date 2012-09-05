@@ -60,7 +60,7 @@ class messung:
 		q_m = -2. * w**2 * r**2 * b / ( 3 * K )
 		stat = abs( 1.* q_m * e_b / b )
 		sys = abs (2. * q_m * sqrt( (e_w/w)**2 + (e_r/r)**2 ) )
-		print('{}: q/m = {:.4e} ± {:.2e} (stat) ± {:.2e} (sys) ± {:.2e} (gesamt) C/kg'.format(saveAffix, q_m, stat, sys, sqrt(stat**2 + sys**2)))
+		print('{}: q/m = {:.4e} ± {:.2e} (stat) ± {:.2e} (sys) ± {:.2e} (gesamt) C/kg\n'.format(saveAffix, q_m, stat, sys, sqrt(stat**2 + sys**2)))
 
 
 # Messungen Freitag :

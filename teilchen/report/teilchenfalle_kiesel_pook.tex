@@ -192,20 +192,22 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 		$U_{G} [V]$ & $\sigma_{U_{G}}[V]$ & \multicolumn{2}{l}{Verhalten des Bahnmittelpunkts bei Änderung von $U_z$}  \\
 		\hline
 		\hline
-		Messung 1 (2 Teilchen)\\
+		Messung 1 (2 Teilchen)& & &\\
 		45 & 5 & Bewegung &  Bewegung   \\
 		92 & 8 & still  & Bewegung \\
 		168 & 4 & Bewegung & Bewegung    \\
 		228 & 3 & Bewegung & Bewegung \\
 		273 & 5 & verloren & still \\
 		\hline
-		Messung 2 (1 Teilchen)\\
+		Messung 2 (1 Teilchen) & & &\\ 
 		33 & 5 & Bewegung \\
 		50 & 4 & still\\
 		60 & 5 & Bewegung \\
 		79 & 7 & Bewegung\\
 		\hline
-		Messung 3 (1 Teilchen & verminderter Luftdruck $p = \unit[(450±50)]{mbar}$ )\\
+		Messung 3 (1 Teilchen)& & &\\
+		verminderter Luftdruck & & &\\
+	    $p = \unit[(450±50)]{mbar}$ & & &\\
 		25 & 3 & Bewegung\\
 		68 & 3 & still\\
 		79 & 7 & Bewegung\\
@@ -225,13 +227,13 @@ unabhängige systematische Fehlerquelle betrachtet.
 
 \begin{table}
 	\centering
-	\begin{tabular}{ l | c | c }
-		Teilchen &$U_{G,komp} [V]$ & $\frac{q}{m}[\frac{mC}{kg}]$  \\
+	\begin{tabular}{ c | c }
+		$\mathbf{U_{G,komp} [V]} $& $\mathbf{\frac{q}{m}[\frac{mC}{kg}]}$ \\
 		\hline
-		1 &  68 ± 3(stat.) ±27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys)  \\
-		1 &  50 ± 4(stat.) ±14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys)  \\
-		1 &  92 ± 8(stat.) ±62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys)  \\
-		1 &  273 ± 5(stat.) ±55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys)  \\
+		  68 ± 3(stat.) ±27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys)  \\
+		  50 ± 4(stat.) ±14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys)  \\
+		  92 ± 8(stat.) ±62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys)  \\
+		  273 ± 5(stat.) ±55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys)  \\
 	\end{tabular}
 \caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
 \label{tab:z-komp-result}
@@ -331,6 +333,29 @@ Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesam
 425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
 425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
 
+\begin{table}
+	\centering
+	\begin{tabular}{ c| c }
+		Druck [mbar[ & $\mathbf{\frac{q}{m}[\frac{\mu C}{kg}]}$ \\
+		\hline
+		 1000 & 5.07  ± 0.39 (stat.) ± 0.07 (sys.) \\
+		 1000 & 1.01  ± 0.5  (stat.) ± 0.01 (sys.)   \\
+		  375 & 1.14  ± 1.8 (stat.) ± 0.19 (sys.) \\
+		  400 & 1.61  ± 1.74 (stat.) ± 0.21 (sys.)  \\
+		  425 & 3.32  ± 0.73 (stat.) ± 0.04 (sys.)  \\
+		  425 & 1.30  ± 0.68 (stat.) ± 0.17 (sys.)  \\
+		  
+		  	 %~ 1000 & 5.07 \cdot 10^{-3} ± 0.39 \cdot 10^{-3}(stat.) ± 0.07 \cdot 10^{-3}(sys.) \\
+		 %~ 1000 & 1.01 \cdot 10^{-3} ± 0.5 \cdot 10^{-3} (stat.) ± 0.01 \cdot 10^{-3}(sys.)   \\
+		  %~ 375 & 1.14 \cdot 10^{-2} ± 1.8 \cdot 10^{-3}(stat.) ± 0.19 \cdot 10^{-3}(sys.) \\
+		  %~ 400 & 1.61 \cdot 10^{-2} ± 1.74 \cdot 10^{-3}(stat.) ± 0.21 \cdot 10^{-3}(sys.)  \\
+		  %~ 425 & 3.32 \cdot 10^{-3} ± 0.73 \cdot 10^{-3}(stat.) ± 0.04 \cdot 10^{-3}(sys.)  \\
+		  %~ 425 & 1.30 \cdot 10^{-2} ± 0.68 \cdot 10^{-3}(stat.) ± 0.17 \cdot 10^{-3}(sys.)  \\
+	\end{tabular}
+\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
+\label{tab:z-komp-result}
+\end{table}
+
 
 Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschätzt wurden
 
@@ -360,16 +385,16 @@ Gegen die zweite Hypothese spricht, dass sich die Teilchen im allgemeinen auch b
 Leuchtkraft und dem Verhalten ihrer Bahn unter veränderung der Fokussierspannung stark ähneln. 
 sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich. 
 
-Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt.
+Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt ( man beachte die Überhöhung der dargestellten Fehler mit einem Faktor von 3).
 \begin{figure}[htb]
 		\centering
 		\includegraphics[height = 0.8\textheight]{../analyse/final_plot.pdf}\\
-		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung}
+		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung, die Darstellung der Fehler für Stabilität und Resonanz wurden mit 3 multipliziert}
 		\label{final_plot}
 \end{figure}
 
 
- $\frac{q}{m}_Stabil. 
+
 \section{Fazit}
 Die Versuchsdurchführung war dadurch geprägt das die Spannungsquelle nur stark schwankende Ausgangsspannungen geliefert hat. Besonders ein reglemäßiges plötliches Abfallen der Fokussierspannung für ein 
 Flächenpaar hat zu regelmäßigem Verlust der Teilchen geführt. Insbesondere die Resonanzmessung und die Stabiliätsmessung waren oft nicht durchzuführen, weil ein langfristiges einfangen der Teilchen nicht
