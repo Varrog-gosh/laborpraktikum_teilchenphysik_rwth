@@ -352,18 +352,18 @@ Das $χ^2/ndf$ ist eher etwas zu klein, besonders an den Graphen, die nur Messwe
 Insgesamt sind die Anpassungen gut mit einer Geraden vereinbar.
 
 
-
-Luft1: q/m = -5.0786e-06 ± 3.90e-07 (stat) ± 6.66e-08 (sys) ± 3.96e-07 (gesamt) C/kg
-Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesamt) C/kg
-375bar: q/m = -1.4470e-05 ± 1.80e-06 (stat) ± 1.90e-07 (sys) ± 1.81e-06 (gesamt) C/kg
-400bar: q/m = -1.6135e-05 ± 1.74e-06 (stat) ± 2.12e-07 (sys) ± 1.75e-06 (gesamt) C/kg
-425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
-425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
+% bitte vorerst stehen lassen, dient als vergleich bzw referenz zu den bildern
+%Luft1: q/m = -5.0786e-06 ± 3.90e-07 (stat) ± 6.66e-08 (sys) ± 3.96e-07 (gesamt) C/kg
+%Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesamt) C/kg
+%375bar: q/m = -1.4470e-05 ± 1.80e-06 (stat) ± 1.90e-07 (sys) ± 1.81e-06 (gesamt) C/kg
+%400bar: q/m = -1.6135e-05 ± 1.74e-06 (stat) ± 2.12e-07 (sys) ± 1.75e-06 (gesamt) C/kg
+%425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
+%425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
 
 \begin{table}
 	\centering
 	\begin{tabular}{ c| c }
-		Druck [mbar[ & $\mathbf{\frac{q}{m}[\frac{\mu C}{kg}]}$ \\
+		Druck [mbar[ & $\mathbf{-\frac{q}{m}[\frac{\mu C}{kg}]}$ \\
 		\hline
 		 1000 & 5.07  ± 0.39 (stat.) ± 0.07 (sys.) \\
 		 1000 & 1.01  ± 0.5  (stat.) ± 0.01 (sys.)   \\
@@ -371,16 +371,9 @@ Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesam
 		  400 & 1.61  ± 1.74 (stat.) ± 0.21 (sys.)  \\
 		  425 & 3.32  ± 0.73 (stat.) ± 0.04 (sys.)  \\
 		  425 & 1.30  ± 0.68 (stat.) ± 0.17 (sys.)  \\
-		  
-		  	 %~ 1000 & 5.07 \cdot 10^{-3} ± 0.39 \cdot 10^{-3}(stat.) ± 0.07 \cdot 10^{-3}(sys.) \\
-		 %~ 1000 & 1.01 \cdot 10^{-3} ± 0.5 \cdot 10^{-3} (stat.) ± 0.01 \cdot 10^{-3}(sys.)   \\
-		  %~ 375 & 1.14 \cdot 10^{-2} ± 1.8 \cdot 10^{-3}(stat.) ± 0.19 \cdot 10^{-3}(sys.) \\
-		  %~ 400 & 1.61 \cdot 10^{-2} ± 1.74 \cdot 10^{-3}(stat.) ± 0.21 \cdot 10^{-3}(sys.)  \\
-		  %~ 425 & 3.32 \cdot 10^{-3} ± 0.73 \cdot 10^{-3}(stat.) ± 0.04 \cdot 10^{-3}(sys.)  \\
-		  %~ 425 & 1.30 \cdot 10^{-2} ± 0.68 \cdot 10^{-3}(stat.) ± 0.17 \cdot 10^{-3}(sys.)  \\
 	\end{tabular}
-\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
-\label{tab:z-komp-result}
+\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Stabilitätsgrenze}
+\label{tab:stabil-result}
 \end{table}
 
 
@@ -389,7 +382,7 @@ Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesam
 
 \section{Vergleich der Messungen}
 Die drei genutzten Messmethoden liefern im Rahmen ihrer Fehler inkompatible Ergebnisse. Die Messwerte für $\frac{q}{m}$ unterscheiden sich deutlich um mehrere Größenordnungen:
-\begin{align*}\label{result_compare}
+\begin{align}\label{result_compare}
  \approx \unitfrac[ 1 ]{mC}{kg} \qquad\mathbf{ Z-Kompensation}\\
  \approx \unitfrac[ 0.1 ]{mC}{kg} \qquad \mathbf{Resonanz}\\
  \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} \qquad \mathbf{Stabilität}\\
