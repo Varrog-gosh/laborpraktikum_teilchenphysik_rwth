@@ -272,10 +272,18 @@ Die Amplitude der Wechselspannung unterliegt starken Schwankungen
 ( $ \unit[( 210 ± 30 )]{V} $ )
 und lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
 Der Ausschlag der Teilchen wird über das Verhältnis der Amplitude zum Innendurchmesser der Falle $d_{innen}$ bestimmt.
-$$A_{max} = \frac{A_{max}\text{ [Pixel]}}{d_{innen}\text{[ Pixel]}} \cdot d_{innen}= \unit[( 0.7 ± 0.4 )]{mm} $$
+$$A_{max} = \frac{A_{max}\text{ [Pixel]}}{d_{innen}\text{ [Pixel]}} \cdot d_{innen}= \unit[( 0.7 ± 0.4 )]{mm} $$
 Alle gemessenen Teilchen zeigen ihre maximale Auslenkung bei $\omega_W < \unit[(31±6)]{Hz}$ ,
 dabei handelt es sich um die minimal an der Spannungsquelle einstellbare Frequenz.
-Die wahre Resonanzfrequenz wird wohl in einigen Fällen unter diesem Wert liegen.
+
+Wenn man die Resonanzfrequenz durch die Grundschwingungsfrequenz in Luft $\bar{ω}_0$ ausdrückt, erhalt man
+\begin{align*}
+	ω^{res}_W = \sqrt{ \bar{ω}_0^2 - \frac{Ω^2k_L^2}{2} },
+\end{align*}
+was dazu führt, dass die Resonanz unterhalb der Grundschwingungsfrequenz liegt.
+Die beobachtete Ereignisse waren wahrscheinlich Schwingungsmaxima, das heißt die eigentlich gesuchte Frequenz liegt unterhalb der Beobachteten.
+Um Interpretationsfehler zu vermeiden, wurde dennoch das ganze zur Verfügung gestellte Frequenzspektrum abgefahren, aber ohne eine zusätliche Resonanz zu entdecken.
+
 Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
 Man erhält mit gausscher Fehlerfortplanzung in Luft
 $$\frac{q}{m} < \unitfrac[( -2.0 ± 2.0 ) \cdot 10^{-4}]{C}{kg}$$

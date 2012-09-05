@@ -122,14 +122,16 @@ class linearRegression:
 		residualPad.Draw()
 		residualPad.cd()
 		# get y-label for residuals
-		from re import search
-
-		self.resgraph.SetTitle( title + ' - fit' )
+		from re import match
+		splittitle = title.split(';')
+		val, unit = match( '(.*)\[(.*)\]', splittitle[2] ).groups()
+		restitle = splittitle[0] + ';' + splittitle[1] + ';' + val + '- fit [' + unit + ']'
+		self.resgraph.SetTitle( restitle )
 		xaxis = self.resgraph.GetXaxis()
-		xaxis.SetTitleSize(.05)
+		xaxis.SetTitleSize(.15)
 		xaxis.SetTitleOffset(.3)
-		xaxis.SetNdivisions( 0, 0, 99 )
-		self.resgraph.GetYaxis().SetTitleSize(.25)
+		self.resgraph.GetYaxis().SetNdivisions( 8,0 ,0 )
+		self.resgraph.GetYaxis().SetTitleSize(.18)
 		self.resgraph.GetYaxis().SetTitleOffset(.23)
 		self.resgraph.GetYaxis().SetLabelSize(.2)
 		self.resgraph.Draw("ap")
