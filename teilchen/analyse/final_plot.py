@@ -31,7 +31,8 @@ canv.SetLogy()
 canv.cd()
 nvalues = int(10.0)
 ysl = array('d')
-
+ysl.append(5.07e-3)
+ysl.append(1.01e-3)
 
 yzl = array('d')
 yzl.append(5.95)
@@ -42,6 +43,11 @@ yrl = array('d')
 yrl.append(0.2)
 
 ysv = array('d')
+ysv.append(1.45e-2)
+ysv.append(1.61e-2)
+ysv.append(3.32e-3)
+ysv.append(1.30e-2)
+
 
 yzv = array('d')
 yzv.append(4.4)
@@ -50,6 +56,9 @@ yrv = array('d')
 yrv.append(0.22)
 
 eysl = array('d')
+eysl.append(3.96e-4  *3)
+eysl.append(4.87e-4  *3)
+
 
 eyzl = array('d')
 eyzl.append(1.75)
@@ -57,15 +66,20 @@ eyzl.append(2.23)
 eyzl.append(0.23)
 
 eyrl = array('d')
-eyrl.append(0.02)
+eyrl.append(0.02  *3)
+
 
 eysv = array('d')
+eysv.append(1.81e-3  *3)
+eysv.append(1.75e-3  *3)
+eysv.append(7.31e-4  *3)
+eysv.append(7.03e-4  *3)
 
 eyzv = array('d')
 eyzv.append(1.76)
 
 eyrv = array('d')
-eyrv.append(0.05)
+eyrv.append(0.05 *3)
 
 
 
@@ -79,20 +93,20 @@ Fillx(ysl,xsl,exsl,2.5)
 
 xrl = array('d')
 exrl = array('d')
-Fillx(yrl,xrl,exrl,3.5)
+Fillx(yrl,xrl,exrl,4.3)
 
 
 xzv = array('d')
 exzv = array('d')
-Fillx(yzv,xzv,exzv,7.5)
+Fillx(yzv,xzv,exzv,6.8)
 
 xsv = array('d')
 exsv = array('d')
-Fillx(ysv,xsv,exsv,9)
+Fillx(ysv,xsv,exsv,8.5)
 
 xrv = array('d')
 exrv = array('d')
-Fillx(yrv,xrv,exrv,10.5)
+Fillx(yrv,xrv,exrv,10)
 
 x = array("d")
 y = array('d')
@@ -105,15 +119,15 @@ for i in range(nvalues):
 	ey.append(y[-1]*0.01)
 fplot = TGraphErrors (nvalues,x,y,ex,ey)
 
-#~ svGraph = TGraphErrors (len(ysv),xsv,ysv,exsv,eysv)
-#~ svGraph.SetMarkerStyle(23)
-#~ svGraph.SetMarkerColor(2)
-#~ svGraph.SetMarkerSize(1.0)
-#~ 
-#~ 
+svGraph = TGraphErrors (len(ysv),xsv,ysv,exsv,eysv)
+svGraph.SetMarkerStyle(34)
+svGraph.SetMarkerColor(6)
+svGraph.SetMarkerSize(1.0)
+
+
 rvGraph = TGraphErrors (len(yrv),xrv,yrv,exrv,eyrv)
-rvGraph.SetMarkerStyle(23)
-rvGraph.SetMarkerColor(3)
+rvGraph.SetMarkerStyle(29)
+rvGraph.SetMarkerColor(68)
 rvGraph.SetMarkerSize(1.0)
 
 zvGraph = TGraphErrors (len(yzv),xzv,yzv,exzv,eyzv)
@@ -121,14 +135,14 @@ zvGraph.SetMarkerStyle(23)
 zvGraph.SetMarkerColor(4)
 zvGraph.SetMarkerSize(1.0)
 
-#~ slGraph = TGraphErrors (len(ysl),xsl,ysl,exsl,eysl)
-#~ slGraph.SetMarkerStyle(23)
-#~ slGraph.SetMarkerColor(2)
-#~ slGraph.SetMarkerSize(1.0)
-#~ 
+slGraph = TGraphErrors (len(ysl),xsl,ysl,exsl,eysl)
+slGraph.SetMarkerStyle(34)
+slGraph.SetMarkerColor(6)
+slGraph.SetMarkerSize(1.0)
+
 rlGraph = TGraphErrors (len(yrl),xrl,yrl,exrl,eyrl)
-rlGraph.SetMarkerStyle(23)
-rlGraph.SetMarkerColor(3)
+rlGraph.SetMarkerStyle(29)
+rlGraph.SetMarkerColor(68)
 rlGraph.SetMarkerSize(1.0)
 
 zlGraph = TGraphErrors (len(yzl),xzl,yzl,exzl,eyzl)
@@ -136,11 +150,11 @@ zlGraph.SetMarkerStyle(23)
 zlGraph.SetMarkerColor(4)
 zlGraph.SetMarkerSize(1.0)
 
-#~ final.Add(svGraph)
+final.Add(svGraph)
 final.Add(rvGraph)
 final.Add(zvGraph)
 
-#~ final.Add(slGraph)
+final.Add(slGraph)
 final.Add(rlGraph)
 final.Add(zlGraph)
 
@@ -153,7 +167,7 @@ final.GetXaxis().SetLimits(0.0,12.0)
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
 final.SetMaximum(2e2)
-final.SetMinimum(8e-7)
+final.SetMinimum(5e-4)
 Nbins = final.GetXaxis().GetNbins()
 for bi in range(1,Nbins):
 	final.GetXaxis().SetBinLabel(bi,"")
