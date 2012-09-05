@@ -27,7 +27,7 @@ def shortBeta(a,q):
 	return 1.*sqrt(a+q**2/2)
 
 def usysqm (g,d,ed,u,eu):
-	return sqrt( ed**2 + eu**2 * d**2 / u**2)/u 
+	return g/u * sqrt(ed**2 + eu**2 * d**2 / u**2) 
 
 def arrayToUncertainty( values ):
 	'''
@@ -94,4 +94,5 @@ for i,u in enumerate(ug_new):
 	print "U_g: %f +- %f (stat.) +- %f (sys.) V"%(u[0],u_g[u[2]].std_dev(),u[1])
 	qm_grav = g * d.nominal_value / u_g[u[2]]
 	qm = g * dval / u[0]
-	print "q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,qm_grav.std_dev(),usysqm(g,dval,edval,u[0],u[1]))
+	#~ print "uncertain q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,qm_grav.std_dev(),usysqm(g,dval,edval,u[0],u[1]))
+	print "byhand q/m: %e +- %e (stat.) +- %e (sys.) C/kg \n"%(qm,usysqm( g,dval,0,u[0],u_g[u[2]].std_dev() ),usysqm( g,dval,edval,u[0],u[1]) )
