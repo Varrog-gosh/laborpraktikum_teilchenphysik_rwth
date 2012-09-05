@@ -285,9 +285,9 @@ dabei handelt es sich um die minimal an der Spannungsquelle einstellbare Frequen
 Die wahre Resonanzfrequenz wird wohl in einigen Fällen unter diesem Wert liegen.
 Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
 Man erhält mit gausscher Fehlerfortplanzung in Luft
-$$\frac{q}{m} < \unitfrac[( -2.0 ± 2.0 ) \cdot 10^{-4}]{C}{kg}$$
+$$\frac{q}{m} < \unitfrac[( -0.20 ± 0.20 )]{mC}{kg}$$
 und mit der Näherung für Vakuum
-$$\frac{q}{m} < \unitfrac[( -2.2 ± 0.5 ) \cdot 10^{-4}]{C}{kg}.$$
+$$\frac{q}{m} < \unitfrac[( -0.22 ± 0.05 ) ]{mC}{kg}.$$
 Der hohe Fehler bei der genauen Lösung ist durch die Differenzen von hohen Potenzen fehlerbehafteter Größen in Gleichung (\ref{res_luft}) bedingt.
 Eine weiterer Grund ist die starke Spannungsschwankung von  $U_w$.
 Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für das Verhältnisses von Ladung zu Masse dar, da die Resonanzfrequenz nicht weiter regulierbar ist.
@@ -318,7 +318,33 @@ Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschä
 
 
 \section{Vergleich der Messungen}
+Die drei genutzten Messmethoden liefern im Rahmen ihrer Fehler inkompatible Ergebnisse. Die Messwerte für $\frac{q}{m}$ unterscheiden sich deutlich um mehrere Größenordnungen:
+\begin{align*}\label{result_compare}
+ \approx \unitfrac[ 1 ]{mC}{kg} \qquad\mathbf{ Z-Kompensation}\\
+ \approx \unitfrac[ 0.1 ]{mC}{kg} \qquad \mathbf{Resonanz}\\
+ \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} \qquad \mathbf{Stabilität}\\
+\end{align}
+%Mögliche Gründe ?
+Es ist dabei zu beachten, dass die einzelnen Messungen, die mit einer Messmethode durchgeführt wurden, innerhalb ihrer Fehler
+mit einander kompatibel sind.
+Für die beobachteten Unterschiede gibt es zunächst zwei Erklärungsansätzte:
+Entweder befinden sich alle Teilchen in einem begrenzten $\frac{q}{m}$ Bereich und nur eine Methode liefert 
+richtige Ergebnisse oder die möglichen Werte für $\frac{q}{m}$ erstrecken sich über viele Größenordnungen
+und jede einzelne Methode eignet sich nur dafür Teilchen aus einem bestimmten Bereich zu vermessen.
+Gegen die zweite Hypothese spricht, dass sich die Teilchen im allgemeinen auch bei ausgeschalteter Gleich bzw. Wechselspannung in ihrer 
+Leuchtkraft und dem Verhalten ihrer Bahn unter veränderung der Fokussierspannung stark ähneln. 
+sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich. 
 
+Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt.
+\begin{figure}[htb]
+		\centering
+		\includegraphics[height = 0.8\textheight]{../analyse/final_plot.pdf}\\
+		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung}
+		\label{final_plot}
+\end{figure}
+
+
+ $\frac{q}{m}_Stabil. 
 \section{Fazit}
 Die Versuchsdurchführung war dadurch geprägt das die Spannungsquelle nur stark schwankende Ausgangsspannungen geliefert hat. Besonders ein reglemäßiges plötliches Abfallen der Fokussierspannung für ein 
 Flächenpaar hat zu regelmäßigem Verlust der Teilchen geführt. Insbesondere die Resonanzmessung und die Stabiliätsmessung waren oft nicht durchzuführen, weil ein langfristiges einfangen der Teilchen nicht
