@@ -78,8 +78,8 @@ class linearRegression:
 		self.__y = y
 		from ROOT import TGraphErrors
 		self.graph = TGraphErrors( len(x), unumpy.nominal_values(x), unumpy.nominal_values(y) , unumpy.std_devs(x), unumpy.std_devs(y))
-		self.graph.Fit('pol1')
-		self.graph.Fit('pol1')
+		self.graph.Fit('pol1', 'Q')
+		self.graph.Fit('pol1', 'Q')
 		self.func = self.graph.GetFunction('pol1')
 
 	def residuals(self):

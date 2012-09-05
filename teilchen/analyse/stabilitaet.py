@@ -3,6 +3,7 @@
 
 import ROOT
 from tools import *
+from math import sqrt
 from uncertainties import umath
 from uncertainties.unumpy import uarray
 from Styles import tdrStyle
@@ -13,13 +14,12 @@ tdrStyle()
 
 #in the batch mode no canvas is drawn
 # I use this option for avoiding resolution problems when saving
-ROOT.gROOT.SetBatch()
+#ROOT.gROOT.SetBatch()
 
 ROOT.gStyle.SetStatX(0.95)
 ROOT.gStyle.SetStatY(0.4)
 ROOT.gStyle.SetStatW(0.23)
 ROOT.gStyle.SetStatH(0.15)
-#ROOT.gStyle.SetTitleAlign(21) scheint nicht zu klappen :
 
 class messung:
 	def __init__( self, x, y, text, saveAffix):
@@ -35,47 +35,61 @@ class messung:
 		x = x**2 # * 6 * K  / ( w**2 * d**2 )
 
 		self.reg = linearRegression(x, y)
-		label = TPaveText(0.6, 0.66, 0.86, 0.88, "NDC")
+		self.reg.func.SetParNames('a','b')
+		self.reg.draw(";U^{2}_{i} [V^{2}];U_{g} [V]" )
+		self.reg.canvas.cd()
+		label = TPaveText(0.1, 0.95, .86, 1, "NDC")
 		label.AddText( text )
 		label.SetFillStyle(0)
 		label.SetBorderSize(0)
-		label.SetTextAlign(10)
 		label.Draw()
-		self.reg.func.SetParNames('a','b')
-		self.reg.draw("%s;U^{2}_{i} [V^{2}];U_{g} [V]"%text )
 		self.reg.canvas.SaveAs('linReg%s.pdf'%saveAffix)
 
+		# calculate q_m
+		# variable definitions:
+		K = 8
+		w =  30
+		e_w = 1
+		r =   0.0305 / 2
+		e_r = 0.0002 / 2
+		b = self.reg.func.GetParameter(1)
+		e_b = self.reg.func.GetParError(1)
+		q_m = -2. * w**2 * r**2 * b / ( 3 * K )
+		stat = abs( 1.* q_m * e_b / b )
+		sys = abs (2. * q_m * sqrt( (e_w/w)**2 + (e_r/r)**2 ) )
+		print( 'b = {:.4e} ± {:.2e}'.format(b, e_b) )
+		print('q/m = {0:.4e} ± {1:.2e} (stat) ± {2:.2e} (sys) ± {3:.2e} (gesamt) C/kg'.format(q_m, stat, sys, sqrt(stat**2 + sys**2)))
+
+from sys import exit
 
 # Messungen Freitag :
-messung([1280, 1175, 1070, 905] , [79, 68, 50, 44], 'Attention: only changed vx, not vz or vy, so do NOT use this measurement if not ok.', 'NotUse')
-#messung([1280, 1175, 1070, 905] , [79, 68, 50, 44], 'Attention', 'NotUse')
+#messung([1280, 1175, 1070, 905] , [79, 68, 50, 44], 'Attention: only changed vx, not vz or vy, so do NOT use this measurement if not ok.', 'VxNotVyNotVz')
 
 messung( [700, 800, 900, 1000, 1100, 1200],
-	[36, 68, 127, 162, 250, 375], '', 'fr2')
+	[36, 68, 127, 162, 250, 375], 'p = 1bar, letzter Wert nicht im Fit, da max', 'Luft1')
 
 messung( [1230, 1140, 1000],
-	[115, 100, 85], '', 'fr3' )
+	[115, 100, 85], 'p = 1bar', 'Luft2' )
 
-messung( [1200, 1100, 1000],
-	[280, 260, 320], 'macht keinen sinn, ka was falsch war', 'fr4')
+#messung( [1200, 1100, 1000], [280, 260, 320], 'macht keinen sinn, ka was falsch war', 'LuftKaputt')
 
 ###Messungen  Montag Unsicherheit auf U_i ca. 50V
 messung([600, 700, 800,970],
-	[222, 350, 450,530], "Omega = 30 Hz p=350-400 mbar", 'mo1')
+	[222, 350, 450,530],
+	"p = 0.375 bar, letzter Wert nicht im Fit, da max", '375bar')
 
-messung( [700, 920, 1080],
-	[230, 425, 530], 'Teilchen bei 530 (U_max) immernoch stabil, Omega = 30 Hz p=400 mbar', 'mo2')
+#messung( [700, 920, 1080], [230, 425, 530], 'p = 0.4 bar, letzter Wert nicht im Fit, da max', '400bar2')
 
 messung( [600, 720, 820],
-		[220, 360, 510], 'Omega = 30 Hz p=400 mbar', 'mo3' )
+		[220, 360, 510], 'p = 0.4 bar', '400bar' )
 
 messung( [600, 750, 850],
 	[50, 77, 120],
-	'Alternativwert 135 für letzte Gleichspannung angegebene Omega = 30 Hz p=400-450 mbar', 'mo4')
+	'p = 0.425 bar', '425bar')
 
 messung( [850,750,680,600,510,400],
 	[460, 375, 300,220,160,50],
-	'Omega = 30 Hz p=400-450 mbar', 'mo5' )
+	'p = 0.425 bar', '425bar2' )
 
 
 
