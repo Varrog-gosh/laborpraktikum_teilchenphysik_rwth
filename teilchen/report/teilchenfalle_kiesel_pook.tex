@@ -313,13 +313,24 @@ Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultie
 Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 \begin{figure}[htb]
 		\centering
-		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet1.pdf}
-		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet2.pdf}\\
-		%\includegraphics[height = 0.3\textheight]{../analyse/stabilitaet3.pdf}\\
+		\includegraphics[height = 0.3\textheight]{linRegLuft1.pdf}
+		\includegraphics[height = 0.3\textheight]{linRegLuft2.pdf}\\
+		\includegraphics[height = 0.3\textheight]{linReg400bar.pdf}
+		\includegraphics[height = 0.3\textheight]{linReg425bar2.pdf}\\
+		\includegraphics[height = 0.3\textheight]{linReg425bar.pdf}
+		\includegraphics[height = 0.3\textheight]{linReg375bar.pdf}
 		\caption{Lineare Regressionen zur Stabilitätsuntersuchung.
 		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
 		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}
 \end{figure}
+
+Luft1: q/m = -5.0786e-06 ± 3.90e-07 (stat) ± 6.66e-08 (sys) ± 3.96e-07 (gesamt) C/kg
+Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesamt) C/kg
+375bar: q/m = -1.4470e-05 ± 1.80e-06 (stat) ± 1.90e-07 (sys) ± 1.81e-06 (gesamt) C/kg
+400bar: q/m = -1.6135e-05 ± 1.74e-06 (stat) ± 2.12e-07 (sys) ± 1.75e-06 (gesamt) C/kg
+425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
+425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
+
 
 Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschätzt wurden
 
