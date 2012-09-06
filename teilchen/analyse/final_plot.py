@@ -106,7 +106,7 @@ Fillx(ysv,xsv,exsv,8.5)
 
 xrv = array('d')
 exrv = array('d')
-Fillx(yrv,xrv,exrv,10)
+Fillx(yrv,xrv,exrv,9.8)
 
 x = array("d")
 y = array('d')
@@ -121,13 +121,13 @@ fplot = TGraphErrors (nvalues,x,y,ex,ey)
 
 svGraph = TGraphErrors (len(ysv),xsv,ysv,exsv,eysv)
 svGraph.SetMarkerStyle(34)
-svGraph.SetMarkerColor(6)
+svGraph.SetMarkerColor(2)
 svGraph.SetMarkerSize(1.0)
 
 
 rvGraph = TGraphErrors (len(yrv),xrv,yrv,exrv,eyrv)
 rvGraph.SetMarkerStyle(29)
-rvGraph.SetMarkerColor(68)
+rvGraph.SetMarkerColor(3)
 rvGraph.SetMarkerSize(1.0)
 
 zvGraph = TGraphErrors (len(yzv),xzv,yzv,exzv,eyzv)
@@ -137,12 +137,12 @@ zvGraph.SetMarkerSize(1.0)
 
 slGraph = TGraphErrors (len(ysl),xsl,ysl,exsl,eysl)
 slGraph.SetMarkerStyle(34)
-slGraph.SetMarkerColor(6)
+slGraph.SetMarkerColor(2)
 slGraph.SetMarkerSize(1.0)
 
 rlGraph = TGraphErrors (len(yrl),xrl,yrl,exrl,eyrl)
 rlGraph.SetMarkerStyle(29)
-rlGraph.SetMarkerColor(68)
+rlGraph.SetMarkerColor(3)
 rlGraph.SetMarkerSize(1.0)
 
 zlGraph = TGraphErrors (len(yzl),xzl,yzl,exzl,eyzl)
@@ -160,7 +160,7 @@ final.Add(zlGraph)
 
 
 final.Draw("ap")
-final.GetYaxis().SetTitle("#frac{q}{m}[#frac{mC}{kg}]")
+final.GetYaxis().SetTitle("- #frac{q}{m} [#frac{mC}{kg}]")
 final.GetYaxis().RotateTitle(False)
 final.GetXaxis().SetLimits(0.0,12.0)
 

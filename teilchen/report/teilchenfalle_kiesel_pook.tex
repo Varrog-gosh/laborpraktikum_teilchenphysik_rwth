@@ -369,11 +369,22 @@ für alle versuche ist $Ω = 2*pi*30 hz$
 
 \section{Vergleich der Messungen}
 Die drei genutzten Messmethoden liefern im Rahmen ihrer Fehler inkompatible Ergebnisse. Die Messwerte für $\frac{q}{m}$ unterscheiden sich deutlich um mehrere Größenordnungen:
-\begin{align*}\label{result_compare}
- \approx \unitfrac[ 1 ]{mC}{kg} \qquad\mathbf{ Z-Kompensation}\\
- \approx \unitfrac[ 0.1 ]{mC}{kg} \qquad \mathbf{Resonanz}\\
- \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} \qquad \mathbf{Stabilität}\\
+
+%~ \begin{align*}\label{result_compare}
+ %~ \approx \unitfrac[ 1 ]{mC}{kg} \qquad\mathbf{ Z-Kompensation}\\
+ %~ \approx \unitfrac[ 0.1 ]{mC}{kg} \qquad \mathbf{Resonanz}\\
+ %~ \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} \qquad \mathbf{Stabilität}\\
+%~ \end{align}
+\begin{align*}
+	\begin{tabular}{ l r}
+ \approx \unitfrac[ 1 ]{mC}{kg} & \mathbf{ Z-Kompensation}\\
+ \approx \unitfrac[ 0.1 ]{mC}{kg} & \mathbf{Resonanz}\\
+ \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} & \mathbf{Stabilität}\\
+	\end{tabular}
 \end{align}
+
+
+
 %Mögliche Gründe ?
 Es ist dabei zu beachten, dass die einzelnen Messungen, die mit einer Messmethode durchgeführt wurden, innerhalb ihrer Fehler
 mit einander kompatibel sind.
@@ -388,7 +399,7 @@ sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich.
 Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt ( man beachte die Überhöhung der dargestellten Fehler mit einem Faktor von 3).
 \begin{figure}[htb]
 		\centering
-		\includegraphics[height = 0.8\textheight]{../analyse/final_plot.pdf}\\
+		\includegraphics[height = 0.5\textheight]{../analyse/final_plot.pdf}\\
 		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung, die Darstellung der Fehler für Stabilität und Resonanz wurden mit 3 multipliziert}
 		\label{final_plot}
 \end{figure}
