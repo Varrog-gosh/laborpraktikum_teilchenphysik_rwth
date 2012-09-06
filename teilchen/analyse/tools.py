@@ -81,7 +81,9 @@ class linearRegression:
 		if execludeLast:
 			self.func = TF1('fitfunc', 'pol1', 0, unumpy.nominal_values(self.__x)[-1]-1 )
 			self.graph.Fit('fitfunc', 'RQ')
+			self.graph.Fit('fitfunc', 'RQ')
 		else:
+			self.graph.Fit('pol1', 'Q')
 			self.graph.Fit('pol1', 'Q')
 			self.func = self.graph.GetFunction('pol1')
 

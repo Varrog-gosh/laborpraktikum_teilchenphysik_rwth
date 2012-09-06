@@ -1,10 +1,8 @@
-in tools:
-y-label in residual pad
+* Ergebnisse zu vergleichen
 
-Stabilität: Werte bei den Messungen aufschreiben (U_i,U') eintragen.
-Stabilität: Ergebnisse für q/m in Tabelle darstellen
+* ergebnisse mit masse sinnvoll abschätzen
 
-Ergebnis bei der Z-Kompensation eintragen
-Ergebnisse zu vergleichen
+* heißlaufen der spannungsquelle -> kaputt und schwanken
 
-ergebnisse mit masse sinnvoll abschätzen
+* für stabilität: mittlerer y-aachenabschnitt = verschiebung ?
+

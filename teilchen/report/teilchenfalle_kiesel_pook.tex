@@ -125,7 +125,7 @@ Viele Teilchen beschreiben zudem sehr kleine Bahnen und sind deshalb nur noch al
 Manchmal bilden sich auch Lissajou Figuren. Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen, wenn das Verhältnis der Frequenzen rational ist.
 In diesem Fall bildet die Teilchenbahn eine geschlossene Figur.
 Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom Frequenzverhältnis und dem Phasenunterschied der Schwingungen ab.
-Ein Beispiel ist in Bild \ref{Lissjous} zu sehen.
+Ein Beispiel ist in Abbildung \ref{Lissjous} zu sehen.
 
 \begin{figure}[htb]
 		\centering
@@ -137,7 +137,7 @@ Ein Beispiel ist in Bild \ref{Lissjous} zu sehen.
 \subsubsection*{Kristallstruktur}
 Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal pseudo Kristallstrukturen erkennen:
 Die Teilchen stoßen sich gegenseitig ab und suchen energetisch günstige Zustände, ebenso wie in einem Kristall.
-Überlagert zu diesem Effekt sieht man in Bild \ref{pseudokristall} noch die Auswirkungen des Feldes.
+Überlagert zu diesem Effekt sieht man in Abbildung \ref{pseudokristall} noch die Auswirkungen des Feldes.
 In der hier sichtbaren $x = 0$ und $z = 0$ Ebene werden keine Teilchen gehalten, wie man auch Gleichung (\ref{mastergleichung}) entnehmen kann.
 
 \begin{figure}[htb]
@@ -170,7 +170,7 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 	|\vec{F}_{z}| = |\vec{F}_G + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
 \end{align}
 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Bild \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Abbildung \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1000±50)]{V}$ für alle Flächenpaare betrieben.
 
@@ -193,27 +193,41 @@ Das Vorzeichen der Ladung ergibt sich aus dem Anschluss an die Spannungsquelle u
 		\hline
 		\hline
 		Messung 1 (2 Teilchen)& & &\\
+		\hline
 		45 & 5 & Bewegung &  Bewegung   \\
 		92 & 8 & still  & Bewegung \\
 		168 & 4 & Bewegung & Bewegung    \\
 		228 & 3 & Bewegung & Bewegung \\
 		273 & 5 & verloren & still \\
 		\hline
-		Messung 2 (1 Teilchen) & & &\\ 
+		\hline
+		Messung 2 (1 Teilchen) & & &\\
+		\hline
 		33 & 5 & Bewegung \\
 		50 & 4 & still\\
 		60 & 5 & Bewegung \\
 		79 & 7 & Bewegung\\
+		\hline\hline
+		Messung $3^*$ (1 Teilchen)& & &\\
 		\hline
+>>>>>>>>>>>>>>>>>>>> File 1
 		Messung 3 (1 Teilchen)& & &\\
 		verminderter Luftdruck & & &\\
-	    $p = \unit[(450±50)]{mbar}$ & & &\\
+	    $p = \unit[(450Â±50)]{mbar}$ & & &\\
+>>>>>>>>>>>>>>>>>>>> File 2
+		Messung 3 (1 Teilchen)& & &\\
+		verminderter Luftdruck & & &\\
+	    $p = \unit[(450Â±50)]{mbar}$ & & &\\
+>>>>>>>>>>>>>>>>>>>> File 3
+<<<<<<<<<<<<<<<<<<<<
 		25 & 3 & Bewegung\\
 		68 & 3 & still\\
 		79 & 7 & Bewegung\\
 	\end{tabular}
-\caption{Verhalten von beiden Teilchen bei unterschiedlichen Gleichspannungen zur Bestimmung der z-Kompensation}
-\label{tab:z-komp-measure}
+	\caption{Verhalten von beiden Teilchen bei unterschiedlichen Gleichspannungen zur Bestimmung der z-Kompensation.\newline
+		* Messung 3 wurde unter vermindertem Luftdruck von $p = \unit[(450±50)]{mbar}$ durchgeführt.
+	}
+	\label{tab:z-komp-measure}
 \end{table}
 
 Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezifische Ladung des untersuchten Teilchen herleiten:
@@ -295,9 +309,9 @@ Um Interpretationsfehler zu vermeiden, wurde dennoch das ganze zur Verfügung ge
 
 Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
 Man erhält mit gausscher Fehlerfortplanzung in Luft
-$$\frac{q}{m} < \unitfrac[( -0.20 ± 0.20 )]{mC}{kg}$$
+$$\frac{q}{m} > \unitfrac[( -0.20 ± 0.20 )]{mC}{kg}$$
 und mit der Näherung für Vakuum
-$$\frac{q}{m} < \unitfrac[( -0.22 ± 0.05 ) ]{mC}{kg}.$$
+$$\frac{q}{m} > \unitfrac[( -0.22 ± 0.05 ) ]{mC}{kg}.$$
 Der hohe Fehler bei der genauen Lösung ist durch die Differenzen von hohen Potenzen fehlerbehafteter Größen in Gleichung (\ref{res_luft}) bedingt.
 Eine weiterer Grund ist die starke Spannungsschwankung von  $U_w$.
 Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für das Verhältnisses von Ladung zu Masse dar, da die Resonanzfrequenz nicht weiter regulierbar ist.
@@ -308,11 +322,11 @@ Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für d
 \subsection{Stabilitätsdiagramm}
 Wie Gleichung (\ref{mastergleichung}) zu entnehmen, ist die Grundschwingung der Teilchen durch $β$ gegeben.
 Wenn $β$ imaginär ist, was äquivalent zu $ a + \frac12q^2 >0$ ist, werden die Winkelfunktionen zu Expotentialfunktionen, was zum Austritt der Teilchen aus der Falle führt.
-Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z = U_i$ die Spannung $U_G$ gesucht, bei der das Teilchen entkommt.
+In diesem Versuchsteil wird explizit nach $β_x = 0$ gesucht.
+Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z = U_i$ die an der x-Achse angelegnent Gleichsannung $U_G$ gesucht, bei der das Teilchen entkommt.
 Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt und es somit leicht entkommen kann.
-Für jedes Teilchen wird $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
-Die systematischen Fehler für das grobe Abschätzen der Gleichspannung resultieren in einer Verschiebung der Geraden nach unten, sodass die Steigung nicht stark beeinflusst wird.
-Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
+Für jedes Teilchen wird bei konstantem $Ω =\unit[188±6]{Hz}$ die Gleichspannung $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
+Die Anpassungen sind in Abbildung \ref{linReg} zu sehen.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[height = 0.3\textheight]{linRegLuft1.pdf}
@@ -321,70 +335,85 @@ Aus der Steigung kann man dann die Werte für $\frac{q}{m}$ bestimmen.
 		\includegraphics[height = 0.3\textheight]{linReg425bar2.pdf}\\
 		\includegraphics[height = 0.3\textheight]{linReg425bar.pdf}
 		\includegraphics[height = 0.3\textheight]{linReg375bar.pdf}
-		\caption{Lineare Regressionen zur Stabilitätsuntersuchung.
-		Bei der oberen Messung ist der letzte Punkt nicht für den Fit verwendet worden, da bei dieser Spannug das Teilchen entkommen ist.
-		Stattdessen kann man die Spannungsdifferenz zwischen eigentlichen Fluchtspannung und abgeschätzten Spannung ablesen.}
+		\caption{Lineare Regressionen und Residuen zur Stabilitätsuntersuchung für unterschiedliche Luftdrücke und Teilchen.
+			Oben links wird der letzte Datenpunkt nicht für die Anpassung benutzt, da das Teilchen die Falle schon verlassen hat.
+			Unten rechts wurde die maximale Spannung erreicht, ohne das die Stabilitätsgrenze erreicht wurde.
+		}
+		\label{linReg}
 \end{figure}
 
-Luft1: q/m = -5.0786e-06 ± 3.90e-07 (stat) ± 6.66e-08 (sys) ± 3.96e-07 (gesamt) C/kg
-Luft2: q/m = -1.0106e-06 ± 4.87e-07 (stat) ± 1.33e-08 (sys) ± 4.87e-07 (gesamt) C/kg
-375bar: q/m = -1.4470e-05 ± 1.80e-06 (stat) ± 1.90e-07 (sys) ± 1.81e-06 (gesamt) C/kg
-400bar: q/m = -1.6135e-05 ± 1.74e-06 (stat) ± 2.12e-07 (sys) ± 1.75e-06 (gesamt) C/kg
-425bar: q/m = -3.3246e-06 ± 7.30e-07 (stat) ± 4.36e-08 (sys) ± 7.31e-07 (gesamt) C/kg
-425bar2: q/m = -1.3026e-05 ± 6.82e-07 (stat) ± 1.71e-07 (sys) ± 7.03e-07 (gesamt) C/kg
+Da der Luftdrucksensor nur $\unit[50]{mbar}$ auflösen konnte, sind die Druckangaben mit einem Fehler von $\unit[14]{mbar}$ behaftet.
+Für Messungen, bei denen die Druckanzeige geschwankt hat, wurde der Mittelwert aus beiden Drücken genommen.
 
-\begin{table}
+
+Für $U_i$ wird ein Fehler von $\unit[14]{V}$ verwendet, für die Gleichspannung ein Fehler von $\unit[15]{V}$, da sie nicht nur schwankt, sondern auch nur ein geringer Zeitraum zum Ablesen bestand, da die Teilchen die Falle schnell verlassen.
+
+In der Anpassung unten rechts wird der letzte Datenpunkt nicht verwendet, da hier die Maximale Amplitude der Gleichspannung erreicht wurde.
+Das eigentliche Verlassen des Stabilitätsbereichs findet bei einer höheren Spannung statt.
+Da durch den genaueren Aufbau der Vakuumfalle besonders viele Teilchen gefangen werden, müssen am Anfang viele Teichen aus dem Stabilitätsbereich gebracht werden, damit man die Teichen auseinander halten kann.
+Dies führt dazu, dass man nur noch sehr stabile Teilchen in der Falle hat, mit denen man schnell das Maximum der Gleichspannung erreicht.
+
+Zugleich möchte man aber auch über das ganze Spektrum der Gleichspannung, da bei niedrigen Spannungen der relative Fehler und damit auch die Fehler auf die Anpassungsergebnisse steigen, was man oben rechts in der Abbildung sehen kann.
+
+
+In der Anpassung oben links wird der letzte Datenpunkt nicht für die Anpassung verwendet, weil bei dem Punkt das Teichen schon entkommen war.
+Man kann über den Abstand des letzen Punktes zur Anpassungsgerade die Spannung abschätzen die nötig gewesen wäre, ein Teichen tatsächlich aus der Falle zu bringen.
+Dies spiegelt sich auch im y-Achsenabschnitt wieder, der im gewichteten Mittel $-\unit[57]{V}$ beträgt und damit mit dem Abstand zur Anpassungsgeraden konsistent ist.
+% noch mehr text dazu?
+Durch die lineare Regression kann also der systematische Fehler durch das konservative Abschätzen der Entweichspannung verringert werden.
+
+
+Das $χ^2/ndf$ ist etwas zu klein, besonders an den Graphen, die nur Messwerte bei niedrige Gleichspannung beinhalten, da wie oben beschrieben der relative Fehler hier größer wird.
+Die Fehler wurden also zu konservativ abgeschätzt.
+Insgesamt sind die Anpassungen gut mit einer Geraden vereinbar.
+
+
+Über die Steigung $b$ kann nun das Verhältnis von Ladung zu Masse ausgerechnet werden:
+\begin{align*}
+	U_G = -\frac{3K}{2Ω^2r_0^2}\frac{q}{m} U_x^2 =: b U_x^2
+\end{align*}
+
+\begin{align*}
+	\Leftrightarrow \frac{q}{m} = -\frac{2Ωºr_0² b}{3K}.
+\end{align*}
+Die Ergebnisse sind in Tabelle \ref{tab:stabil-result} eingetragen.
+In den statistischen Fehler geht der Fehler der Steigung ein, in den systematischen die Unsicherheiten von $Ω$ und $r_0$.
+Der Hauptanteil des systematischen Fehlers kommt von der niedrigen Frequnez, mit der der Versuch betrieben wird.
+Bei höheren Frequenzen wäre der relative Fehler kleiner, dafür wäre es schwieriger, Teilchen zu fangen.
+
+\begin{table}[h]
 	\centering
 	\begin{tabular}{ c| c }
-		Druck [mbar[ & $\mathbf{\frac{q}{m}[\frac{\mu C}{kg}]}$ \\
+		Druck [mbar] & $\mathbf{-\frac{q}{m}[\frac{\mu C}{kg}]}$ \\
 		\hline
-		 1000 & 5.07  ± 0.39 (stat.) ± 0.07 (sys.) \\
-		 1000 & 1.01  ± 0.5  (stat.) ± 0.01 (sys.)   \\
-		  375 & 1.14  ± 1.8 (stat.) ± 0.19 (sys.) \\
-		  400 & 1.61  ± 1.74 (stat.) ± 0.21 (sys.)  \\
-		  425 & 3.32  ± 0.73 (stat.) ± 0.04 (sys.)  \\
-		  425 & 1.30  ± 0.68 (stat.) ± 0.17 (sys.)  \\
-		  
-		  	 %~ 1000 & 5.07 \cdot 10^{-3} ± 0.39 \cdot 10^{-3}(stat.) ± 0.07 \cdot 10^{-3}(sys.) \\
-		 %~ 1000 & 1.01 \cdot 10^{-3} ± 0.5 \cdot 10^{-3} (stat.) ± 0.01 \cdot 10^{-3}(sys.)   \\
-		  %~ 375 & 1.14 \cdot 10^{-2} ± 1.8 \cdot 10^{-3}(stat.) ± 0.19 \cdot 10^{-3}(sys.) \\
-		  %~ 400 & 1.61 \cdot 10^{-2} ± 1.74 \cdot 10^{-3}(stat.) ± 0.21 \cdot 10^{-3}(sys.)  \\
-		  %~ 425 & 3.32 \cdot 10^{-3} ± 0.73 \cdot 10^{-3}(stat.) ± 0.04 \cdot 10^{-3}(sys.)  \\
-		  %~ 425 & 1.30 \cdot 10^{-2} ± 0.68 \cdot 10^{-3}(stat.) ± 0.17 \cdot 10^{-3}(sys.)  \\
+		1000 & 201 ± 20 (stat) ± 14 (sys)\\
+		1000 & 39.9 ± 27 (stat) ± 2.7 (sys)\\
+		375 & 569 ± 79 (stat) ± 39 (sys)\\
+		400 & 637 ± 75 (stat) ± 43 (sys)\\
+		425 & 131 ± 39 (stat) ± 8.9 (sys)\\
+		425 & 509 ± 31 (stat) ± 35 (sys)
 	\end{tabular}
-\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Kompensation der Gewichtskraft}
-\label{tab:z-komp-result}
+\caption{Das Verhältnis von Ladung zu Masse von verschiedenen Teichen, bestimmt durch die Stabilitätsgrenze}
+\label{tab:stabil-result}
 \end{table}
 
-
-Am $χ^2/ndf$ sieht man, dass die Spannungen tendenziell zu vorsichtig abgeschätzt wurden
-
-
-bei niedigen spannungen ist der relative fehler größer
-immer schritte von 500 bar, also 250 = schwanken zwischen zwei schritten
-für alle versuche ist $Ω = 2*pi*30 hz$
+Man sieht keinen Zusammenhang zwischen Druck und dem Verhältnisses von Ladung zu Masse, was daran liegt, dass der Druck nicht niedrig genug war.
+Auch die Werte bei gleichen oder ähnlichen Drücken sind nicht vereinbar, was damit zu erklären ist, dass die Ladung oder die Masse nicht genau festgelegt ist.
 
 
 
 
 \section{Vergleich der Messungen}
 Die drei genutzten Messmethoden liefern im Rahmen ihrer Fehler inkompatible Ergebnisse. Die Messwerte für $\frac{q}{m}$ unterscheiden sich deutlich um mehrere Größenordnungen:
-
-%~ \begin{align*}\label{result_compare}
- %~ \approx \unitfrac[ 1 ]{mC}{kg} \qquad\mathbf{ Z-Kompensation}\\
- %~ \approx \unitfrac[ 0.1 ]{mC}{kg} \qquad \mathbf{Resonanz}\\
- %~ \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} \qquad \mathbf{Stabilität}\\
-%~ \end{align}
-\begin{align*}
-	\begin{tabular}{ l r}
- \approx \unitfrac[ 1 ]{mC}{kg} & \mathbf{ Z-Kompensation}\\
- \approx \unitfrac[ 0.1 ]{mC}{kg} & \mathbf{Resonanz}\\
- \approx \unitfrac[ 0.001-0.01 ]{mC}{kg} & \mathbf{Stabilität}\\
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lr}
+		Z Kompensation  & $\approx \unitfrac[ 1 ]{mC}{kg}$\\
+		Resonanz & $\approx \unitfrac[ 0.1 ]{mC}{kg}$\\
+		Stabilität &  $\approx \unitfrac[ 0.001-0.01 ]{mC}{kg}$\\
 	\end{tabular}
-\end{align}
-
-
-
+	\label{result_compare}
+\end{table}
 %Mögliche Gründe ?
 Es ist dabei zu beachten, dass die einzelnen Messungen, die mit einer Messmethode durchgeführt wurden, innerhalb ihrer Fehler
 mit einander kompatibel sind.
@@ -399,7 +428,7 @@ sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich.
 Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt ( man beachte die Überhöhung der dargestellten Fehler mit einem Faktor von 3).
 \begin{figure}[htb]
 		\centering
-		\includegraphics[height = 0.5\textheight]{../analyse/final_plot.pdf}\\
+		\includegraphics[height = 0.8\textwidth]{../analyse/final_plot.pdf}\\
 		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung, die Darstellung der Fehler für Stabilität und Resonanz wurden mit 3 multipliziert}
 		\label{final_plot}
 \end{figure}
