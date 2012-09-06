@@ -30,7 +30,7 @@ class messung:
 		self.text = text
 		self.saveAffix = saveAffix
 		error_ug = 15
-		error_ux = 10
+		error_ux = 10 * sqrt(2)
 		x = uarray(( array( x ), [ error_ug ]*len( x )))
 		y = uarray(( array( y ), [ error_ux]*len( y )))
 		x = x**2
@@ -48,19 +48,23 @@ class messung:
 
 		# calculate q_m
 		# variable definitions:
+		from math import pi
 		K = 8
-		w =  30
-		e_w = 1
+		w =  2. * pi * 30
+		e_w = 2. * pi
 		r =   0.0305 / 2
 		e_r = 0.0002 / 2
+		print( '"{}  +/- {}",'.format(self.reg.func.GetParameter(0), self.reg.func.GetParError(0) ) )
 		b = self.reg.func.GetParameter(1)
 		if b == 0:
 			return
 		e_b = self.reg.func.GetParError(1)
-		q_m = -2. * w**2 * r**2 * b / ( 3 * K )
+		q_m = -2. * w**2 * r**2 * b / ( 3 * K ) * 1e6
 		stat = abs( 1.* q_m * e_b / b )
 		sys = abs (2. * q_m * sqrt( (e_w/w)**2 + (e_r/r)**2 ) )
-		print('{}: q/m = {:.4e} ± {:.2e} (stat) ± {:.2e} (sys) ± {:.2e} (gesamt) C/kg\n'.format(saveAffix, q_m, stat, sys, sqrt(stat**2 + sys**2)))
+		#print('{}: q/m = {:.4e} ± {:.2e} (stat) ± {:.2e} (sys) ± {:.2e} (gesamt) μC/kg\n'.format(saveAffix, q_m, stat, sys, sqrt(stat**2 + sys**2)))
+		druck = { 'Luft1': 1000, 'Luft2': 1000, '375bar': 375, '400bar': 400, '425bar': 425, '425bar2': 425 }
+		print('{} & {:.3g} ± {:.2g} (stat) ± {:.2g} (sys)\\\\'.format(druck[saveAffix], -q_m, stat, sys ))
 
 
 # Messungen Freitag :
