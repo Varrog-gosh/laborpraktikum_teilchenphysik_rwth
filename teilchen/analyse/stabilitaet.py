@@ -72,17 +72,17 @@ class messung:
 
 messung( [700, 800, 900, 1000, 1100, 1200],
 	[36, 68, 127, 162, 250, 375],
-	'p = 1bar, Fit ohne letzten Wert', 'Luft1', True)
+	'p = 1 bar, Fit ohne letzten Wert', 'Luft1', True)
 
 messung( [1230, 1140, 1000],
-	[115, 100, 85], 'p = 1bar', 'Luft2' )
+	[115, 100, 85], 'p = 1 bar', 'Luft2' )
 
 #messung( [1200, 1100, 1000], [280, 260, 320], 'macht keinen sinn, ka was falsch war', 'LuftKaputt')
 
 ###Messungen  Montag Unsicherheit auf U_i ca. 50V
 messung([600, 700, 800,970],
 	[222, 350, 450,530],
-	"p = 0.375 bar, Fit ohne letzten Wer", '375bar', True)
+	"p = 0.375 bar, Fit ohne letzten Wert", '375bar', True)
 
 #messung( [700, 920, 1080], [230, 425, 530], 'p = 0.4 bar, letzter Wert nicht im Fit, da max', '400bar2')
 
