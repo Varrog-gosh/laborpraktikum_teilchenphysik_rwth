@@ -128,8 +128,8 @@ def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	return hist
 
 
-#kalibration('data/kali.TKA', 4000 )
-kalibration('data/kali_ohne_threshold.TKA', 3500, 12000 )
+kalibration('data/kali.TKA', 4000 )
+#kalibration('data/kali_ohne_threshold.TKA', 3500, 12000 )
 
 
 
