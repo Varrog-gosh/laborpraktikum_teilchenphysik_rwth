@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-8
+# -*- coding: utf-8 -*-
 from Styles import tdrStyle
 tdrStyle()
 import ROOT
