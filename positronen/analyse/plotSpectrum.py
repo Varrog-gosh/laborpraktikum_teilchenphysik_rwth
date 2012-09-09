@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# coding = utf8
+# -*- coding: utf-8 -*-8
 from Styles import tdrStyle
 tdrStyle()
 import ROOT
@@ -12,17 +12,13 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 	length = len( data )
 
 	if xMax == 0:
-		xMax = length - 0.5
-	else:
-		xMax -= 0.5
-	xMin -= 0.5
+		xMax = length
 	length = int( xMax - xMin )
 
-	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin, xMax )
-	for i in range( int(xMin - 0.5), int(xMax-0.5) ):
-		hist.SetBinContent(i, data[i] )
+	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
+	for i in range( length ):
+		hist.SetBinContent(i, data[ i + xMin ] )
 	return hist
-
 
 
 def plotSpectrum():
@@ -32,7 +28,7 @@ def plotSpectrum():
 	can.cd()
 	can.SetLogy()
 	can.SetBatch()
-	can.SetCanvasSize( 1300, 500 )
+	can.SetCanvasSize( 1400, 800 )
 	hist.Draw()
 
 	grenzkanal = 4000
@@ -60,45 +56,83 @@ def plotSpectrum():
 	can.SaveAs('auswahl.pdf')
 
 
-
-def spectrum():
-	#hist = tkaToHist( 'data/kali_ohne_threshold.TKA' )
-	hist = tkaToHist( 'data/kali.TKA' , 4000)
-	from ROOT import TCanvas, TSpectrum
+def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
+	hist = tkaToHist( filename , minKanal, maxKanal )
+	from ROOT import TCanvas, TSpectrum, TGraph
 	from numpy import array
 
-	s = TSpectrum( 350 ) #max number of peaks
-	npeaks = s.Search( hist, 2, "", 0.001 ) # ( hist, sigma, '', threshold )
+	can = TCanvas()
+	can.SetBatch()
+	can.SetCanvasSize( 1400, 800 )
+	can.SetLogy()
+	can.cd()
+
+
+	s = TSpectrum( 64 ) #max number of peaks
+	npeaks = s.Search( hist, 2, "", 0.005 ) # ( hist, sigma, '', threshold )
+	hist.Draw()
+	can.SaveAs('peaksToArray.pdf')
 
 	peaks = s.GetPositionX()
-	peaksOrder = []
-	for i in range( npeaks ):
-		peaksOrder.append( peaks[i] )
-	peaksOrder.sort()
 	peakHeight = s.GetPositionY()
-	deltapeaks = peaks[npeaks-1] - peaks[npeaks-2] # distance between peaks
-	hist.Draw()
-	raw_input()
-	import ROOT
 
-	import numpy
-	graph = ROOT.TGraph()
-	meas_points = range(21)
-	meas_points.pop(4)
-	meas_points.pop(13)
-	meas_points.pop(11)
-	meas_points.pop(20)
-	graph.SetTitle(';t [ns]; Kanalnummer')
-	for i in range( npeaks):
-		#fit = ROOT.TF1('fit', 'gaus', peaks[i] - deltapeaks/2, peaks[i] + deltapeaks/2)
-		#fit.SetParameters( peakHeight[i], peaks[i], deltapeaks/4 )
-		#hist.Fit('fit', 'rq')
-		graph.SetPoint( i, 0.5 * i, peaksOrder[i] )
-		#print fit.GetParameter(1)
-	hist.Draw()
-	return graph
+	deltapeaks = 250 # differenze between peaks
 
-spectrum()
+	x = []
+	ex = []
+
+	for i in range( npeaks ):
+		fit = ROOT.TF1('fit', 'gaus', peaks[i] - deltapeaks/3, peaks[i] + deltapeaks/3)
+		fit.SetParameters( peakHeight[i], peaks[i], 5 )
+		hist.Fit('fit', 'rq')
+		if peaks[i] - fit.GetParameter(1) > 1:
+			print 'Zu große abweichung bei ', peaks[i]
+		x.append( fit.GetParameter(1) )
+		ex.append( fit.GetParameter(2) ) # use σ for fit, and not error or mean, is this correct?
+
+	# sort arrays with errors
+	valError = [x, ex]
+	valError = map( list, zip( *valError ) ) # transpose
+	valError.sort( key = lambda a: a[0] )
+	valError = map( list, zip( *valError ) ) # transpose back
+
+	return valError
+
+def kalibration( filename, minKanal = 0, maxKanal = 0 ):
+	y, ey = peakToArray( filename, minKanal, maxKanal )
+	x = []
+	for i in range( len(y) ):
+		timestep = 0.5
+		x.append( timestep * i )
+	ex = [0]*len(y)
+	import tools
+	reload(tools)
+	reg = tools.linearRegression( x, y, ex, ey)
+	reg.draw(';t [ns];Kanalnummer')
+	reg.canvas.SaveAs('kalibration_regression.pdf')
+
+	return reg.func
+
+
+def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
+	import tools
+	from ROOT import TH1F
+
+	data = tools.readFile( filename )[0]
+	length = len( data )
+
+	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", nBins, xMin, xMax )
+	for i in range( nBins ):
+		hist.SetBinContent( i, 1. / func.GetParameter(1) * (data[ i ] - func.GetParameter(0) ) )
+		# what happens to the error of the regression?
+	return hist
+
+
+#kalibration('data/kali.TKA', 4000 )
+kalibration('data/kali_ohne_threshold.TKA', 3500, 12000 )
+
+
+
 
 
 

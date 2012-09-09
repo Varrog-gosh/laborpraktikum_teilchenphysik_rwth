@@ -85,9 +85,15 @@ class linearRegression:
 			self.__y = unumpy.nominal_values(y)
 			self.__ex = unumpy.std_devs(x)
 			self.__ey = unumpy.std_devs(y)
+		else:
+			from numpy import array
+			self.__x = array(x, dtype = 'd')
+			self.__y = array(y, dtype = 'd')
+			self.__ex = array(ex, dtype = 'd')
+			self.__ey = array(ey, dtype = 'd')
+
 		if len(x) != len(y) != len(ex) != len(ey):
 			raise IndexError('All lengths should be the same')
-
 		from ROOT import TGraphErrors, TF1
 		self.graph = TGraphErrors( len(self.__x), self.__x, self.__y, self.__ex, self.__ey)
 		self.graph.Fit('pol1', 'Q')
@@ -118,6 +124,7 @@ class linearRegression:
 
 		random_name = randint(0,maxint)
 		self.canvas = TCanvas("canvas{}".format( random_name), "Linear Regression", 768, 800)
+		self.canvas.SetBatch()
 		hPad = TPad("fitPad{}".format( random_name ), "Fit", 0, 0.2, 1, 1)
 		hPad.SetFillStyle(4000)
 		hPad.SetBorderSize(0)
@@ -135,10 +142,13 @@ class linearRegression:
 		residualPad.cd()
 		# get y-label for residuals
 		from re import match
-		splittitle = title.split(';')
-		val, unit = match( '(.*)\[(.*)\]', splittitle[2] ).groups()
-		restitle = splittitle[0] + ';' + splittitle[1] + ';' + val + '- fit [' + unit + ']'
-		self.resgraph.SetTitle( restitle )
+		try:
+			splittitle = title.split(';')
+			val, unit = match( '(.*)\[(.*)\]', splittitle[2] ).groups()
+			restitle = splittitle[0] + ';' + splittitle[1] + ';' + val + '- fit [' + unit + ']'
+			self.resgraph.SetTitle( restitle )
+		except:
+			self.resgraph.SetTitle( title + ' - fit' )
 		xaxis = self.resgraph.GetXaxis()
 		xaxis.SetTitleSize(.15)
 		xaxis.SetTitleOffset(.3)
