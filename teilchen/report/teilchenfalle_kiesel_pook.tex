@@ -66,7 +66,7 @@ Die Amplitude kann dabei für jedes Flächenpaar individuell eingestellt werden.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=0.8\textwidth]{aufbau.jpg}
-		\caption{Versuchsaufbau der Paulschen Teilchenfalle. 
+		\caption{Versuchsaufbau der Paulschen Teilchenfalle.
 			Rechts ist die Spannunsquelle, die mit sechs Kabeln und einer Erdung an die Teilchenfalle (links) angeschlossen ist.
 			Vor der Teilchenfalle ist eine Kamera montiert, deren Aufnahme man am Monitor über der Spannungsquelle sehen kann.
 			Über der Teilchenfalle ist eine Lampe mit Streulichtschutz angebracht, um die Falle von oben zu beleuchten.
@@ -125,7 +125,7 @@ Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von 
 Zusätzlich zum Messaufbau in Luft gibt es noch einen zweiten Messaufbau für Versuche im Vakuum.
 Hier befindet sich eine baugleiche Falle in einer zylindrischen, mit Scheiben versehenen Vakuumkammer.
 Die Kammer besitzt mehrere Öffnungen, an denen Beobachtungsfenster,Stromversorgung,Vakuumpumpe und ein beweglicher Hebel mit Halterung für die Spritze luftdicht angebracht werden können.
-Da während der unserer Versuchsdurchführung die Vakuumpumpe defekt war,
+Da während der Versuchsdurchführung die Vakuumpumpe defekt war,
 konnten Messungen lediglich bei vermindertem Luftdruck, im Bereich zwischen $\unit[300]{mbar}$ und $\unit[450]{mbar}$ durchgeführt werden.
 
 Es gibt auch eine vorgefertigte Falle, die sich in einer Vakuumkammer befindet.
@@ -257,6 +257,7 @@ Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezi
 \end{align}
 Die berechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden. Hierbei wird die Erdbeschleunigung 
 $g = \unitfrac[(9.81)]{m}{s}$ als konstant (fehlerfrei) angenommen und die Unsicherheit auf den Fallendurchmesser als weitere
+% wollen wir da wirklich konstant schreiben? ok, auch recht
 unabhängige systematische Fehlerquelle betrachtet.
 
 
@@ -266,9 +267,14 @@ unabhängige systematische Fehlerquelle betrachtet.
 		$U_{G,komp} [V] $ & $-\frac{q}{m}[\frac{mC}{kg}]$ \\
 		\hline
 		  68 ± 3(stat.) ± 27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys.)  \\
-	\label{tab:z-komp-result}
+%		  50 ± 4(stat.) ± 14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys.)  \\
+%		  92 ± 8(stat.) ± 62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys.)  \\
+%		  273 ± 5(stat.) ± 55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys.)  \\
 	\end{tabular}
+%	\caption{Die Kompensationsspannung und das das daraus resultierende Verhältnis von Ladung zu Masse von verschiedenen Teichen}
+	\label{tab:z-komp-result}
 \end{table}
+%Warun hast du die werte da rausgenommen?
 
 Alle Messwerte liegen in einem mit einander kompatiblen Wertebereich. Durch die hohen systematischen Unsicherheiten auf das
 Treffen der richtigen Kompensationsspannung entstehen relative Unsicherheiten im Bereich von $20\% - 70 \%$. Die erzeugten
@@ -310,8 +316,10 @@ In Luft wird zusätzlich die maximale Auslenkung $A_{max}$ bestimmt, indem mit e
 
 Bei niedriger Fokusierfrequenz erhöht sich der relative Fehler und bei hoher Fokusierfrequenz wird die Stabilitätsgrenze schneller erreicht
 , darum wurde eine Winkelfrequenz von $Ω = (503±6)\unit{Hz}$ gewählt.
-Die Messungen wurden bei zwei verschiedenen Fokussierspannungen durchgeführt: $\unit[(1000±14)]{V}$ und $\unit[(500±14)]{V}$.
+Die Messungen wurden bei zwei verschiedenen Fokussierspannungen durchgeführt: $\unit[(1414±14)]{V}$ und $\unit[(500±14)]{V}$.
+% amplitude der wehcselspannung noch mal kontrollieren
 In beiden Konfigurationen wurden jeweils 4 Teilchen vermessen.
+% in vakuum und in luft 4 teilcehn pro konfiguration = 16 teilchen?
 Die Amplitude der Wechselspannung unterliegt starken Schwankungen und wird mit einem Wert von
 $ \unit[( 210 ± 30 )]{V} $ gemessen, sie lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
 

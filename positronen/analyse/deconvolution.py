@@ -19,6 +19,7 @@ def createTestHistos():
 		d.Fill( r.Gaus(0, sigma) )
 		h.Fill( r.Gaus(0, sigma) + r.Exp(tau) )
 
+
 	return h, d
 
 def histToArray( histo ):
