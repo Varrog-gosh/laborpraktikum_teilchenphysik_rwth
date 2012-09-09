@@ -27,17 +27,18 @@
 \setcounter{page}{1}
 
 \section{Ziel der Messung}
-Ziel des Versuches ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Verhältnisses von Ladung zu Masse.
+Ziel des Versuchs ist die Speicherung von elektrisch geladenen Teilchen und die Bestimmung des Verhältnisses von Ladung zu Masse.
 Um die Teilchen in einem räumlich begrenzten Feld zu halten, ist ein statisches elektrisches Feld nicht ausreichend, da man damit keine Potentialminima schaffen kann.
-Eine Möglichkeit dennoch Teilchen zu fangen ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen an einem hohlen Würfel, wobei bei richtiger Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
-Konkret wurden beim durchgeführten Experiment der meta-stabile Bereich eines rotierenden Sattelpotential genutzt um Teilchen zu speichern.
+Eine Möglichkeit dennoch Teilchen zu fangen, ist das Anlegen von phasenverschobenen Wechselspannungen und Gleichspannungen an einem hohlen Würfel, wobei bei richtiger 
+Einstellungen der Spannungen und Frequenzen die Teilchen stabil in der Falle bleiben.
+Konkret wurden beim durchgeführten Experiment der meta-stabile Bereich eines rotierenden Sattelpotentials genutzt, um Teilchen zu speichern.
 Für jede räumliche Komponente $i\in\{x,y,z\}$ lautet die Bewegungsgleichung
 \begin{align}\label{mastergleichung}
 	\frac{4}{mΩ^2} |\vec{F}_i| + \left( a_i -2q_i \cos\left( 2\xi_i \right) \right) i  + 2k_L \frac{dx}{d\xi_i} + \frac{d^2x}{d\xi_i^2} = B\cos\left( \frac{2ω_W}{Ω}ξ_i \right)
 \end{align}
-mit dem gleichstromabhängigen Koeffizienten $a_i = \frac{16KqU_{G,i}}{3Ω^2mr_0^2}$,
-dem wechselstromabhängigen Koeffizienten  $q_i = -\frac{4kqU_i}{Ω^2mr_0^2}$,
-dem Antribskoeffienzenten $B = \frac{2qU_W}{r_0mΩ^2}$,
+mit den gleichstromabhängigen Koeffizienten $a_i = \frac{16KqU_{G,i}}{3Ω^2mr_0^2}$,
+den wechselstromabhängigen Koeffizienten  $q_i = -\frac{4kqU_i}{Ω^2mr_0^2}$,
+dem Antriebskoeffienzent $B = \frac{2qU_W}{r_0mΩ^2}$,
 dem Luftreibungskoeffizient $k_L = \frac{6πηR}{mΩ}$, der Winkelfrequenz der Dreiphasenspannung $Ω$,
 der Winkelfrequenz der zusätzlich an einem Plattenpaar angelegten Wechselspannung $ω_W$
 und der normalisierten Zeit $ξ_i = \frac{Ωt}{2} + \frac{iπ}{3}$.
@@ -52,13 +53,14 @@ Durch Anlegen geeigneter Frequenzen und Spannungen und das Beobachten der entste
 
 \section{Aufbau und Durchführung}
 Das Koordinatensystem ist wie folgt definiert:
-Die z-Achse verläuft vertikal, die y-Achse ist die Blickrichtung, und die x-Achse liegt senkrecht zu den beiden übrigen.
+Die z-Achse verläuft vertikal, die y-Achse ist die Blickrichtung und die x-Achse liegt senkrecht zu den beiden übrigen.
 
 Die Falle wird aus sechs Kupferringen und 12 Verbindungsstücken zu einem Würfel geklebt.
 Nach dem Anlöten und Isolieren der Anschlusskabel wird die Falle mit schwarzem Lack angestrichen, um Steulicht in der Kammer zu verringern.
-Die Falle wird mittig über der Öffnung für die Spritze an den Anschlusskabeln befestigt und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Abbildung \ref{fallenbild}),
+Die Falle wird mittig über der Öffnung für die zur Teilcheninjektion notwendigen Spritze an den Anschlusskabeln befestigt 
+und die Plattform von unten an die Spannungsversorgung angeschlossen (siehe Abbildung \ref{fallenbild}),
 welche je nach Hebelstellung die Gleichspannungen oder die zusätzliche Wechselspannung zur Dreiphasenspannung hinzufügt.
-Die Dreiphasenspannung, im folgenden auch Fokussierspannung genannt, wird aus drei Wechselpannungsquellen die mit einem konstanten Phasenunterschied von $120^\circ$ betrieben werden, geliefert (siehe Abbildung \ref{verschaltung3phase}).
+Die Dreiphasenspannung, im folgenden auch Fokussierspannung genannt, wird aus drei Wechselpannungsquellen, die mit einem konstanten Phasenunterschied von $120^\circ$ betrieben werden, geliefert (siehe Abbildung \ref{verschaltung3phase}).
 Die Amplitude kann dabei für jedes Flächenpaar individuell eingestellt werden.
 
 \begin{figure}[htb]
@@ -74,7 +76,7 @@ Die Amplitude kann dabei für jedes Flächenpaar individuell eingestellt werden.
 
 Es gibt mehrere Möglichkeiten die Gleichspannung anzulegen:
 Man kann sie auf den beiden gegenüber liegenden Seiten (siehe Abbildung \ref{verschaltungstab}) anlegen, um den gleichstromabhängigen Koeffizienten zu ändern
-oder zwischen zwei gegenüberliegenden Seiten (siehe Abbildung \ref{verschaltungz}) anbringen, um eine zusätzliche Kraft $\vec{F}$ zu haben.
+oder zwischen zwei gegenüberliegenden Seiten (siehe Abbildung \ref{verschaltungz}) anbringen, um eine zusätzliche Kraft $\vec{F}$ ausüben zu können.
 Die Wechselspannung wird zwischen zwei gegenüberliegenden Flächen angelegt (siehe Abbildung \ref{verschaltungres}), Frequenz und Amplitude sind einzeln regelbar.
 Die Verschaltung ist jedoch schon vorgefertigt und kann mit Schaltern hinzugeschaltet werden.
 
@@ -117,28 +119,53 @@ Die Haube wurde zusätzlich mit Ausnahme von zwei Stellen mit schwarzem Klebeban
 Die zwei Öffnungen dienen der seitlichen Beobachtung der Falle und der Bestrahlung durch eine oben angebrachten Lampe.
 Die geladen Teilchen sind Aluminiumpulverstücke, die mittels einer Spritze durch eine Öffnung unterhalb der Falle eingebracht werden.
 Wenn die Aluminiumpartikel schnell an der Kanüle der Spritze entlangreiben, werden manche Teilchen ionisiert.
-Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von ca. $\unit[2.5]{cm}$  besteht wurden die Teilchen durch anschnipsen der Spritze in die Falle geschleudert um einerseits die Richtige Höhe zu haben, und anderseits genug Ladung an der Spritzenspitze abgeben.
+Da zwischen Öffnung und dem stabilen Bereich der Teilchenfalle ein Abstand von ca. $\unit[2.5]{cm}$  besteht,
+ wurden die Teilchen durch Anschnipsen der Spritze in die Falle geschleudert, um einerseits die Richtige Höhe zu haben und anderseits genug Ladung an der Spritzenspitze abzugeben.
 
 Zusätzlich zum Messaufbau in Luft gibt es noch einen zweiten Messaufbau für Versuche im Vakuum.
 Hier befindet sich eine baugleiche Falle in einer zylindrischen, mit Scheiben versehenen Vakuumkammer.
-Die Kammer besitzt mehrere Öffnungen an denen Beobachtungsfenster,Stromversorgung,Vakuumpumpe und ein beweglicher Hebel mit Halterung für die Spritze luftdicht angebracht werden können.
-Da während der Versuchsdurchführung die Vakuumpumpe defekt war
+Die Kammer besitzt mehrere Öffnungen, an denen Beobachtungsfenster,Stromversorgung,Vakuumpumpe und ein beweglicher Hebel mit Halterung für die Spritze luftdicht angebracht werden können.
+Da während der unserer Versuchsdurchführung die Vakuumpumpe defekt war,
 konnten Messungen lediglich bei vermindertem Luftdruck, im Bereich zwischen $\unit[300]{mbar}$ und $\unit[450]{mbar}$ durchgeführt werden.
 
 Es gibt auch eine vorgefertigte Falle, die sich in einer Vakuumkammer befindet.
 Diese kann man mit einer Turbinenpumpe und bei niedrigeren Drücken mit einer Turbo-Molekularpumpe vakuumisieren und den Druck mithilfe eines Drucksensors überprüfen.
 
+\subsection{Technische Probleme des Versuchsaufbau}
+Der genutzte Versuchsaufbau hat während der Messungen eine Reihe von technischen Problemen aufgewiesen die im folgenden kurz erläutert werden.Der Einfluss
+auf die durchgeführten Messungen wird bei der Auswertung der verschiedenen Messreihen im Kapitel \ref{Ergebnisse} behandelt.
+\subsubsection*{Schwankungen der Fokussierspanung}
+Die Amplitude der Dreiphasenspannung unterlag starken Schwankungen, diese lassen sich in drei Kategorien eingeteilt werden:
+\begin{itemize}
+\item
+Schwankungen im Bereich von \unit[±15.0]{V} bis \unit[±50.0]{V} um einem konstanten Mittelwert.
+\item
+Kontinuierliches ansteigen der Fokussierspannung zwischen dem Flächenpaar in y-Richtung von ca. $\unit[1000]{V} - \unit[2000]{V}$ gefolgt von einem plötzlich
+Abfall zurück auf \unit[(1000)]{V}. Die Spannung lässt sich dann praktisch nicht mehr durch den zugehörigen Drehschalter beeinflussen.
+\item
+Plötzlicher Abfall der Fokussierspannung für das Flächenpaar in x-Richtung von der gewählten Spannung auf ca. $\unit[200]{V} - \unit[300]{V}$ und daraus resultierender
+Verlust der Teilchen.
+\end{itemize}
+Als Grund für die beiden letzten Probleme wird mangelnde Kühlung der Hochspannungsquelle als Grund vermutet, da die Fehlfunktion nach längerem ausschalten des Gerät zunächst nicht mehr auftritt.
 
+\subsubsection*{Fangen von Teilchen im Vakuum}
+Beim Vakuumisieren der Kammer kann der gewünschte Druck von einigen $\unit{μbar}$ nicht erreicht werden.
+Die Frontanzeige liefert bei Erreichen von $90μbar$ einen Fehlercode und auch auf der Rückseite des Sensors ist der Druck immer noch zu groß.
+Auch das Halten von Teilchen in der Falle gestaltet sich bei diesen Einstellungen als schwierig, man kann erahnen wie die Teilchen immer zu einer Seite abgesaugt werden.
+Grund dafür könnte ein Leck an der Vakuumskammer sein, ein Defekt der Turbo-Molekularpumpe ist aber auch nicht ausgeschlossen.
+Da das Saugen der Pumpe jede Speicherung während des Pumpens unmöglich macht, ist die einzige Möglichkeit, Teilchen in der Vakuumfalle zu halten, die Pumpe auszuschalten.
+Der Druck fällt rasch auf ein paar $\unit[100] {mbar}$ ab und ist dann relativ stabil, was einem das Einfangen von Teilchen erlaubt.
 
 \section{Ergebnisse}
 Mit einem Messschieber wird der Plattenabstand der Teilchenfalle auf $2r_0 = d = \unit[(3.05±0.02)]{cm}$ abgeschätzt.
 \subsection{Bahnbeschreibung}
 Obwohl die Bahnkurven unabhängig von den Anfangsbedinungen sein sollten, lassen sich nur die wenigsten Teilchen fangen.
-In den meisten Fällen beschreiben die eingefangenen Teilchen eine elliptische Teilchenbahn deren Radius und die Exzentrizität durch das Verhältnis der angelegten Potenziale in der Fokusierspannung erklärt werden können.
+In den meisten Fällen beschreiben die eingefangenen Teilchen eine elliptische Teilchenbahn, deren Radius und die Exzentrizität durch das Verhältnis der angelegten Potenziale 
+in der Fokusierspannung erklärt werden können.
 Viele Teilchen beschreiben zudem sehr kleine Bahnen und sind deshalb nur noch als Punkte wahrzunehmen.
 
 \subsubsection*{Lissajous Figuren}
-In einigen Fällen können sich auch Lissajou Figuren bilden. Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen, wenn das Verhältnis der Frequenzen rational ist.
+In einigen Fällen können sich auch Lissajous Figuren bilden. Lissajous Figuren entstehen bei der Überlagerung harmonischer Schwingungen, wenn das Verhältnis der Frequenzen rational ist.
 In diesem Fall bildet die Teilchenbahn eine geschlossene Figur.
 Die möglichen Formen der Figuren sind sehr vielfältig und hängen vom Frequenzverhältnis und dem Phasenunterschied der Schwingungen ab.
 Ein Beispiel einer spiralförmigen Figur ist in Abbildung \ref{Lissjous} zu sehen.
@@ -152,11 +179,11 @@ Ein Beispiel einer spiralförmigen Figur ist in Abbildung \ref{Lissjous} zu sehe
 \end{figure}
 
 \subsubsection*{Kristallstruktur}
-Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal pseudo Kristallstrukturen erkennen:
+Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal Pseudo-Kristallstrukturen erkennen:
 Die Teilchen stoßen sich gegenseitig ab und suchen energetisch günstige Zustände, ebenso wie in einem Kristall.
 Überlagert zu diesem Effekt sieht man in Abbildung \ref{pseudokristall} noch die Auswirkungen des Feldes.
 In der hier sichtbaren $x = 0$ und $z = 0$  Ebene werden keine Teilchen gehalten, wie man auch Gleichung (\ref{mastergleichung}) entnehmen kann.
-Da man im Vakuum Teilchen besser fangen kann (siehe nächsten Abschnitt) werden im Vakuum mehr Teilchen gleichzeitig gefangen und man kann die Strukturen besser sehen.
+Da man im Vakuum Teilchen besser fangen kann (siehe nächsten Abschnitt), werden im Vakuum mehr Teilchen gleichzeitig gefangen, und man kann die Strukturen besser sehen.
 
 \begin{figure}[htb]
 		\centering
@@ -164,14 +191,6 @@ Da man im Vakuum Teilchen besser fangen kann (siehe nächsten Abschnitt) werden 
 		\caption{Beispiel zur Pseudokristallstruktur im Vakuum. Im Hintergrund ist als heller Halbmond die hintere angeleuchtete Ringscheibe zu sehen.}
 		\label{pseudokristall}
 \end{figure}
-
-\subsubsection*{Fangen von Teilchen im Vakuum}
-Beim vakuumisieren der Kammer kann der gewünschte Druck von einigen $\unit{μbar}$ nicht erreicht werden.
-Die Frontanzeige liefert bei Erreichen von $90μbar$ auf einen Fehlercode und auch auf der Rückseite des Sensors ist der Druck immer noch zu groß.
-Auch das Halten von Teilchen in der Falle gestaltet sich bei diesen Einstellungen als schwierig, man kann erahnen wie die Teilchen immer zu einer Seite abgesaugt werden.
-Grund dafür könnte ein Leck an der Vakuumskammer sein, ein defekt der Turbo-Molekularpumpe ist aber auch nicht ausgeschlossen.
-Da das Saugen der Pumpe jede Speicherung während des Pumpens unmöglich macht, ist die eingize Möglichkeit, Teilchen in der Vakuumfalle zu halten, die Pumpe auszuschalten.
-Der Druck fällt rasch auf ein paar $\unit[100] {mbar}$ ab und ist dann relativ stabil, was einem das Einfangen von Teichen erlaubt.
 
 
 \subsection{Kompensation der Gewichtskraft}\label{sec:kompensation}
@@ -188,15 +207,16 @@ Diese Abhängigkeit besteht nicht mehr, wenn gilt:
 	|\vec{F}_{z}| = |\vec{F}_G + \vec{F}_{qE}| = mg + q\frac{U_G}{d} = 0
 \end{align}
 
-Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Schaltplan in Abbildung \ref{verschaltungz}), der solange erhöht wird, bis die Gravitationskraft kompensiert wird.
+Zu der Dreiphasenspannung wird nun ein zusätzlicher Potentialunterschied zwischen den beiden z-Komponenten angeschlossen (siehe Schaltplan in Abbildung \ref{verschaltungz}), der solange erhöht wird,
+ bis die Gravitationskraft kompensiert wird.
 Dies kann dadurch überprüft werden, dass sich der Mittelpunkt der Teilchenschwingung bei Änderung der Amplitude der z-Komponente der Dreiphasenspannung nicht mehr ändert.
 Die Fokussierspannung wird bei $U_i = \unit[(1414±14)]{V}$ für alle Flächenpaare betrieben.
 
 
-Weil die Gleichspannung stark schwankend ist, wird die effektive Spannung durch notieren der angezeigten Werte in einem Zeitraum von ungefähr $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. 
+Weil die Gleichspannung stark schwankend ist, wird die effektive Spannung durch Notieren der angezeigten Werte in einem Zeitraum von ungefähr $\unit[20]{s}$ und anschliessendem Mitteln bestimmt. 
 Der Fehler auf die Stichprobe wird im folgenden "`statistischer"' Fehler genannt.
 Da man die Teilchen oft wegen spontaner Spannugsschwankungen der Quelle verliert, kann der Bereich in dem die Gravitationskraft kompensiert wird, nicht in feineren Spannungsabschnitten untersucht werden.
-Dies führt dazu, dass nicht abgeschätzt werden kann wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wird.
+Dies führt dazu, dass nicht abgeschätzt werden kann, wie exakt der Wert für die Kompensationsspannung $U_G$ getroffen wird.
 Die mittlere Differenz zu den nächstliegenden $U_G$ Messwerten, bei denen wieder Bewegungen des Schwingungsmittelpunkt bei Variation der Fokussierspannung $U_z$ zu beobachten sind,
 wird deshalb "`systematischer"' Fehler genannt.
 Die Messungen werden teilweise für mehrere gleichzeitig gefangene Teilchen durchgeführt und die Spannung erhöht bis alle Teilchen den Stabilitätsbereich verlassen haben. Die Messergebnisse sind in
@@ -236,7 +256,7 @@ Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezi
 	\frac{q}{m} = -\frac{g \cdot  d}{U_{G}}
 \end{align}
 Die berechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden. Hierbei wird die Erdbeschleunigung 
-$g = \unitfrac[(9.81)]{m}{s}$ als fehlerfrei angenommen und die Unsicherheit auf den Fallendurchmesser als weitere
+$g = \unitfrac[(9.81)]{m}{s}$ als konstant (fehlerfrei) angenommen und die Unsicherheit auf den Fallendurchmesser als weitere
 unabhängige systematische Fehlerquelle betrachtet.
 
 
@@ -246,12 +266,8 @@ unabhängige systematische Fehlerquelle betrachtet.
 		$U_{G,komp} [V] $ & $-\frac{q}{m}[\frac{mC}{kg}]$ \\
 		\hline
 		  68 ± 3(stat.) ± 27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys.)  \\
-		  50 ± 4(stat.) ± 14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys.)  \\
-		  92 ± 8(stat.) ± 62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys.)  \\
-		  273 ± 5(stat.) ± 55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys.)  \\
-	\end{tabular}
-	\caption{Die Kompensationsspannung und das das daraus resultierende Verhältnis von Ladung zu Masse von verschiedenen Teichen}
 	\label{tab:z-komp-result}
+	\end{tabular}
 \end{table}
 
 Alle Messwerte liegen in einem mit einander kompatiblen Wertebereich. Durch die hohen systematischen Unsicherheiten auf das
@@ -292,13 +308,14 @@ Für die Lösung im Vakuum reicht es in Gleichung (\ref{w_res}) $k_L=0$ zu setze
 Um die Resonanzfrequenz eines Teilchens zu messen, wird die Wechselspannung variiert bis das Teilchen maximale Auslenkung zeigt.
 In Luft wird zusätzlich die maximale Auslenkung $A_{max}$ bestimmt, indem mit einer Digitalkamera Fotos der Teilchenbahn angefertigt werden.
 
-Bei niedriger Fokusierfrequenz erhöht sich der relative Fehler und bei hoher Fokusierfrequenz wird die Stabilitätsgrenze schneller erreicht,
-darum wurde eine Frequenz von $Ω = (503±6)\unit{Hz}$ und eine Fokusierspannung von $\unit[(1414±14)]{V}$ gewählt.
-Die Amplitude der Wechselspannung unterliegt starken Schwankungen von
-$ \unit[( 210 ± 30 )]{V} $
-und lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
+Bei niedriger Fokusierfrequenz erhöht sich der relative Fehler und bei hoher Fokusierfrequenz wird die Stabilitätsgrenze schneller erreicht
+, darum wurde eine Winkelfrequenz von $Ω = (503±6)\unit{Hz}$ gewählt.
+Die Messungen wurden bei zwei verschiedenen Fokussierspannungen durchgeführt: $\unit[(1000±14)]{V}$ und $\unit[(500±14)]{V}$.
+In beiden Konfigurationen wurden jeweils 4 Teilchen vermessen.
+Die Amplitude der Wechselspannung unterliegt starken Schwankungen und wird mit einem Wert von
+$ \unit[( 210 ± 30 )]{V} $ gemessen, sie lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
 
-Der Ausschlag der Teilchen wird über das Verhältnis der Amplitude zum Innendurchmesser der Falle $d_{innen}$ bestimmt und ist für alle 666 Teilchen innerhalb des Fehlers gleich.
+Der Ausschlag der Teilchen wird über das Verhältnis der Amplitude zum Innendurchmesser der Falle $d_{innen}$ bestimmt und ist für alle 8 Teilchen innerhalb des Fehlers gleich.
 % Teichenanzahl ändern
 $$A_{max} = \frac{A_{max}\text{ [Pixel]}}{d_{innen}\text{ [Pixel]}} \cdot d_{innen}= \unit[( 0.7 ± 0.4 )]{mm} $$
 Alle gemessenen Teilchen zeigen ihre maximale Auslenkung bei $\omega_W \leq \unit[(31±6)]{Hz}$,
@@ -309,10 +326,10 @@ Wenn man die Resonanzfrequenz durch die Grundschwingungsfrequenz in Luft $\bar{�
 	ω^{res}_W = \sqrt{ \bar{ω}_0^2 - \frac{Ω^2k_L^2}{2} },
 \end{align*}
 was dazu führt, dass die Resonanz unterhalb der Grundschwingungsfrequenz liegt.
-Die beobachtete Ereignisse waren wahrscheinlich Schwingungsmaxima, das heißt die eigentlich gesuchte Frequenz liegt unterhalb der Beobachteten.
+Die beobachteten Ereignisse waren wahrscheinlich keine Schwingungsmaxima, dass heißt die eigentlich gesuchte Frequenz liegt unterhalb der beobachteten.
 Schon die Lissajous Figur von Abbildung \ref{Lissjous} hatte eine größere Amplitude.
 
-Um Interpretationsfehler zu vermeiden, wurde dennoch das ganze zur Verfügung gestellte Frequenzspektrum abgefahren, aber ohne eine zusätliche Resonanz zu entdecken.
+Um Interpretationsfehler zu vermeiden, wurde dennoch das ganze zur Verfügung gestellte Frequenzspektrum abgefahren, aber ohne eine zusätzliche Resonanz zu entdecken.
 
 Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
 Man erhält mit gausscher Fehlerfortplanzung in Luft
@@ -324,11 +341,13 @@ Eigentlich müsste man hier nicht-gaussche Fehlerfortplanzung benutzen, was aber
 Eine weiterer Grund ist die starke Spannungsschwankung von  $U_w$.
 Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für das Verhältnisses von Ladung zu Masse dar, da die Resonanzfrequenz nicht weiter regulierbar ist.
 
+
 \subsection{Stabilitätsdiagramm}
 Die Grundschwingung in Gleichung (\ref{eq:beta}) muss real sein, da sonst die Winkelfunktionen zu Expotentialfunktionen werde, was zum Austritt der Teilchen aus der Falle führt.
 Hier wird nur der Grenzfall $β_x = a + \frac12q^2  =0$ untersucht.
-Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z = U_i$ die an der x-Achse angelegnent Gleichsannung $U_G$ gesucht, bei der das Teilchen entkommt.
-Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt und es somit leicht entkommen kann.
+Dafür wird bei verschiedenen, konstanten $U_x = U_y = U_z = U_i$ die an der x-Achse angelegten Gleichsannung $U_G$ gesucht, bei der das Teilchen entkommt.
+Weil das Teilchen nicht entkommen darf (es muss bei mehreren $U_i$ vermessen werden), ist die Abschätzung nur schwer zu bewerkstelligen, da die Gleichspannungsquelle stark schwankt 
+und es somit leicht entkommen kann.
 Dies führt zu einem systematischen Fehler in $U_G$.
 Für jedes Teilchen wird bei konstantem $Ω =\unit[188±6]{Hz}$ die Gleichspannung $U_g$ gegen $U_i^2$ aufgetragen und eine lineare Regression durchgeführt.
 Die Anpassungen sind in Abbildung \ref{linReg} zu sehen.
@@ -342,7 +361,7 @@ Die Anpassungen sind in Abbildung \ref{linReg} zu sehen.
 		\includegraphics[height = 0.3\textheight]{linReg375bar.pdf}
 		\caption{Lineare Regressionen und Residuen zur Stabilitätsuntersuchung für unterschiedliche Luftdrücke und Teilchen.
 			Oben links wird der letzte Datenpunkt nicht für die Anpassung benutzt, da das Teilchen die Falle schon verlassen hat.
-			Unten rechts wurde die maximale Spannung erreicht, ohne das die Stabilitätsgrenze erreicht wurde.
+			Unten rechts wurde die maximale Spannung erreicht, ohne dass die Stabilitätsgrenze erreicht wurde.
 		}
 		\label{linReg}
 \end{figure}
@@ -351,25 +370,27 @@ Da der Luftdrucksensor nur $\unit[50]{mbar}$ auflösen konnte, sind die Druckang
 Für Messungen, bei denen die Druckanzeige geschwankt hat, wurde der Mittelwert aus beiden Drücken genommen.
 
 
-Für $U_i$ wird ein Fehler von $\unit[14]{V}$ verwendet, für die Gleichspannung ein Fehler von $\unit[15]{V}$, da sie nicht nur schwankt, sondern auch nur ein geringer Zeitraum zum Ablesen bestand, da die Teilchen die Falle schnell verlassen.
+Für $U_i$ wird ein Fehler von $\unit[14]{V}$ verwendet, für die Gleichspannung ein Fehler von $\unit[15]{V}$, da sie nicht nur schwankt, sondern auch nur ein geringer Zeitraum zum Ablesen bestand, 
+da die Teilchen die Falle schnell verlassen.
 
-In der Anpassung unten rechts wird der letzte Datenpunkt nicht verwendet, da hier die Maximale Amplitude der Gleichspannung erreicht wurde.
+In der Anpassung unten rechts wird der letzte Datenpunkt nicht verwendet, da hier die maximale Amplitude der Gleichspannung erreicht wurde.
 Das eigentliche Verlassen des Stabilitätsbereichs findet bei einer höheren Spannung statt.
-Da durch den genaueren Aufbau der Vakuumfalle besonders viele Teilchen gefangen werden, müssen am Anfang viele Teichen aus dem Stabilitätsbereich gebracht werden, damit man die Teichen auseinander halten kann.
+Da durch den genaueren Aufbau der Vakuumfalle besonders viele Teilchen gefangen werden, müssen am Anfang viele Teichen aus dem Stabilitätsbereich gebracht werden, 
+damit man die Teichen auseinander halten kann.
 Dies führt dazu, dass man nur noch sehr stabile Teilchen in der Falle hat, mit denen man schnell das Maximum der Gleichspannung erreicht.
 
-Wie man schon im Kapitel \ref{sec:kompensation} gesehen hat, sind die Schwankungen von $U_G$ nicht Spannungsabhängig.
+Wie man schon im Kapitel \ref{sec:kompensation} gesehen hat, sind die Schwankungen von $U_G$ nicht spannungsabhängig.
 Dies führt bei kleinen Spannungen zu großen relativen Fehlern, wie man in der Abbildung oben rechts sehen kann.
 
 
 In der Anpassung oben links wird der letzte Datenpunkt nicht für die Anpassung verwendet, weil bei dem eingestellten Spannungswert das Teichen schon entkommen war.
-Man kann über den Abstand des letzen Punktes zur Anpassungsgerade die Spannung abschätzen die nötig gewesen wäre, ein Teichen tatsächlich aus der Falle zu bringen.
+Man kann über den Abstand des letzen Punktes zur Anpassungsgerade die Spannung abschätzen, die nötig gewesen wäre, ein Teichen tatsächlich aus der Falle zu bringen.
 Dies spiegelt sich auch im y-Achsenabschnitt wieder, der im gewichteten Mittel $-\unit[57]{V}$ beträgt und damit mit dem Abstand zur Anpassungsgeraden konsistent ist.
 % noch mehr text dazu?
 Durch die lineare Regression kann also der systematische Fehler durch das konservative Abschätzen der Entweichspannung verringert werden.
 
 
-Das $χ^2/ndf$ ist etwas zu klein, besonders an den Graphen, die nur Messwerte bei niedrige Gleichspannung beinhalten, da wie oben beschrieben der relative Fehler hier größer wird.
+Das $χ^2/ndf$ ist etwas zu klein, besonders an den Graphen, die nur Messwerte bei niedriger Gleichspannung beinhalten, da wie oben beschrieben der relative Fehler hier größer wird.
 Die Fehler wurden also zu konservativ abgeschätzt.
 Insgesamt sind die Anpassungen gut mit einer Geraden vereinbar.
 
@@ -405,7 +426,8 @@ Bei höheren Frequenzen wäre der relative Fehler kleiner, dafür wäre es schwi
 Statistische und systematische Fehler sind ungefähr in der gleichen Größenordnung und steigen mit den Werten, was zu etwa konstanten relativen Fehlern führt.
 
 Man sieht keinen Zusammenhang zwischen Druck und dem Verhältnisses von Ladung zu Masse, was daran liegt, dass der Druck nicht niedrig genug war.
-Auch die Werte bei gleichen oder ähnlichen Drücken sind nicht vereinbar, was wahrscheinlich damit zu erklären ist, dass die Ladung oder die Masse nicht genau festgelegt ist oder die Fehler zu klein abgeschätzt wurden.
+Auch die Werte bei gleichen oder ähnlichen Drücken sind nicht vereinbar, was wahrscheinlich damit zu erklären ist, dass die Ladung oder die Masse nicht genau festgelegt ist 
+oder die Fehler zu klein abgeschätzt wurden.
 
 
 
@@ -428,11 +450,16 @@ Für die beobachteten Unterschiede gibt es zunächst zwei Erklärungsansätzte:
 Entweder befinden sich alle Teilchen in einem begrenzten $\frac{q}{m}$ Bereich und nur eine Methode liefert 
 richtige Ergebnisse oder die möglichen Werte für $\frac{q}{m}$ erstrecken sich über viele Größenordnungen
 und jede einzelne Methode eignet sich nur dafür Teilchen aus einem bestimmten Bereich zu vermessen.
-Gegen die zweite Hypothese spricht, dass sich die Teilchen im allgemeinen auch bei ausgeschalteter Gleich bzw. Wechselspannung in ihrer 
-Leuchtkraft und dem Verhalten ihrer Bahn unter veränderung der Fokussierspannung stark ähneln. 
-sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich. 
+Gegen die zweite Hypothese spricht, dass sich die Teilchen im allgemeinen auch bei ausgeschalteter Gleich- bzw. Wechselspannung in ihrer 
+Leuchtkraft und dem Verhalten ihrer Bahn unter Veränderung der Fokussierspannung stark ähneln 
+sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich. Ein quantitativer Vergleich der Messmethoden hätte nur erfolgen können,
+wenn mehrere Messmethoden nacheinander am selben Teilchen durchgeführt werden. Dies ist auf Grund der bereits erwähnten
+technischen Problemen im Versuchsaufbau leider nicht möglich gewesen. Die Messungen für $\frac{q}{m}$ bei vermindertem Luftdruck liegen für die 
+jeweilige Messmethode in der gleichen Größenordnungen wie die Messungen bei Normaldruck. Es fehlen hier jedoch weitere Messungen, um eine Aussage
+über die Auswirkungen der Luftreibung auf die Messung zu bestimmen.
 
-Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt ( man beachte die Überhöhung der dargestellten Fehler mit einem Faktor von 3).
+Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt 
+( man beachte die Überhöhung der dargestellten Fehler für die Resonanz und Stabilitätsmessung mit einem Faktor von 3).
 \begin{figure}[htb]
 		\centering
 		\includegraphics[height = 0.8\textwidth]{../analyse/final_plot.pdf}\\
@@ -443,9 +470,9 @@ Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargeste
 
 
 \section{Fazit}
-Die Versuchsdurchführung war dadurch geprägt das die Spannungsquelle nur stark schwankende Ausgangsspannungen geliefert hat. Besonders ein reglemäßiges plötliches Abfallen der Fokussierspannung für ein 
-Flächenpaar hat zu regelmäßigem Verlust der Teilchen geführt. Insbesondere die Resonanzmessung und die Stabiliätsmessung waren oft nicht durchzuführen, weil ein langfristiges einfangen der Teilchen nicht
-möglich war.
+Die Versuchsdurchführung war dadurch geprägt, dass die Spannungsquelle nur stark schwankende Ausgangsspannungen geliefert hat. Besonders ein regelmäßiges plötzliches Abfallen der Fokussierspannung 
+für ein Flächenpaar hat zu regelmäßigem Verlust der Teilchen geführt. Insbesondere die Resonanzmessung und die Stabiliätsmessung waren oft nicht durchzuführen, weil ein langfristiges Einfangen der Teilchen 
+nicht möglich war. Ein quantitativer Vergleich der Messmethoden kann auf Grund dieser ungleichmäßigen Messbedingungen nicht durchgeführt werden. 
 
 \bibliographystyle{plain}
 \bibliography{citebib}{}
