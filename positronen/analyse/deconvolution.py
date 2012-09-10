@@ -66,4 +66,17 @@ def deconvolution( signal, background ):
 	d.Draw()
 	raw_input()
 
-deconvolution( alu, background )
+def centroidShift( signal, background, xmin = 0, xmax  = 10000 ):
+	signal.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
+	background.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
+	t = ( signal.GetMean() - background.GetMean() ) * signal.GetBinWidth(0)
+	from math import sqrt
+	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
+	return t, s
+
+print centroidShift( alu, background)
+
+
+
+
+#deconvolution( alu, background )
