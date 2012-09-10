@@ -160,3 +160,30 @@ class linearRegression:
 		self.line = TLine( xaxis.GetXmin(), 0, xaxis.GetXmax(), 0 )
 		self.line.Draw()
 
+################# LEBENSDAUER VON POSITRONEN IN FESTKÖRPERN ######################
+
+def tkaToHist( filename , xMin = 0, xMax = 0 ):
+	'''
+	converts *TKA file to histogram
+	input:
+	filename: TKA file
+	xMin: first bin, used to make a first cut
+	xMax: last bin
+	output:
+	histogram containing data of TKA file
+	'''
+
+	from ROOT import TH1F
+
+	data = readFile( filename )[0]
+	length = len( data )
+
+	if xMax == 0:
+		xMax = length
+	length = int( xMax - xMin )
+
+	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
+	for i in range( length ):
+		hist.SetBinContent(i, data[ i + xMin ] )
+	return hist
+

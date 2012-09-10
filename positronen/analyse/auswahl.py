@@ -2,26 +2,12 @@
 # -*- coding: utf-8 -*-
 from Styles import tdrStyle
 style = tdrStyle()
-import ROOT
-
-def tkaToHist( filename , xMin = 0, xMax = 0 ):
-	import tools
-	from ROOT import TH1F
-
-	data = tools.readFile( filename )[0]
-	length = len( data )
-
-	if xMax == 0:
-		xMax = length
-	length = int( xMax - xMin )
-
-	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
-	for i in range( length ):
-		hist.SetBinContent(i, data[ i + xMin ] )
-	return hist
-
+from tools import *
 
 def plotSpectrum():
+	'''
+	plots the spectrum for data selection in the slow circuit
+	'''
 	hist = tkaToHist( 'data/auswahl.TKA', 0, 10500 )
 
 	can = ROOT.TCanvas()
@@ -31,7 +17,6 @@ def plotSpectrum():
 	can.SetCanvasSize( 1400, 800 )
 	hist.SetMinimum(9)
 	hist.Draw()
-
 
 	grenzkanaele = [ 0, 3632] # richtige kanalnummer rausfinden
 	lines = []
@@ -63,6 +48,5 @@ def plotSpectrum():
 	can.SaveAs('auswahl.pdf')
 
 plotSpectrum()
-
 
 

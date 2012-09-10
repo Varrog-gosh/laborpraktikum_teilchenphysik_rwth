@@ -2,23 +2,8 @@
 # -*- coding: utf-8 -*-
 from Styles import tdrStyle
 tdrStyle()
+from tools import *
 import ROOT
-
-def tkaToHist( filename , xMin = 0, xMax = 0 ):
-	import tools
-	from ROOT import TH1F
-
-	data = tools.readFile( filename )[0]
-	length = len( data )
-
-	if xMax == 0:
-		xMax = length
-	length = int( xMax - xMin )
-
-	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
-	for i in range( length ):
-		hist.SetBinContent(i, data[ i + xMin ] )
-	return hist
 
 def bufferToSortedList( length, buffer ):
 	output = []
@@ -43,30 +28,30 @@ def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 	can.SaveAs('peaksToArray.pdf')
 
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
-	for i in range( len(peaks) - 2, -1, -1): # clear array of double peaks
-		if peaks[i+1] - peaks[i] < 50:
+
+	distance = 50 # minimal distance between channels
+
+	# clear array of double peaks, which have less than distance channels distance
+	for i in range( len(peaks) - 2, -1, -1):
+		if peaks[i+1] - peaks[i] <  distance :
 			del peaks[i+1]
 			npeaks -= 1
 
-	deltapeaks = 250 # differenze between peaks
 
+	# fit gaus functions
 	x = []
 	ex = []
 	for peak in peaks:
-		fit = ROOT.TF1('fit', 'gaus', peak - deltapeaks/3, peak + deltapeaks/3)
+		fit = ROOT.TF1('fit', 'gaus', peak - distance/3, peak + distance/3)
 		fit.SetParameters( hist.GetBinContent( hist.FindBin( peak ) ), peak, 5 )
 		hist.Fit('fit', 'rq')
 		if peak - fit.GetParameter(1) > 4:
-			print 'Zu große abweichung bei ', peak
+			print 'Zu große abweichung von fit zu peakfinder bei ', peak
 		else:
 			x.append( fit.GetParameter(1) )
 			ex.append( fit.GetParameter(2) ) # use σ for fit, and not error or mean, is this correct?
 
-	# sort arrays with errors
 	valError = [x, ex]
-	valError = map( list, zip( *valError ) ) # transpose
-	valError.sort( key = lambda a: a[0] )
-	valError = map( list, zip( *valError ) ) # transpose back
 
 	return valError
 
@@ -88,6 +73,9 @@ def kalibration( filename, firstpeak, minKanal = 0, maxKanal = 0 ):
 
 
 def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
+	'''
+	not used now, and will never be used
+	'''
 	import tools
 	from ROOT import TH1F
 
