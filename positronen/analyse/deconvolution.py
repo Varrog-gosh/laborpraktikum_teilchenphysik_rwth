@@ -1,14 +1,30 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from ROOT import TH1F,TSpectrum
+from ROOT import TH1F,TSpectrum, TLegend, TCanvas
 from numpy import array
 
 from plotSpectrum import *
+'''
+can = TCanvas()
+can.cd()
+can.SetBatch()
+'''
+background= tkaToHist( 'data/co60.TKA', 1, 400 )
+background.SetNormFactor(1.)
+alu = tkaToHist( 'data/aluminium.TKA', 1, 400 )
+alu.SetNormFactor(1.)
+'''
+background.SetLineColor(3)
+background.Draw()
+alu.Draw("same")
+leg = TLegend(0.7, 0.7, 1,1)
+leg.AddEntry( alu, "Aluminium")
+leg.AddEntry( background, "Background")
+leg.Draw()
 
-hist = tkaToHist( 'data/co60.TKA' )
-hist.Draw()
-
+can.SaveAs('firstComparison.pdf')
+'''
 
 
 def createTestHistos():
@@ -36,19 +52,18 @@ def histToArray( histo ):
 		values[i] = histo.GetBinContent(i + 1)
 
 	return values
-'''
-u,v = createTestHistos()
-source = histToArray( u )
-response = histToArray( v )
 
-s = TSpectrum();
+def deconvolution( signal, background ):
+	source = histToArray( signal )
+	response = histToArray( background )
+	s = TSpectrum();
+	s.Deconvolution(source, response, len( source ), 1000, 1, 1 )
 
-s.Deconvolution(source, response, len( source ), 1000, 1, 1 )
+	from ROOT import TH1D
+	d = TH1D('', 'title', len(source), 1,400 )
+	for i in range( len(source) ):
+		d.SetBinContent(i + 1,source[i])
+	d.Draw()
+	raw_input()
 
-from ROOT import TH1D
-d = TH1D('', 'title', len(source), -5, 5 )
-for i in range( len(source) ):
-	d.SetBinContent(i + 1,source[i])
-d.Draw()
-
-'''
+deconvolution( alu, background )
