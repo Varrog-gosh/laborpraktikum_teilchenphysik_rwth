@@ -54,9 +54,8 @@ def plotSpectrum():
 	t2.SetFillColor(0)
 	t2.Draw()
 	can.SaveAs('auswahl.pdf')
-plotSpectrum()
-raw_input()
 
+plotSpectrum()
 def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 	hist = tkaToHist( filename , minKanal, maxKanal )
 	from ROOT import TCanvas, TSpectrum, TGraph
