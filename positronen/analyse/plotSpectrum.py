@@ -22,7 +22,7 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 
 
 def plotSpectrum():
-	hist = tkaToHist( 'data/auswahl.TKA', 0, 10500 )
+	hist = tkaToHist( 'data/co60.TKA', 0, 10500 )
 
 	can = ROOT.TCanvas()
 	can.cd()
@@ -71,7 +71,7 @@ def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 
 
 	s = TSpectrum( 64 ) #max number of peaks
-	npeaks = s.Search( hist, 2, "", 0.005 ) # ( hist, sigma, '', threshold )
+	npeaks = s.Search( hist, 3, "", 0.005 ) # ( hist, sigma, '', threshold )
 	hist.Draw()
 	can.SaveAs('peaksToArray.pdf')
 
@@ -130,7 +130,7 @@ def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	return hist
 
 
-kalibration('data/kali.TKA', 4000 )
+kalibration('data/kali_montag.TKA', 500 )
 #kalibration('data/kali_ohne_threshold.TKA', 3500, 12000 )
 
 

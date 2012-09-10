@@ -14,7 +14,7 @@ f_res = ufloat((5,1)) # resonanzfrequenz für alle versuch in Hz
 w_res = 2 * pi * f_res # winkelfrequenz
 F = ufloat((30,1)) # fokusierfrequenz
 w = 2 * pi * F # winkelfrequenz
-V_x = ufloat((400,10)) # u_x = u_y = u…z
+V_x = ufloat( (500, 10) ) # u_x = u_y = u…z
 u_x = sqrt( 2 ) * V_x # effektive spannung in ampilitude
 K = 8 # geometriefaktor
 r = d/2
@@ -39,13 +39,14 @@ u_w = sqrt(2) * listToUncertainty( v1 + v2  )
 qm_res_vak = - w_res * w * d**2 / ( 4 *sqrt(2) * K * u_x )
 
 # luft
-def qm_res():
+def qm_res1():
 	'''
 	solves the quadritic formular to compute q/m in air
 	the list can obtain up to 2 values, depending on the discriminant of the quadratic formular
 	'''
 	diskriminant = (u_w*r*w)**4 - 4*(4*K*u_x*A*w_res)**4
 	if diskriminant < 0:
+		print 'Keine Lösung für Luft gefunden'
 		return []
 	x1 = ( 4*u_w**2*r**6*w**4 + 4*r**4*w**2 * umath.sqrt( diskriminant ) ) / (128*A**2*(K*u_x)**4)
 	x2 = ( 4*u_w**2*r**6*w**4 - 4*r**4*w**2 * umath.sqrt( diskriminant ) ) / (128*A**2*(K*u_x)**4)
@@ -55,9 +56,40 @@ def qm_res():
 			result.append( umath.sqrt(x) )
 	return result
 
-for qm in qm_res():
-	printError( qm )
+def qm_res2():
+	'''
+	same as above, only other way of calculating
+	'''
+	from uncertainties.umath import sqrt
+	a = (4*K*u_x/w**2/r**2)**4 /4
+	b = - ( 2*u_w / r / w**2 /A )**2
+	c = - (2*w_res/w)**4
+	discriminant = b**2 - 4*a*c
+	if discriminant < 0:
+		return []
+	x1 = ( -b + sqrt( discriminant) ) / (2*a) #eigentlich sind nur das + interessant
+	x2 = ( -b - sqrt( discriminant) ) / (2*a)
 
-printError( qm_res_vak )
+	result = []
+	for x in [x1, x2]:
+		if x > 0:
+			result.append( - umath.sqrt(x) )
+	return result
+
+def qm_res4():
+	dis = umath.sqrt( (u_w / A)**4 + ( 4*K*u_x*w_res/w)**4 )
+	front = (u_w/A)**2
+	return [ -umath.sqrt( (front + dis) / ( 32*r**2 * (u_x*K/w/r**2)**4 ) ) ]
+
+#printError( qm_res2()[0])
+#printError( qm_res4()[0])
+
+
+for i, qm in enumerate( qm_res2() ):
+	print 'Lösung ', i+1,
+	printError( qm*1000 )
+
+print 'Vakuum: ',
+printError( qm_res_vak * 1000)
 
 
