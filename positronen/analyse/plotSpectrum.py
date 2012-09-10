@@ -33,6 +33,8 @@ def plotSpectrum():
 
 	grenzkanal = 4000
 	line = ROOT.TLine( grenzkanal, hist.GetMinimum(), grenzkanal, hist.GetMaximum() )
+	line.SetLineStyle(9)
+	line.SetLineWidth(3)
 	hist.Draw()
 	line.Draw()
 
