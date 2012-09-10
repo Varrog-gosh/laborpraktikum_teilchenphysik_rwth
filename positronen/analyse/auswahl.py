@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from Styles import tdrStyle
-tdrStyle()
+style = tdrStyle()
 import ROOT
 
 def tkaToHist( filename , xMin = 0, xMax = 0 ):
@@ -22,19 +22,26 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 
 
 def plotSpectrum():
-	hist = tkaToHist( 'data/co60.TKA', 0, 10500 )
+	hist = tkaToHist( 'data/auswahl.TKA', 0, 10500 )
 
 	can = ROOT.TCanvas()
 	can.cd()
 	can.SetLogy()
 	can.SetBatch()
 	can.SetCanvasSize( 1400, 800 )
+	hist.SetMinimum(9)
 	hist.Draw()
 
-	grenzkanal = 4000
-	line = ROOT.TLine( grenzkanal, hist.GetMinimum(), grenzkanal, hist.GetMaximum() )
+
+	grenzkanaele = [ 0, 3632] # richtige kanalnummer rausfinden
+	lines = []
 	hist.Draw()
-	line.Draw()
+	for grenzkanal in grenzkanaele:
+		line = ROOT.TLine( grenzkanal, hist.GetMinimum(), grenzkanal, hist.GetMaximum() + 10000 )
+		line.SetLineStyle(2)
+		line.SetLineWidth(2)
+		line.Draw()
+		lines.append(line)
 
 	# to adjust text to line
 	textwidth = 3000

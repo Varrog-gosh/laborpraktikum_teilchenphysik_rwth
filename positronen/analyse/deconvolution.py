@@ -4,6 +4,12 @@
 from ROOT import TH1F,TSpectrum
 from numpy import array
 
+from plotSpectrum import *
+
+hist = tkaToHist( 'data/co60.TKA' )
+hist.Draw()
+
+
 
 def createTestHistos():
 	sigma = 0.5
@@ -30,7 +36,7 @@ def histToArray( histo ):
 		values[i] = histo.GetBinContent(i + 1)
 
 	return values
-
+'''
 u,v = createTestHistos()
 source = histToArray( u )
 response = histToArray( v )
@@ -44,3 +50,5 @@ d = TH1D('', 'title', len(source), -5, 5 )
 for i in range( len(source) ):
 	d.SetBinContent(i + 1,source[i])
 d.Draw()
+
+'''

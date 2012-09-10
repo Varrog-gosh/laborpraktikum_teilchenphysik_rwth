@@ -123,7 +123,7 @@ class linearRegression:
 		from sys import maxint
 
 		random_name = randint(0,maxint)
-		self.canvas = TCanvas("canvas{}".format( random_name), "Linear Regression", 768, 800)
+		self.canvas = TCanvas("canvas{}".format( random_name), "Linear Regression", 1300, 800)
 		self.canvas.SetBatch()
 		hPad = TPad("fitPad{}".format( random_name ), "Fit", 0, 0.2, 1, 1)
 		hPad.SetFillStyle(4000)

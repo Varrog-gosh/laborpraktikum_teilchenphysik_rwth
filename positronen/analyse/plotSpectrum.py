@@ -20,6 +20,13 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 		hist.SetBinContent(i, data[ i + xMin ] )
 	return hist
 
+def bufferToSortedList( length, buffer ):
+	output = []
+	for i in range( length ):
+		output.append( buffer[i] )
+	return sorted( output )
+
+
 def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 	hist = tkaToHist( filename , minKanal, maxKanal )
 	from ROOT import TCanvas, TSpectrum, TGraph
@@ -30,29 +37,30 @@ def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 	can.SetCanvasSize( 1400, 800 )
 	can.SetLogy()
 	can.cd()
-
-
-	s = TSpectrum( 64 ) #max number of peaks
-	npeaks = s.Search( hist, 3, "", 0.005 ) # ( hist, sigma, '', threshold )
 	hist.Draw()
+	s = TSpectrum( 64 ) #max number of peaks
+	npeaks = s.Search( hist, 8, "", 0.005 ) # ( hist, sigma, '', threshold )
 	can.SaveAs('peaksToArray.pdf')
 
-	peaks = s.GetPositionX()
-	peakHeight = s.GetPositionY()
+	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
+	for i in range( len(peaks) - 2, -1, -1): # clear array of double peaks
+		if peaks[i+1] - peaks[i] < 50:
+			del peaks[i+1]
+			npeaks -= 1
 
 	deltapeaks = 250 # differenze between peaks
 
 	x = []
 	ex = []
-
-	for i in range( npeaks ):
-		fit = ROOT.TF1('fit', 'gaus', peaks[i] - deltapeaks/3, peaks[i] + deltapeaks/3)
-		fit.SetParameters( peakHeight[i], peaks[i], 5 )
+	for peak in peaks:
+		fit = ROOT.TF1('fit', 'gaus', peak - deltapeaks/3, peak + deltapeaks/3)
+		fit.SetParameters( hist.GetBinContent( hist.FindBin( peak ) ), peak, 5 )
 		hist.Fit('fit', 'rq')
-		if peaks[i] - fit.GetParameter(1) > 1:
-			print 'Zu große abweichung bei ', peaks[i]
-		x.append( fit.GetParameter(1) )
-		ex.append( fit.GetParameter(2) ) # use σ for fit, and not error or mean, is this correct?
+		if peak - fit.GetParameter(1) > 4:
+			print 'Zu große abweichung bei ', peak
+		else:
+			x.append( fit.GetParameter(1) )
+			ex.append( fit.GetParameter(2) ) # use σ for fit, and not error or mean, is this correct?
 
 	# sort arrays with errors
 	valError = [x, ex]
@@ -62,13 +70,13 @@ def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 
 	return valError
 
-def kalibration( filename, minKanal = 0, maxKanal = 0 ):
+def kalibration( filename, firstpeak, minKanal = 0, maxKanal = 0 ):
 	y, ey = peakToArray( filename, minKanal, maxKanal )
 	x = []
+	timestep = 0.5
 	for i in range( len(y) ):
-		timestep = 0.5
-		x.append( timestep * i )
-	ex = [0]*len(y)
+		x.append( timestep * (i + firstpeak) )
+	ex = [0.1]*len(y)
 	import tools
 	reload(tools)
 	reg = tools.linearRegression( x, y, ex, ey)
@@ -78,6 +86,7 @@ def kalibration( filename, minKanal = 0, maxKanal = 0 ):
 	return reg.func
 
 
+
 def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	import tools
 	from ROOT import TH1F
@@ -85,18 +94,14 @@ def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	data = tools.readFile( filename )[0]
 	length = len( data )
 
-	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", nBins, xMin, xMax )
+	hist = TH1F('', ";Kanalnummer;Eintr#\"age", nBins, xMin, xMax )
 	for i in range( nBins ):
 		hist.SetBinContent( i, 1. / func.GetParameter(1) * (data[ i ] - func.GetParameter(0) ) )
 		# what happens to the error of the regression?
 	return hist
 
 
-kalibration('data/kali_montag.TKA', 500 )
-#kalibration('data/kali_ohne_threshold.TKA', 3500, 12000 )
-
-
-
+#kalibration('data/kali_montag.TKA', 1, 1000 ) # number of first peak ( x%in = 2000 -> firstpeak = 1 )
 
 
 
