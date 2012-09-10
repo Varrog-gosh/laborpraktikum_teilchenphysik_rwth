@@ -12,6 +12,7 @@ from ROOT import TPaveText
 from ROOT import gROOT
 from ROOT import TMultiGraph
 from ROOT import TLine
+from ROOT import TGraphAsymmErrors
 
 gROOT.Reset()
 
@@ -65,9 +66,11 @@ eyzl.append(1.75)
 eyzl.append(2.23)
 eyzl.append(0.23)
 
-eyrl = array('d')
-eyrl.append(0.02  *3)
+eyrl_high = array('d')
+eyrl_high.append(0.02  *3)
 
+eyrl_low = array('d')
+eyrl_low.append(999999)
 
 eysv = array('d')
 eysv.append(1.81e-3  *3)
@@ -78,8 +81,11 @@ eysv.append(7.03e-4  *3)
 eyzv = array('d')
 eyzv.append(1.76)
 
-eyrv = array('d')
-eyrv.append(0.05 *3)
+eyrv_high = array('d')
+eyrv_high.append(0.05 *3)
+
+eyrv_low = array('d')
+eyrv_low.append(99999)
 
 
 
@@ -89,11 +95,11 @@ Fillx(yzl,xzl,exzl,1.)
 
 xsl = array('d')
 exsl = array('d')
-Fillx(ysl,xsl,exsl,2.5)
+Fillx(ysl,xsl,exsl,2.9)
 
 xrl = array('d')
 exrl = array('d')
-Fillx(yrl,xrl,exrl,4.3)
+Fillx(yrl,xrl,exrl,4.9)
 
 
 xzv = array('d')
@@ -102,11 +108,11 @@ Fillx(yzv,xzv,exzv,6.8)
 
 xsv = array('d')
 exsv = array('d')
-Fillx(ysv,xsv,exsv,8.5)
+Fillx(ysv,xsv,exsv,8.9)
 
 xrv = array('d')
 exrv = array('d')
-Fillx(yrv,xrv,exrv,9.8)
+Fillx(yrv,xrv,exrv,10.8)
 
 x = array("d")
 y = array('d')
@@ -125,7 +131,7 @@ svGraph.SetMarkerColor(2)
 svGraph.SetMarkerSize(1.0)
 
 
-rvGraph = TGraphErrors (len(yrv),xrv,yrv,exrv,eyrv)
+rvGraph = TGraphAsymmErrors (len(yrv),xrv,yrv,exrv,exrv,eyrv_low,eyrv_high)
 rvGraph.SetMarkerStyle(29)
 rvGraph.SetMarkerColor(3)
 rvGraph.SetMarkerSize(1.0)
@@ -140,7 +146,7 @@ slGraph.SetMarkerStyle(34)
 slGraph.SetMarkerColor(2)
 slGraph.SetMarkerSize(1.0)
 
-rlGraph = TGraphErrors (len(yrl),xrl,yrl,exrl,eyrl)
+rlGraph = TGraphAsymmErrors (len(yrl),xrl,yrl,exrl,exrl,eyrl_low,eyrl_high)
 rlGraph.SetMarkerStyle(29)
 rlGraph.SetMarkerColor(3)
 rlGraph.SetMarkerSize(1.0)
@@ -175,10 +181,11 @@ step = int(Nbins/8)
 
 
 for i in (1,2):
-	final.GetXaxis().SetBinLabel(step+Nbins/2*(i-1),"Z-Kompensation")
-	final.GetXaxis().SetBinLabel(step*2+Nbins/2*(i-1),"Stabilitaet")
-	final.GetXaxis().SetBinLabel(step*3+Nbins/2*(i-1),"Resonanz")
+	final.GetXaxis().SetBinLabel(step+-1+Nbins/2*(i-1),"Z-Kompensation")
+	final.GetXaxis().SetBinLabel(step*2+4+Nbins/2*(i-1),"Stabilitaet")
+	final.GetXaxis().SetBinLabel(step*3+6+Nbins/2*(i-1),"Resonanz")
 final.GetXaxis().LabelsOption("h")
+final.GetXaxis().SetLabelSize(0.045)
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
 textair = TPaveText(0.2,0.8,0.35,0.88,"NDC")
