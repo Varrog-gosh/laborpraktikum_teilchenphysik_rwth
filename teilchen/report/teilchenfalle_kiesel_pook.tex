@@ -296,16 +296,16 @@ Durch Eliminieren von $k_L$ in Gleichung \ref{w_res} und \ref{Amax} erhält man
 \begin{align}\label{res_luft}
 	\frac{q}{m}|_{\text{Luft}} = ±\sqrt{
 		\frac{
-			U_w^2r^6Ω^4 ± r^4Ω^2\sqrt{
-				(U_wrΩ)^4 - 4(4KU_xA_{max}ω)^4
+			\left( \frac{U_w}{A_{max}} \right)^2 ± \sqrt{
+				\left( \frac{U_w}{A_{max}} \right)^4 + \left( \frac{4KU_xω^{res}_W}{Ω r_0}\right)^4
 			} %sqrt
 		}{
-			128A_{max}^2(KU_x)^4
+			32r_0^2\left( \frac{U_xK}{Ωr_0^2} \right)^4
 		} % frac
 	}. % sqrt
 \end{align}
 Da das Verhältnis in  alle anderen Versuchen negativ ist, wird auch hier nur das negative Ergebnis betrachtet.
-Das Vorzeichen unter der Wurzel wird so gewählt, dass Gleichung \ref{res_vak} eine Näherung von Gleichung \ref{res_luft} darstellt.
+Um radizieren zu können, muss das Vorzeichen unter der Wurzel positiv sein.
 Für die Lösung im Vakuum reicht es in Gleichung (\ref{w_res}) $k_L=0$ zu setzen, und man erhält
 \begin{align}\label{res_vak}
 	\frac{q}{m}|_\text{Vakuum} = -\frac{\Omega r^{2}_0 \omega^{res}_W}{\sqrt{2} K U_x}.
@@ -317,13 +317,11 @@ In Luft wird zusätzlich die maximale Auslenkung $A_{max}$ bestimmt, indem mit e
 Bei niedriger Fokusierfrequenz erhöht sich der relative Fehler und bei hoher Fokusierfrequenz wird die Stabilitätsgrenze schneller erreicht
 , darum wurde eine Winkelfrequenz von $Ω = (503±6)\unit{Hz}$ gewählt.
 Die Messungen wurden bei zwei verschiedenen Fokussierspannungen durchgeführt: $\unit[(1414±14)]{V}$ und $\unit[(707±14)]{V}$.
-In beiden Konfigurationen wurden jeweils 4 Teilchen vermessen.
-% in vakuum und in luft 4 teilcehn pro konfiguration = 16 teilchen?
+In beiden Konfigurationen wurden jeweils 2 Teilchen in Luft und jeweils 2 im Vakuum vermessen.
 Die Amplitude der Wechselspannung unterliegt starken Schwankungen und wird mit einem Wert von
 $ \unit[( 210 ± 30 )]{V} $ gemessen, sie lässt sich kaum durch den dafür vorgesehenen Drehschalter regeln.
 
 Der Ausschlag der Teilchen wird über das Verhältnis der Amplitude zum Innendurchmesser der Falle $d_{innen}$ bestimmt und ist für alle 8 Teilchen innerhalb des Fehlers gleich.
-% Teichenanzahl ändern
 $$A_{max} = \frac{A_{max}\text{ [Pixel]}}{d_{innen}\text{ [Pixel]}} \cdot d_{innen}= \unit[( 0.7 ± 0.4 )]{mm} $$
 Alle gemessenen Teilchen zeigen ihre maximale Auslenkung bei $\omega_W \leq \unit[(31±6)]{Hz}$,
 was die minimal an der Spannungsquelle einstellbare Frequenz ist.
@@ -338,15 +336,29 @@ Schon die Lissajous Figur von Abbildung \ref{Lissjous} hatte eine größere Ampl
 
 Um Interpretationsfehler zu vermeiden, wurde dennoch das ganze zur Verfügung gestellte Frequenzspektrum abgefahren, aber ohne eine zusätzliche Resonanz zu entdecken.
 
-Auch die Amplitude blieb bei allen drei Teilchen in Luft und drei Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
-Man erhält mit gausscher Fehlerfortplanzung in Luft
-$$\frac{q}{m} \geq \unitfrac[( -0.20 ± 0.20 )]{mC}{kg}$$
-und mit der Näherung für Vakuum
-$$\frac{q}{m} \geq \unitfrac[( -0.22 ± 0.05 ) ]{mC}{kg}.$$
-Der hohe Fehler bei der genauen Lösung ist durch die Differenzen von hohen Potenzen fehlerbehafteter Größen in Gleichung (\ref{res_luft}) bedingt.
-Eigentlich müsste man hier nicht-gaussche Fehlerfortplanzung benutzen, was aber den Rahmen des Protokolls sprengen würde.
-Eine weiterer Grund ist die starke Spannungsschwankung von  $U_w$.
-Beide Werte sind untereinander kompatibel, stellen jedoch nur Obergrenzen für das Verhältnisses von Ladung zu Masse dar, da die Resonanzfrequenz nicht weiter regulierbar ist.
+Auch die Amplitude blieb bei allen 4 Teilchen in Luft und 4 Teilchen im Vakuum (innerhalb des Fehlers) gleich groß.
+Man erhält mit gausscher Fehlerfortplanzung erhält man die Obergrenzen, die in Tabelle \ref{tab:resonanz} dargestellt sind.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l|c|c}
+		$U_x \unit{[V]}$ & $-\frac{q}{m}|_\text{Luft}\unit{\left[\frac{mC}{kg}\right]} $&$-\frac{q}{m}|_\text{Vakuum}\unit{\left[\frac{mC}{kg}\right]}$\\
+		\hline
+		707 & 0.3 ± 0.1 &  0.17 ± 0.04 \\
+		1414 & 0.11 ± 0.03 & 0.09 ± 0.02
+	\end{tabular}
+	\caption{Die Grenzen der Verhältnisse von Ladung zu Masse bei in Luft und in Vakuum.
+		Die Versuche wurden jeweils bei unterschiedlichen Spannungen und jeweils mit zwei Teilchen durchgeführt.}
+	\label{tab:resonanz}
+\end{table}
+
+Die Werte nehmen mit zunehmender Spannung ab, was auch zu erwarten war.
+Für Luft und Vakuum sind die Werte noch  miteinander vereinbar, der Wert in Luft ist immer größer als im Vakuum.
+Die relativen Fehler sind alle im Bereich von $20\%$.
+Die Unvereinbarkeit der Werte stellt aber  kein Problem dar,
+da es nur Obergrenzen sind. Um nicht nur Obergrenzen zu messen,
+müsste man eine niedrigere Anregungsfrequenz anlegen, was bei der vorgegebenen
+Spannungsquelle nicht möglich ist.
 
 
 \subsection{Stabilitätsdiagramm}

@@ -81,15 +81,15 @@ def qm_res4():
 	front = (u_w/A)**2
 	return [ -umath.sqrt( (front + dis) / ( 32*r**2 * (u_x*K/w/r**2)**4 ) ) ]
 
-printError( qm_res2()[0])
-printError( qm_res4()[0])
+#printError( qm_res2()[0])
+#printError( qm_res4()[0])
 
 
-#for i, qm in enumerate( qm_res3() ):
-#	print 'Lösung ', i+1,
-#	printError( qm )
+for i, qm in enumerate( qm_res2() ):
+	print 'Lösung ', i+1,
+	printError( qm*1000 )
 
 print 'Vakuum: ',
-printError( qm_res_vak )
+printError( qm_res_vak * 1000)
 
 
