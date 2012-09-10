@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from tools import *
+from ROOT import *
+from ROOT import TSpectrum
 from Styles import tdrStyle
+from array import array
 tdrStyle()
 
 cobalt = tkaToHist( 'data/co60.TKA', 1, 400 )
@@ -59,7 +62,31 @@ def centroidShift( signal, background, xmin = 0, xmax  = 10000 ):
 	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
 	return t, s
 
-
+def getBackground ():
+	
+	spec = tkaToHist('data/co60.TKA',20,350)
+	nbins = array('i')
+	nbins.append( spec.GetNbinsX() )
+	xmin  = 40;
+	xmax  = 350;
+	print "nbins[0] %i"%nbins[0]
+	source = array('d')
+	d =  TH1F("d","",nbins[0],xmin,xmax);
+   #TFile *f = new TFile("spectra\\TSpectrum.root");
+	spec.Draw("L")
+	#~ raw_input()
+   #back->Draw("L");
+	s =TSpectrum();
+	for i in range(nbins[0]):
+		print i
+		source.append(spec.GetBinContent(i + 1))
+		s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
+	for i in range(nbins[0]):
+		d.SetBinContent(i + 1,source[i])
+		d.SetLineColor(kRed)
+		d.Draw("SAME L")
+	plotDataAndBackground(spec,d)
+	
 def plotDataAndBackground( signal, background):
 	'''
 	only plot tool
@@ -69,6 +96,7 @@ def plotDataAndBackground( signal, background):
 	can = TCanvas()
 	can.cd()
 	can.SetBatch()
+	can.SetLogy()
 	background.SetLineColor(3)
 	background.Draw()
 	alu.Draw("same")
@@ -81,9 +109,9 @@ def plotDataAndBackground( signal, background):
 
 
 # execute programs
-print centroidShift( alu, cobalt)
-deconvolution( alu, cobalt )
-plotDataAndBackground( alu, cobalt )
-
+#~ print centroidShift( alu, cobalt)
+#~ deconvolution( alu, cobalt )
+#~ plotDataAndBackground( alu, cobalt )
+getBackground()
 
 

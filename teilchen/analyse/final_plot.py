@@ -41,7 +41,9 @@ yzl.append(3.27)
 yzl.append(1.09)
 
 yrl = array('d')
-yrl.append(0.2)
+yrl.append(0.3)
+yrl.append(0.11)
+
 
 ysv = array('d')
 ysv.append(1.45e-2)
@@ -54,7 +56,8 @@ yzv = array('d')
 yzv.append(4.4)
 
 yrv = array('d')
-yrv.append(0.22)
+yrv.append(0.17)
+yrv.append(0.09)
 
 eysl = array('d')
 eysl.append(3.96e-4  *3)
@@ -67,9 +70,11 @@ eyzl.append(2.23)
 eyzl.append(0.23)
 
 eyrl_high = array('d')
-eyrl_high.append(0.02  *3)
+eyrl_high.append(0.1  *3)
+eyrl_high.append(0.03  *3)
 
 eyrl_low = array('d')
+eyrl_low.append(999999)
 eyrl_low.append(999999)
 
 eysv = array('d')
@@ -82,9 +87,11 @@ eyzv = array('d')
 eyzv.append(1.76)
 
 eyrv_high = array('d')
-eyrv_high.append(0.05 *3)
+eyrv_high.append(0.04 *3)
+eyrv_high.append(0.09 *3)
 
 eyrv_low = array('d')
+eyrv_low.append(99999)
 eyrv_low.append(99999)
 
 
@@ -133,7 +140,7 @@ svGraph.SetMarkerSize(1.0)
 
 rvGraph = TGraphAsymmErrors (len(yrv),xrv,yrv,exrv,exrv,eyrv_low,eyrv_high)
 rvGraph.SetMarkerStyle(29)
-rvGraph.SetMarkerColor(3)
+rvGraph.SetMarkerColor(34)
 rvGraph.SetMarkerSize(1.0)
 
 zvGraph = TGraphErrors (len(yzv),xzv,yzv,exzv,eyzv)
@@ -148,7 +155,7 @@ slGraph.SetMarkerSize(1.0)
 
 rlGraph = TGraphAsymmErrors (len(yrl),xrl,yrl,exrl,exrl,eyrl_low,eyrl_high)
 rlGraph.SetMarkerStyle(29)
-rlGraph.SetMarkerColor(3)
+rlGraph.SetMarkerColor(34)
 rlGraph.SetMarkerSize(1.0)
 
 zlGraph = TGraphErrors (len(yzl),xzl,yzl,exzl,eyzl)
@@ -182,7 +189,7 @@ step = int(Nbins/8)
 
 for i in (1,2):
 	final.GetXaxis().SetBinLabel(step+-1+Nbins/2*(i-1),"Z-Kompensation")
-	final.GetXaxis().SetBinLabel(step*2+4+Nbins/2*(i-1),"Stabilitaet")
+	final.GetXaxis().SetBinLabel(step*2+4+Nbins/2*(i-1),'Stabilit#ddot{a}t')
 	final.GetXaxis().SetBinLabel(step*3+6+Nbins/2*(i-1),"Resonanz")
 final.GetXaxis().LabelsOption("h")
 final.GetXaxis().SetLabelSize(0.045)
