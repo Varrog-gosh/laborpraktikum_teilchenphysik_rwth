@@ -9,9 +9,9 @@ from Styles import tdrStyle
 from array import array
 tdrStyle()
 
-cobalt = tkaToHist( 'data/co60.TKA', 1, 400 )
+cobalt = tkaToHist( 'data/co60.TKA', 2000, 8000 )
 cobalt.SetNormFactor(1.)
-alu = tkaToHist( 'data/aluminium.TKA', 1, 400 )
+alu = tkaToHist( 'data/aluminium.TKA', 2000, 8000 )
 alu.SetNormFactor(1.)
 
 def histToArray( histo ):
@@ -131,7 +131,7 @@ def plotDataAndBackground( signal, background):
 # execute programs
 #~ print centroidShift( alu, cobalt)
 #~ deconvolution( alu, cobalt )
-#~ plotDataAndBackground( alu, cobalt )
-getBackground()
+plotDataAndBackground( alu, cobalt ) 
+#~ getBackground()
 #~ safeHist(cobalt)
 
