@@ -68,7 +68,7 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 \end{itemize}
 \subsection*{langsamer Kreis}
 	Für den langsamen Kreis wird das Dynodensiganl der Photomultiplier genutzt und in jeweils einem 
-	Einzelkanaldiskriminator (\mathbf{SCA}) weiter verarbeitet, dieser verstärkt das Signal zunächst (es wird
+	Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet, dieser verstärkt das Signal zunächst (es wird
 	ein Gain von 300 eingestellt). 
 	% Erklären was beim Differenzieren passiert.
 	Das Dynodensignal beitzt eine ausreichende linearität zwischen Energie und Pulshöhe und es ist möglich
@@ -82,31 +82,16 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 	Über eine integrierte Koinzidenzschaltung der SCA verbunden. Wenn nun Signale von beiden SCA innerhalb des Koinzidenzzeitfenster
 	gemessen werden, wird ein logisches Signal an einen Gategenerator weiergeleitet. Der Gategenenerator liefert ein Ausgangssignal, dass
 	am Vielkanalanlysator das Gate zur Datennahme öffnet.
-	 
+\begin{figure}
 		\includegraphics[width=0.8\textwidth]{../analyse/auswahl.pdf}
 		\caption{Energiespektrum von $^{22}$Na. Gemessen aus dem Dynodensignal und vorverstärkt,geglättet im Einzelkanaldiskrimnator}
 		\label{fig:schaltplan}
 \end{figure}
 
-\subsection*{langsamer Kreis}
-	Für den langsamen Kreis wird das Dynodensiganl der Photomultiplier genutzt und jeweils in einem 
-	Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet, dieser verstärkt das Signal zunächst (es wird
-	ein Gain von 300 eingestellt). 
-	% Erklären was beim Differenzieren passiert.
-	Das Dynodensignal beitzt eine ausreichende linearität zwischen Energie und Pulshöhe und es ist möglich
-	zunächst ein Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
-	Anschliessend werden die Schwellwerte im Einzeldiskriminator so eingestellt, dass nur Teilchen mit einer höheren
-	Energie als der rechten Flanke des Anhilationspeak als Startsignal (Fenster 2) genutzt wird und Teilchen
-	mit einer niedrigeren Energie als Stoppsignal (Fenster 2). Zusätzlich wird für das Stoppsignal eine untere Grenze bei ???
-	eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultiplier
-	zu reduzieren. Nachdem die Fenster für Start und Stoppsignal mit dem verstärkten Dynodensignal eingestellt sind,
-	wird nun ein Ausgang der Einzelkanaldiskriminatoren genutzt, der logisches Ausgangssignal liefert. Das Signal wird 
-	über eine integrierte Koinzidenzschaltung der SCA verbunden. Wenn nun Signale von beiden SCA innerhalb des Koinzidenzzeitfenster
-	gemessen werden, wird ein logisches Signal an einen Gategenerator weitergeleitet. Der Gategenenerator liefert ein Ausgangssignal, dass
-	am Vielkanalanlysator das Gate zur Datennahme öffnet.
+
 \subsection*{schneller Kreis}
 	Für den schnellen Kreis wird das Anodensigal der Photomultiplier genutzt. Start und Stoppsignal werden zunächst in jeweils einem Constant
-	Fraction Discriminator (\mathbf{CFD}) weiter verarbeitet, dieser erzeugt durch differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang
+	Fraction Discriminator (\textbf{CFD}) weiter verarbeitet, dieser erzeugt durch differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang
 	ein von der Pulsform unabhängiges Zeitsignal erzeugt wird und in Form eines logischen Signal ausgegeben wird. Die Signale von beiden
 	CFD werden von einem Time Analyzer verarbeitet. Der Time Analyzer erzeugt einen Puls, abhängig vom Zeitlichen Abstand von Start und Stoppsignal,
 	der im VKA aufgenommen und in ein Pulshöhenspektrum umgesetzt wird. Um den schnellen und langsamen Kreis zeitlich aufeinander 

@@ -9,10 +9,16 @@ from Styles import tdrStyle
 from array import array
 tdrStyle()
 
-cobalt = tkaToHist( 'data/co60.TKA', 2000, 8000 )
-cobalt.SetNormFactor(1.)
-alu = tkaToHist( 'data/aluminium.TKA', 2000, 8000 )
-alu.SetNormFactor(1.)
+
+def normedHist( name, color ):
+	hist = tkaToHist( name, 2000, 16000 )
+	hist.SetNormFactor(1.)
+	hist.SetLineColor( color )
+	return hist
+
+alu = normedHist( 'data/aluminium.TKA' , 2)
+poly = normedHist( 'data/poly.TKA' , 4)
+co = normedHist( 'data/co60.TKA', 1 )
 
 def histToArray( histo ):
 	'''
@@ -26,27 +32,40 @@ def histToArray( histo ):
 
 	return values
 
-def deconvolution( signal, background ):
+def safeHist (hist, filename ):
+	outputfile=TFile( filename, "RECREATE")
+	hist.Write()
+	outputfile.Close()
+
+def calculateDeconvolution( signal, background ):
 	'''
 	using roots deconvolution class
 	τ in chanel numbers is printed
+	a root file is created to save cpu work
 	'''
 	from ROOT import TH1D,TSpectrum, TF1
 	source = histToArray( signal )
 	response = histToArray( background )
 	s = TSpectrum();
-	s.Deconvolution(source, response, len( source ), 1000, 1, 1 )
+	# parameters for deconvolution:
+	# iterations = 1: more iterations -> stange peaks and more noice
+	# rebetitions =  1: same as above
+	# boosting factor = 1: not needed
+	s.Deconvolution(source, response, len( source ), 1, 1, 1 )
 
-	d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 1,400 )
+	d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 1,16000 )
 	for i in range( len(source) ):
 		d.SetBinContent(i + 1,source[i])
+	#safeHist( d, 'deconvolution100.root' )
 	d.Draw()
-	fit = TF1('fit', 'expo',40, 200)
-	d.Fit('fit', 'r')
-	print -1. / fit.GetParameter(1)
+	fitRanges = [ (3100, 6000) , (8000, 11000)]
+	for fitRange in fitRanges:
+		fit = TF1('fit', 'expo',fitRange[0], fitRange[1] )
+		d.Fit('fit', 'r')
+		print -1. / fit.GetParameter(1)
 	raw_input()
 
-def centroidShift( signal, background, xmin = 0, xmax  = 10000 ):
+def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	'''
 	centroid shift method, for more information see laboratory manual
 	input:
@@ -65,6 +84,7 @@ def centroidShift( signal, background, xmin = 0, xmax  = 10000 ):
 	return t, s
 
 
+>>>>>>>>>>>>>>>>>>>> File 1
 def substractHist(spec,back):
 	nbins = back.GetNbinsX()
 	sig = spec.Clone()
@@ -106,6 +126,50 @@ def safeHist (hist):
 	hist.Write()
 	outputfile.Close()
 
+>>>>>>>>>>>>>>>>>>>> File 2
+def substractHist(spec,back):
+	nbins = back.GetNbinsX()
+	sig = spec.Clone()
+	for i in range(1,nbins):
+		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
+	return sig
+
+def getBackground ():
+	
+	
+	spec = tkaToHist('data/co60.TKA',20,350)
+	nbins = array('i')
+	nbins.append( spec.GetNbinsX() )
+	xmin  = 20;
+	xmax  = 200;
+	print "nbins[0] %i"%nbins[0]
+	source = numpy.zeros(nbins[0],dtype=float)
+	d = spec.Clone()
+	#~ d =  TH1F("d","",nbins[0],xmin,xmax);
+   #TFile *f = new TFile("spectra\\TSpectrum.root");
+	#~ spec.Draw("L")
+	
+   #back->Draw("L");
+	s =TSpectrum();
+	for i in range(0,nbins[0]):
+		source[i] = spec.GetBinContent(i + 1)
+		print "%i %d"%(i,source[i])
+	#~ s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
+	#~ for i in range(nbins[0]):
+		#~ d.SetBinContent(i + 1,source[i])
+	d = s.Background(spec,5)
+	d.SetLineColor(kRed)
+	#~ d.Draw("sameL")
+	sig = substractHist(spec,d)
+	plotDataAndBackground(spec,sig)
+	
+def safeHist (hist):
+	outputfile=TFile("spec.root","RECREATE")
+	hist.Write()
+	outputfile.Close()
+
+>>>>>>>>>>>>>>>>>>>> File 3
+<<<<<<<<<<<<<<<<<<<<
 def plotDataAndBackground( signal, background):
 	'''
 	only plot tool
@@ -115,23 +179,56 @@ def plotDataAndBackground( signal, background):
 	can = TCanvas()
 	can.cd()
 	can.SetBatch()
+	can.SetCanvasSize( 1300, 800 )
 	can.SetLogy()
-	background.SetLineColor(3)
-	background.Draw()
-	#~ alu.Draw("same")
-	signal.Draw("same")
-	leg = TLegend(0.7, 0.7, 1,1)
+	signal.Draw()
+	background.Draw("same")
+
+	leg = TLegend(0.6, 0.7, .95,.95)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
 	leg.AddEntry( alu, "Aluminium", "l")
-	leg.AddEntry( background, "Background", "l")
+	leg.AddEntry( background, "Cobalt", "l")
 	leg.Draw()
 
 	can.SaveAs('firstComparison.pdf')
 
+def compareSignalHistos( alu, poly ):
+	from ROOT import TCanvas, TLegend
+	can = TCanvas()
+	can.cd()
+	can.SetBatch()
+	can.SetCanvasSize( 1300, 800 )
+	can.SetLogy()
+	poly.Draw()
+	alu.Draw("same")
+
+	leg = TLegend(0.6, 0.7, .95,.95)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.AddEntry( alu, "Aluminium", "l")
+	leg.AddEntry( poly, "Polyethylen", "l")
+	leg.Draw()
+	#print alu.KolmogorovTest( poly, "ND" )
+	print alu.Chi2Test( poly , 'p')
+	#print poly.KolmogorovTest( alu )
+	can.SaveAs('compareHistos.pdf')
+
+def tail( signal, background ):
+	from ROOT import TH1
+	# does not work yet
+	onehisto = signal.DrawCopy(  )
+	signal.Copy( onehisto )
+	for i in range( onehisto.GetNbinsX() ):
+		onehisto.SetBinContent( i+1, 1 )
+	signal.Divide(background)
+	onehisto.Add( signal, -1 )
+	onehisto.Draw()
+	raw_input()
+#tail( alu, co )
 
 # execute programs
-#~ print centroidShift( alu, cobalt)
-#~ deconvolution( alu, cobalt )
-plotDataAndBackground( alu, cobalt ) 
-#~ getBackground()
-#~ safeHist(cobalt)
-
+calculateDeconvolution( alu, co )
+#plotDataAndBackground( alu, co )
+#print centroidShift( alu, co, 2000, 16000)
+#compareSignalHistos( alu, poly )
