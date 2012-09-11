@@ -84,6 +84,92 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	return t, s
 
 
+>>>>>>>>>>>>>>>>>>>> File 1
+def substractHist(spec,back):
+	nbins = back.GetNbinsX()
+	sig = spec.Clone()
+	for i in range(1,nbins):
+		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
+	return sig
+
+def getBackground ():
+	
+	
+	spec = tkaToHist('data/co60.TKA',20,350)
+	nbins = array('i')
+	nbins.append( spec.GetNbinsX() )
+	xmin  = 20;
+	xmax  = 200;
+	print "nbins[0] %i"%nbins[0]
+	source = numpy.zeros(nbins[0],dtype=float)
+	d = spec.Clone()
+	#~ d =  TH1F("d","",nbins[0],xmin,xmax);
+   #TFile *f = new TFile("spectra\\TSpectrum.root");
+	#~ spec.Draw("L")
+	
+   #back->Draw("L");
+	s =TSpectrum();
+	for i in range(0,nbins[0]):
+		source[i] = spec.GetBinContent(i + 1)
+		print "%i %d"%(i,source[i])
+	#~ s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
+	#~ for i in range(nbins[0]):
+		#~ d.SetBinContent(i + 1,source[i])
+	d = s.Background(spec,5)
+	d.SetLineColor(kRed)
+	#~ d.Draw("sameL")
+	sig = substractHist(spec,d)
+	plotDataAndBackground(spec,sig)
+	
+def safeHist (hist):
+	outputfile=TFile("spec.root","RECREATE")
+	hist.Write()
+	outputfile.Close()
+
+>>>>>>>>>>>>>>>>>>>> File 2
+def substractHist(spec,back):
+	nbins = back.GetNbinsX()
+	sig = spec.Clone()
+	for i in range(1,nbins):
+		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
+	return sig
+
+def getBackground ():
+	
+	
+	spec = tkaToHist('data/co60.TKA',20,350)
+	nbins = array('i')
+	nbins.append( spec.GetNbinsX() )
+	xmin  = 20;
+	xmax  = 200;
+	print "nbins[0] %i"%nbins[0]
+	source = numpy.zeros(nbins[0],dtype=float)
+	d = spec.Clone()
+	#~ d =  TH1F("d","",nbins[0],xmin,xmax);
+   #TFile *f = new TFile("spectra\\TSpectrum.root");
+	#~ spec.Draw("L")
+	
+   #back->Draw("L");
+	s =TSpectrum();
+	for i in range(0,nbins[0]):
+		source[i] = spec.GetBinContent(i + 1)
+		print "%i %d"%(i,source[i])
+	#~ s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
+	#~ for i in range(nbins[0]):
+		#~ d.SetBinContent(i + 1,source[i])
+	d = s.Background(spec,5)
+	d.SetLineColor(kRed)
+	#~ d.Draw("sameL")
+	sig = substractHist(spec,d)
+	plotDataAndBackground(spec,sig)
+	
+def safeHist (hist):
+	outputfile=TFile("spec.root","RECREATE")
+	hist.Write()
+	outputfile.Close()
+
+>>>>>>>>>>>>>>>>>>>> File 3
+<<<<<<<<<<<<<<<<<<<<
 def plotDataAndBackground( signal, background):
 	'''
 	only plot tool
