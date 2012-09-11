@@ -62,9 +62,7 @@ def kalibration( filename, firstpeak, minKanal = 0, maxKanal = 0 ):
 	for i in range( len(y) ):
 		x.append( timestep * (i + firstpeak) )
 	ex = [0.1]*len(y)
-	import tools
-	reload(tools)
-	reg = tools.linearRegression( x, y, ex, ey)
+	reg = linearRegression( x, y, ex, ey)
 	reg.draw(';t [ns];Kanalnummer')
 	reg.canvas.SaveAs('kalibration_regression.pdf')
 
@@ -76,10 +74,9 @@ def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	'''
 	not used now, and will never be used
 	'''
-	import tools
 	from ROOT import TH1F
 
-	data = tools.readFile( filename )[0]
+	data = readFile( filename )[0]
 	length = len( data )
 
 	hist = TH1F('', ";Kanalnummer;Eintr#\"age", nBins, xMin, xMax )
@@ -89,7 +86,7 @@ def tkaToTimeHist( filename , func, nBins, xMin, xMax ):
 	return hist
 
 
-#kalibration('data/kali_montag.TKA', 1, 1000 ) # number of first peak ( x%in = 2000 -> firstpeak = 1 )
+kalibration('data/kali_montag.TKA', 1, 1000 ) # number of first peak ( x%in = 2000 -> firstpeak = 1 )
 
 
 

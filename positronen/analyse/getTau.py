@@ -41,7 +41,7 @@ def deconvolution( signal, background ):
 	print -1. / fit.GetParameter(1)
 	raw_input()
 
-def centroidShift( signal, background, xmin = 0, xmax  = 10000 ):
+def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	'''
 	centroid shift method, for more information see laboratory manual
 	input:
@@ -69,6 +69,7 @@ def plotDataAndBackground( signal, background):
 	can = TCanvas()
 	can.cd()
 	can.SetBatch()
+	can.SetLogy()
 	background.SetLineColor(3)
 	background.Draw()
 	alu.Draw("same")
