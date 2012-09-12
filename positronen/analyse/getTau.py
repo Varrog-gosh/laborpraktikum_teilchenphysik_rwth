@@ -7,7 +7,14 @@ from ROOT import *
 from ROOT import TSpectrum
 from Styles import tdrStyle
 from array import array
+from kalibration import fu
+from kalibration import tkaToTimeHist
 tdrStyle()
+from sys import exit
+
+tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
+raw_input()
+exit()
 
 
 def normedHist( name, color ):
