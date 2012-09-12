@@ -56,7 +56,7 @@ Der Detektor besteht aus zwei zylindrischen Szintiallatonsdetektoren,
 platziert. Die Photomultiplier werden mit einer Spannung von $2\si{kV}$ betrieben. Von beiden Photomultipliern
 wird sowohl das Anodensignal als auch das Dynodensignal abgegriffen und für das Messen und Triggern der 
 Zeitabstandsmessung genutzt. Hierbei liefert jeweils ein Photomultiplier das Start und der andere 
-das Stoppsignal für die Zeitmessung liefert.
+das Stoppsignal.
 Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
  (siehe Abbildung \ref{fig:Schaltplan} für eine Blockdarstellung des gesmaten Schaltplan): \\
 \begin{itemize}
@@ -71,7 +71,7 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 	Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet, dieser verstärkt das Signal zunächst (es wird
 	ein Gain von 300 eingestellt). 
 	% Erklären was beim Differenzieren passiert.
-	Das Dynodensignal beitzt eine ausreichende linearität zwischen Energie und Pulshöhe und es ist möglich
+	Das Dynodensignal besitzt eine ausreichende linearität zwischen Energie und Pulshöhe und es ist möglich 
 	zunächst ein Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
 	Anschliessend werden die Schwellwerte im Einzeldiskriminator so eingestellt, dass nur Teilchen mit einer höheren
 	Energie als der rechten Flanke des Anhilationspeak als Startsignal (Fenster 2) genutzt wird und Teilchen
@@ -96,6 +96,26 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 	CFD werden von einem Time Analyzer verarbeitet. Der Time Analyzer erzeugt einen Puls, abhängig vom Zeitlichen Abstand von Start und Stoppsignal,
 	der im VKA aufgenommen und in ein Pulshöhenspektrum umgesetzt wird. Um den schnellen und langsamen Kreis zeitlich aufeinander 
 	anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und VKA geschaltet.
+	
+\section{Ergebnisse}
+	\subsection{Zeitkalibration}
+		Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
+		mit einem Pulsgenerator Pulse mit einer Amplitude von $3\si{V}$ und einer Pulsbreite von 10ns mit einer Frequenz von $1600\si{Hz}$ erzeugt.
+		Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene 
+		CFD geleitet, die andere in eine Delayeinheit und dann in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
+		das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
+		dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu 
+		zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
+		Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
+		in ein Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
+		durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $0.5\si{ns}$ Schritten von $0\si{ns}$ bis $12\si{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum 
+		ist in Abbildung \ref{fig:timepuls} dargestellt. 
+		
+		\begin{figure}
+		\includegraphics[width=0.8\textwidth]{../analyse/peaksToArray.pdf}
+		\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von $0.5\si{ns}$}
+		\label{fig:timepuls}
+		\end{figure}
 \section{Ergebnisse}
 \subsection{Globaler Fit}
 Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
@@ -104,4 +124,7 @@ Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
 	= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) Erfc\left(\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)\right)
 \end{align*}
 \section{Diskussion}
+
+ 
+\section{Diskussion} 
 \end{document}
