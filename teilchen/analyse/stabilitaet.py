@@ -73,7 +73,7 @@ class messung:
 		sys = abs (2. * q_m * sqrt( (e_w/w)**2 + (e_r/r)**2 ) )
 		#print('{}: q/m = {:.4e} ± {:.2e} (stat) ± {:.2e} (sys) ± {:.2e} (gesamt) μC/kg\n'.format(saveAffix, q_m, stat, sys, sqrt(stat**2 + sys**2)))
 		druck = { 'Luft1': 1000, 'Luft2': 1000, '375bar': 375, '400bar': 400, '425bar': 425, '425bar2': 425 }
-		print('{} & {:.3g} ± {:.2g} (stat) ± {:.2g} (sys)\\\\'.format(druck[saveAffix], -q_m, stat, sys ))
+		print('{} & {:.3g} ± {:.2g} (stat) ± {:.2g} (sys) {:2g}\\\\'.format(druck[saveAffix], -q_m, stat, sys, sqrt( stat**2 + sys**2) ))
 
 print('p [mbar]                         q/m [μC/kg]')
 
@@ -110,12 +110,20 @@ messung( [850,750,680,600,510,400],
 
 
 
-'''
 # a typical mass
+print
 from math import pi
 from uncertainties import ufloat
 e = 1.6e-19
-r = ufloat((30e-6,25e-6))
+r = ufloat((30e-6,25e-6))/2
 m = 4./3*pi*r**3*2700 # kg
-print 4e-3*m/e
-'''
+printError(m,'kg')
+#minimal and maximal ration q/m:
+qm1 = 6e-3
+qm2 = 4e-5
+print 'Charge of patricles:'
+printError(qm1*m, unit = 'C')
+printError(qm1*m/e, unit = 'e')
+printError(qm2*m, unit = 'C')
+printError(qm2*m/e, unit = 'e')
+

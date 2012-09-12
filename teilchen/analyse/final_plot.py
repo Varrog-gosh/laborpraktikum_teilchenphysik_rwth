@@ -29,11 +29,13 @@ final = TMultiGraph()
 
 canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
 canv.SetLogy()
+canv.SetBatch()
+canv.SetGridy()
 canv.cd()
 nvalues = int(10.0)
 ysl = array('d')
-ysl.append(5.07e-3)
-ysl.append(1.01e-3)
+ysl.append(0.201)
+ysl.append(0.04)
 
 yzl = array('d')
 yzl.append(5.95)
@@ -46,10 +48,10 @@ yrl.append(0.11)
 
 
 ysv = array('d')
-ysv.append(1.45e-2)
-ysv.append(1.61e-2)
-ysv.append(3.32e-3)
-ysv.append(1.30e-2)
+ysv.append(0.569)
+ysv.append(0.637)
+ysv.append(0.131)
+ysv.append(0.509)
 
 
 yzv = array('d')
@@ -60,8 +62,8 @@ yrv.append(0.17)
 yrv.append(0.09)
 
 eysl = array('d')
-eysl.append(3.96e-4  *3)
-eysl.append(4.87e-4  *3)
+eysl.append(0.024  *3)
+eysl.append(0.027  *3)
 
 
 eyzl = array('d')
@@ -70,25 +72,25 @@ eyzl.append(2.23)
 eyzl.append(0.23)
 
 eyrl_high = array('d')
-eyrl_high.append(0.1  *3)
-eyrl_high.append(0.03  *3)
+eyrl_high.append(0.1 )
+eyrl_high.append(0.03 )
 
 eyrl_low = array('d')
 eyrl_low.append(999999)
 eyrl_low.append(999999)
 
 eysv = array('d')
-eysv.append(1.81e-3  *3)
-eysv.append(1.75e-3  *3)
-eysv.append(7.31e-4  *3)
-eysv.append(7.03e-4  *3)
+eysv.append(0.088  *3)
+eysv.append(0.087  *3)
+eysv.append(0.040  *3)
+eysv.append(0.047  *3)
 
 eyzv = array('d')
 eyzv.append(1.76)
 
 eyrv_high = array('d')
-eyrv_high.append(0.04 *3)
-eyrv_high.append(0.09 *3)
+eyrv_high.append(0.04 )
+eyrv_high.append(0.09 )
 
 eyrv_low = array('d')
 eyrv_low.append(99999)
@@ -171,16 +173,16 @@ final.Add(slGraph)
 final.Add(rlGraph)
 final.Add(zlGraph)
 
-
 final.Draw("ap")
 final.GetYaxis().SetTitle("- #frac{q}{m} [#frac{mC}{kg}]")
 final.GetYaxis().RotateTitle(False)
 final.GetXaxis().SetLimits(0.0,12.0)
 
+final.SetMaximum(10)
+final.SetMinimum(5e-3)
+
 final.SetTitle("Zusammenfassung der Ergebnisse")
 
-final.SetMaximum(2e2)
-final.SetMinimum(5e-4)
 Nbins = final.GetXaxis().GetNbins()
 for bi in range(1,Nbins):
 	final.GetXaxis().SetBinLabel(bi,"")
@@ -200,7 +202,7 @@ textair.AddText("Luft")
 textair.SetFillColor(0)
 textair.SetBorderSize(0)
 textair.Draw("same")
-textvac = TPaveText(0.55,0.8,0.88,0.88,"NDC")
+textvac = TPaveText(0.59,0.8,0.88,0.88,"NDC")
 textvac.SetFillColor(0)
 textvac.SetBorderSize(0)
 textvac.AddText("Vakuum")
