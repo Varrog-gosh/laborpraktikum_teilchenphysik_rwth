@@ -7,12 +7,19 @@ from ROOT import *
 from ROOT import TSpectrum
 from Styles import tdrStyle
 from array import array
+from kalibration import fu
+from kalibration import tkaToTimeHist
 tdrStyle()
+from sys import exit
+
+tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
+raw_input()
+exit()
 
 
 def normedHist( name, color ):
 	hist = tkaToHist( name, 2000, 16000 )
-	hist.SetNormFactor(1.)
+	#hist.SetNormFactor(1.)
 	hist.SetLineColor( color )
 	return hist
 
@@ -83,8 +90,6 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
 	return t, s
 
-
->>>>>>>>>>>>>>>>>>>> File 1
 def substractHist(spec,back):
 	nbins = back.GetNbinsX()
 	sig = spec.Clone()
@@ -126,7 +131,6 @@ def safeHist (hist):
 	hist.Write()
 	outputfile.Close()
 
->>>>>>>>>>>>>>>>>>>> File 2
 def substractHist(spec,back):
 	nbins = back.GetNbinsX()
 	sig = spec.Clone()
@@ -168,8 +172,6 @@ def safeHist (hist):
 	hist.Write()
 	outputfile.Close()
 
->>>>>>>>>>>>>>>>>>>> File 3
-<<<<<<<<<<<<<<<<<<<<
 def plotDataAndBackground( signal, background):
 	'''
 	only plot tool
@@ -228,21 +230,26 @@ def tail( signal, background ):
 #tail( alu, co )
 
 def globalFit( signal, background ):
-	# not working now
-	background.Fit('gaus') # fit doesnot seem to care about normalization
-	# perhaps comment SetNormFactor()
-	mean = background.GetFunction('gaus').GetParameter(1)
-	sigma = background.GetFunction('gaus').GetParameter(2)
-
 	from ROOT import TF1
+	#g = TF1('fit1', 'gaus', 3000, 7000)
+
+	#background.Fit('fit1') # fit doesnot seem to care about normalization
+	# perhaps comment SetNormFactor()
+	#mean = background.GetFunction('gaus').GetParameter(1)
+	#sigma = background.GetFunction('gaus').GetParameter(2)
+	from sys import exit
+	#raw_input()
+	#exit()
 	# par : [tau, mu, sigma]
-	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 2000, 16000 )
-	fit.FixParameter( 1, mean)
-	fit.FixParameter( 2, sigma )
-	fit.SetParameter(0, 1500)
-	signal.Draw()
-	fit.Draw("same")
-	signal.Fit('fit')
+	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )*[3]' , 3000, 7000 )
+	fit.SetParameters( 380, 7000, 490, 1)
+	background.Fit('fit')
+	#fit.FixParameter( 1, mean)
+	#fit.FixParameter( 2, sigma )
+	#fit.SetParameter(0, 1500)
+	#signal.Draw()
+	#fit.Draw("same")
+	#signal.Fit('fit')
 	raw_input()
 
 globalFit( alu, co )

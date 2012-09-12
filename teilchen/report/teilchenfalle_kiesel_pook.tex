@@ -183,7 +183,6 @@ Wenn man mehrere Teilchen in der Teilchenfalle gefangen hat, kann man manchmal P
 Die Teilchen stoßen sich gegenseitig ab und suchen energetisch günstige Zustände, ebenso wie in einem Kristall.
 Überlagert zu diesem Effekt sieht man in Abbildung \ref{pseudokristall} noch die Auswirkungen des Feldes.
 In der hier sichtbaren $x = 0$ und $z = 0$  Ebene werden keine Teilchen gehalten, wie man auch Gleichung (\ref{mastergleichung}) entnehmen kann.
-%Da man im Vakuum Teilchen besser fangen kann (siehe nächsten Abschnitt), werden im Vakuum mehr Teilchen gleichzeitig gefangen, und man kann die Strukturen besser sehen.
 
 \begin{figure}[htb]
 		\centering
@@ -257,19 +256,19 @@ Aus Gleichung \ref{kraftgleichgew} lässt sich direkt eine Formel für die spezi
 \end{align}
 Die berechneten Werte können Tabelle \ref{tab:z-komp-result} entnommen werden. Hierbei wird die Erdbeschleunigung 
 $g = \unitfrac[(9.81)]{m}{s^2}$ als konstant (fehlerfrei) angenommen und die Unsicherheit auf den Fallendurchmesser als weitere
-% wollen wir da wirklich konstant schreiben? ok, auch recht
 unabhängige systematische Fehlerquelle betrachtet.
 
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{ c | c }
-		$U_{G,komp} [V] $ & $-\frac{q}{m}[\frac{mC}{kg}]$ \\
+	\begin{tabular}{l| c | c }
+		Medium &$U_{G,komp} [V] $ & $-\frac{q}{m}[\frac{mC}{kg}]$ \\
 		\hline
-		  68 ± 3(stat.) ± 27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys.)  \\
-		  50 ± 4(stat.) ± 14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys.)  \\
-		  92 ± 8(stat.) ± 62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys.)  \\
-		  273 ± 5(stat.) ± 55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys.)  \\
+		\multirow{3}{*}{Luft}&  50 ± 4(stat.) ± 14(sys.) &  5.95 ± 0.53(stat.) ± 1.67(sys.)  \\
+		  &92 ± 8(stat.) ± 62(sys.) &  3.27 ± 0.28(stat.) ± 2.21(sys.)  \\
+		  &273 ± 5(stat.) ± 55(sys.) & 1.09 ± 0.02(stat.) ± 0.23(sys.)  \\
+		  \hline
+		Vakuum &  68 ± 3(stat.) ± 27(sys.) &  4.40 ± 0.16(stat.) ± 1.76(sys.)  \\
 	\end{tabular}
 	\caption{Die Kompensationsspannung und das das daraus resultierende Verhältnis von Ladung zu Masse von verschiedenen Teichen}
 	\label{tab:z-komp-result}
@@ -405,7 +404,6 @@ Dies führt bei kleinen Spannungen zu großen relativen Fehlern, wie man in der 
 In der Anpassung oben links wird der letzte Datenpunkt nicht für die Anpassung verwendet, weil bei dem eingestellten Spannungswert das Teichen schon entkommen war.
 Man kann über den Abstand des letzen Punktes zur Anpassungsgerade die Spannung abschätzen, die nötig gewesen wäre, ein Teichen tatsächlich aus der Falle zu bringen.
 Dies spiegelt sich auch im y-Achsenabschnitt wieder, der im gewichteten Mittel $-\unit[57]{V}$ beträgt und damit mit dem Abstand zur Anpassungsgeraden konsistent ist.
-% noch mehr text dazu?
 Durch die lineare Regression kann also der systematische Fehler durch das konservative Abschätzen der Entweichspannung verringert werden.
 
 
@@ -451,16 +449,16 @@ oder die Fehler zu klein abgeschätzt wurden.
 
 
 
-\section{Vergleich der Messungen}
+\section{Diskussion der Ergebnisse}
+\subsection{Vergleich der Ergebnisse}
 Die drei genutzten Messmethoden liefern im Rahmen ihrer Fehler inkompatible Ergebnisse. Die Messwerte für $\frac{q}{m}$ unterscheiden sich deutlich um mehrere Größenordnungen:
 \begin{align*}
 	\text{Z Kompensation}  & \approx \unitfrac[ 1 - 6  ]{mC}{kg}\\
 	\text{Resonanz} & \approx \unitfrac[ 0.1 - 0.3 ]{mC}{kg}\\
-	\text{Stabilität} &  \approx \unitfrac[ 0.001-0.01 ]{mC}{kg}\\ % werte passen nicht überein
+	\text{Stabilität} &  \approx \unitfrac[ 0.04-0.5 ]{mC}{kg}\\ 
 \end{align*}
-%Mögliche Gründe ?
-Es ist dabei zu beachten, dass die einzelnen Messungen, die mit einer Messmethode durchgeführt wurden, innerhalb ihrer Fehler
-mit einander kompatibel sind.
+Es ist dabei zu beachten, dass die einzelnen Messungen, die mit einer Messmethode durchgeführt wurden, knapp innerhalb ihrer Fehler
+miteinander kompatibel sind.
 Für die beobachteten Unterschiede gibt es zunächst zwei Erklärungsansätzte:
 Entweder befinden sich alle Teilchen in einem begrenzten $\frac{q}{m}$ Bereich und nur eine Methode liefert 
 richtige Ergebnisse oder die möglichen Werte für $\frac{q}{m}$ erstrecken sich über viele Größenordnungen
@@ -470,21 +468,44 @@ Leuchtkraft und dem Verhalten ihrer Bahn unter Veränderung der Fokussierspannun
 sind große Differenzen in $\frac{q}{m}$ unwahrscheinlich. Ein quantitativer Vergleich der Messmethoden hätte nur erfolgen können,
 wenn mehrere Messmethoden nacheinander am selben Teilchen durchgeführt werden. Dies ist auf Grund der bereits erwähnten
 technischen Problemen im Versuchsaufbau leider nicht möglich gewesen. Die Messungen für $\frac{q}{m}$ bei vermindertem Luftdruck liegen für die 
-jeweilige Messmethode in der gleichen Größenordnungen wie die Messungen bei Normaldruck. Es fehlen hier jedoch weitere Messungen, um eine Aussage
+jeweilige Messmethode in der gleichen Größenordnungen wie die Messungen bei Normaldruck.
+Es fehlen hier jedoch weitere Messungen bei niedrigeren Drücken, um eine Aussage
 über die Auswirkungen der Luftreibung auf die Messung zu bestimmen.
 
+Am ehesten vertrauen wir den Ergebnissen der Gravitationskompensation, da die Methode weniger Fehlerquellen als die anderen Methoden hat.
+Die Stabilitätsmessung leidet unter dem schlechten Einschätzen der Grenzspannung, und für die Resonanz konnte nur eine Obergrenze festgestellt werden.
+
 Eine Zusammenfassung aller Ergebnisse ist in Abbildung \ref{final_plot} dargestellt 
-( man beachte die Überhöhung der dargestellten Fehler für die Resonanz und Stabilitätsmessung mit einem Faktor von 3).
+(man beachte die Überhöhung der dargestellten Fehler für die Stabilitätsmessung mit einem Faktor von 3).
 \begin{figure}[htb]
 		\centering
 		\includegraphics[height = 0.8\textwidth]{../analyse/final_plot.pdf}\\
-		\caption{Zusammenfassung der Ergebnisse in logarithmische Auftragung, die Darstellung der Fehler für Stabilität und Resonanz wurden mit 3 multipliziert}
+		\caption{Zusammenfassung der Ergebnisse für $\frac{q}{m}$ in logarithmische Auftragung, die Darstellung der Fehler für Stabilität wurden mit 3 multipliziert}
 		\label{final_plot}
 \end{figure}
+\FloatBarrier % All figures, tables, which are buffered right now will be drawn befor next line
+\subsection{Vergleich mit Milikanversuch}
+Ein ähnliches Experiment wurde auch von Milikan durchgeführt.
+1910 vermaß er die elektrische Ladung, indem er die elektrische Kraft von
+geladene Öl-Tröpfchen durch die Kompensation der Erdbeschleunigung ausglich.
+Die Masse wurde über die Viskosität bestimmt.
+
+Bei dem durchgeführten Praktikumsversuch wird die Masse nicht gemessen, sondern muss abgeschätzt werden:
+Es wird angenommen, dass der Durchmesser der Teilchen etwa $\unit[30]{μm}$ beträgt,
+denn die Teichen sind unter Lichteinfall gerade noch mit dem Auge auflösbar.
+Daraus ergibt sich eine Masse von $\unit[4\cdot 10^{-11}]{kg}$ für ein durchschnittliches Aluminiumteilchen.
+Für die verschiedenen Methoden kann nun die Ladung ausgerechnet werden: Sie hat die Größenordnung von
+$\unit[10^{-13}]{C} \approx \unit[10^6]{e}$ bis
+$\unit[10^{-15}]{C} \approx \unit[10^4]{e}$.
+Dies ist im Vergleich zu den Atomen im Teichen relativ wenig, so muss nur etwa jedes $10^{-10}$te Atom ionisiert werden.
+Um die Elementarladung zu messen, muss nur die Auflösung (der Fehler) kleiner als eine Elementarladung sein, was in unserem Fall eine relative Unsicherheit von $10^{-6}$ benötigen würde.
+Dies kann man zum Beispiel durch höhere Spannung erreichen, da dann Teilchen mit weniger Ladung auch gefangen werden können.
 
 
 
-\section{Fazit}
+
+
+\subsection{Fazit}
 Die Versuchsdurchführung war dadurch geprägt, dass die Spannungsquelle nur stark schwankende Ausgangsspannungen geliefert hat. Besonders ein regelmäßiges plötzliches Abfallen der Fokussierspannung 
 für ein Flächenpaar hat zu regelmäßigem Verlust der Teilchen geführt. Insbesondere die Resonanzmessung und die Stabiliätsmessung waren oft nicht durchzuführen, weil ein langfristiges Einfangen der Teilchen 
 nicht möglich war. Ein quantitativer Vergleich der Messmethoden kann auf Grund dieser ungleichmäßigen Messbedingungen nicht durchgeführt werden. 
