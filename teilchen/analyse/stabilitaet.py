@@ -44,6 +44,13 @@ class messung:
 		label.SetFillStyle(0)
 		label.SetBorderSize(0)
 		label.Draw()
+		ROOT.kPrint = 0
+		ROOT.kInfo = 1000
+		ROOT.kWarning = 2000;
+		ROOT.kError = 3000;
+		ROOT.Break = 4000;
+		ROOT.kSysError = 5000;
+		ROOT.kFatal = 6000;
 		self.reg.canvas.SaveAs('linReg%s.pdf'%saveAffix)
 
 		# calculate q_m
@@ -54,7 +61,7 @@ class messung:
 		e_w = 2. * pi
 		r =   0.0305 / 2
 		e_r = 0.0002 / 2
-		print( '"{}  +/- {}",'.format(self.reg.func.GetParameter(0), self.reg.func.GetParError(0) ) )
+		#print( '"{}  +/- {}",'.format(self.reg.func.GetParameter(0), self.reg.func.GetParError(0) ) )
 		b = self.reg.func.GetParameter(1)
 		if b == 0:
 			return
@@ -66,6 +73,7 @@ class messung:
 		druck = { 'Luft1': 1000, 'Luft2': 1000, '375bar': 375, '400bar': 400, '425bar': 425, '425bar2': 425 }
 		print('{} & {:.3g} ± {:.2g} (stat) ± {:.2g} (sys)\\\\'.format(druck[saveAffix], -q_m, stat, sys ))
 
+print('p [mbar]                         q/m [μC/kg]')
 
 # Messungen Freitag :
 #messung([1280, 1175, 1070, 905] , [79, 68, 50, 44], 'Attention: only changed vx, not vz or vy, so do NOT use this measurement if not ok.', 'VxNotVyNotVz')
