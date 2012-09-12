@@ -45,12 +45,14 @@ class messung:
 		label.SetBorderSize(0)
 		label.Draw()
 		ROOT.kPrint = 0
+		'''
 		ROOT.kInfo = 1000
 		ROOT.kWarning = 2000;
 		ROOT.kError = 3000;
 		ROOT.Break = 4000;
 		ROOT.kSysError = 5000;
 		ROOT.kFatal = 6000;
+		'''
 		self.reg.canvas.SaveAs('linReg%s.pdf'%saveAffix)
 
 		# calculate q_m
