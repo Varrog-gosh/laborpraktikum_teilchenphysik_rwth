@@ -7,25 +7,26 @@ from ROOT import *
 from ROOT import TSpectrum
 from Styles import tdrStyle
 from array import array
-from kalibration import fu
-from kalibration import tkaToTimeHist
+#from kalibration import fu
+#from kalibration import tkaToTimeHist
 tdrStyle()
 from sys import exit
 
-tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
-raw_input()
-exit()
+#tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
 
 
 def normedHist( name, color ):
 	hist = tkaToHist( name, 2000, 16000 )
-	#hist.SetNormFactor(1.)
+	hist.Sumw2()
+	hist.Rebin(50)
+	hist.Scale(1./hist.Integral())
 	hist.SetLineColor( color )
 	return hist
 
 alu = normedHist( 'data/aluminium.TKA' , 2)
 poly = normedHist( 'data/poly.TKA' , 4)
 co = normedHist( 'data/co60.TKA', 1 )
+co2 = normedHist( 'data/co60_2.TKA', 12 )
 
 def histToArray( histo ):
 	'''
@@ -231,19 +232,14 @@ def tail( signal, background ):
 
 def globalFit( signal, background ):
 	from ROOT import TF1
-	#g = TF1('fit1', 'gaus', 3000, 7000)
-
-	#background.Fit('fit1') # fit doesnot seem to care about normalization
-	# perhaps comment SetNormFactor()
+	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 3000, 7000 )
+	fit.SetParameters(20, 4800,529)
+	background.Fit('gaus')
 	#mean = background.GetFunction('gaus').GetParameter(1)
 	#sigma = background.GetFunction('gaus').GetParameter(2)
-	from sys import exit
-	#raw_input()
-	#exit()
 	# par : [tau, mu, sigma]
-	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )*[3]' , 3000, 7000 )
-	fit.SetParameters( 380, 7000, 490, 1)
-	background.Fit('fit')
+	#fit.SetParameters( 380, 7000, 490, 1)
+	#background.Fit('fit')
 	#fit.FixParameter( 1, mean)
 	#fit.FixParameter( 2, sigma )
 	#fit.SetParameter(0, 1500)
@@ -252,7 +248,7 @@ def globalFit( signal, background ):
 	#signal.Fit('fit')
 	raw_input()
 
-globalFit( alu, co )
+globalFit( alu, co2 )
 
 # execute programs
 #calculateDeconvolution( alu, co )
