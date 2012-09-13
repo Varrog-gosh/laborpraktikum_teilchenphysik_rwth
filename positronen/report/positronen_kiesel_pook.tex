@@ -47,7 +47,7 @@ Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs u
 %	Der Multi Channel Analyzer nimmt nur positive Signal ohne Offset an.
 \begin{figure}[htb]
 		\centering
-		\includegraphics[width=0.8\textwidth]{schaltplan.pdf}
+		\includegraphics[width=0.8\textwidth]{../pictures/Schaltplan_custom.pdf}
 		\caption{Schaltplan}
 		\label{fig:schaltplan}
 \end{figure}
@@ -61,9 +61,9 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
  (siehe Abbildung \ref{fig:Schaltplan} für eine Blockdarstellung des gesmaten Schaltplan): \\
 \begin{itemize}
 	\item
-	Ein "langsamer Kreis" dieser prüft ob die gemessenen Photonen sich im richtigen Energieintervall 
+	Ein "langsamer Kreis" prüft ob die gemessenen Photonen sich im richtigen Energieintervall 
 	befinden und erzeugt abhängig davon ein Triggersignal.
-	\item Ein "schneller Kreis" dieser bestimmt die Zeitdifferenz und gibt dieses in Form eines Pulses an einen
+	\item Ein "schneller Kreis" bestimmt die Zeitdifferenz und gibt dieses in Form eines Pulses an einen
 	Vielkananlanalysator weiter, sofern ein Triggersignal vom "langsamen Kreis" besteht.	
 \end{itemize}
 \subsection*{langsamer Kreis}
@@ -109,7 +109,12 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 		Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
 		in ein Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
 		durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $0.5\si{ns}$ Schritten von $0\si{ns}$ bis $12\si{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum 
-		ist in Abbildung \ref{fig:timepuls} dargestellt. 
+		ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitabstände mit
+		dem Erwartungswert $\mu$ der angepassten Verteilung assoziiert und der Fehler auf diesen Wert als Breite des Peak $\sigma$ angenommen. Da es keine Möglichkeit gab 
+		(z.B. durch Vergleich mit einem weiteren Delay) die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
+		den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die Verzögerung zu $0.075\si{ns}$ abgeschätzt also 
+		15\% der Verzögerungsschrittweite von $0.5\si{ns}$. An die so gewonnenen Zeit-Kanal Wertepaare wird eine Funktion angepasst, mit der im folgenden 
+		Kanalnummern in Zeitabstände umgerechnet werden. 
 		
 		\begin{figure}
 		\includegraphics[width=0.8\textwidth]{../analyse/peaksToArray.pdf}
