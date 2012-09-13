@@ -15,7 +15,7 @@ def bufferToSortedList( length, buffer ):
 	return sorted( output )
 
 
-def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
+def peakToArray( filename, minKanal , maxKanal ):
 	hist = tkaToHist( filename , minKanal, maxKanal )
 	from ROOT import TSpectrum
 	from numpy import array
@@ -52,9 +52,8 @@ def peakToArray( filename, minKanal = 0, maxKanal = 0 ):
 	valError = [x, ex]
 	can.Close()
 	return valError
-peakToArray( 'data/kali_montag.TKA', 1900)
 
-def kalibration( filename, firstpeak, minKanal = 0, maxKanal = 0 ):
+def kalibrationTotalFunction( filename = 'data/kali_montag.TKA', firstpeak = 1 , minKanal = 1900, maxKanal = 0 ):
 	x, ex = peakToArray( filename, minKanal, maxKanal )
 	y = []
 	timestep = 0.5
@@ -89,7 +88,7 @@ def kalibration( filename, firstpeak, minKanal = 0, maxKanal = 0 ):
 	gr.Fit(total,"R+")
 	gr.Draw("ap")
 	raw_input()
-#kalibration( 'data/kali_montag.TKA', 1, 2000)
+kalibrationTotalFunction( )
 
 
 def kalibration_nonlin (filename, firstpeak, minKanal = 0, maxKanal = 0):
@@ -276,7 +275,11 @@ def tkaToTimeHist_knut( filename , funcs, xmin_time,xmax_time,rebin ): #nBins, x
 	hist_time = TH1('', ";Zeit[ns];Eintr#\"age", nBins, xmin_time, xmax_time )
 	histlist =[]
 
-
+	a->Set(a->GetNbins(),
+	        Scale(a->GetXmin()), // new Xmin
+	        Scale(a->GetXmax())); // new Xmaxa->Set(a->GetNbins(),
+	        Scale(a->GetXmin()), // new Xmin
+	        Scale(a->GetXmax())); // new Xmax
 	for i in range( cutbin ):
 		a = hist.GetXaxis()
 		import pdb; pdb.set_trace()
