@@ -78,7 +78,7 @@ def histo_settings():
 			"met": { "title": ";#slash{E}_{T};Entries",
 					"xmin": 5,
 					"xmax": 80 },
-			"et": { "title": ";E_{T};Entries",
+			"el_et": { "title": ";E_{T};Entries",
 					"xmin": 9,
 					"xmax": 100},
 			"cpurity": { "title": ";charge - charge_{track};Entries",
@@ -123,28 +123,21 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 if (__name__ == "__main__"):
 	# use option parser to allow verbose mode
 	parser = OptionParser()
-	parser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False, help="more logs")
 	parser.add_option("-n", "--nEvents", dest="nEvents", default="-1", help="number of events to read (default = -1 = all). use smaller numbers for tests")
-	parser.add_option("-m", "--mcfile", dest="mcfile", default="mc_all.root/MCTree", help="MC file path")
-	parser.add_option("-d", "--datafile", dest="datafile", default="d0.root/MessTree", help="Data file path")
+	parser.add_option("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
+	parser.add_option("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
 
 	(opts, args) = parser.parse_args()
-	if (opts.verbose):
-		# print out all output
-		log.outputLevel = 5
-	else:
-		# ignore output with "debug" level
-		log.outputLevel = 4
-	import Styles
+	import Styles # official cms style
 	style = Styles.tdrStyle()
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
 
-	variables = [ "met", "et", "el_eta", "dz" ]
+	variables = [ "met", "el_et", "el_eta" ]
 	for variable in variables:
-		cut = ''
+		cut = 'met>20&& el_et > 20'
 		compareDataMC( mcTree, dataTree, variable, cut)
-	#drawMCMass( mcTree, [0,7,17] )
+	#drawMCMass( mcTree, [1,5,9] )
 
 
