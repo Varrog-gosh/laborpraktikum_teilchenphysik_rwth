@@ -111,7 +111,7 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
 	mcHisto = createHistoFromTree( mcTree, variable, cut, nBins, xlow, xhigh )
-	mcHisto.Scale( 0.9 / 1164699 * 198 * 2580 )
+	mcHisto.Scale( 0.9 / 1164699 * 198 * 2580 )  # 0.9-Korrekturfaktor / 1164699-generated Events / 198 - Lumi / 2580 - xs [pb]
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	from ROOT import TCanvas
 	c = TCanvas()
@@ -128,27 +128,55 @@ def seperateTau (mctree,variable,cut,nBins, firstBin, lastBin, nEvents = -1):
 	tau_hist = createHistoFromTree(mctree, variable,"isTau > 0.1 && %s"%cut, nBins, firstBin, lastBin, nEvents = -1)
 	return [signal_hist,tau_hist]
 		
-def drawTau (mcTree,variable,cut,nBins):
+def drawTau (mcTree,dataTree,variable,cut,nBins):
 	settings = histo_settings()
 	xlow = settings[variable]["xmin"]
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
 	mclist = seperateTau(mcTree,variable,cut,nBins, xlow, xhigh, nEvents = -1)
+	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
+	for entry in mclist:
+		entry.Scale( 0.9 / 1164699 * 198 * 2580 )
 	print "Number of W->ev events %d"%mclist[0].GetEntries()
 	print "Number of W->tau+v events %d"%mclist[1].GetEntries()
-	from ROOT import TCanvas
+	from ROOT import TCanvas,THStack
+	stack = THStack ("stack","W#rightarrowe#nu")
 	c = TCanvas()
 	c.SetLogy()
 	c.cd()
 	
 	
 	mclist[0].SetFillColor(0)
-	mclist[0].Draw("hist")
+	#~ mclist[0].Draw("hist")
+	
 	mclist[0].SetTitle( title )
 	mclist[1].SetFillColor(4)
-	mclist[1].Draw("hist same")
+	#~ mclist[1].Draw("hist same")
+	stack.Add(mclist[1],"hist")
+	stack.Add(mclist[0],"hist")
+	stack.Draw()
+	dataHisto.Draw("sameP")
 	raw_input()
 	c.Close()
+
+def Get_xs(dataTree,mcTree,variable,cut):
+	#returns crosssection
+	#uses efficiency e eff = n_after_cut / n_generated
+	settings = histo_settings()
+	xlow = settings[variable]["xmin"]
+	xhigh = settings[variable]["xmax"]
+	title = settings[variable]["title"]
+	nBins = 10 # default value
+	ngen = 1164699
+	mcHisto = createHistoFromTree( mcTree, variable, cut, nBins, xlow, xhigh )
+	n_after_cut = mcHisto.GetEntries()
+	eff = n_after_cut / ngen
+	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
+	n_obs = dataHisto.GetEntries()
+	lumi = 198
+	corr = 0.9
+	xs = n_obs / eff / lumi / corr
+	return xs
 	
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
@@ -172,9 +200,7 @@ if (__name__ == "__main__"):
 		opts.plots = histo_settings().keys()
 
 
-	for variable in opts.plots:
-		compareDataMC( mcTree, dataTree, variable, opts.cut)
-	#drawMCMass( mcTree, [1,9, 19] )
-	compareTau(mcTree)
-
-
+	#~ for variable in opts.plots:
+		#~ compareDataMC( mcTree, dataTree, variable, opts.cut)
+		#~ drawTau(mcTree,dataTree,variable,opts.cut,100)
+	print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
