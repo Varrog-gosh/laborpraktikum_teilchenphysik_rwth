@@ -120,11 +120,31 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 	raw_input()
 	c.Close()
 
-def compareTau(mctree):
-
-	print "print"
+def seperateTau (mctree,variable,cut,nBins, firstBin, lastBin, nEvents = -1):
+	signal_hist = createHistoFromTree(mctree, variable,"isTau < 0.1 && %s"%cut, nBins, firstBin, lastBin, nEvents = -1)
+	tau_hist = createHistoFromTree(mctree, variable,"isTau > 0.1 && %s"%cut, nBins, firstBin, lastBin, nEvents = -1)
+	return [signal_hist,tau_hist]
 		
-
+def drawTau (mcTree,variable,cut,nBins):
+	settings = histo_settings()
+	xlow = settings[variable]["xmin"]
+	xhigh = settings[variable]["xmax"]
+	title = settings[variable]["title"]
+	mclist = seperateTau(mcTree,variable,cut,nBins, xlow, xhigh, nEvents = -1)
+	from ROOT import TCanvas
+	c = TCanvas()
+	c.SetLogy()
+	c.cd()
+	mclist[0].SetFillColor(2)
+	mclist[0].Draw("hist")
+	print "Number of W->ev events %d"%mclist[0].GetEntries()
+	mclist[0].SetTitle( title )
+	mclist[1].SetFillColor(4)
+	mclist[1].Draw("same")
+	print "Number of W->tau+v events %d"%mclist[1].GetEntries()
+	raw_input()
+	c.Close()
+	
 if (__name__ == "__main__"):
 	# use option parser to allow verbose mode
 	parser = OptionParser()
@@ -139,11 +159,11 @@ if (__name__ == "__main__"):
 	dataTree = readTree( opts.datafile )
 
 
-	variables = [ "met", "el_et", "el_eta" ]
-	#~ for variable in variables:
-		#~ cut = 'met>20&& el_et > 20'
+	variables = [ "met", "el_et", "el_eta"]
+	for variable in variables:
+		cut = 'met > 0'#'met>20 && el_et > 20'
+		drawTau(mcTree,variable,cut,100)
 		#~ compareDataMC( mcTree, dataTree, variable, cut)
-	#~ #drawMCMass( mcTree, [1,5,9] )
-	compareTau(mcTree)
+	#drawMCMass( mcTree, [1,5,9] )
 
 

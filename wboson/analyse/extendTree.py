@@ -26,7 +26,7 @@ def extendTree( filename, treename ):
 	mwt = numpy.zeros(1, dtype=float)
 
 	# Boolean variable to seperate W->e+v from W->tau+v in MC Data
-	isTau = numpy.zeros(1)
+	isTau = numpy.zeros(1, dtype=float)
 
 	# set branch adresses
 	#newtree.Branch('dz', dz, 'dz/D')
@@ -34,9 +34,10 @@ def extendTree( filename, treename ):
 	newtree.Branch('met', met, 'met/D')
 	newtree.Branch('el_et', et, 'el_et/D')
 	newtree.Branch('mwt', mwt, 'mwt/D')
-	newtree.Branch('isTau', isTau, 'isTau/I')
+	newtree.Branch('isTau', isTau, 'isTau/D')
 
 	nEntries =  oldtree.GetEntries()
+	print nEntries
 	for i in xrange( nEntries ):
 		oldtree.GetEntry(i)
 		#cpurity[0] = oldtree.el_charge * oldtree.el_track_charge
@@ -47,14 +48,14 @@ def extendTree( filename, treename ):
 		mwt[0] = numpy.sqrt( 2.0 * met[0] * et[0] * ( 1 - numpy.cos( oldtree.el_met_calo_dphi ) ) )
 		newtree.Fill()
 
-		if i < 382347:
-			isTau = 0
+		if i < 382348:
+			isTau[0] = 0
 		else :
-			isTau = 1
+			isTau[0] = 1
 
 		# output to see working flow
-		if i%10000000:
-			print int( 100. * i / nEntries )
+		#~ if i%10000000:
+			#~ print int( 100. * i / nEntries )
 
 	# save and close
 	newtree.AutoSave()
