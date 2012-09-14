@@ -123,7 +123,7 @@ def seperateTau (mctree,variable,cut,nBins, firstBin, lastBin, nEvents = -1):
 	signal_hist = createHistoFromTree(mctree, variable,"isTau < 0.1 && %s"%cut, nBins, firstBin, lastBin, nEvents = -1)
 	tau_hist = createHistoFromTree(mctree, variable,"isTau > 0.1 && %s"%cut, nBins, firstBin, lastBin, nEvents = -1)
 	return [signal_hist,tau_hist]
-		
+
 def drawTau (mcTree,dataTree,variable,cut,nBins):
 	settings = histo_settings()
 	xlow = settings[variable]["xmin"]
@@ -140,14 +140,10 @@ def drawTau (mcTree,dataTree,variable,cut,nBins):
 	c = TCanvas()
 	c.SetLogy()
 	c.cd()
-	
-	
+
 	mclist[0].SetFillColor(0)
-	#~ mclist[0].Draw("hist")
-	
 	mclist[0].SetTitle( title )
 	mclist[1].SetFillColor(4)
-	#~ mclist[1].Draw("hist same")
 	stack.Add(mclist[1],"hist")
 	stack.Add(mclist[0],"hist")
 	stack.Draw()
@@ -174,6 +170,46 @@ def Get_xs(dataTree,mcTree,variable,cut):
 	xs = n_obs / eff / lumi / corr
 	return xs
 
+def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
+	'''
+	variable could be el_et later
+	'''
+	nBins = 100
+	firstBin = 0
+	lastBin = 250
+	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
+	datahist.Scale( 1./datahist.Integral() )
+
+	from ROOT import TGraph
+	from array import array
+	x = array('d')
+	y = array('d')
+	masses = weightToMass()
+	for i, mass in enumerate( masses ):
+		x.append( mass )
+		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
+		mchist.Scale( 1./mchist.Integral() )
+		chi2 = datahist.Chi2Test( mchist, "UW,of,uf,chi2")
+		y.append(chi2)
+	gr = TGraph(len(masses), x,y)
+	gr.SetTitle(';M_{W} [GeV];#chi^{2}')
+	gr.Draw("ap")
+	gr.Fit('pol2')
+	func = gr.GetFunction('pol2')
+	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
+
+	offset = 1 # how much χ² should change for error
+	from math import sqrt
+	e_mass = math.sqrt( 1.* offset / func.GetParameter(2) )
+	print mass
+
+	raw_input()
+	return mass
+
+
+
+
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -195,8 +231,11 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-
-	#~ for variable in opts.plots:
-		#~ compareDataMC( mcTree, dataTree, variable, opts.cut)
-		#~ drawTau(mcTree,dataTree,variable,opts.cut,100)
+	'''
+	for variable in opts.plots:
+		compareDataMC( mcTree, dataTree, variable, opts.cut)
+		drawTau(mcTree,dataTree,variable,opts.cut,100)
 	print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	drawMCMass( mcTree, [1,9,18] )
+	'''
+	chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
