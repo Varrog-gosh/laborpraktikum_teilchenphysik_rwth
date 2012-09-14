@@ -19,18 +19,15 @@ def extendTree( filename, treename ):
 	newtree = oldtree.CloneTree(0)
 
 	# define arrays to have a referenz equivivalent in python
-	#dz = numpy.zeros(1, dtype=float)
+	dz = numpy.zeros(1, dtype=float)
 	met = numpy.zeros(1, dtype=float)
 	et = numpy.zeros(1, dtype=float)
-	#cpurity = numpy.zeros(1, dtype=float)
 	mwt = numpy.zeros(1, dtype=float)
-
 	# Boolean variable to seperate W->e+v from W->tau+v in MC Data
 	isTau = numpy.zeros(1)
 
 	# set branch adresses
-	#newtree.Branch('dz', dz, 'dz/D')
-	#newtree.Branch('cpurity', cpurity, 'cpurity/I')
+	newtree.Branch('dz', dz, 'dz/D')
 	newtree.Branch('met', met, 'met/D')
 	newtree.Branch('el_et', et, 'el_et/D')
 	newtree.Branch('mwt', mwt, 'mwt/D')
@@ -39,8 +36,7 @@ def extendTree( filename, treename ):
 	nEntries =  oldtree.GetEntries()
 	for i in xrange( nEntries ):
 		oldtree.GetEntry(i)
-		#cpurity[0] = oldtree.el_charge * oldtree.el_track_charge
-		#dz[0] = abs( oldtree.el_track_z - oldtree.met_vertex_z )
+		dz[0] = abs( oldtree.el_track_z - oldtree.met_vertex_z )
 		#et[0] = numpy.sqrt( (oldtree.el_px**2 + oldtree.el_py**2)/(oldtree.el_px**2 + oldtree.el_py**2 + oldtree.el_pz**2) ) * oldtree.el_e
 		et[0] = numpy.sqrt( (oldtree.el_px**2 + oldtree.el_py**2) )
 		met[0] = numpy.sqrt( oldtree.metx_calo**2 + oldtree.mety_calo**2 )

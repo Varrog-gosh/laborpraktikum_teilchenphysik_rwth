@@ -75,18 +75,15 @@ def drawMCMass( tree, list ):
 
 def histo_settings():
 	return {
-			"mwt": { "title": ";M^{W}_{T};Entries",
+			"mwt": { "title": ";M^{W}_{T} [GeV];Entries",
 					"xmin": 0,
 					"xmax": 250 },
-			"met": { "title": ";#slash{E}_{T};Entries",
+			"met": { "title": ";#slash{E}_{T} [GeV];Entries",
 					"xmin": 5,
 					"xmax": 100 },
-			"el_et": { "title": ";E_{T};Entries",
+			"el_et": { "title": ";E_{T} [GeV];Entries",
 					"xmin": 9,
 					"xmax": 120},
-			"cpurity": { "title": ";charge - charge_{track};Entries",
-					"xmin": -2.5,
-					"xmax": 2.5},
 			"el_eta": { "title": ";#eta;Entries",
 					"xmin": -1.5,
 					"xmax": 1.5},
@@ -96,12 +93,15 @@ def histo_settings():
 			"el_iso": {"title": ";electron isolation;Entries",
 					"xmin": 0,
 					"xmax": 0.2},
-			"dz": { "title": ";#Delta z;Entries",
-					"xmin": 0,
-					"xmax": 7},
 			"el_met_calo_dphi": {"title": ";#Delta #phi;Entries",
 					"xmin": 0,
-					"xmax": 3.2}
+					"xmax": 3.2},
+			"el_e": { "title": ";E_{electron} [GeV];Entries",
+					"xmin": 0,
+					"xmax": 100},
+			"dz": { "title": ";#Delta z [cm];Entries",
+					"xmin": 0,
+					"xmax": 100}
 			}
 
 
@@ -130,18 +130,15 @@ def compareTau(mctree):
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
-	# use option parser to allow verbose mode
 	parser = ArgumentParser()
-	parser.add_argument("-n", "--nEvents", dest="nEvents", default="-1", help="number of events to read (default = -1 = all). use smaller numbers for tests")
+	parser.add_argument("-n", "--nEvents", dest="nEvents", default="-1",
+			help="number of events to read (default = -1 = all). use smaller numbers for tests")
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
 	parser.add_argument("-c", "--cut", dest="cut", default="", help="Cuts applied to all structures" )
 	parser.add_argument("-l", "--logarithmic", dest="logarithmic", default=True, help="Plot all distributions in logarithmic mode") #not implemented yet
 	parser.add_argument("-s", "--save", dest="save", default=False, help="Plots are not drawn, but saved as pdf") #not implemented yet
-
-	parser.add_argument("-p", "--plots", dest="plots",
-			default=['met', 'el_et','mwt'],
-			nargs ="+",
+	parser.add_argument("-p", "--plots", dest="plots", default=['met', 'el_et','mwt'], nargs ="+",
 			help="Distribution which should be plotted")
 
 	opts = parser.parse_args()
@@ -149,10 +146,13 @@ if (__name__ == "__main__"):
 	style = Styles.tdrStyle()
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
+	if "all" in opts.plots:
+		opts.plots = histo_settings().keys()
+
 
 	for variable in opts.plots:
 		compareDataMC( mcTree, dataTree, variable, opts.cut)
-	#drawMCMass( mcTree, [1,5,9] )
+	#drawMCMass( mcTree, [1,9, 19] )
 	compareTau(mcTree)
 
 
