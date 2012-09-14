@@ -75,12 +75,15 @@ def drawMCMass( tree, list ):
 
 def histo_settings():
 	return {
+			"mwt": { "title": ";M^{W}_{T};Entries",
+					"xmin": 0,
+					"xmax": 250 },
 			"met": { "title": ";#slash{E}_{T};Entries",
 					"xmin": 5,
-					"xmax": 80 },
+					"xmax": 100 },
 			"el_et": { "title": ";E_{T};Entries",
 					"xmin": 9,
-					"xmax": 100},
+					"xmax": 120},
 			"cpurity": { "title": ";charge - charge_{track};Entries",
 					"xmin": -2.5,
 					"xmax": 2.5},
@@ -146,24 +149,30 @@ def drawTau (mcTree,variable,cut,nBins):
 	c.Close()
 	
 if (__name__ == "__main__"):
+	from argparse import ArgumentParser
 	# use option parser to allow verbose mode
-	parser = OptionParser()
-	parser.add_option("-n", "--nEvents", dest="nEvents", default="-1", help="number of events to read (default = -1 = all). use smaller numbers for tests")
-	parser.add_option("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
-	parser.add_option("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
+	parser = ArgumentParser()
+	parser.add_argument("-n", "--nEvents", dest="nEvents", default="-1", help="number of events to read (default = -1 = all). use smaller numbers for tests")
+	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
+	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
+	parser.add_argument("-c", "--cut", dest="cut", default="", help="Cuts applied to all structures" )
+	parser.add_argument("-l", "--logarithmic", dest="logarithmic", default=True, help="Plot all distributions in logarithmic mode") #not implemented yet
+	parser.add_argument("-s", "--save", dest="save", default=False, help="Plots are not drawn, but saved as pdf") #not implemented yet
 
-	(opts, args) = parser.parse_args()
+	parser.add_argument("-p", "--plots", dest="plots",
+			default=['met', 'el_et','mwt'],
+			nargs ="+",
+			help="Distribution which should be plotted")
+
+	opts = parser.parse_args()
 	import Styles # official cms style
 	style = Styles.tdrStyle()
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
-
-	variables = [ "met", "el_et", "el_eta"]
-	for variable in variables:
-		cut = 'met > 0'#'met>20 && el_et > 20'
-		drawTau(mcTree,variable,cut,100)
-		#~ compareDataMC( mcTree, dataTree, variable, cut)
+	for variable in opts.plots:
+		compareDataMC( mcTree, dataTree, variable, opts.cut)
 	#drawMCMass( mcTree, [1,5,9] )
+	compareTau(mcTree)
 
 
