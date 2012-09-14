@@ -123,6 +123,11 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 	raw_input()
 	c.Close()
 
+def compareTau(mctree):
+
+	print "print"
+		
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	# use option parser to allow verbose mode
@@ -147,6 +152,7 @@ if (__name__ == "__main__"):
 
 	for variable in opts.plots:
 		compareDataMC( mcTree, dataTree, variable, opts.cut)
-	#drawMCMass( mcTree, [ 1, 9, 17 ] )
+	#drawMCMass( mcTree, [1,5,9] )
+	compareTau(mcTree)
 
 
