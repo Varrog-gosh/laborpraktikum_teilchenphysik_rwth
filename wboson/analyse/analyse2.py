@@ -120,6 +120,11 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 	raw_input()
 	c.Close()
 
+def compareTau(mctree):
+
+	print "print"
+		
+
 if (__name__ == "__main__"):
 	# use option parser to allow verbose mode
 	parser = OptionParser()
@@ -135,9 +140,10 @@ if (__name__ == "__main__"):
 
 
 	variables = [ "met", "el_et", "el_eta" ]
-	for variable in variables:
-		cut = 'met>20&& el_et > 20'
-		compareDataMC( mcTree, dataTree, variable, cut)
-	#drawMCMass( mcTree, [1,5,9] )
+	#~ for variable in variables:
+		#~ cut = 'met>20&& el_et > 20'
+		#~ compareDataMC( mcTree, dataTree, variable, cut)
+	#~ #drawMCMass( mcTree, [1,5,9] )
+	compareTau(mcTree)
 
 
