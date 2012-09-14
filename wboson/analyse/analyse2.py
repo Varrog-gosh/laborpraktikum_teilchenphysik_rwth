@@ -134,17 +134,19 @@ def drawTau (mcTree,variable,cut,nBins):
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
 	mclist = seperateTau(mcTree,variable,cut,nBins, xlow, xhigh, nEvents = -1)
+	print "Number of W->ev events %d"%mclist[0].GetEntries()
+	print "Number of W->tau+v events %d"%mclist[1].GetEntries()
 	from ROOT import TCanvas
 	c = TCanvas()
 	c.SetLogy()
 	c.cd()
-	mclist[0].SetFillColor(2)
+	
+	
+	mclist[0].SetFillColor(0)
 	mclist[0].Draw("hist")
-	print "Number of W->ev events %d"%mclist[0].GetEntries()
 	mclist[0].SetTitle( title )
 	mclist[1].SetFillColor(4)
-	mclist[1].Draw("same")
-	print "Number of W->tau+v events %d"%mclist[1].GetEntries()
+	mclist[1].Draw("hist same")
 	raw_input()
 	c.Close()
 	
@@ -163,7 +165,7 @@ if (__name__ == "__main__"):
 			default=['met', 'el_et','mwt'],
 			nargs ="+",
 			help="Distribution which should be plotted")
-
+	print "test"
 	opts = parser.parse_args()
 	import Styles # official cms style
 	style = Styles.tdrStyle()
@@ -171,8 +173,9 @@ if (__name__ == "__main__"):
 	dataTree = readTree( opts.datafile )
 
 	for variable in opts.plots:
-		compareDataMC( mcTree, dataTree, variable, opts.cut)
+		#~ compareDataMC( mcTree, dataTree, variable, opts.cut)
+		drawTau(mcTree,variable,opts.cut,100)
 	#drawMCMass( mcTree, [1,5,9] )
-	compareTau(mcTree)
+
 
 
