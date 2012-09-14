@@ -4,10 +4,6 @@
 import ROOT
 from ROOT import TTree
 
-from messageLogger import messageLogger as log
-from optparse import OptionParser
-
-
 def totalNumberOfGeneratedEvents(path):
 	from ROOT import TFile
 	result = {}
@@ -92,13 +88,13 @@ def histo_settings():
 					"xmax": 6.4},
 			"el_iso": {"title": ";electron isolation;Entries",
 					"xmin": 0,
-					"xmax": 0.2},
+					"xmax": 0.21},
 			"el_met_calo_dphi": {"title": ";#Delta #phi;Entries",
 					"xmin": 0,
 					"xmax": 3.2},
-			"el_e": { "title": ";E_{electron} [GeV];Entries",
+			"el_e": { "title": ";E_{e} [GeV];Entries",
 					"xmin": 0,
-					"xmax": 100},
+					"xmax": 150},
 			"dz": { "title": ";#Delta z [cm];Entries",
 					"xmin": 0,
 					"xmax": 100}
@@ -149,7 +145,7 @@ def drawTau (mcTree,variable,cut,nBins):
 	mclist[1].Draw("hist same")
 	raw_input()
 	c.Close()
-	
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -171,10 +167,10 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-
+	print opts.cut
 	for variable in opts.plots:
 		compareDataMC( mcTree, dataTree, variable, opts.cut)
+		#drawTau(mcTree, variable, opts.cut, 100)
 	#drawMCMass( mcTree, [1,9, 19] )
-	compareTau(mcTree)
 
 
