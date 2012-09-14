@@ -106,7 +106,7 @@ def compareDataMC( mcTree, dataTree, variable, cut, nBins = 100 ):
 	xlow = settings[variable]["xmin"]
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
-	mcHisto = createHistoFromTree( mcTree, variable, cut, nBins, xlow, xhigh )
+	mcHisto = createHistoFromTree( mcTree, variable, 'weight[9] * ('+cut+')', nBins, xlow, xhigh )
 	mcHisto.Scale( 0.9 / 1164699 * 198 * 2580 )
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	from ROOT import TCanvas
@@ -167,10 +167,10 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	print opts.cut
 	for variable in opts.plots:
 		compareDataMC( mcTree, dataTree, variable, opts.cut)
 		#drawTau(mcTree, variable, opts.cut, 100)
-	#drawMCMass( mcTree, [1,9, 19] )
+		pass
+	#drawMCMass( mcTree, [1,9, 17] )
 
 
