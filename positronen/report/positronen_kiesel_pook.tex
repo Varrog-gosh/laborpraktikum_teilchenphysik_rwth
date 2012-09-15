@@ -34,7 +34,7 @@ Größenordnung von $\si{ps}$ zu messen.
 Hierzu wird $^{22}$Na verwendet, welches beim Zerfall in $^{22}$Ne
 zuerst ein γ-Quant der Energie $1.28\si{MeV}$ abgibt und dann ein Positron emittiert.
 Nach einer vom Festkörper abhängigen Zeit annihiliert das Positron unter Aussendung
-von 2 bis 3 γ Quanten mit einer Energie von $0.511\si{keV}$.
+von 2 bis 3 γ-Quanten mit einer Energie von $0.511\si{keV}$.
 Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs und dem
 γ aus der Annihilation kann die Lebensdauer des Positrons bestimmt werden.
 
@@ -101,15 +101,16 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 	\subsection{Zeitkalibration}
 		Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
 		mit einem Pulsgenerator Pulse mit einer Amplitude von $3\si{V}$ und einer Pulsbreite von 10ns mit einer Frequenz von $1600\si{Hz}$ erzeugt.
-		Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene 
+		Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude des erzeugten Puls denen aus dem Anodenausgang der Photomultiplier 
+		entsprechen. Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene 
 		CFD geleitet, die andere in eine Delayeinheit und dann in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
 		das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
 		dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu 
 		zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
 		Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
-		in ein Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
+		in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
 		durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $0.5\si{ns}$ Schritten von $0\si{ns}$ bis $12\si{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum 
-		ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitabstände mit
+		ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitpunkte mit
 		dem Erwartungswert $\mu$ der angepassten Verteilung assoziiert und der Fehler auf diesen Wert als Breite des Peak $\sigma$ angenommen. Da es keine Möglichkeit gab 
 		(z.B. durch Vergleich mit einem weiteren Delay) die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
 		den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die Verzögerung zu $0.075\si{ns}$ abgeschätzt also 
@@ -121,7 +122,20 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 		\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von $0.5\si{ns}$}
 		\label{fig:timepuls}
 		\end{figure}
-\section{Ergebnisse}
+\subsection{Zeitnullpunkt und Zeitstabilität}
+		\begin{figure}
+		\includegraphics[width=0.8\textwidth]{../analyse/compareCo.pdf}
+		\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen}
+		\label{fig:timepuls}
+		\end{figure}
+	Zur Bestimmung des Zeitnullpunkt und zum überprüfen der zeitlichen Stabilität werden Messungen mit $^{60}$Co durchgeführt, dieses Cobaltisotop liefert 
+	beim Kaskadenzerfall in $^{60}$Co zwei zeitgleiche γ-Quanten mit Energien von $1,17\si{MeV}$ und $1,33\si{MeV}$. Es wird jeweils eine Messung vor Beginn
+	und nach der Hauptmessreihen mit $^{22}$Na durchgeführt. Die Ergebnisse beider Messungen sind in Abbildung \ref{fig:compare_co} dargestellt.
+	Da von einem Zeitgleichen eintreffen beider Pulse ausgegangen wird, dient die Position des beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt. Es
+	ist zu erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
+	Zeitdifferenz von lediglich xx ns. Die Änderung ist also im Rahmen der Messgenauigkeit klein genug um den Mittelwert der
+	beiden gemessenen Peakpositionen , Kanal 4721 , als Nullpunkt für die Zeitmessungen zu benutzen. Die Veränderung des Nullpunkt wird im folgenden
+	als zusätzlich systematische Unsicherheit auf alle Zeitmessungen angenommen.   
 \subsection{Globaler Fit}
 Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
 \begin{align*}

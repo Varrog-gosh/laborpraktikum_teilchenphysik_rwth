@@ -275,11 +275,7 @@ def tkaToTimeHist_knut( filename , funcs, xmin_time,xmax_time,rebin ): #nBins, x
 	hist_time = TH1('', ";Zeit[ns];Eintr#\"age", nBins, xmin_time, xmax_time )
 	histlist =[]
 
-	a->Set(a->GetNbins(),
-	        Scale(a->GetXmin()), // new Xmin
-	        Scale(a->GetXmax())); // new Xmaxa->Set(a->GetNbins(),
-	        Scale(a->GetXmin()), // new Xmin
-	        Scale(a->GetXmax())); // new Xmax
+
 	for i in range( cutbin ):
 		a = hist.GetXaxis()
 		import pdb; pdb.set_trace()

@@ -7,6 +7,7 @@ from ROOT import *
 from ROOT import TSpectrum
 from Styles import tdrStyle
 from array import array
+from kalibration import bufferToSortedList
 #from kalibration import fu
 #from kalibration import tkaToTimeHist
 tdrStyle()
@@ -51,7 +52,15 @@ def calculateDeconvolution( signal, background ):
 	τ in chanel numbers is printed
 	a root file is created to save cpu work
 	'''
-	from ROOT import TH1D,TSpectrum, TF1
+	from ROOT import TH1D,TSpectrum, TF1,TCanvas
+	
+	can = TCanvas()
+	can.cd()
+	can.SetBatch()
+	can.SetCanvasSize( 1300, 800 )
+	can.SetLogy()
+	#~ can.Divide(1,2)
+	#~ can.cd(1)
 	source = histToArray( signal )
 	response = histToArray( background )
 	s = TSpectrum();
@@ -59,19 +68,66 @@ def calculateDeconvolution( signal, background ):
 	# iterations = 1: more iterations -> stange peaks and more noice
 	# rebetitions =  1: same as above
 	# boosting factor = 1: not needed
-	s.Deconvolution(source, response, len( source ), 1, 1, 1 )
+	s.Deconvolution(source, response, len( source ), 1, 1, 0 )
+	
+	signal.SetLineColor(2)
+	signal.Draw("P")
 
-	d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 1,16000 )
+	background.SetMarkerColor(3)
+	background.SetMarkerStyle(34)
+	background.Draw("sameP")
+
+	d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 2000,16000 )
+	d.SetLineColor(4)
+	
 	for i in range( len(source) ):
 		d.SetBinContent(i + 1,source[i])
 	#safeHist( d, 'deconvolution100.root' )
-	d.Draw()
-	fitRanges = [ (3100, 6000) , (8000, 11000)]
-	for fitRange in fitRanges:
-		fit = TF1('fit', 'expo',fitRange[0], fitRange[1] )
-		d.Fit('fit', 'r')
-		print -1. / fit.GetParameter(1)
-	raw_input()
+	d.Draw("sameL")
+	
+	leg = TLegend(0.6, 0.7, .95,.95)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.AddEntry( signal, "Signal", "p")
+	leg.AddEntry( background, "response", "p")
+	leg.AddEntry( d, "Deconvoluted Spectrum", "l")
+	leg.Draw()
+	
+
+	can.SaveAs("deconvolution.pdf")
+	#~ raw_input()
+	return d
+	
+
+def FitTau(hist):
+	from ROOT import TH1D, TF1,TCanvas
+
+	can = TCanvas()
+	can.cd()
+	can.SetBatch()
+	can.SetCanvasSize( 1300, 800 )
+	can.SetLogy()
+
+	fitRanges = [ (5000, 6500),(8000, 11000)]
+	#~ for fitRange in fitRanges:
+		#~ fit = TF1('fit', 'expo',fitRange[0], fitRange[1] )
+		#~ d.Fit('fit', 'r')
+		#~ print -1. / fit.GetParameter(1)
+	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
+	#~ for i in range(0,300):
+		#~ print "%f %f  %i"%(hist.GetBinContent(i), hist.GetBinCenter(i),i)
+	hist.SetAxisRange(4780,14000,"X")
+	hist.Draw("P")
+
+	hist.Fit("fit","r")
+	
+	fit2 = TF1('fit2', 'expo(0)+expo(2)',fitRanges[0][0], fitRanges[0][1] )
+	fit2.FixParameter(0,fit.GetParameter(0))
+	fit2.FixParameter(1,fit.GetParameter(1))
+	hist.Fit("fit2","r+")
+	
+	can.SaveAs("taufit.pdf")
+	#~ raw_input()
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	'''
@@ -217,6 +273,75 @@ def compareSignalHistos( alu, poly ):
 	#print poly.KolmogorovTest( alu )
 	can.SaveAs('compareHistos.pdf')
 
+def compareCo( co1, co2 ):
+	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
+	can = TCanvas()
+	can.cd()
+	can.SetBatch()
+	can.SetCanvasSize( 1300, 800 )
+	#~ can.SetLogy()
+	co1.Draw()
+
+
+	leg = TLegend(0.6, 0.7, .95,.95)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.AddEntry( alu, "^{60}Co first", "l")
+	leg.AddEntry( poly, "^{60}Co last", "l")
+	leg.Draw()
+	
+	s = TSpectrum( 1 )
+	npeaks = s.Search( co1, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
+	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
+
+	fit1 = TF1('fit1', 'gaus', peaks[0] - 1500	, peaks[0] + 500)
+	co1.Fit("fit1","R")
+	
+	xmin = 0.55
+	xmax = 0.8
+	ymin = 0.45
+	ymax = 0.95
+	can.Update()
+	p1 = TPaveStats(co1.GetListOfFunctions().FindObject("stats"))	
+	#~ co1.GetListOfFunctions().Remove(p1);
+	co1.SetStats(0)
+	p1.SetX1NDC(xmin)
+	p1.SetX2NDC(xmax)
+	p1.SetY1NDC(ymin)
+	p1.SetY2NDC(ymax)
+	p1.SetFillColor(0)
+	p1.SetTextSize(0.03)
+	
+	co2.Draw("same")
+
+	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
+	peaks = bufferToSortedList(npeaks,s.GetPositionX())
+	fit2 = TF1('fit2', 'gaus', peaks[0] - 1500, peaks[0] + 500)
+	co2.Fit("fit2","R0+")
+
+	p1.AddText("First Peak:")
+	p1.AddText("#chi^{2}/NDF : %e"%(fit1.GetChisquare() / fit1.GetNDF()))
+	p1.AddText("Constant: %e"%fit1.GetParameter(0))
+	p1.AddText("#mu_{1}: %e"%fit1.GetParameter(1))
+	p1.AddText("#sigma_{1}: %e"%fit1.GetParameter(2))
+	p1.AddText("")
+	p1.AddText("Second Peak:")
+	p1.AddText("#chi^{2}/NDF : %e"%(fit2.GetChisquare() / fit2.GetNDF()))
+	p1.AddText("Constant: %e"%fit2.GetParameter(0))
+	p1.AddText("#mu_{2}: %e"%fit2.GetParameter(1))
+	p1.AddText("#sigma_{2}: %e"%fit2.GetParameter(2))
+	p1.AddText("")
+	p1.AddText("#Delta#mu: %f"%(fit1.GetParameter(1) - fit2.GetParameter(1)))
+	p1.AddText("")
+	p1.AddText("#mu_{mean} : %f" %((fit1.GetParameter(1) + fit2.GetParameter(1))/2))
+
+	fit2.Draw("same")
+	p1.Draw();
+	#print alu.KolmogorovTest( poly, "ND" )
+	#~ print co.Chi2Test( co2 , 'p')
+	#print poly.KolmogorovTest( alu )
+	can.SaveAs('compareCo.pdf')
+
 def tail( signal, background ):
 	from ROOT import TH1
 	# does not work yet
@@ -248,10 +373,11 @@ def globalFit( signal, background ):
 	#signal.Fit('fit')
 	raw_input()
 
-globalFit( alu, co2 )
+#globalFit( alu, co2 )
+
 
 # execute programs
-#calculateDeconvolution( alu, co )
+#~ FitTau(calculateDeconvolution( alu, co ))
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
-#compareSignalHistos( alu, poly )
+compareCo( co, co2 )
