@@ -78,7 +78,7 @@ def readFile( filename ):
 	return map( list, zip( *data ) )
 
 class linearRegression:
-	def __init__( self, x, y, ex, ey ):
+	def __init__( self, x, y, ex, ey, beginning = 0 ):
 		from uncertainties import unumpy
 		if type( x ) == unumpy.uarray or type( y ) == unumpy.uarray:
 			self.__x = unumpy.nominal_values(x)
@@ -96,8 +96,8 @@ class linearRegression:
 			raise IndexError('All lengths should be the same')
 		from ROOT import TGraphErrors, TF1
 		self.graph = TGraphErrors( len(self.__x), self.__x, self.__y, self.__ex, self.__ey)
-		self.graph.Fit('pol1', 'Q')
-		self.func = self.graph.GetFunction('pol1')
+		self.func = TF1('fit', 'pol1', beginning, self.__x[-1] )
+		self.graph.Fit('fit', 'QR')
 
 
 	def residuals(self):
@@ -175,7 +175,7 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 
 	from ROOT import TH1F
 
-	data = readFile( filename )[0]
+	data = readFile( filename )[0][2:-1]
 	length = len( data )
 
 	if xMax == 0:
