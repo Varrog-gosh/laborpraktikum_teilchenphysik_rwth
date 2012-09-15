@@ -174,9 +174,9 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	'''
 	variable could be el_et later
 	'''
-	nBins = 100
-	firstBin = 0
-	lastBin = 250
+	nBins = 150
+	firstBin = 50
+	lastBin = 100
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
 	datahist.Scale( 1./datahist.Integral() )
 
@@ -189,24 +189,35 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 		x.append( mass )
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
 		mchist.Scale( 1./mchist.Integral() )
-		chi2 = datahist.Chi2Test( mchist, "UW,of,uf,chi2")
+		chi2 = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf")
 		y.append(chi2)
 	gr = TGraph(len(masses), x,y)
-	gr.SetTitle(';M_{W} [GeV];#chi^{2}')
+	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.Draw("ap")
-	gr.Fit('pol2')
+	gr.Fit('pol2','q')
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
+	chi2min = func.Eval( mass )
 
 	offset = 1 # how much χ² should change for error
 	from math import sqrt
-	e_mass = math.sqrt( 1.* offset / func.GetParameter(2) )
-	print mass
+	try:
+		e_mass = sqrt( 1.* offset / func.GetParameter(2) )
+	except:
+		e_mass = 0
+	#print('{} ± {}'.format(mass, e_mass ))
+	#raw_input()
 
-	raw_input()
-	return mass
+	relative_error = e_mass/mass
+	return chi2min, mass, relative_error
 
 
+def trydifferentCuts(dataTree,mcTree):
+	f = open('optimizeM.txt','w')
+	for met in range(25,60,5):
+		for et in range(25,60,5):
+			f.write( "{} {} {}\n".format( met, et, chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format(met, et), variable = 'mwt' )))
+	f.close()
 
 
 
@@ -237,5 +248,6 @@ if (__name__ == "__main__"):
 		drawTau(mcTree,dataTree,variable,opts.cut,100)
 	print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	drawMCMass( mcTree, [1,9,18] )
-	'''
 	chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
+	'''
+	trydifferentCuts( dataTree, mcTree)
