@@ -3,6 +3,7 @@
 
 import ROOT
 from ROOT import TTree
+import math
 
 from messageLogger import messageLogger as log
 from optparse import OptionParser
@@ -142,7 +143,7 @@ def drawTau (mcTree,dataTree,variable,cut,nBins):
 	from ROOT import TCanvas,THStack
 	stack = THStack ("stack","W#rightarrowe#nu")
 	c = TCanvas()
-	c.SetLogy()
+	#~ c.SetLogy()
 	c.cd()
 	
 	
@@ -156,6 +157,28 @@ def drawTau (mcTree,dataTree,variable,cut,nBins):
 	stack.Add(mclist[0],"hist")
 	stack.Draw()
 	dataHisto.Draw("sameP")
+	raw_input()
+	c.Close()
+
+def Get_Weinbergangle (mw):
+	mz = 91.1876 # GeV taken from PDG
+	return acos(mw / mz )
+
+def get_Colorfactor (xs,err_xs):
+	normxs = 2580 / 3
+	err_normxs = 0.09 / 3
+	from array import array
+	chisquares = array('d')
+	nc = array('d')
+	for i in range(5):
+		chisquare = pow((xs-normxs*i)/err_xs,2)
+		chisquares.append(chisquare)
+		nc.append(i)
+	from ROOT import TGraph
+	graph = TGraph(nc,chisquares)
+	c = TCanvas()
+	c.cd()
+	graph.Draw("ALP")
 	raw_input()
 	c.Close()
 
@@ -177,7 +200,17 @@ def Get_xs(dataTree,mcTree,variable,cut):
 	corr = 0.9
 	xs = n_obs / eff / lumi / corr
 	return xs
+
+def get_Correlation_plot (tree,cut):
+	from ROOT import TCanvas,TCut
+	cutt = TCut(cut)
+	c = TCanvas()
+	c.cd()
 	
+	tree.Draw("el_et:mwt",cutt,"colz",0,300)
+	raw_input()
+	c.Close()
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -203,4 +236,8 @@ if (__name__ == "__main__"):
 	#~ for variable in opts.plots:
 		#~ compareDataMC( mcTree, dataTree, variable, opts.cut)
 		#~ drawTau(mcTree,dataTree,variable,opts.cut,100)
-	print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	xs = Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	print "The Crosssection is :%e pb"%xs
+	
+	#~ get_Colorfactor(xs,err_xs)
+	get_Correlation_plot(dataTree,opts.cut)
