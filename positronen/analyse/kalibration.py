@@ -79,14 +79,13 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak 
 	reg.canvas.Close()
 	return reg.func
 
-def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, nbins = 200, channelShift = 4720.6 ):
+def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6 ):
 	'''
 	returns kalibrated hist from TKA file
 	filename: filename of TKA file
 	func: linear fit function for calibration channel vs. time
 	xmin: minimal time of histogram, cant get larger than default range
 	xmax: maximal time of histogram
-	nbins: number of bins
 	channelShift: #channels to shift cobalt peak to 0
 
 	returns: histogram
@@ -104,11 +103,14 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, nbins = 200, channelS
 	if xmax > xmax_orig:
 		xmax = xmax_orig
 
-	hist.Rebin( a.GetNbins() / nbins)
+	# BinWidth is chosen that error of calibration negletiable
+	from math import sqrt
+	delta_t = sqrt( func.GetParError(0)**2 + func.GetParError(1)**2 * a.GetNbins()**2)
+	hist.Rebin( int( delta_t / a.GetBinWidth(1) ) )
 	a.SetRangeUser( xmin, xmax )
 
 	return hist
 
+# example how to call function
 #func = kalibration( )
 #hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )
-
