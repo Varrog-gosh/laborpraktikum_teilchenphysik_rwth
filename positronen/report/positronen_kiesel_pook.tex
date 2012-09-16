@@ -29,15 +29,25 @@
 \section{Ziel des Versuches}
 Ziel des Versuches ist der Aufbau und die Inbetriebnahme einer Messstation,
 die in der Lage ist die Lebensdauer von Positronen in Festkörpern in der
-Größenordnung von $\si{ps}$ zu messen.
+Größenordnung von $\SI{100}{ps}$ zu messen.
 
-Hierzu wird $^{22}$Na verwendet, welches beim Zerfall in $^{22}$Ne
-zuerst ein γ-Quant der Energie $1.28\si{MeV}$ abgibt und dann ein Positron emittiert.
+Da die Annihilationswahrscheinlichkeit von der Energie abhängig ist,
+müssen die Positronen thermalisiert werden.
+Dies dauert bei Aluminium wenige $\si{ps}$.
+In Isolatoren oder amorphen Stoffen dauert die Abbremszeit sehr viel länger,
+sodass sich das Positron mit einem Elektron des Festkörpers zu einem Positronium verbinden können,
+wenn die Affinitäten von Elektron und Positron kleiner
+als die Affinität von Positronium und dessen Bindungsenergie ist.
+Hier gibt es zwei Möglichkeiten: Parapositronium mit entgegengesetztem Spin und Orthopositronium mit gleichgerichtetem Spin.
+Orthopositronium hat eine längere Lebensdauer, weil es nur in drei Photonen zerfallen kann, was unwahrscheinlicher als der Zerfall in zwei Photonen ist.
+Durch Elektronenaustausch wandelt es sich oft in Parapositronium um, welches durch den Zerfall in zwei Photonen eine kürzere Lebenszeit hat.
+
+Als Positronenquelle wird in diesem Versuch $^{22}$Na verwendet, welches beim Zerfall in $^{22}$Ne
+zuerst ein γ-Quant der Energie $\SI{1.28}{MeV}$ abgibt und dann ein Positron emittiert.
 Nach einer vom Festkörper abhängigen Zeit annihiliert das Positron unter Aussendung
-von 2 bis 3 γ-Quanten mit einer Energie von $0.511\si{keV}$.
+von zwei bis drei γ-Quanten mit einer Energie von $\SI{511}{keV}$.
 Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs und dem
 γ aus der Annihilation kann die Lebensdauer des Positrons bestimmt werden.
-
 
 
 \section{Aufbau und Durchführung}
@@ -45,19 +55,37 @@ Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs u
 %	Constant Fraction Discriminator liefert logisches out bei BLD Ausgang
 %	Die Delay Einheit ändert die polarität des Signal, wenn gewünscht.
 %	Der Multi Channel Analyzer nimmt nur positive Signal ohne Offset an.
+
+Der Detektor, zusehen in Abbildung \ref{fig:quelle},  besteht aus zwei zylindrischen Szintiallatonsdetektoren,
+ welche in einem Gehäuse mit einem Photomultiplier verbaut sind.
+Die radioaktiven Proben werden zwischen beiden Szintillatoren platziert.
+Die Photomultiplier werden mit einer Spannung von $\SI{2}{kV}$ betrieben.
+Von beiden Photomultipliern wird sowohl das Anodensignal als auch das Dynodensignal abgegriffen
+und für das Messen und Triggern der Zeitabstandsmessung genutzt.
+Hierbei liefert jeweils ein Photomultiplier das Start und der andere das Stoppsignal.
+Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
+
 \begin{figure}[htb]
 		\centering
-		\includegraphics[width=1.0\textwidth]{../pictures/Schaltplan_custom.pdf}
+		\includegraphics[width=0.5\textwidth]{quelle2.jpg}
+		\caption{Die Scintilatoren mit Photomultiplier und Quelle}
+		\label{fig:quelle}
+\end{figure}
+
+\begin{figure}[htb]
+		\centering
+		\includegraphics[width=.5\textwidth]{aufbau.jpg}
+		\caption{Aufbau}
+		\label{fig:aufbau}
+\end{figure}
+
+\begin{figure}[htb]
+		\centering
+		\includegraphics[width=1.0\textwidth]{Schaltplan_custom.pdf}
 		\caption{Schaltplan}
 		\label{fig:schaltplan}
 \end{figure}
-Der Detektor besteht aus zwei zylindrischen Szintiallatonsdetektoren,
- welche in einem Gehäuse mit einem Photomultiplier verbaut sind. Die radioaktiven Proben werden zwischen beiden Szintillatoren
-platziert. Die Photomultiplier werden mit einer Spannung von $2\si{kV}$ betrieben. Von beiden Photomultipliern
-wird sowohl das Anodensignal als auch das Dynodensignal abgegriffen und für das Messen und Triggern der 
-Zeitabstandsmessung genutzt. Hierbei liefert jeweils ein Photomultiplier das Start und der andere 
-das Stoppsignal.
-Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
+
  (siehe Abbildung \ref{fig:Schaltplan} für eine Blockdarstellung des gesmaten Schaltplan): \\
 \begin{itemize}
 	\item
@@ -143,8 +171,8 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 \subsection{Globaler Fit}
 Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
 \begin{align*}
-	F(t) &= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) \frac{2}{\sqrt{π}}\inf_{\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)}^\infty dγ e^{-γ^2}
-	= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) Erfc\left(\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)\right)
+	F(t) &= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) \frac{2}{\sqrt{π}}\int_{\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)}^\infty dγ e^{-γ^2}\\
+	&= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) Erfc\left(\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)\right)
 \end{align*}
 \section{Diskussion}
 
