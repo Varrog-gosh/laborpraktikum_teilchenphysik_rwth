@@ -7,7 +7,7 @@ from ROOT import *
 from ROOT import TSpectrum
 from Styles import tdrStyle
 from array import array
-from kalibration import bufferToSortedList
+from kalibration import *
 #from kalibration import fu
 #from kalibration import tkaToTimeHist
 tdrStyle()
@@ -16,8 +16,13 @@ from sys import exit
 #tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
 
 
-def normedHist( name, color ):
-	hist = tkaToHist( name, 2000, 16000 )
+def normedHist( name, color ,isTime = False):
+	
+	if isTime:
+		func = kalibration( )
+		hist = tkaToTimeHist(name, func , -2, 8 )
+	else:
+		hist = tkaToHist( name, 2000, 16000,False )
 	hist.Sumw2()
 	hist.Rebin(50)
 	hist.Scale(1./hist.Integral())
@@ -25,17 +30,27 @@ def normedHist( name, color ):
 	return hist
 
 def timenormedHist( name, color ):
-	hist = tkaToHist( name, 2000, 16000 )
+	hist,time = tkaToHist( name, 2000, 16000,True )
 	hist.Sumw2()
 	hist.Rebin(50)
-	hist.Scale(1./hist.Integral())
+	hist.Scale(1./time)
 	hist.SetLineColor( color )
 	return hist
+	
+
 
 alu = normedHist( 'data/aluminium.TKA' , 2)
 poly = normedHist( 'data/poly.TKA' , 4)
+
+alutime = timenormedHist( 'data/aluminium.TKA' , 2)
+polytime = timenormedHist( 'data/poly.TKA' , 4)
+
 co = normedHist( 'data/co60.TKA', 1 )
 co2 = normedHist( 'data/co60_2.TKA', 12 )
+
+cotime = timenormedHist( 'data/co60.TKA', 1 )
+co2time = timenormedHist( 'data/co60_2.TKA', 12 )
+
 
 def histToArray( histo ):
 	'''
@@ -78,10 +93,12 @@ def calculateDeconvolution( signal, background ):
 	# boosting factor = 1: not needed
 	s.Deconvolution(source, response, len( source ), 1, 1, 0 )
 	
-	signal.SetLineColor(2)
+	signal.SetMarkerColor(kMagenta-3)
+	signal.SetLineColor(1)
+	signal.GetXaxis().SetRangeUser(2500,14000)
 	signal.Draw("P")
 
-	background.SetMarkerColor(3)
+	background.SetMarkerColor(kGreen+3)
 	background.SetMarkerStyle(34)
 	background.Draw("sameP")
 
@@ -162,35 +179,7 @@ def substractHist(spec,back):
 		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
 	return sig
 
-def getBackground ():
-	
-	
-	spec = tkaToHist('data/co60.TKA',20,350)
-	nbins = array('i')
-	nbins.append( spec.GetNbinsX() )
-	xmin  = 20;
-	xmax  = 200;
-	print "nbins[0] %i"%nbins[0]
-	source = numpy.zeros(nbins[0],dtype=float)
-	d = spec.Clone()
-	#~ d =  TH1F("d","",nbins[0],xmin,xmax);
-   #TFile *f = new TFile("spectra\\TSpectrum.root");
-	#~ spec.Draw("L")
-	
-   #back->Draw("L");
-	s =TSpectrum();
-	for i in range(0,nbins[0]):
-		source[i] = spec.GetBinContent(i + 1)
-		print "%i %d"%(i,source[i])
-	#~ s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
-	#~ for i in range(nbins[0]):
-		#~ d.SetBinContent(i + 1,source[i])
-	d = s.Background(spec,5)
-	d.SetLineColor(kRed)
-	#~ d.Draw("sameL")
-	sig = substractHist(spec,d)
-	plotDataAndBackground(spec,sig)
-	
+
 def safeHist (hist):
 	outputfile=TFile("spec.root","RECREATE")
 	hist.Write()
@@ -203,35 +192,6 @@ def substractHist(spec,back):
 		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
 	return sig
 
-def getBackground ():
-	
-	
-	spec = tkaToHist('data/co60.TKA',20,350)
-	nbins = array('i')
-	nbins.append( spec.GetNbinsX() )
-	xmin  = 20;
-	xmax  = 200;
-	print "nbins[0] %i"%nbins[0]
-	source = numpy.zeros(nbins[0],dtype=float)
-	d = spec.Clone()
-	#~ d =  TH1F("d","",nbins[0],xmin,xmax);
-   #TFile *f = new TFile("spectra\\TSpectrum.root");
-	#~ spec.Draw("L")
-	
-   #back->Draw("L");
-	s =TSpectrum();
-	for i in range(0,nbins[0]):
-		source[i] = spec.GetBinContent(i + 1)
-		print "%i %d"%(i,source[i])
-	#~ s.Background(source,nbins[0],6,'kBackDecreasingWindow','kBackOrder2','kFALSE','kBackSmoothing3','kFALSE')
-	#~ for i in range(nbins[0]):
-		#~ d.SetBinContent(i + 1,source[i])
-	d = s.Background(spec,5)
-	d.SetLineColor(kRed)
-	#~ d.Draw("sameL")
-	sig = substractHist(spec,d)
-	plotDataAndBackground(spec,sig)
-	
 def safeHist (hist):
 	outputfile=TFile("spec.root","RECREATE")
 	hist.Write()
@@ -262,7 +222,7 @@ def plotDataAndBackground( signal, background):
 
 def compareSignalHistos( alu, poly ):
 	from ROOT import TCanvas, TLegend
-	can = TCanvas()
+	can = TCanvas("can1")
 	can.cd()
 	can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
@@ -279,7 +239,9 @@ def compareSignalHistos( alu, poly ):
 	#print alu.KolmogorovTest( poly, "ND" )
 	print alu.Chi2Test( poly , 'p')
 	#print poly.KolmogorovTest( alu )
+	raw_input()
 	can.SaveAs('compareHistos.pdf')
+	can.Close()
 
 def compareCo( co1, co2 ):
 	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
@@ -371,8 +333,8 @@ def compareCo( co1, co2 ):
 
 
 # execute programs
-#~ FitTau(calculateDeconvolution( alu, co ))
+FitTau(calculateDeconvolution( alu, co ))
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
-compareCo( co, co2 )
-#~ compareSignalHistos( alu, poly )
+#~ compareCo( cotime, co2time )
+#~ compareSignalHistos( alutime, polytime )
