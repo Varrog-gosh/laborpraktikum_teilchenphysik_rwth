@@ -53,7 +53,7 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.Close()
 	return valError
 
-def kalibration (filename = 'data/kali_montag.TKA', beginning = 4000, firstpeak = 0, minKanal = 100, maxKanal = 0):
+def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak = 0, minKanal = 100, maxKanal = 0):
 	'''
 	calibrates spetrum with peaks
 	filename: filename for calibration
@@ -79,13 +79,14 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4000, firstpeak 
 	reg.canvas.Close()
 	return reg.func
 
-def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6 ):
+def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, nbins = 200, channelShift = 4720.6 ):
 	'''
 	returns kalibrated hist from TKA file
 	filename: filename of TKA file
 	func: linear fit function for calibration channel vs. time
 	xmin: minimal time of histogram, cant get larger than default range
 	xmax: maximal time of histogram
+	nbins: number of bins
 	channelShift: #channels to shift cobalt peak to 0
 
 	returns: histogram
@@ -102,19 +103,12 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 		xmin = xmin_orig
 	if xmax > xmax_orig:
 		xmax = xmax_orig
-	a.SetRangeUser( xmin, xmax )
 
-	c1 = TCanvas('inmethod')
-	c1.cd()
-	hist.Draw()
-	c1.SaveAs('timehist_function.pdf')
+	hist.Rebin( a.GetNbins() / nbins)
+	a.SetRangeUser( xmin, xmax )
 
 	return hist
 
-func = kalibration( beginning = 4200 )
-c1 = TCanvas('outoffunction')
-c1.cd()
-hist = tkaToTimeHist( 'data/aluminium.TKA', func , 100, -2, 8)
-hist.Draw()
-c1.SaveAs('timehist.pdf')
+#func = kalibration( )
+#hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )
 
