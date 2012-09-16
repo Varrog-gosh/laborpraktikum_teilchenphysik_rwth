@@ -65,7 +65,7 @@ def kalibration (filename = 'data/kali_montag.TKA', firstpeak = 0, minKanal = 10
 	reg.canvas.Close()
 	return reg.func
 
-def tkaToTimeHist( filename , func, timeshift = 4720.6 ):
+def tkaToTimeHist( filename , func, timeshift = 0): #4720.6 ):
 	import tools
 	can = TCanvas()
 	can.cd()
@@ -82,7 +82,7 @@ def tkaToTimeHist( filename , func, timeshift = 4720.6 ):
 func = kalibration()
 c1 = TCanvas()
 c1.cd()
-hist = tkaToTimeHist( 'data/co60.TKA', func )
+hist = tkaToTimeHist( 'data/co60_2.TKA', func )
 hist.Draw()
 c1.SaveAs('timehist.pdf')
 

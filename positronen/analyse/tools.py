@@ -175,6 +175,8 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 
 	from ROOT import TH1F
 
+	# the first column contains the numbers, the second the \r
+	# first two numbers are length and time and are ciscarded
 	data = readFile( filename )[0][2:-1]
 	length = len( data )
 
