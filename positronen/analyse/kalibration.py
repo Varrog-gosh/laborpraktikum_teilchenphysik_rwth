@@ -49,9 +49,9 @@ def peakToArray( filename, minKanal , maxKanal ):
 		else:
 			x.append( fit.GetParameter(1) )
 			ex.append( fit.GetParameter(2) ) # use σ for fit, and not error or mean, is this correct?
-	valError = [x, ex]
 	can.Close()
-	return valError
+	return [x, ex]
+
 
 def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak = 0, minKanal = 100, maxKanal = 0):
 	'''
