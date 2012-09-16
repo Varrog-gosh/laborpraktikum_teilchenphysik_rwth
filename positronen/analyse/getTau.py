@@ -25,13 +25,14 @@ def globalFit( signal, background ):
 	sigma = background.GetFunction('gaus').GetParameter(2)
 
 	from ROOT import TF1
-	# par : [tau, mu, sigma]
-	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 2000, 16000 )
+	# par : [tau, mu, sigma,const]
+	fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 2000, 16000 )
+	fit2 = TF1("fit","myfit(0)+myfit(4)",2000,4000)
 	fit.FixParameter( 1, mean)
 	fit.FixParameter( 2, sigma )
 	fit.SetParameter(0, 1500)
 	signal.Draw()
-	fit.Draw("same")
+	#~ fit.Draw("same")
 	signal.Fit('fit')
 	raw_input()
 
@@ -148,51 +149,66 @@ def calculateDeconvolution( signal, background ):
 	return d
 	
 
-def FitTau(hist,isTime = False):
+def FitTau(hist,background,isTime = False):
 	from ROOT import TH1D, TF1,TCanvas
 
-	can = TCanvas()
+	# not working now
+	background.Fit('gaus') # fit doesnot seem to care about normalization
+	# perhaps comment SetNormFactor()
+	mean = background.GetFunction('gaus').GetParameter(1)
+	sigma = background.GetFunction('gaus').GetParameter(2)
+
+	can = TCanvas("canvastau")
 	can.cd()
-	can.SetBatch()
+	#~ can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	can.SetLogy()
 	if isTime:
-		fitRanges = [ (0.5, 2.5),(4, 6.5)]
+		fitRanges = [ (-2, 6.5),(3, 6.5)]
 	else:
 		fitRanges = [ (5000, 6500),(8000, 11000)]
 	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
 	if isTime:
-		hist.SetAxisRange(0,8,"X")
+		hist.SetAxisRange(-2,8,"X")
 	else:	
 		hist.SetAxisRange(4780,14000,"X")
 	hist.SetLineColor(4)
+	hist.SetMaximum(1)
 	hist.Draw("histC")
-
+	fit.SetLineWidth(3)
+	fit.SetLineColor(6)
 	hist.Fit("fit","r")
+	# par : [tau, mu, sigma,const]
+	fit2 = TF1('fit2', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) ) + [5]/(2*[4]) * exp(2/[4] * ( [1] - x + [2]**2/[4] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[4] - x ) )' ,fitRanges[0][0],fitRanges[0][1] )
+	#~ fit2 = TF1('fit2', 'expo(0)+expo(2)',fitRanges[0][0], fitRanges[0][1] )
 	
-	fit2 = TF1('fit2', 'expo(0)+expo(2)',fitRanges[0][0], fitRanges[0][1] )
-	fit2.FixParameter(0,fit.GetParameter(0))
-	fit2.FixParameter(1,fit.GetParameter(1))
+	fit2.FixParameter(0,-1./fit.GetParameter(1))
+	fit2.FixParameter(1,mean)
+	fit2.FixParameter(2,sigma)
+	fit2.FixParameter(3,fit.GetParameter(0))
+	fit2.SetParameter(4,1.5)
 	hist.Fit("fit2","r+")
 	hist.SetStats(0)
 	
-	leg = TLegend(0.55, 0.5, .88,.9)
+	leg = TLegend(0.5, 0.5, .88,1.0,"NDC")
 	leg.SetFillColor(0)
 	leg.SetLineWidth(0)
 	leg.SetTextSize(0.03)
-	leg.AddEntry( fit, "Fit 1", "l")
-	leg.AddEntry(0,"Function : #frac{C_{2}}{2#tau_{s}} e^{#frac{2}{#tau}(#mu-t+)}","")
-	leg.AddEntry( fit2, "Fit 2", "l")
-	leg.AddEntry(0,"Function : C_{2} e^{frac{t}{-#tau_{2}}}","")
+	leg.AddEntry( fit2, "Fit 1", "l")
+	leg.AddEntry(0,"X(t|c_{i},#tau_{i}) = #frac{C_{i}}{2#tau_{i}} e^{#frac{2}{#tau}(#mu-t+#frac{#sigma^{2}}{#tau_{i}})} Erfc(#frac{1}{#sqrt{2}#sigma}(#mu-#frac{2#sigma^{2}}{#tau_{i}}-t))","")
+	leg.AddEntry(0,"Function : X(t|c_{1},#tau_{1})+X(t|c_{2},#tau_{2})+","")
+	leg.AddEntry( fit, "Fit 2", "l")
+	leg.AddEntry(0,"Function : C_{2} e^{#frac{t}{-#tau_{2}}}","")
 	leg.AddEntry(0,"C_{2}: %.4f #pm %.4f"%(fit.GetParameter(0),fit	.GetParError(0)),"")
 	leg.AddEntry(0,"#tau_{2}: %.4f #pm %.4f"%(1/fit.GetParameter(1),fit.GetParError(1)),"")
+	leg.AddEntry(0,"#chi^{2}/ NDF: %.4f "%(1/fit.GetChisquare()/fit.GetNDF()),"")
 	#~ 
 	leg.Draw()
 	can.Update()
 
 	
 	can.SaveAs("taufit.pdf")
-	#~ raw_input()
+	raw_input()
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	'''
@@ -283,14 +299,16 @@ def compareSignalHistos( alu, poly ):
 	can.SaveAs('compareHistos.pdf')
 	can.Close()
 
-def compareCo( co1, co2 ):
+def compareCo( co1, co2 ,isTime = False):
 	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
 	can = TCanvas("canvas")
 	can.cd()
-	can.SetBatch()
+	#~ can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	#~ can.SetLogy()
-	co1.Draw()
+	co1.SetFillStyle(3004)
+	co1.SetFillColor(kRed)
+	co1.Draw("HISTLF")
 
 	bgxmin = 6000
 	bgxmax = 14000
@@ -301,14 +319,21 @@ def compareCo( co1, co2 ):
 	leg.AddEntry( alu, "^{60}Co first", "l")
 	leg.AddEntry( poly, "^{60}Co last", "l")
 	leg.Draw()
-	
+	raw_input()
 	s = TSpectrum( 1 )
 	npeaks = s.Search( co1, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
-
-	fit1 = TF1('fit1', 'gaus', peaks[0] - 1500	, peaks[0] + 500)
-	co1.Fit("fit1","R")
-
+	
+	if isTime:
+		peakminus = 1.5
+		peakplus = 0.5
+	else:
+		peakminus = 1500
+		peakplus = 500
+	print "npeaks %d"%len(peaks)
+	fit1 = TF1('fit1', 'gaus', peaks[0]-peakminus, peaks[0]+peakplus)
+	co1.Fit("fit1","R0")
+	fit1.Draw("same")
 	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
 	xmin = 0.55
 	xmax = 0.8
@@ -324,12 +349,15 @@ def compareCo( co1, co2 ):
 	p1.SetY2NDC(ymax)
 	p1.SetFillColor(0)
 	p1.SetTextSize(0.03)
-	
-	co2.Draw("same")
+
+
+	co2.SetFillStyle(3003)
+	co2.SetFillColor(kBlue-6)
+	co2.Draw("sameHIST")
 
 	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
 	peaks = bufferToSortedList(npeaks,s.GetPositionX())
-	fit2 = TF1('fit2', 'gaus', peaks[0] - 1500, peaks[0] + 500)
+	fit2 = TF1('fit2', 'gaus', peaks[0] - peakminus, peaks[0] + peakplus)
 	co2.Fit("fit2","R0+")
 	bg_integral2 = co2.Integral(co2.FindBin(bgxmin),co2.FindBin(bgxmax))
 	
@@ -369,9 +397,10 @@ def compareCo( co1, co2 ):
 
 
 # execute programs
-FitTau(alutime,True)
+#~ FitTau(alutime,cotime,True)
 #~ FitTau(calculateDeconvolution( alutime, cotime ))
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
-compareCo( cotime, co2time )
+#~ compareCo( cotime, co2time,True )
+compareCo( co, co2 )
 #~ compareSignalHistos( alutime, polytime )
