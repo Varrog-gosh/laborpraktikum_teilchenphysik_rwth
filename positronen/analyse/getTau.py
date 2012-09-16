@@ -23,8 +23,8 @@ def normedHist( name, color ,isTime = False):
 		hist = tkaToTimeHist(name, func , -2, 8 )
 	else:
 		hist = tkaToHist( name, 2000, 16000,False )
-	hist.Sumw2()
-	hist.Rebin(50)
+		hist.Sumw2()
+		hist.Rebin(50)
 	hist.Scale(1./hist.Integral())
 	hist.SetLineColor( color )
 	return hist
@@ -42,14 +42,14 @@ def timenormedHist( name, color ):
 alu = normedHist( 'data/aluminium.TKA' , 2)
 poly = normedHist( 'data/poly.TKA' , 4)
 
-alutime = timenormedHist( 'data/aluminium.TKA' , 2)
-polytime = timenormedHist( 'data/poly.TKA' , 4)
+alutime = normedHist( 'data/aluminium.TKA' , 2,True)
+polytime = normedHist( 'data/poly.TKA' , 4,True)
 
 co = normedHist( 'data/co60.TKA', 1 )
-co2 = normedHist( 'data/co60_2.TKA', 12 )
+co2 = normedHist( 'data/co60_2.TKA', 12 ,)
 
-cotime = timenormedHist( 'data/co60.TKA', 1 )
-co2time = timenormedHist( 'data/co60_2.TKA', 12 )
+cotime = normedHist( 'data/co60.TKA', 1,True )
+co2time = normedHist( 'data/co60_2.TKA', 12 ,True)
 
 
 def histToArray( histo ):
@@ -89,26 +89,29 @@ def calculateDeconvolution( signal, background ):
 	s = TSpectrum();
 	# parameters for deconvolution:
 	# iterations = 1: more iterations -> stange peaks and more noice
-	# rebetitions =  1: same as above
+	# repetitions =  1: same as above
 	# boosting factor = 1: not needed
-	s.Deconvolution(source, response, len( source ), 1, 1, 0 )
+	s.Deconvolution(source, response, len( source ), 2, 1, 0 )
 	
 	signal.SetMarkerColor(kMagenta-3)
 	signal.SetLineColor(1)
-	signal.GetXaxis().SetRangeUser(2500,14000)
+	#~ signal.GetXaxis().SetRangeUser(2500,14000)
+	signal.SetMinimum(1e-6)
 	signal.Draw("P")
+	
 
 	background.SetMarkerColor(kGreen+3)
 	background.SetMarkerStyle(34)
 	background.Draw("sameP")
 
-	d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 2000,16000 )
+	#~ d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 2000,16000 )
+	d = signal.Clone()
 	d.SetLineColor(4)
 	
 	for i in range( len(source) ):
 		d.SetBinContent(i + 1,source[i])
 	#safeHist( d, 'deconvolution100.root' )
-	d.Draw("sameL")
+	d.Draw("sameLhist")
 	
 	leg = TLegend(0.6, 0.7, .95,.95)
 	leg.SetFillColor(0)
@@ -124,7 +127,7 @@ def calculateDeconvolution( signal, background ):
 	return d
 	
 
-def FitTau(hist):
+def FitTau(hist,isTime = False):
 	from ROOT import TH1D, TF1,TCanvas
 
 	can = TCanvas()
@@ -132,17 +135,17 @@ def FitTau(hist):
 	can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	can.SetLogy()
-
-	fitRanges = [ (5000, 6500),(8000, 11000)]
-	#~ for fitRange in fitRanges:
-		#~ fit = TF1('fit', 'expo',fitRange[0], fitRange[1] )
-		#~ d.Fit('fit', 'r')
-		#~ print -1. / fit.GetParameter(1)
+	if isTime:
+		fitRanges = [ (0.5, 2.5),(4, 6.5)]
+	else:
+		fitRanges = [ (5000, 6500),(8000, 11000)]
 	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
-	#~ for i in range(0,300):
-		#~ print "%f %f  %i"%(hist.GetBinContent(i), hist.GetBinCenter(i),i)
-	hist.SetAxisRange(4780,14000,"X")
-	hist.Draw("P")
+	if isTime:
+		hist.SetAxisRange(0,8,"X")
+	else:	
+		hist.SetAxisRange(4780,14000,"X")
+	hist.SetLineColor(4)
+	hist.Draw("histC")
 
 	hist.Fit("fit","r")
 	
@@ -150,6 +153,22 @@ def FitTau(hist):
 	fit2.FixParameter(0,fit.GetParameter(0))
 	fit2.FixParameter(1,fit.GetParameter(1))
 	hist.Fit("fit2","r+")
+	hist.SetStats(0)
+	
+	leg = TLegend(0.55, 0.5, .88,.9)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.SetTextSize(0.03)
+	leg.AddEntry( fit, "Fit 1", "l")
+	leg.AddEntry(0,"Function : #frac{C_{2}}{2#tau_{s}} e^{#frac{2}{#tau}(#mu-t+)}","")
+	leg.AddEntry( fit2, "Fit 2", "l")
+	leg.AddEntry(0,"Function : C_{2} e^{frac{t}{-#tau_{2}}}","")
+	leg.AddEntry(0,"C_{2}: %.4f #pm %.4f"%(fit.GetParameter(0),fit	.GetParError(0)),"")
+	leg.AddEntry(0,"#tau_{2}: %.4f #pm %.4f"%(1/fit.GetParameter(1),fit.GetParError(1)),"")
+	#~ 
+	leg.Draw()
+	can.Update()
+
 	
 	can.SaveAs("taufit.pdf")
 	#~ raw_input()
@@ -322,18 +341,14 @@ def compareCo( co1, co2 ):
 	print "Co2 %f events %f Events / channel"%(bg_integral2,bg2)
 	print "Mean %f Events / channel"%(float((bg1+bg2)/2))
 	can.Close()
-	#fit.FixParameter( 2, sigma )
-	#fit.SetParameter(0, 1500)
-	#signal.Draw()
-	#fit.Draw("same")
-	#signal.Fit('fit')
 	raw_input()
 
 #globalFit( alu, co2 )
 
 
 # execute programs
-FitTau(calculateDeconvolution( alu, co ))
+FitTau(alutime,True)
+#~ FitTau(calculateDeconvolution( alutime, cotime ))
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
 #~ compareCo( cotime, co2time )
