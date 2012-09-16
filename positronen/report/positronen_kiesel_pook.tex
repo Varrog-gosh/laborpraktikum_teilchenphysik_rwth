@@ -61,7 +61,7 @@ Der Detektor, zu sehen in Abbildung \ref{fig:quelle},  besteht aus zwei zylindri
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=0.5\textwidth]{quelle2.jpg}
-		\caption{Die Scintilatoren mit Photomultiplier und Quelle}
+		\caption{Scintilatoren mit Photomultiplier und Quelle}
 		\label{fig:quelle}
 \end{figure}
 
@@ -84,7 +84,7 @@ Der Aufbau ist in Abbildung \ref{fig:aufbau} zu sehen.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=.5\textwidth]{aufbau.jpg}
-		\caption{Aufbau}
+		\caption{Photo der elektronischen Verschaltung}
 		\label{fig:aufbau}
 \end{figure}
 
@@ -95,41 +95,51 @@ In der unteren Reihe umgeben zwei Differential Constant Fraction Discriminatoren
 Rechts daneben befindet sich ein Time Analyser\footnote{Fa. Canberra, Modell 2043}, zwei Delaystufen\footnote{DFa. Canberra, Modell 1457} und zuletzt ein Vielkanalanalysator\footnote{Multiport II, Fa. Canberra} der auf der Rückseite mit einem Computer und dem Gate verbunden ist.
 
 Schematisch ist der Aufbau in Abbildung \ref{fig:schaltplan} zu sehen.
-
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=1.0\textwidth]{Schaltplan_custom.pdf}
-		\caption{Schaltplan}
+		\caption{Schematischer Schaltplan des Aufbaus des Versuchs.
+		An den Seiten sind die Signalformen (logisch/analog) angegeben.}
 		\label{fig:schaltplan}
 \end{figure}
 
+Wie schon oben genannt und wie auch in der Abbildung zu sehen, wird der Schaltkreis in zwei Kreise unterteilt:
 \begin{itemize}
 	\item
-	Ein "langsamer Kreis" prüft ob die gemessenen Photonen sich im richtigen Energieintervall 
-	befinden und erzeugt abhängig davon ein Triggersignal.
-	\item Ein "schneller Kreis" bestimmt die Zeitdifferenz und gibt dieses in Form eines Pulses an einen
-	Vielkananlanalysator weiter, sofern ein Triggersignal vom "langsamen Kreis" besteht.	
+	Der langsame Kreis prüft ob sich die gemessenen Photonen sich im richtigen Energieintervall 
+	befinden und erzeugt abhängig davon ein Triggersignal, das das Gate des Vielkanalanalysators öffnet.
+	\item
+		Der schnelle Kreis bestimmt die Zeitdifferenz und gibt dieses in Form eines Pulses an den
+	Vielkananlanalysator weiter.
 \end{itemize}
-\subsection*{langsamer Kreis}
-	Für den langsamen Kreis wird das Dynodensiganl der Photomultiplier genutzt und in jeweils einem 
-	Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet, dieser verstärkt das Signal zunächst (es wird
-	ein Gain von 300 eingestellt). 
-	% Erklären was beim Differenzieren passiert.
-	Das Dynodensignal besitzt eine ausreichende linearität zwischen Energie und Pulshöhe und es ist möglich 
-	zunächst ein Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
-	Anschliessend werden die Schwellwerte im Einzeldiskriminator so eingestellt, dass nur Teilchen mit einer höheren
-	Energie als der rechten Flanke des Anhilationspeak als Startsignal (Fenster 2) genutzt wird und Teilchen
-	mit einer niedrigeren Energie als Stoppsignal. Zusätzlich wird für das Stoppsignal eine untere Grenze bei ???
-	eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultiplier
-	zu reduzieren. Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
-	wird nun ein Ausgang der Einzelkanaldiskriminatoren genutzt, der logisches Ausgangssignal liefert.
-	Über eine integrierte Koinzidenzschaltung der SCA verbunden. Wenn nun Signale von beiden SCA innerhalb des Koinzidenzzeitfenster
-	gemessen werden, wird ein logisches Signal an einen Gategenerator weiergeleitet. Der Gategenenerator liefert ein Ausgangssignal, dass
-	am Vielkanalanlysator das Gate zur Datennahme öffnet.
+\subsection*{Langsamer Kreis}
+Für den langsamen Kreis wird das Dynodensignal der Photomultiplier genutzt und in jeweils einem 
+Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet,
+dieser verstärkt das Signal zunächst (es wird ein Gain von 300 eingestellt).
+% Erklären was beim Differenzieren passiert.
+Das Dynodensignal besitzt eine ausreichende Linearität zwischen Energie und Pulshöhe
+und es ist möglich zunächst ein Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
+Anschliessend werden die Schwellwerte im Einzeldiskriminator so eingestellt,
+dass nur Teilchen mit einer höheren Energie als der rechten Flanke des Anhilationspeak als
+Startsignal (Fenster 2\ref{auswahl}) genutzt wird
+und Teilchen mit einer niedrigeren Energie als Stoppsignal.
+Zusätzlich wird für das Stoppsignal eine untere Grenze bei ???
+eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultiplier
+zu reduzieren. Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
+wird nun ein Ausgang der Einzelkanaldiskriminatoren genutzt, der logisches Ausgangssignal liefert.
+Über eine integrierte Koinzidenzschaltung der SCA verbunden. Wenn nun Signale von beiden SCA innerhalb des Koinzidenzzeitfenster
+gemessen werden, wird ein logisches Signal an einen Gategenerator weiergeleitet. Der Gategenenerator liefert ein Ausgangssignal, dass
+am Vielkanalanlysator das Gate zur Datennahme öffnet.
 \begin{figure}
 		\includegraphics[width=0.8\textwidth]{../analyse/auswahl.pdf}
-		\caption{Energiespektrum von $^{22}$Na. Gemessen aus dem Dynodensignal und vorverstärkt,geglättet im Einzelkanaldiskrimnator}
-		\label{fig:schaltplan}
+		\caption{Das Energiespektrum von $^{22}$Na aus dem verstärktem und vorgeglätteten
+			Dynodensignal.
+			Man sieht von rechts nach links bei Kanal 10000 den Peak des $\SI{1.28}{MeV}$ Photons,
+			danach das Comptonkontinuum und bei etwa Kanal 3500 den Annihilationspeak.
+			Am linken Rand (Kanal kleiner als 260) sieht man Rauschen, das ignoriert wird.
+			Für ein Startsignal (Fenster 2) muss das ein größerer Kanal als 3630±100 angesprochen werden, 
+			für ein Stopsignal ( Fenster 1) reicht ein Kanal größer als 260±10.}
+		\label{fig:auswahl}
 \end{figure}
 
 
@@ -142,30 +152,36 @@ Schematisch ist der Aufbau in Abbildung \ref{fig:schaltplan} zu sehen.
 	anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und VKA geschaltet.
 	
 \section{Ergebnisse}
-	\subsection{Zeitkalibration}
-		Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
-		mit einem Pulsgenerator Pulse mit einer Amplitude von $3\si{V}$ und einer Pulsbreite von 10ns mit einer Frequenz von $1600\si{Hz}$ erzeugt.
-		Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude des erzeugten Puls denen aus dem Anodenausgang der Photomultiplier 
-		entsprechen. Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene 
-		CFD geleitet, die andere in eine Delayeinheit und dann in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
-		das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
-		dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu 
-		zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
-		Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
-		in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
-		durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $0.5\si{ns}$ Schritten von $0\si{ns}$ bis $12\si{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum 
-		ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitpunkte mit
-		dem Erwartungswert $\mu$ der angepassten Verteilung assoziiert und der Fehler auf diesen Wert als Breite des Peak $\sigma$ angenommen. Da es keine Möglichkeit gab 
-		(z.B. durch Vergleich mit einem weiteren Delay) die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
-		den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die Verzögerung zu $0.075\si{ns}$ abgeschätzt also 
-		15\% der Verzögerungsschrittweite von $0.5\si{ns}$. An die so gewonnenen Zeit-Kanal Wertepaare wird eine Funktion angepasst, mit der im folgenden 
-		Kanalnummern in Zeitabstände umgerechnet werden. 
-		
-		\begin{figure}
-		\includegraphics[width=0.8\textwidth]{../analyse/peaksToArray.pdf}
-		\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von $0.5\si{ns}$}
-		\label{fig:timepuls}
-		\end{figure}
+\subsection{Zeitkalibration}
+Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
+mit einem Pulsgenerator Pulse mit einer Amplitude von $3\si{V}$ und einer Pulsbreite von 10ns mit einer Frequenz von $1600\si{Hz}$ erzeugt.
+Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude des erzeugten Puls denen aus dem Anodenausgang der Photomultiplier 
+entsprechen. Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene 
+CFD geleitet, die andere in eine Delayeinheit und dann in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
+das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
+dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu 
+zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
+Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
+in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
+durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $0.5\si{ns}$ Schritten von $0\si{ns}$ bis $12\si{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum 
+ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitpunkte mit
+dem Erwartungswert $\mu$ der angepassten Verteilung assoziiert und der Fehler auf diesen Wert als Breite des Peak $\sigma$ angenommen. Da es keine Möglichkeit gab 
+(z.B. durch Vergleich mit einem weiteren Delay) die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
+den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die Verzögerung zu $0.075\si{ns}$ abgeschätzt also 
+15\% der Verzögerungsschrittweite von $0.5\si{ns}$. An die so gewonnenen Zeit-Kanal Wertepaare wird eine Funktion angepasst, mit der im folgenden 
+Kanalnummern in Zeitabstände umgerechnet werden. 
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
+	\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von $0.5\si{ns}$}
+	\label{fig:timepuls}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{../analyse/singlePeak.pdf}
+	\caption{Ein einzelner gaußförmiger Puls des Pulshöhenspektrum zur Zeitkalibration.}
+	\label{fig:timesinglepuls}
+\end{figure}
 \subsection{Zeitnullpunkt und Zeitstabilität}
 		\begin{figure}
 		\includegraphics[width=0.8\textwidth]{../analyse/compareCo.pdf}
