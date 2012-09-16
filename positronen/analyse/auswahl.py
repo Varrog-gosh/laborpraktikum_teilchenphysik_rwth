@@ -3,6 +3,7 @@
 from Styles import tdrStyle
 style = tdrStyle()
 from tools import *
+import ROOT
 
 def plotSpectrum():
 	'''
@@ -18,7 +19,7 @@ def plotSpectrum():
 	hist.SetMinimum(9)
 	hist.Draw()
 
-	grenzkanaele = [ 0, 3632] # richtige kanalnummer rausfinden
+	grenzkanaele = [ 260, 3630] # richtige kanalnummer rausfinden
 	lines = []
 	hist.Draw()
 	for grenzkanal in grenzkanaele:
