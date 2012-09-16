@@ -56,15 +56,8 @@ Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs u
 %	Die Delay Einheit ändert die polarität des Signal, wenn gewünscht.
 %	Der Multi Channel Analyzer nimmt nur positive Signal ohne Offset an.
 
-Der Detektor, zusehen in Abbildung \ref{fig:quelle},  besteht aus zwei zylindrischen Szintiallatonsdetektoren,
+Der Detektor, zu sehen in Abbildung \ref{fig:quelle},  besteht aus zwei zylindrischen Szintiallatonsdetektoren,
  welche in einem Gehäuse mit einem Photomultiplier verbaut sind.
-Die radioaktiven Proben werden zwischen beiden Szintillatoren platziert.
-Die Photomultiplier werden mit einer Spannung von $\SI{2}{kV}$ betrieben.
-Von beiden Photomultipliern wird sowohl das Anodensignal als auch das Dynodensignal abgegriffen
-und für das Messen und Triggern der Zeitabstandsmessung genutzt.
-Hierbei liefert jeweils ein Photomultiplier das Start und der andere das Stoppsignal.
-Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
-
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=0.5\textwidth]{quelle2.jpg}
@@ -72,12 +65,36 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 		\label{fig:quelle}
 \end{figure}
 
+Die radioaktiven Proben werden zwischen beiden Szintillatoren platziert.
+An der Katode des Photomultipliers wird  eine Spannung von von $\SI{-2}{kV}$ angelegt.
+Damit sind die Anodensignale noch nicht Übersättigt.
+Von beiden Photomultipliern wird sowohl das Anodensignal als auch das Dynodensignal, also das Signal an der letzten Dynode, abgegriffen.
+Das Dynodensignal ist ein leicht positives Signal, dessen Pulse aus stark schwankenden kleineren Pulsen besteht, trotzdem aber eine Höhe hat, die Energie abhängig ist.
+Das Signal wird für die Energiemessung und damit für das Gate verwendet.
+
+Das Anodensignal ist ein Puls mit negativem Ausschlag und eine der Energie entsprechenden Höhe.
+Es wird für das Messen der Zeitabstände benutzt, da das Dynodensignal mit den starken Schwankungen genaue schnelle Messungen von kleinen Zeitabständen nicht zulässt.
+
+Es liefert für das Dynoden- und das Anodensignal jeweils ein Photomultiplier das Start und der andere das Stoppsignal.
+
+Durch die Trennung in Anodensignal und Dynodensignal kann man den Schaltkreis in zwei unabhängige Kreise unterteilen, die nur an einer Stelle wieder zusammenlaufen.
+Sie werden "`schneller"' und "`langsamer"' Kreis genannt.
+
+Der Aufbau ist in Abbildung \ref{fig:aufbau} zu sehen.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=.5\textwidth]{aufbau.jpg}
 		\caption{Aufbau}
 		\label{fig:aufbau}
 \end{figure}
+
+Links oben befindet sich die rote Spannungsquelle, daneben zwei Amplifier Analyzer mit Koinzidenzstufe\footnote{Nuclear Enterprises, Modell 4630} für Start und Stopsignal des langsamen Kreises.
+Als letztes in der oberen Reihe ist das ein Quad Gate\footnote{Fa. Phillips Scientific, Modell 794} zu sehen.
+
+In der unteren Reihe umgeben zwei Differential Constant Fraction Discriminatoren\footnote{Fa. Stanford Research Systems Inc., Modell DG535} eine Delay Einheit\footnote{Fa. SEN, Modell FE290}.
+Rechts daneben befindet sich ein Time Analyser\footnote{Fa. Canberra, Modell 2043}, zwei Delaystufen\footnote{DFa. Canberra, Modell 1457} und zuletzt ein Vielkanalanalysator\footnote{Multiport II, Fa. Canberra} der auf der Rückseite mit einem Computer und dem Gate verbunden ist.
+
+Schematisch ist der Aufbau in Abbildung \ref{fig:schaltplan} zu sehen.
 
 \begin{figure}[htb]
 		\centering
@@ -86,7 +103,6 @@ Die elektronische Signalverabreitung unterteilt sich in zwei Schaltkreise
 		\label{fig:schaltplan}
 \end{figure}
 
- (siehe Abbildung \ref{fig:Schaltplan} für eine Blockdarstellung des gesmaten Schaltplan): \\
 \begin{itemize}
 	\item
 	Ein "langsamer Kreis" prüft ob die gemessenen Photonen sich im richtigen Energieintervall 
