@@ -102,8 +102,13 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 		xmin = xmin_orig
 	if xmax > xmax_orig:
 		xmax = xmax_orig
-
 	a.SetRangeUser( xmin, xmax )
+
+	c1 = TCanvas('inmethod')
+	c1.cd()
+	hist.Draw()
+	c1.SaveAs('timehist_function.pdf')
+
 	return hist
 
 func = kalibration( beginning = 4200 )
@@ -111,6 +116,5 @@ c1 = TCanvas('outoffunction')
 c1.cd()
 hist = tkaToTimeHist( 'data/aluminium.TKA', func , 100, -2, 8)
 hist.Draw()
-raw_input()
 c1.SaveAs('timehist.pdf')
 

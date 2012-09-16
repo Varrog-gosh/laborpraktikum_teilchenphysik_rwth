@@ -190,8 +190,8 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
 	for i in range( length ):
 		hist.SetBinContent(i, data[ i + xMin ] )
-	if giveTime:
-		return hist
-	else:
-		return hist, time
 
+	if giveTime:
+		return hist, time
+	else:
+		return hist
