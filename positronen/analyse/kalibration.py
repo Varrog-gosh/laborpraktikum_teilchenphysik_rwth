@@ -13,10 +13,14 @@ def bufferToSortedList( length, buffer ):
 	return sorted( output )
 
 def peakToArray( filename, minKanal , maxKanal ):
+	'''
+	get the sorted x position of peaks in kalibrationfile + errors
+	returns: list[ x, ex ]
+	'''
 	hist = tkaToHist( filename , minKanal, maxKanal )
 	from ROOT import TSpectrum
 	from numpy import array
-	can = TCanvas()
+	can = TCanvas('peak_to_array')
 	can.SetBatch()
 	can.SetCanvasSize( 1400, 800 )
 	can.SetLogy()
@@ -25,7 +29,6 @@ def peakToArray( filename, minKanal , maxKanal ):
 	s = TSpectrum( 64 ) #max number of peaks
 	npeaks = s.Search( hist, 8, "", 0.005 ) # ( hist, sigma, '', threshold )
 	#can.SaveAs('peaksToArray.pdf')
-	can.Close()
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
 	distance = 50 # minimal distance between channels
 	# clear array of double peaks, which have less than distance channels distance
@@ -50,7 +53,18 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.Close()
 	return valError
 
-def kalibration (filename = 'data/kali_montag.TKA', firstpeak = 0, minKanal = 100, maxKanal = 0):
+def kalibration (filename = 'data/kali_montag.TKA', beginning = 4000, firstpeak = 0, minKanal = 100, maxKanal = 0):
+	'''
+	calibrates spetrum with peaks
+	filename: filename for calibration
+	beginning: channel# when fit should start
+	firspeak: first peak that is drawn
+	minKanal: MUST be changed when firstpeak is variated.
+				look at the histogram 'peakToArrays' to find suitiable values
+	maxKanal: maximal channel, 0 means all
+
+	returns: linear fit function TF1
+	'''
 	x, ex = peakToArray( filename, minKanal, maxKanal )
 	from array import array
 	y = array('d')
@@ -59,85 +73,44 @@ def kalibration (filename = 'data/kali_montag.TKA', firstpeak = 0, minKanal = 10
 	for i in range( len(x) ):
 		y.append( timestep * (i + firstpeak) )
 		ey.append(0.075)
-	reg = linearRegression(x, y, ex, ey, 4000)
+	reg = linearRegression(x, y, ex, ey, beginning)
 	reg.draw(';Kanal;t [ns]')
-	reg.canvas.SaveAs('fit.pdf')
+	reg.canvas.SaveAs('linearRegression.pdf')
 	reg.canvas.Close()
 	return reg.func
 
-def tkaToTimeHist( filename , func, timeshift = 0): #4720.6 ):
+def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6 ):
+	'''
+	returns kalibrated hist from TKA file
+	filename: filename of TKA file
+	func: linear fit function for calibration channel vs. time
+	xmin: minimal time of histogram, cant get larger than default range
+	xmax: maximal time of histogram
+	channelShift: #channels to shift cobalt peak to 0
+
+	returns: histogram
+	'''
 	import tools
-	can = TCanvas()
-	can.cd()
-	# asume two linear functions
-	# otherwise a numerical solver is of use to find the interception point
-	cut = ( funcs[0].GetParameter(0) - funcs[1].GetParameter(0) ) / ( funcs[1].GetParameter(1) - funcs[0].GetParameter(1) )
-	#cutbin = hist.FindBin( cut )
-	hist1 = tkaToHist(filename, 0, int(cut) )
-	hist2 = tkaToHist( filename, int(cut)+1, 0)
-	hist1.Draw()
-	hist2.Draw("same")
-	raw_input()
-	can.Close()
-	exit()
-	nBins = hist.GetNbinsX()
-	hist_time = TH1('', ";Zeit[ns];Eintr#\"age", nBins, xmin_time, xmax_time )
-	histlist =[]
+	hist = tkaToHist(filename )
+	hist.SetTitle(';t [ns];Eintr#ddot{a}ge')
+	a = hist.GetXaxis()
+	xmin_orig = func.Eval(0 - channelShift ) - func.Eval(0)
+	xmax_orig = func.Eval( a.GetNbins() - channelShift ) - func.Eval( 0 )
+	a.Set( a.GetNbins(), xmin_orig, xmax_orig )
 
+	if xmin < xmin_orig:
+		xmin = xmin_orig
+	if xmax > xmax_orig:
+		xmax = xmax_orig
 
-	for i in range( cutbin ):
-		a = hist.GetXaxis()
-		import pdb; pdb.set_trace()
-
-		hist_time.SetBinContent(i,3)
-		if hist.GetBinLowEdge(i) > func.GetXmin() and hist.GetBinLowEdge(i)+ hist.GetBinWidth(i) < func.GetXmax():
-				time_bin = hist_time.FindBin(  func.Eval( hist.GetBinCenter(i))  )
-				histlist.append([time_bin,hist.GetBinContent(i)])
-	
-	sumval = 0
-	final_histlist =[]
-	#~ print histlist
-	for i in range(len(histlist)):
-		if i < len(histlist)-1:
-			tbin1 = histlist[i][0]
-			val1	 = histlist[i][1]
-			tbin2 = histlist[i+1][0]
-			val2	 = histlist[i+1][1]
-			
-			if abs(tbin1 - tbin2) < 0.0001:
-				sumval+=val1
-			else:
-				if sumval > 0.0:
-					final_histlist.append([tbin1,sumval])
-				else:
-					final_histlist.append([tbin1,val1])
-				sumval = 0
-	
-	for entry in final_histlist:
-		hist_time.SetBinContent(  entry[0] ,entry[1] )
-	if rebin > 0.01:
-		hist_time.Rebin(rebin)
-	return hist_time
-
-
-def PlotHist(hist,title,xtitle,logmode = "0"):
-	can = TCanvas()
-	can.SetBatch()
-	can.SetCanvasSize( 1400, 800 )
-	can.cd()
-	if logmode == 1:
-		can.SetLogy()
-	hist.SetTitle(title)
-	hist.GetXaxis().SetTitle(xtitle)
-	hist.GetYaxis().SetTitle("Eintr#ddot{a}ge")
-	hist.Draw()
-	can.SaveAs('blub.pdf')
+	a.SetRangeUser( xmin, xmax )
 	return hist
 
-func = kalibration()
-c1 = TCanvas()
+func = kalibration( beginning = 4200 )
+c1 = TCanvas('outoffunction')
 c1.cd()
-hist = tkaToTimeHist( 'data/co60_2.TKA', func )
+hist = tkaToTimeHist( 'data/aluminium.TKA', func , 100, -2, 8)
 hist.Draw()
+raw_input()
 c1.SaveAs('timehist.pdf')
 
