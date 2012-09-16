@@ -177,7 +177,10 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 
 	# the first column contains the numbers, the second the \r
 	# first two numbers are length and time and are ciscarded
-	data = readFile( filename )[0][2:-1]
+	data = readFile( filename )[0]
+	time = data[0] # or data[1]
+	data = data[2:-1] #effective data
+
 	length = len( data )
 
 	if xMax == 0:
@@ -187,5 +190,5 @@ def tkaToHist( filename , xMin = 0, xMax = 0 ):
 	hist = TH1F('', ";Kanalnummer;Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
 	for i in range( length ):
 		hist.SetBinContent(i, data[ i + xMin ] )
-	return hist
+	return hist, time
 
