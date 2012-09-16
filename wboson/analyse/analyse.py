@@ -67,7 +67,7 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
 	chi2min = func.Eval( mass )
-
+	'''
 	offset = 1 # how much χ² should change for error
 	from math import sqrt
 	try:
@@ -76,16 +76,24 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 		e_mass = 0
 	#print('{} ± {}'.format(mass, e_mass ))
 	#raw_input()
+	'''
+	return chi2min
 
-	relative_error = e_mass/mass
-	return chi2min, mass, relative_error
-
+def efficiency( tree, cut ):
+	cuttree = tree.CopyTree( cut )
+	return 1. * cuttree.GetEntries() / tree.GetEntries()
 
 def trydifferentCuts(dataTree,mcTree):
 	f = open('optimizeM.txt','w')
 	for met in range(25,60,5):
 		for et in range(25,60,5):
-			f.write( "{} {} {}\n".format( met, et, chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format(met, et), variable = 'mwt' )))
+			try:
+				cut =  "met>{} && el_et>{}".format(met, et)
+				chi2 = chi2comparison( dataTree, mcTree, cut, variable = 'mwt' )
+				e = efficiency( mcTree, cut )
+				f.write( "{} {} {:2g} {:2g}\n".format( met, et, chi2,e))
+			except:
+				pass
 	f.close()
 
 
@@ -108,8 +116,8 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	for variable in opts.plots:
-		compareDataMC( mcTree, dataTree, variable, opts.cut)
+	#for variable in opts.plots:
+	#	compareDataMC( mcTree, dataTree, variable, opts.cut)
 	#print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	#chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
-	#trydifferentCuts( dataTree, mcTree)
+	trydifferentCuts( dataTree, mcTree)
