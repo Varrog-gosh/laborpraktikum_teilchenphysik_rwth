@@ -16,6 +16,27 @@ from sys import exit
 #tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
 
 
+
+def globalFit( signal, background ):
+	# not working now
+	background.Fit('gaus') # fit doesnot seem to care about normalization
+	# perhaps comment SetNormFactor()
+	mean = background.GetFunction('gaus').GetParameter(1)
+	sigma = background.GetFunction('gaus').GetParameter(2)
+
+	from ROOT import TF1
+	# par : [tau, mu, sigma]
+	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 2000, 16000 )
+	fit.FixParameter( 1, mean)
+	fit.FixParameter( 2, sigma )
+	fit.SetParameter(0, 1500)
+	signal.Draw()
+	fit.Draw("same")
+	signal.Fit('fit')
+	raw_input()
+
+
+
 def normedHist( name, color ,isTime = False):
 	
 	if isTime:
