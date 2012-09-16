@@ -24,6 +24,14 @@ def normedHist( name, color ):
 	hist.SetLineColor( color )
 	return hist
 
+def timenormedHist( name, color ):
+	hist = tkaToHist( name, 2000, 16000 )
+	hist.Sumw2()
+	hist.Rebin(50)
+	hist.Scale(1./hist.Integral())
+	hist.SetLineColor( color )
+	return hist
+
 alu = normedHist( 'data/aluminium.TKA' , 2)
 poly = normedHist( 'data/poly.TKA' , 4)
 co = normedHist( 'data/co60.TKA', 1 )
@@ -275,13 +283,15 @@ def compareSignalHistos( alu, poly ):
 
 def compareCo( co1, co2 ):
 	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
-	can = TCanvas()
+	can = TCanvas("canvas")
 	can.cd()
 	can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	#~ can.SetLogy()
 	co1.Draw()
 
+	bgxmin = 6000
+	bgxmax = 14000
 
 	leg = TLegend(0.6, 0.7, .95,.95)
 	leg.SetFillColor(0)
@@ -296,7 +306,8 @@ def compareCo( co1, co2 ):
 
 	fit1 = TF1('fit1', 'gaus', peaks[0] - 1500	, peaks[0] + 500)
 	co1.Fit("fit1","R")
-	
+
+	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
 	xmin = 0.55
 	xmax = 0.8
 	ymin = 0.45
@@ -318,7 +329,8 @@ def compareCo( co1, co2 ):
 	peaks = bufferToSortedList(npeaks,s.GetPositionX())
 	fit2 = TF1('fit2', 'gaus', peaks[0] - 1500, peaks[0] + 500)
 	co2.Fit("fit2","R0+")
-
+	bg_integral2 = co2.Integral(co2.FindBin(bgxmin),co2.FindBin(bgxmax))
+	
 	p1.AddText("First Peak:")
 	p1.AddText("#chi^{2}/NDF : %e"%(fit1.GetChisquare() / fit1.GetNDF()))
 	p1.AddText("Constant: %e"%fit1.GetParameter(0))
@@ -337,35 +349,17 @@ def compareCo( co1, co2 ):
 
 	fit2.Draw("same")
 	p1.Draw();
-	#print alu.KolmogorovTest( poly, "ND" )
-	#~ print co.Chi2Test( co2 , 'p')
-	#print poly.KolmogorovTest( alu )
-	can.SaveAs('compareCo.pdf')
-
-def tail( signal, background ):
-	from ROOT import TH1
-	# does not work yet
-	onehisto = signal.DrawCopy(  )
-	signal.Copy( onehisto )
-	for i in range( onehisto.GetNbinsX() ):
-		onehisto.SetBinContent( i+1, 1 )
-	signal.Divide(background)
-	onehisto.Add( signal, -1 )
-	onehisto.Draw()
-	raw_input()
-#tail( alu, co )
-
-def globalFit( signal, background ):
-	from ROOT import TF1
-	fit = TF1('fit', '1./(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 3000, 7000 )
-	fit.SetParameters(20, 4800,529)
-	background.Fit('gaus')
-	#mean = background.GetFunction('gaus').GetParameter(1)
-	#sigma = background.GetFunction('gaus').GetParameter(2)
-	# par : [tau, mu, sigma]
-	#fit.SetParameters( 380, 7000, 490, 1)
-	#background.Fit('fit')
-	#fit.FixParameter( 1, mean)
+	
+	print "******  Background estimation: ****** \n "
+	print co1.FindBin(bgxmin)
+	print co1.FindBin(bgxmax)
+	print "Range Channel %d to %d"%(bgxmin,bgxmax)
+	bg1 = bg_integral1 / abs(bgxmin-bgxmax)
+	bg2 = bg_integral1/ abs(bgxmin-bgxmax)
+	print "Co1 %f events %f Events / channel"%(bg_integral1,bg1)
+	print "Co2 %f events %f Events / channel"%(bg_integral2,bg2)
+	print "Mean %f Events / channel"%(float((bg1+bg2)/2))
+	can.Close()
 	#fit.FixParameter( 2, sigma )
 	#fit.SetParameter(0, 1500)
 	#signal.Draw()
@@ -381,3 +375,4 @@ def globalFit( signal, background ):
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
 compareCo( co, co2 )
+#~ compareSignalHistos( alu, poly )

@@ -162,7 +162,7 @@ class linearRegression:
 
 ################# LEBENSDAUER VON POSITRONEN IN FESTKÖRPERN ######################
 
-def tkaToHist( filename , giveTime = False, xMin = 0, xMax = 0 ):
+def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 	'''
 	converts *TKA file to histogram
 	input:
