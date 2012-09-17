@@ -35,24 +35,30 @@ co2time = normedHist( 'data/co60_2.TKA', 12 , func )
 
 
 def globalFit( signal, background ):
-	# not working now
-	background.Fit('gaus') # fit doesnot seem to care about normalization
-	# perhaps comment SetNormFactor()
-	mean = background.GetFunction('gaus').GetParameter(1)
-	sigma = background.GetFunction('gaus').GetParameter(2)
-
+	'''
+	uses convolution fit
+	signal, background: histograms
+	returns: void
+	'''
 	from ROOT import TF1
+	gaus = TF1('mygaus', 'gaus', -2, 0.3 )
+
+	background.Fit('mygaus', 'r')
+	mean = background.GetFunction('mygaus').GetParameter(1)
+	sigma = background.GetFunction('mygaus').GetParameter(2)
+
 	# par : [tau, mu, sigma,const]
-	fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , 2000, 16000 )
-	fit2 = TF1("fit","myfit(0)+myfit(4)",2000,4000)
-	fit.FixParameter( 1, mean)
-	fit.FixParameter( 2, sigma )
+	fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , -2, 6 )
+	#fit2 = TF1("fit","myfit(0)+myfit(4)",2000,4000)
+	fit.SetParameter( 1, mean)
+	fit.SetParameter( 2, sigma )
 	fit.SetParameter(0, 1500)
-	signal.Draw()
+	#signal.Draw()
 	#~ fit.Draw("same")
-	signal.Fit('fit')
+	signal.Fit('myfit')
 	raw_input()
 
+globalFit( alutime, co2time )
 
 def histToArray( histo ):
 	'''
@@ -224,7 +230,7 @@ def compareHistos( signal, background, signalname, backgroundname, save ):
 	leg.AddEntry( signal, signalname, "l")
 	leg.AddEntry( background, backgroundname, "l")
 	leg.Draw()
-	print 'Histogramme statistisch vereinbar mit ', signal.Chi2Test( background, 'p,uu,norm')
+	print 'Histogramme statistisch vereinbar mit ', signal.Chi2Test( background, 'uu,norm')
 	can.SaveAs( save )
 	can.Close()
 
@@ -330,11 +336,10 @@ def compareCo( co1, co2 ,isTime = False):
 
 
 # execute programs
-compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
-compareHistos( alu, poly , "Aluminium", "Polyethylen", "signal+signal.pdf")
+#compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
+#compareHistos( alu, poly , "Aluminium", "Polyethylen", "signal+signal.pdf")
 
 #~ FitTau(alutime,cotime,True)
 #~ FitTau(calculateDeconvolution( alutime, cotime ))
 #compareCo( cotime, co2time,True )
 #compareCo( co, co2,False )
-#globalFit( alu, co2 )
