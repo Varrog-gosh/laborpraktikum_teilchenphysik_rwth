@@ -39,16 +39,24 @@ def Get_xs(dataTree,mcTree,variable,cut):
 	xs = n_obs / eff / lumi / corr
 	return xs
 
+def getWeinberg (mw,err_mw):
+	mz = 91.227
+	err_mz = 0.041
+	cos_wein = mw / mz
+	err_cos_wein = sqrt(err_mw**2 / mz**2 + mw**2 / mz**4 * err_mz**2)
+	print "Cos(Theta) = %f +/- %f" % (cos_wein,err_cos_wein)
+	return cos_wein,err_con_wein
+
+
 def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	'''
 	variable could be el_et later
 	'''
-	nBins = 150
+	nBins = 50
 	firstBin = 50
 	lastBin = 100
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
-	datahist.Scale( 1./datahist.Integral() )
-
+	#~ datahist.Scale( 1./datahist.Integral() )
 	from ROOT import TGraph
 	from array import array
 	x = array('d')
@@ -57,8 +65,9 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	for i, mass in enumerate( masses ):
 		x.append( mass )
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
-		mchist.Scale( 1./mchist.Integral() )
-		chi2 = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf")
+		#~ mchist.Scale( 1./mchist.Integral() )
+		mchist.Scale( 0.9 / 1164699 * 198 * 2580 ) 
+		chi2 = datahist.Chi2Test( mchist, "UW,of,uf,chi2/ndf")
 		y.append(chi2)
 	gr = TGraph(len(masses), x,y)
 	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
@@ -96,30 +105,15 @@ def trydifferentCuts(dataTree,mcTree):
 				pass
 	f.close()
 
-def DrawOptimizationResults (filename):
-	from ROOT import TCanvas,TH2F
-	c = TCanvas("canvas")
-	c.cd()
-	f = open('optimizeM.txt','r')
-	lines = f.readlines()
-	nBins = len(lines)
-	hcol1 = TH2F("hcol1","Cut Optimierung;#chi^{2};Effizienz;Met ",nBins,0,2.5,100,0,0.8);
-	for i,line in enumerate(lines):
-		linesplit = line.split(" ")
-		metcut = linesplit [0]
-		etcut = linesplit [1]
-		chi2 = linesplit [2]
-		eff = linesplit [3]
-		effbin = hcol1.GetYaxis().FindBin(float(eff))
-		chi2bin = hcol1.GetXaxis().FindBin(float(chi2))
-		hcol1.SetBinContent(chi2bin,effbin,float(metcut))
-	hcol1.Draw("colZ")
-	c.SaveAs("cutOpt.pdf")
-	raw_input()
-	c.Close()
-	
+def minimizeChi2( dataTree, mcTree ):
+	chi2 = lambda p: -chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
+	p0 = [30,30]
+	from scipy import optimize
+	cuts = optimize.fmin_powell( chi2, p0, maxiter = 2 )
+	print cuts
 
-			
+
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -139,9 +133,9 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	#for variable in opts.plots:
-	#	compareDataMC( mcTree, dataTree, variable, opts.cut)
+	#~ for variable in opts.plots:
+		#~ compareDataMC( mcTree, dataTree, variable, opts.cut)
 	#print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	#chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
-	#~ trydifferentCuts( dataTree, mcTree)
-	#~ DrawOptimizationResults('optimizeM.txt')
+	#trydifferentCuts( dataTree, mcTree)
+	minimizeChi2( dataTree, mcTree)

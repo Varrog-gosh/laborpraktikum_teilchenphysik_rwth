@@ -85,6 +85,13 @@ def histo_settings():
 					"xmax": 150},
 			"dz": { "title": ";#Delta z [cm];Entries",
 					"xmin": 0,
-					"xmax": 100}
+					"xmax": 100},
+			"el_iso": { "title": ";isolation;Entries",
+					"xmin": 0,
+					"xmax": 0.2},
+			"el_emf":{ "title": ";Fraction of Energy in Calorimeter;Entries",
+					"xmin": 0.96,
+					"xmax": 1}
+
 			}
 
