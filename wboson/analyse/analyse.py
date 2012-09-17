@@ -23,7 +23,7 @@ def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
 		chi2ndf = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf")
 		y.append( chi2ndf )
 	gr = TGraph(len(masses), x,y)
-	gr.SetTitle(';M_{W} [GeV];prob')
+	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.Draw("ap")
 	gr.Fit('pol2','q')
 	raw_input()
@@ -69,6 +69,17 @@ def getWeinberg (mw,err_mw):
 	print "Cos(Theta) = %f +/- %f" % (cos_wein,err_cos_wein)
 	return cos_wein,err_cos_wein
 
+def printTheoreticalValues():
+	print 'Mass = ',
+	printError( 80.385, 0.015, 'GeV')
+	print 'sin²θ = ',
+	printError( 0.2397, 0.0013 )
+	print '               ( sollte 6% größer als unserer)'
+	print 'σ = ',
+	printError( 2.58,0.09, 'nb')
+	print 'Γ = ',
+	printError( 2.085, 0.042, 'nb')
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -88,8 +99,11 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	cut = 'met>30&& el_et > 30 && mwt/el_et > 1.8'
+	cut = 'met>30&& el_et > 30'# && mwt/el_et > 1.8'
 	m, e_m = getMass( dataTree, mcTree, cut, variable = 'mwt' )
-	print 'Mass =  ', printError(m, e_m, unit = 'GeV')
-	print "Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	print 'Mass =  ',
+	printError(m, e_m, unit = 'GeV')
+	print "Crosssection =  is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	print 'weinbergwinkel = ', getWeinberg( m, e_m )
+	print 
+	printTheoreticalValues()
