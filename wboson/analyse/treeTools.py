@@ -92,6 +92,24 @@ def histo_settings():
 			"el_emf":{ "title": ";Fraction of Energy in Calorimeter;Eintr#ddot{a}ge",
 					"xmin": 0.96,
 					"xmax": 1}
-
 			}
+
+def prettifySelection(selection):
+	from re import sub,match
+	replacements = {
+			'met': '#slash{E}_{T}',
+			'el_et': 'E_{T}',
+			'mwt': 'M_{T}',
+			'el_iso': 'iso',
+			'\s*&&\s*': ', '
+			}
+	for ugly, nice in replacements.iteritems():
+		selection = sub( ugly, nice, selection )
+	try:
+		massindex, cut  = match( 'weight\[(\d{1,2})\]\s*\*\s*\((.*)\)', selection ).groups()
+		selection = cut + ' Generated with ' + str( weightToMass()[int(massindex)] ) + 'GeV'
+	except:
+		pass
+	return selection
+
 

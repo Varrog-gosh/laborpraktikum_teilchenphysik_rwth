@@ -10,7 +10,7 @@ def compareDataMC( mcTree, dataTree, variable, cut, save = False, logmode = True
 	mcHisto = createHistoFromTree( mcTree, variable, 'weight[9] * ('+cut+')', nBins, xlow, xhigh )
 	mcHisto.Scale( 0.9 / 1164699 * 198 * 2580 )  # 0.9-Korrekturfaktor / 1164699-generated Events / 198 - Lumi / 2580 - xs [pb]
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
-	from ROOT import TCanvas
+	from ROOT import TCanvas, TPaveText
 	c = TCanvas( variable, variable, 1400, 800 )
 	if logmode:
 		c.SetLogy()
@@ -20,11 +20,18 @@ def compareDataMC( mcTree, dataTree, variable, cut, save = False, logmode = True
 	mcHisto.Draw("hist")
 	mcHisto.SetTitle( title )
 	dataHisto.Draw("same")
+	if cut != '1':
+		text = TPaveText(0.2, 0.8, .9, .9, 'ndc')
+		text.SetFillStyle(0)
+		text.SetBorderSize(0)
+		text.AddText( prettifySelection( cut ) )
+		text.Draw()
 	if save:
 		c.SaveAs( variable + cut + '.pdf')
 	else:
 		raw_input()
 	c.Close()
+
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser

@@ -26,7 +26,7 @@ def create2DHistoFromTree(tree, variable, weight, nBinsX, xmin, xmax, nBinsY, ym
 mcTree = readTree( "mc_all_new.root/MCTree" )
 dataTree = readTree( "d0_new.root/MessTree" )
 cut = 'mwt/el_et>1.8&&el_et>30 && met > 30'
-#cut = ''
+cut = ''
 
 from ROOT import TCanvas, TLegend
 can = TCanvas()
