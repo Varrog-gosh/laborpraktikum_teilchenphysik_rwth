@@ -75,7 +75,7 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak 
 		ey.append(0.075)
 	reg = linearRegression(x, y, ex, ey, beginning)
 	reg.draw(';Kanal;t [ns]')
-	reg.canvas.SaveAs('linearRegression.pdf')
+	#reg.canvas.SaveAs('linearRegression.pdf')
 	reg.canvas.Close()
 	return reg.func
 
@@ -113,5 +113,5 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 	return hist
 
 # example how to call function
-#~ func = kalibration( )
-#~ hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )
+#func = kalibration( )
+#hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )

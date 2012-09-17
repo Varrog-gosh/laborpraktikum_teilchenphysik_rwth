@@ -195,3 +195,17 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 		return hist, time
 	else:
 		return hist
+
+
+def safeHist (hist, filename ):
+	from ROOT import TFile
+	outputfile = TFile( filename, "RECREATE")
+	hist.Write()
+	outputfile.Close()
+
+def randomName():
+	from random import randint
+	from sys import maxint
+	return str(randint(0,maxint))
+
+

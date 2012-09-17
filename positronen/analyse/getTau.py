@@ -3,18 +3,35 @@
 
 import numpy
 from tools import *
-from ROOT import *
-from ROOT import TSpectrum
 from Styles import tdrStyle
-from array import array
 from kalibration import *
-#from kalibration import fu
-#from kalibration import tkaToTimeHist
 tdrStyle()
-from sys import exit
 
-#tkaToTimeHist("data/aluminium.TKA", fu, 0, 12,2).Draw()
+def normedHist( name, color, func = 0):
+	if func == 0:
+		hist = tkaToHist( name, 2000, 16000 )
+		hist.Rebin(50)
+	else:
+		hist = tkaToTimeHist(name, func , -2, 8 )
+	hist.Sumw2()
+	hist.Scale(1./hist.Integral())
+	hist.GetYaxis().SetTitle("Normirte Eintr#ddot{a}ge")
+	hist.SetLineColor( color )
+	return hist
 
+
+func = kalibration( )
+alu = normedHist( 'data/aluminium.TKA', 2 )
+poly = normedHist( 'data/poly.TKA', 4 )
+
+alutime = normedHist( 'data/aluminium.TKA', 2, func )
+polytime = normedHist( 'data/poly.TKA', 4, func )
+
+co = normedHist( 'data/co60.TKA', 1 )
+co2 = normedHist( 'data/co60_2.TKA', 12 )
+
+cotime = normedHist( 'data/co60.TKA', 1, func )
+co2time = normedHist( 'data/co60_2.TKA', 12 , func )
 
 
 def globalFit( signal, background ):
@@ -37,44 +54,6 @@ def globalFit( signal, background ):
 	raw_input()
 
 
-
-def normedHist( name, color ,isTime = False):
-	
-	if isTime:
-		func = kalibration( )
-		hist = tkaToTimeHist(name, func , -2, 8 )
-	else:
-		hist = tkaToHist( name, 2000, 16000,False )
-		hist.Sumw2()
-		hist.Rebin(50)
-	hist.Scale(1./hist.Integral())
-	hist.GetYaxis().SetTitle("Eintr#ddot{a}ge norm (1)")
-	hist.SetLineColor( color )
-	return hist
-
-def timenormedHist( name, color ):
-	hist,time = tkaToHist( name, 2000, 16000,True )
-	hist.Sumw2()
-	hist.Rebin(50)
-	hist.Scale(1./time)
-	hist.SetLineColor( color )
-	return hist
-	
-
-
-alu = normedHist( 'data/aluminium.TKA' , 2)
-poly = normedHist( 'data/poly.TKA' , 4)
-
-alutime = normedHist( 'data/aluminium.TKA' , 2,True)
-polytime = normedHist( 'data/poly.TKA' , 4,True)
-
-co = normedHist( 'data/co60.TKA', 1 )
-co2 = normedHist( 'data/co60_2.TKA', 12 ,)
-
-cotime = normedHist( 'data/co60.TKA', 1,True )
-co2time = normedHist( 'data/co60_2.TKA', 12 ,True)
-
-
 def histToArray( histo ):
 	'''
 	converts a histogram to numpy.array
@@ -84,13 +63,7 @@ def histToArray( histo ):
 	values = array( [0] * nbins, dtype = 'f' )
 	for i in range( nbins ):
 		values[i] = histo.GetBinContent(i + 1)
-
 	return values
-
-def safeHist (hist, filename ):
-	outputfile=TFile( filename, "RECREATE")
-	hist.Write()
-	outputfile.Close()
 
 def calculateDeconvolution( signal, background ):
 	'''
@@ -99,7 +72,7 @@ def calculateDeconvolution( signal, background ):
 	a root file is created to save cpu work
 	'''
 	from ROOT import TH1D,TSpectrum, TF1,TCanvas
-	
+
 	can = TCanvas()
 	can.cd()
 	can.SetBatch()
@@ -115,13 +88,12 @@ def calculateDeconvolution( signal, background ):
 	# repetitions =  1: same as above
 	# boosting factor = 1: not needed
 	s.Deconvolution(source, response, len( source ), 2, 1, 0 )
-	
+
 	signal.SetMarkerColor(kMagenta-3)
 	signal.SetLineColor(1)
 	#~ signal.GetXaxis().SetRangeUser(2500,14000)
 	signal.SetMinimum(1e-6)
 	signal.Draw("P")
-	
 
 	background.SetMarkerColor(kGreen+3)
 	background.SetMarkerStyle(34)
@@ -130,12 +102,12 @@ def calculateDeconvolution( signal, background ):
 	#~ d = TH1D('', 'Kanalnummer;Eintr#ddot{a}ege', len(source), 2000,16000 )
 	d = signal.Clone()
 	d.SetLineColor(4)
-	
+
 	for i in range( len(source) ):
 		d.SetBinContent(i + 1,source[i])
 	#safeHist( d, 'deconvolution100.root' )
 	d.Draw("sameLhist")
-	
+
 	leg = TLegend(0.6, 0.7, .95,.95)
 	leg.SetFillColor(0)
 	leg.SetLineWidth(0)
@@ -143,12 +115,12 @@ def calculateDeconvolution( signal, background ):
 	leg.AddEntry( background, "response", "p")
 	leg.AddEntry( d, "Deconvoluted Spectrum", "l")
 	leg.Draw()
-	
 
 	can.SaveAs("deconvolution.pdf")
 	#~ raw_input()
 	return d
-	
+
+
 
 def FitTau(hist,background,isTime = False):
 	from ROOT import TH1D, TF1,TCanvas
@@ -171,7 +143,7 @@ def FitTau(hist,background,isTime = False):
 	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
 	if isTime:
 		hist.SetAxisRange(-2,8,"X")
-	else:	
+	else:
 		hist.SetAxisRange(4780,14000,"X")
 	hist.SetLineColor(4)
 	hist.SetMaximum(1)
@@ -207,11 +179,12 @@ def FitTau(hist,background,isTime = False):
 	leg.Draw()
 	can.Update()
 
-	
+
 	can.SaveAs("taufit.pdf")
 	raw_input()
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
+	# this function is not working, since it is only valid for small τ
 	'''
 	centroid shift method, for more information see laboratory manual
 	input:
@@ -229,78 +202,34 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
 	return t, s
 
-def substractHist(spec,back):
-	nbins = back.GetNbinsX()
-	sig = spec.Clone()
-	for i in range(1,nbins):
-		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
-	return sig
 
-
-def safeHist (hist):
-	outputfile=TFile("spec.root","RECREATE")
-	hist.Write()
-	outputfile.Close()
-
-def substractHist(spec,back):
-	nbins = back.GetNbinsX()
-	sig = spec.Clone()
-	for i in range(1,nbins):
-		sig.SetBinContent(i,spec.GetBinContent(i)-back.GetBinContent(i))
-	return sig
-
-def safeHist (hist):
-	outputfile=TFile("spec.root","RECREATE")
-	hist.Write()
-	outputfile.Close()
-
-def plotDataAndBackground( signal, background):
+def compareHistos( signal, background, signalname, backgroundname, save ):
 	'''
-	only plot tool
+	plots two histos and save the result as pdf
 	'''
 	from ROOT import TH1F,TSpectrum, TLegend, TCanvas
 
-	can = TCanvas()
+	can = TCanvas(randomName(), 'comparison', 1400, 800 )
 	can.cd()
 	can.SetBatch()
-	can.SetCanvasSize( 1300, 800 )
 	can.SetLogy()
-	signal.Draw()
-	background.Draw("same")
+	for h in signal, background:
+		h.SetLineWidth(2)
+	signal.Draw("e, hist")
+	background.Draw("e, hist,same")
 
-	leg = TLegend(0.6, 0.7, .95,.95)
+	leg = TLegend(0.6, 0.7, 1,1)
 	leg.SetFillColor(0)
 	leg.SetLineWidth(0)
-	leg.AddEntry( alu, "Aluminium", "l")
-	leg.AddEntry( background, "Cobalt", "l")
+	leg.AddEntry( signal, signalname, "l")
+	leg.AddEntry( background, backgroundname, "l")
 	leg.Draw()
-
-	can.SaveAs('firstComparison.pdf')
-
-def compareSignalHistos( alu, poly ):
-	from ROOT import TCanvas, TLegend
-	can = TCanvas("can1")
-	can.cd()
-	can.SetBatch()
-	can.SetCanvasSize( 1300, 800 )
-	can.SetLogy()
-	poly.Draw("HIST")
-	alu.Draw("HISTsame")
-
-	leg = TLegend(0.6, 0.7, .95,.95)
-	leg.SetFillColor(0)
-	leg.SetLineWidth(0)
-	leg.AddEntry( alu, "Aluminium", "l")
-	leg.AddEntry( poly, "Polyethylen", "l")
-	leg.Draw()
-	#print alu.KolmogorovTest( poly, "ND" )
-	print alu.Chi2Test( poly , 'p')
-	#print poly.KolmogorovTest( alu )
-	raw_input()
-	can.SaveAs('compareHistos.pdf')
+	print 'Histogramme statistisch vereinbar mit ', signal.Chi2Test( background, 'p,uu,norm')
+	can.SaveAs( save )
 	can.Close()
 
 def compareCo( co1, co2 ,isTime = False):
+	import ROOT
 	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
 	can = TCanvas("canvas")
 	can.cd()
@@ -308,8 +237,8 @@ def compareCo( co1, co2 ,isTime = False):
 	can.SetCanvasSize( 1300, 800 )
 	#~ can.SetLogy()
 	co1.SetFillStyle(3003)
-	co1.SetFillColor(kCyan+2)
-	co1.SetLineColor(kCyan+2)
+	co1.SetFillColor(ROOT.kCyan+2)
+	co1.SetLineColor(ROOT.kCyan+2)
 	#~ co1.SetAxisRange(2200,8000,"X")
 	co1.Draw("HISTLF")
 
@@ -329,7 +258,7 @@ def compareCo( co1, co2 ,isTime = False):
 	print "npeaks %d"%len(peaks)
 	fit1 = TF1('fit1', 'gaus', peaks[0]-peakminus, peaks[0]+peakplus)
 	co1.Fit("fit1","R0")
-	fit1.SetLineColor(kCyan)
+	fit1.SetLineColor(ROOT.kCyan)
 	fit1.Draw("same")
 	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
 	xmin = 0.68
@@ -349,8 +278,8 @@ def compareCo( co1, co2 ,isTime = False):
 
 
 	co2.SetFillStyle(3003)
-	co2.SetFillColor(kBlue+2)
-	co2.SetLineColor(kBlue+2)
+	co2.SetFillColor(ROOT.kBlue+2)
+	co2.SetLineColor(ROOT.kBlue+2)
 	co2.Draw("sameHIST")
 
 	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
@@ -375,7 +304,7 @@ def compareCo( co1, co2 ,isTime = False):
 	p1.AddText("")
 	p1.AddText("#mu_{mean} : %f" %((fit1.GetParameter(1) + fit2.GetParameter(1))/2))
 
-	fit2.SetLineColor(kBlue)
+	fit2.SetLineColor(ROOT.kBlue)
 	fit2.Draw("same")
 	p1.Draw();
 	
@@ -398,14 +327,14 @@ def compareCo( co1, co2 ,isTime = False):
 	can.SaveAs('compareCo.pdf')
 	can.Close()
 
-#globalFit( alu, co2 )
 
 
 # execute programs
+compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
+compareHistos( alu, poly , "Aluminium", "Polyethylen", "signal+signal.pdf")
+
 #~ FitTau(alutime,cotime,True)
 #~ FitTau(calculateDeconvolution( alutime, cotime ))
-#plotDataAndBackground( alu, co )
-#print centroidShift( alu, co, 2000, 16000)
-#~ compareCo( cotime, co2time,True )
-#~ compareCo( co, co2,False )
-compareSignalHistos( alutime, polytime )
+#compareCo( cotime, co2time,True )
+#compareCo( co, co2,False )
+#globalFit( alu, co2 )
