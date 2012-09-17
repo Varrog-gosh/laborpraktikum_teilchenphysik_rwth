@@ -43,7 +43,7 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	'''
 	variable could be el_et later
 	'''
-	nBins = 150
+	nBins = 50
 	firstBin = 50
 	lastBin = 100
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
@@ -96,6 +96,14 @@ def trydifferentCuts(dataTree,mcTree):
 				pass
 	f.close()
 
+def minimizeChi2( dataTree, mcTree ):
+	chi2 = lambda p: -chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
+	p0 = [30,30]
+	from scipy import optimize
+	cuts = optimize.fmin_powell( chi2, p0, maxiter = 2 )
+	print cuts
+
+
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
@@ -116,8 +124,9 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	#for variable in opts.plots:
-	#	compareDataMC( mcTree, dataTree, variable, opts.cut)
+	for variable in opts.plots:
+		compareDataMC( mcTree, dataTree, variable, opts.cut)
 	#print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	#chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
-	trydifferentCuts( dataTree, mcTree)
+	#trydifferentCuts( dataTree, mcTree)
+	#minimizeChi2( dataTree, mcTree)
