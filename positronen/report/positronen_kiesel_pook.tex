@@ -113,23 +113,41 @@ Wie schon oben genannt und wie auch in der Abbildung zu sehen, wird der Schaltkr
 	Vielkananlanalysator weiter.
 \end{itemize}
 \subsection*{Langsamer Kreis}
-Für den langsamen Kreis wird das Dynodensignal der Photomultiplier genutzt und in jeweils einem 
-Einzelkanaldiskriminator (\textbf{SCA}) weiter verarbeitet,
-dieser verstärkt das Signal zunächst (es wird ein Gain von 300 eingestellt).
+Für den langsamen Kreis wird das Dynodensignal der Photomultiplier genutzt und in jeweils einem
+Einzelkanaldiskriminator (\textbf{EKD}) weiter verarbeitet.
+Dieser verstärkt das Signal zunächst (es wird ein Gain von 300 eingestellt),
+damit sich das Energiespektrum im Vielkanalanalysator über möglichst alle Kanäle erstreckt.
 % Erklären was beim Differenzieren passiert.
-Das Dynodensignal besitzt eine ausreichende Linearität zwischen Energie und Pulshöhe
-und es ist möglich zunächst ein Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
-Anschliessend werden die Schwellwerte im Einzeldiskriminator so eingestellt,
-dass nur Teilchen mit einer höheren Energie als der rechten Flanke des Anhilationspeak als
-Startsignal (Fenster 2\ref{auswahl}) genutzt wird
-und Teilchen mit einer niedrigeren Energie als Stoppsignal.
-Zusätzlich wird für das Stoppsignal eine untere Grenze bei ???
-eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultiplier
-zu reduzieren. Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
-wird nun ein Ausgang der Einzelkanaldiskriminatoren genutzt, der logisches Ausgangssignal liefert.
-Über eine integrierte Koinzidenzschaltung der SCA verbunden. Wenn nun Signale von beiden SCA innerhalb des Koinzidenzzeitfenster
-gemessen werden, wird ein logisches Signal an einen Gategenerator weiergeleitet. Der Gategenenerator liefert ein Ausgangssignal, dass
-am Vielkanalanlysator das Gate zur Datennahme öffnet.
+Das Dynodensignal besitzt eine ausreichende Abhängigkeit zwischen Energie und Pulshöhe
+um ein (nicht kalibriertes) Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
+
+Anschließend werden die Schwellwerte des Diskriminators im EKD so eingestellt,
+dass nur Teilchen mit einer höheren Energie als die rechten Flanke des Anhilationspeak als
+Startsignal (Fenster 2 in Abbildung \ref{fig:auswahl}) genutzt werden
+und Teilchen in einem niedrigeren Energiefenster als Stoppsignal.
+
+Wenn ein Teilchen im richtigen Energiefester ist, wird an einem Ausgang ein logisches Signal erzeugt,
+was über das Gate zusammen mit dem verstärkten Dynodensignal in den Vielkanalanalysator geleitet wird.
+
+Um eine Ober-und Untergrenze zu setzen, muss das Signal zuvor Differenziert werden,
+was auch mit diesem Gerät möglich ist\cite{linearAmplifier}.
+
+Das Stopsignal soll bei einer Annihilation eines Positrons entstehen
+und deshalb eine Energie von $\SI{511}{keV}$ haben.
+In Abbildung \ref{fig:auswahl} ist dies Fenster 1.
+Zusätzlich wird eine untere Grenze bei 260±10
+eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultipliers zu reduzieren.
+Die obere Grenze bei Kanal 3640±30 ist gleichzeitig die Grenze für das Startsignal,
+bei dem ein $\SI{1.28}{MeV}$ Photon erwartet wird.
+Diese Grenze ist sehr viel ungenauer,
+da das Setzen des Schwellenwerts nicht für einen steilen Abbruch des Spektrums sorgt, sondern nur für ein weiches Abfallen.
+
+% erkläre veto-out und veto-in, was genau machen die, und warum fuktioniert das?
+Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
+wird der logische 'Veto-Out' Ausgang des Start-EKD in den 'Veto-In' Eingang des Stop-EKD gesteckt und das logische Ausgangssignal über das Gate
+in den Vielkanalanalysator gegeben.
+Die EKD dienen damit auch gleichzeitig als Koinsidenzstufen.
+
 \begin{figure}
 		\includegraphics[width=0.8\textwidth]{../analyse/auswahl.pdf}
 		\caption{Das Energiespektrum von $^{22}$Na aus dem verstärktem und vorgeglätteten
@@ -143,14 +161,24 @@ am Vielkanalanlysator das Gate zur Datennahme öffnet.
 \end{figure}
 
 
-\subsection*{schneller Kreis}
-	Für den schnellen Kreis wird das Anodensigal der Photomultiplier genutzt. Start und Stoppsignal werden zunächst in jeweils einem Constant
-	Fraction Discriminator (\textbf{CFD}) weiter verarbeitet, dieser erzeugt durch differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang
-	ein von der Pulsform unabhängiges Zeitsignal erzeugt wird und in Form eines logischen Signal ausgegeben wird. Die Signale von beiden
-	CFD werden von einem Time Analyzer verarbeitet. Der Time Analyzer erzeugt einen Puls, abhängig vom Zeitlichen Abstand von Start und Stoppsignal,
-	der im VKA aufgenommen und in ein Pulshöhenspektrum umgesetzt wird. Um den schnellen und langsamen Kreis zeitlich aufeinander 
-	anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und VKA geschaltet.
-	
+\subsection*{Schneller Kreis}
+Für den schnellen Kreis wird das Anodensigal der Photomultiplier genutzt.
+Start und Stoppsignal werden zunächst in jeweils einem Constant
+Fraction Discriminator (\textbf{CFD}) weiter verarbeitet.
+Dieser erzeugt durch differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang ein von der Pulsform unabhängiges Zeitsignal erzeugt wird
+und in Form eines logischen Signal ausgegeben wird, wenn eine gewisse Pulshöhenschwelle überschritten wurde.
+Um hier die Schwellen zu setzen, wird das logische Signal jeweils eines CFD über das Gate an den Vielkanalanalysator gesendet.
+Die eigentliche Energieinformation bekommt man aus der Anode.
+Ein Startsignal wird genauso definiert wie beim langsamen Kreis, das Stopsignal wird nur durch eine untere Schranke festgelegt (also Fenster 1 und 2 in Abbildung \ref{fig:auswahl}).
+Als Schwellen werden am Gerät schließlich 9.0 bzw \dots eingestellt.
+
+Nachdem die Schwellen gesetzt werden, kann das Startsignal in den Starteingang des Timeanalysers, das Stopsignal über ein schnelles Delay, das im Messzustand auf 0 gestellt ist, in den Stopeingang des Timeanalysers.
+Der Time Analyzer erzeugt einen Puls, dessen Pulshöhe vom zeitlichen Abstand von Start und Stoppsignal ist.
+
+Im Vielkanalanalysator werden die Pulse in ein Pulshöhenspektrum umgesetzt.
+Um den schnellen und langsamen Kreis zeitlich aufeinander 
+anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und den Vielkanalanalyser geschaltet, dessen Zeit auf $\SI{3}{μs}$ gestellt wird.
+
 \section{Ergebnisse}
 \subsection{Zeitkalibration}
 Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
