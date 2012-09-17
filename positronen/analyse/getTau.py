@@ -48,6 +48,7 @@ def normedHist( name, color ,isTime = False):
 		hist.Sumw2()
 		hist.Rebin(50)
 	hist.Scale(1./hist.Integral())
+	hist.GetYaxis().SetTitle("Eintr#ddot{a}ge norm (1)")
 	hist.SetLineColor( color )
 	return hist
 
@@ -283,8 +284,8 @@ def compareSignalHistos( alu, poly ):
 	can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	can.SetLogy()
-	poly.Draw()
-	alu.Draw("same")
+	poly.Draw("HIST")
+	alu.Draw("HISTsame")
 
 	leg = TLegend(0.6, 0.7, .95,.95)
 	leg.SetFillColor(0)
@@ -309,7 +310,7 @@ def compareCo( co1, co2 ,isTime = False):
 	co1.SetFillStyle(3003)
 	co1.SetFillColor(kCyan+2)
 	co1.SetLineColor(kCyan+2)
-	co1.SetAxisRange(2500,8000,"X")
+	#~ co1.SetAxisRange(2200,8000,"X")
 	co1.Draw("HISTLF")
 
 	bgxmin = 6000
@@ -406,5 +407,5 @@ def compareCo( co1, co2 ,isTime = False):
 #plotDataAndBackground( alu, co )
 #print centroidShift( alu, co, 2000, 16000)
 #~ compareCo( cotime, co2time,True )
-compareCo( co, co2 )
-#~ compareSignalHistos( alutime, polytime )
+#~ compareCo( co, co2,False )
+compareSignalHistos( alutime, polytime )
