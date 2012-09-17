@@ -45,7 +45,7 @@ def drawMCMass( tree, list ):
 	histlist = []
 	for massindex in list:
 		histo = createHistoFromTree(tree, "mc_w_m", "weight[{}]".format(massindex), 100, 75, 85)
-		histo.SetTitle(";mass [GeV];Entries")
+		histo.SetTitle(";mass [GeV];Eintr#ddot{a}ge")
 		histo.SetLineColor( massindex+1 )
 		histo.SetLineWidth(3)
 		if histlist == []:
@@ -59,37 +59,37 @@ def drawMCMass( tree, list ):
 
 def histo_settings():
 	return {
-			"mwt": { "title": ";M^{W}_{T} [GeV];Entries",
+			"mwt": { "title": ";M^{W}_{T} [GeV];Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 250 },
-			"met": { "title": ";#slash{E}_{T} [GeV];Entries",
+			"met": { "title": ";#slash{E}_{T} [GeV];Eintr#ddot{a}ge",
 					"xmin": 5,
 					"xmax": 100 },
-			"el_et": { "title": ";E_{T} [GeV];Entries",
+			"el_et": { "title": ";E_{T} [GeV];Eintr#ddot{a}ge",
 					"xmin": 9,
 					"xmax": 120},
-			"el_eta": { "title": ";#eta;Entries",
+			"el_eta": { "title": ";#eta;Eintr#ddot{a}ge",
 					"xmin": -1.5,
 					"xmax": 1.5},
-			"el_phi": { "title": ";#phi;Entries",
+			"el_phi": { "title": ";#phi;Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 6.4},
-			"el_iso": {"title": ";electron isolation;Entries",
+			"el_iso": {"title": ";electron isolation;Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 0.21},
-			"el_met_calo_dphi": {"title": ";#Delta #phi;Entries",
+			"el_met_calo_dphi": {"title": ";#Delta #phi;Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 3.2},
-			"el_e": { "title": ";E_{e} [GeV];Entries",
+			"el_e": { "title": ";E_{e} [GeV];Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 150},
-			"dz": { "title": ";#Delta z [cm];Entries",
+			"dz": { "title": ";#Delta z [cm];Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 100},
-			"el_iso": { "title": ";isolation;Entries",
+			"el_iso": { "title": ";isolation;Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 0.2},
-			"el_emf":{ "title": ";Fraction of Energy in Calorimeter;Entries",
+			"el_emf":{ "title": ";Fraction of Energy in Calorimeter;Eintr#ddot{a}ge",
 					"xmin": 0.96,
 					"xmax": 1}
 
