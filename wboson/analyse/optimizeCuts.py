@@ -49,10 +49,10 @@ def minimizeChi2( dataTree, mcTree ):
 	p0 = [40, 40]
 	from scipy import optimize
 	cuts = optimize.fmin_powell( chi2, p0 , xtol = 5, ftol = 0.1)
-	print cuts
+l	print cuts
 
 mcTree = readTree( "mc_all_new.root/MCTree" )
 dataTree = readTree( "d0_new.root/MessTree" )
 
-
 minimizeChi2( dataTree, mcTree)
+
