@@ -306,20 +306,15 @@ def compareCo( co1, co2 ,isTime = False):
 	#~ can.SetBatch()
 	can.SetCanvasSize( 1300, 800 )
 	#~ can.SetLogy()
-	co1.SetFillStyle(3004)
-	co1.SetFillColor(kRed)
+	co1.SetFillStyle(3003)
+	co1.SetFillColor(kCyan+2)
+	co1.SetLineColor(kCyan+2)
+	co1.SetAxisRange(2500,8000,"X")
 	co1.Draw("HISTLF")
 
 	bgxmin = 6000
 	bgxmax = 14000
 
-	leg = TLegend(0.6, 0.7, .95,.95)
-	leg.SetFillColor(0)
-	leg.SetLineWidth(0)
-	leg.AddEntry( alu, "^{60}Co first", "l")
-	leg.AddEntry( poly, "^{60}Co last", "l")
-	leg.Draw()
-	raw_input()
 	s = TSpectrum( 1 )
 	npeaks = s.Search( co1, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
@@ -333,9 +328,10 @@ def compareCo( co1, co2 ,isTime = False):
 	print "npeaks %d"%len(peaks)
 	fit1 = TF1('fit1', 'gaus', peaks[0]-peakminus, peaks[0]+peakplus)
 	co1.Fit("fit1","R0")
+	fit1.SetLineColor(kCyan)
 	fit1.Draw("same")
 	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
-	xmin = 0.55
+	xmin = 0.68
 	xmax = 0.8
 	ymin = 0.45
 	ymax = 0.95
@@ -352,7 +348,8 @@ def compareCo( co1, co2 ,isTime = False):
 
 
 	co2.SetFillStyle(3003)
-	co2.SetFillColor(kBlue-6)
+	co2.SetFillColor(kBlue+2)
+	co2.SetLineColor(kBlue+2)
 	co2.Draw("sameHIST")
 
 	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
@@ -377,8 +374,16 @@ def compareCo( co1, co2 ,isTime = False):
 	p1.AddText("")
 	p1.AddText("#mu_{mean} : %f" %((fit1.GetParameter(1) + fit2.GetParameter(1))/2))
 
+	fit2.SetLineColor(kBlue)
 	fit2.Draw("same")
 	p1.Draw();
+	
+	leg = TLegend(0.75, 0.17, .95,.35)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.AddEntry( co1, "^{60}Co first", "f")
+	leg.AddEntry( co2, "^{60}Co last", "f")
+	leg.Draw()
 	
 	print "******  Background estimation: ****** \n "
 	print co1.FindBin(bgxmin)
@@ -391,7 +396,6 @@ def compareCo( co1, co2 ,isTime = False):
 	print "Mean %f Events / channel"%(float((bg1+bg2)/2))
 	can.SaveAs('compareCo.pdf')
 	can.Close()
-	raw_input()
 
 #globalFit( alu, co2 )
 

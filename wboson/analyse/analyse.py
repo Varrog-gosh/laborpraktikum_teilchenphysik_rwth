@@ -96,7 +96,30 @@ def trydifferentCuts(dataTree,mcTree):
 				pass
 	f.close()
 
+def DrawOptimizationResults (filename):
+	from ROOT import TCanvas,TH2F
+	c = TCanvas("canvas")
+	c.cd()
+	f = open('optimizeM.txt','r')
+	lines = f.readlines()
+	nBins = len(lines)
+	hcol1 = TH2F("hcol1","Cut Optimierung;#chi^{2};Effizienz;Met ",nBins,0,2.5,100,0,0.8);
+	for i,line in enumerate(lines):
+		linesplit = line.split(" ")
+		metcut = linesplit [0]
+		etcut = linesplit [1]
+		chi2 = linesplit [2]
+		eff = linesplit [3]
+		effbin = hcol1.GetYaxis().FindBin(float(eff))
+		chi2bin = hcol1.GetXaxis().FindBin(float(chi2))
+		hcol1.SetBinContent(chi2bin,effbin,float(metcut))
+	hcol1.Draw("colZ")
+	c.SaveAs("cutOpt.pdf")
+	raw_input()
+	c.Close()
+	
 
+			
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -120,4 +143,5 @@ if (__name__ == "__main__"):
 	#	compareDataMC( mcTree, dataTree, variable, opts.cut)
 	#print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
 	#chi2comparison( dataTree, mcTree, opts.cut, variable = 'mwt' )
-	trydifferentCuts( dataTree, mcTree)
+	#~ trydifferentCuts( dataTree, mcTree)
+	#~ DrawOptimizationResults('optimizeM.txt')
