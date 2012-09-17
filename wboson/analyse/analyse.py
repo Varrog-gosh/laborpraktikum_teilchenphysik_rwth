@@ -70,6 +70,7 @@ def getWeinberg (mw,err_mw):
 	return cos_wein,err_cos_wein
 
 def printTheoreticalValues():
+	print '                     THEORY'
 	print 'Mass = ',
 	printError( 80.385, 0.015, 'GeV')
 	print 'sin²θ = ',
@@ -103,7 +104,12 @@ if (__name__ == "__main__"):
 	m, e_m = getMass( dataTree, mcTree, cut, variable = 'mwt' )
 	print 'Mass =  ',
 	printError(m, e_m, unit = 'GeV')
-	print "Crosssection =  is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
-	print 'weinbergwinkel = ', getWeinberg( m, e_m )
-	print 
+	sigma, e_sigma = Get_xs(dataTree,mcTree,opts.plots[0], cut)
+	print "σ = ",
+	printError(sigma, esigma, unit = 'nb')
+	sin2theta, e_sin2theta = getWeinberg( m, e_m )
+	print 'sin²(θ) = ',
+	printError( sin2theta, e_sin2theta)
+
+	print
 	printTheoreticalValues()
