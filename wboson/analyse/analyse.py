@@ -42,8 +42,9 @@ def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
 
 
 def Get_xs(dataTree,mcTree,variable,cut):
-	#returns crosssection
+	#returns crosssection in nb
 	#uses efficiency e eff = n_after_cut / n_generated
+	from math import sqrt
 	settings = histo_settings()
 	xlow = settings[variable]["xmin"]
 	xhigh = settings[variable]["xmax"]
@@ -55,10 +56,25 @@ def Get_xs(dataTree,mcTree,variable,cut):
 	eff = n_after_cut / ngen
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	n_obs = dataHisto.GetEntries()
-	lumi = 198
+	lumi = 198e3
+	err_lumi = 20e3
 	corr = 0.9
+	err_corr = 0.1
 	xs = n_obs / eff / lumi / corr
-	return xs
+	err_xs_stat = xs / sqrt(n_obs)
+	err_xs_sys = xs * sqrt(1/ngen + 1/n_after_cut + pow(err_corr/corr,2) + pow(err_lumi/lumi,2))
+	return xs,err_xs_stat,err_xs_sys
+
+def Compare_xs(xs,err_xs_stat,err_xs_sys):
+	#function returns how many standard deviations are between theory 
+	# and measurement
+	from math import sqrt
+	xs_theo = 2.58
+	err_xs_theo = 0.09
+	err_comb = sqrt(err_xs_stat**2 + err_xs_sys **2 )
+	d = abs(xs_theo - xs)
+	d_err = sqrt(err_comb+err_xs_theo)
+	return d/d_err
 
 def getWeinberg (mw,err_mw):
 	mz = 91.227
@@ -91,5 +107,8 @@ if (__name__ == "__main__"):
 	cut = 'met>30&& el_et > 30 && mwt/el_et > 1.8'
 	m, e_m = getMass( dataTree, mcTree, cut, variable = 'mwt' )
 	print 'Mass =  ', printError(m, e_m, unit = 'GeV')
-	print "Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	xs,err_xs_stat,err_xs_sys = Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	print "Crosssection is :%.2f +- %.2f/ (stat.) +- %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
+	print "Theory Crossection %.2f +- %.2f nb"%(2.58,0.09)
+	print "The Crossection deviates %f standard deviations from the theoretical value "%Compare_xs(xs,err_xs_stat,err_xs_sys)
 	print 'weinbergwinkel = ', getWeinberg( m, e_m )
