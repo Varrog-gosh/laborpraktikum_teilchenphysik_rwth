@@ -1,6 +1,45 @@
 #! /usr/bin/env python2
 # -*- coding: utf-8 -*-
 from treeTools import *
+from tools import *
+
+def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
+	nBins = 20
+	firstBin = 80
+	lastBin = 90
+	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
+	datahist.Scale( 1./datahist.Integral() )
+
+	from ROOT import TGraph
+	from array import array
+	x = array('d')
+	y = array('d')
+	masses = weightToMass()
+	for i, mass in enumerate( masses ):
+		x.append( mass )
+		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
+		mchist.Scale( 1./mchist.Integral() )
+		datahist.SetTitle( ';'+cut)
+		chi2ndf = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf")
+		y.append( chi2ndf )
+	gr = TGraph(len(masses), x,y)
+	gr.SetTitle(';M_{W} [GeV];prob')
+	gr.Draw("ap")
+	gr.Fit('pol2','q')
+	raw_input()
+	func = gr.GetFunction('pol2')
+	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
+
+	chi2min = func.Eval( mass )
+	offset = 1 # how much χ² should change for error
+	from math import sqrt
+	try:
+		e_mass = sqrt( 1.* offset / func.GetParameter(2) )
+	except:
+		e_mass = 0
+
+	return mass, e_mass
+
 
 def Get_xs(dataTree,mcTree,variable,cut):
 	#returns crosssection
@@ -25,9 +64,10 @@ def getWeinberg (mw,err_mw):
 	mz = 91.227
 	err_mz = 0.041
 	cos_wein = mw / mz
+	from math import sqrt
 	err_cos_wein = sqrt(err_mw**2 / mz**2 + mw**2 / mz**4 * err_mz**2)
 	print "Cos(Theta) = %f +/- %f" % (cos_wein,err_cos_wein)
-	return cos_wein,err_con_wein
+	return cos_wein,err_cos_wein
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
@@ -48,7 +88,8 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	m = 80
-	e_m = 2
-
-	#print "The Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	cut = 'met>30&& el_et > 30 && mwt/el_et > 1.8'
+	m, e_m = getMass( dataTree, mcTree, cut, variable = 'mwt' )
+	print 'Mass =  ', printError(m, e_m, unit = 'GeV')
+	print "Crosssection is :%e pb"%Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	print 'weinbergwinkel = ', getWeinberg( m, e_m )
