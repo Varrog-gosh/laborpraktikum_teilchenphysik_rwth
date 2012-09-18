@@ -231,7 +231,18 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 	
 \subsection{Bestimmung der Lebensdauern in Polyethylen}
 	Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht. Das Aufgenommene Spektrum
-	stellt also eine Faltung von Auflösungskurve und Signal da.
+	stellt also eine Faltung von Auflösungskurve und Signal dar. Um die einzelnen Anteile beurteilen zu können wird eine Entfaltung mit dem Programmpaket ROOT durchgeführt, dabei wird
+	der Gold Algorithmus \ref{gold_algo} benutzt. Hierbei wurde das gemessene Spektrum für $^{22}$Na als Faltung angenommen und das $^{60}$Co Spektrum als Responsefunktion des System
+	gewählt. Die beiden Ausgangsfunktionen und die darraus resultierende Entfaltung sind in Abbildung \ref{fig:deconvolution} dargestellt. Es ist deutlich zu erkennen, dass die 
+	Modifikation des ursprünglichen Signalspektrum durch die Auflösungsfunktion jenseits von Kanal 8000 also xx ns zu vernachlässigen ist. Da die Fortpflanzung der Fehler bei
+	der Entfaltung nicht stattfindet werden die weiteren Anpassungen an den ursprünglichen Daten druchgeführt, die durchgeführte Entfaltung zeigt jedoch
+	 , dass dieses Vorgehen gerechtfertigt ist.  
+	
+	\begin{figure}
+	\includegraphics[width=1.0\textwidth]{../analyse/deconvolution.pdf}
+	\caption{Entfaltung des Spektrum für Polyethylen}
+	\label{fig:compare_signal}
+	\end{figure}
 \subsection{Bestimmung der Lebensdauern in Polyethylen}
 	
 
@@ -257,7 +268,7 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 		ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im 
 		Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von 
 		einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließender Einfang eines Elektrons aus der Randschicht 
-		(hier kann die Probenoberfläche oder der Rand einer Probe gemeint sein) erfolgt.  
+		(hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.  
 	
 \subsection{Globaler Fit}
 Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird

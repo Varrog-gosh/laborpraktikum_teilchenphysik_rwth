@@ -9,7 +9,7 @@ tdrStyle()
 
 def normedHist( name, color, func = 0):
 	if func == 0:
-		hist = tkaToHist( name, 2000, 16000 )
+		hist,time = tkaToHist( name, 2000, 16000 ,True)
 		hist.Rebin(50)
 	else:
 		hist = tkaToTimeHist(name, func , -2, 8 )
@@ -18,6 +18,20 @@ def normedHist( name, color, func = 0):
 	hist.SetLineColor( color )
 	return hist
 
+def timenormedHist( name, color, func = 0):
+	if func == 0:
+		hist,time = tkaToHist( name, 2000, 16000 ,True)
+		hist.Rebin(50)
+	else:
+		hist,time = tkaToTimeHist(name, func , -2, 8,True )
+	hist.Scale(1./time)
+	hist.GetYaxis().SetTitle("Normierte Eintr#ddot{a}ge")
+	hist.SetLineColor( color )
+	hist.SetMarkerStyle( 23 + color )
+	hist.SetMarkerSize( 1.5 )
+	hist.SetMarkerColor( color )
+	return hist
+	
 
 func = kalibration()
 alu = normedHist( 'data/aluminium.TKA', 2 )
@@ -31,6 +45,11 @@ co2 = normedHist( 'data/co60_2.TKA', 12 )
 
 cotime = normedHist( 'data/co60.TKA', 1, func )
 co2time = normedHist( 'data/co60_2.TKA', 12 , func )
+
+alu_timenormed = timenormedHist( 'data/aluminium.TKA', 2, 0 )
+poly_timenormed = timenormedHist( 'data/poly.TKA', 4, 0 )
+co_timenormed = timenormedHist( 'data/co60.TKA', 1, 0 )
+co2_timenormed = timenormedHist( 'data/co60_2.TKA', 1, 0 )
 
 def compareHistos( signal, background, signalname, backgroundname, save ):
 	'''
@@ -155,10 +174,10 @@ def compareCo( co1, co2 ,isTime = False):
 	print co1.FindBin(bgxmax)
 	print "Range Channel %d to %d"%(bgxmin,bgxmax)
 	bg1 = bg_integral1 / abs(bgxmin-bgxmax)
-	bg2 = bg_integral1/ abs(bgxmin-bgxmax)
-	print "Co1 %f events %f Events / channel"%(bg_integral1,bg1)
-	print "Co2 %f events %f Events / channel"%(bg_integral2,bg2)
-	print "Mean %f Events / channel"%(float((bg1+bg2)/2))
+	bg2 = bg_integral2/ abs(bgxmin-bgxmax)
+	print "Co1 %f events %e Events / channel"%(bg_integral1,bg1)
+	print "Co2 %f events %e Events / channel"%(bg_integral2,bg2)
+	print "Mean %e Events / channel"%(float((bg1+bg2)/2))
 	can.SaveAs('compareCo.pdf')
 	can.Close()
 
@@ -169,4 +188,4 @@ def compareCo( co1, co2 ,isTime = False):
 #~ compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
 
 #compareCo( cotime, co2time,True )
-compareCo( co, co2,False )
+compareCo( co_timenormed, co2_timenormed,False )

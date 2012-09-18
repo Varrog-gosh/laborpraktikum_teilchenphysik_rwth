@@ -186,7 +186,8 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 	data = readFile( filename )[0]
 	time = data[0] # or data[1]
 	data = data[2:-1] #effective data
-
+	bg_per_channel_per_time = 6.851514e-06 # per time
+	bg_per_channel = bg_per_channel_per_time * time
 	length = len( data )
 
 	if xMax == 0:
@@ -195,7 +196,7 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 
 	hist = TH1F('', ";Kanalnummer;Normierte Eintr#ddot{a}ge", length, xMin-0.5, xMax-0.5 )
 	for i in range( length ):
-		hist.SetBinContent(i, data[ i + xMin ] )
+		hist.SetBinContent(i, data[ i + xMin ] - bg_per_channel)
 
 	hist.Sumw2()
 	if giveTime:
