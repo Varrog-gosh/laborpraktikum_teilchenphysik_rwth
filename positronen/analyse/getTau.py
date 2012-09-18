@@ -27,6 +27,13 @@ func = kalibration()
 alutime = normedHist( 'data/aluminium.TKA', 2, func )
 polytime = normedHist( 'data/poly.TKA', 4, func )
 cotime = normedHist( 'data/co60.TKA', 1, func )
+
+
+alu = normedHist( 'data/aluminium.TKA', 2, 0 )
+poly = normedHist( 'data/poly.TKA', 4, 0 )
+co = normedHist( 'data/co60.TKA', 1, 0 )
+
+
 #co2time = normedHist( 'data/co60_2.TKA', 12 , func )
 
 
@@ -202,6 +209,7 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	output:
 	τ, error  in channel numbers
 	'''
+	
 	signal.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
 	background.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
 	t = ( signal.GetMean() - background.GetMean() ) * signal.GetBinWidth(0)
@@ -211,3 +219,4 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 
 # execute programs
 #twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
+calculateDeconvolution( poly, co, "Poly", "Co" )
