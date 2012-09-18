@@ -14,7 +14,7 @@ def normedHist( name, color, func = 0):
 	else:
 		hist = tkaToTimeHist(name, func , -2, 8 )
 	hist.Scale(1./hist.Integral())
-	hist.GetYaxis().SetTitle("Normirte Eintr#ddot{a}ge")
+	hist.GetYaxis().SetTitle("Normierte Eintr#ddot{a}ge")
 	hist.SetLineColor( color )
 	return hist
 
@@ -68,8 +68,8 @@ def compareCo( co1, co2 ,isTime = False):
 	co1.SetFillStyle(3003)
 	co1.SetFillColor(ROOT.kCyan+2)
 	co1.SetLineColor(ROOT.kCyan+2)
-	#~ co1.SetAxisRange(2200,8000,"X")
-	co1.Draw("HISTLF")
+	co1.SetAxisRange(2200,8000,"X")
+	co1.Draw("HISTF")
 
 	bgxmin = 6000
 	bgxmax = 14000
@@ -88,12 +88,13 @@ def compareCo( co1, co2 ,isTime = False):
 	fit1 = TF1('fit1', 'gaus', peaks[0]-peakminus, peaks[0]+peakplus)
 	co1.Fit("fit1","R0")
 	fit1.SetLineColor(ROOT.kCyan)
+	fit1.SetLineWidth(3)
 	fit1.Draw("same")
 	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
-	xmin = 0.68
-	xmax = 0.8
-	ymin = 0.45
-	ymax = 0.95
+	xmin = 0.75
+	xmax = 0.95
+	ymin = 0.17
+	ymax = 0.74
 	can.Update()
 	p1 = TPaveStats(co1.GetListOfFunctions().FindObject("stats"))	
 	#~ co1.GetListOfFunctions().Remove(p1);
@@ -104,6 +105,7 @@ def compareCo( co1, co2 ,isTime = False):
 	p1.SetY2NDC(ymax)
 	p1.SetFillColor(0)
 	p1.SetTextSize(0.03)
+	p1.SetTextAlign(12)
 
 
 	co2.SetFillStyle(3003)
@@ -117,31 +119,35 @@ def compareCo( co1, co2 ,isTime = False):
 	co2.Fit("fit2","R0+")
 	bg_integral2 = co2.Integral(co2.FindBin(bgxmin),co2.FindBin(bgxmax))
 	
-	p1.AddText("First Peak:")
-	p1.AddText("#chi^{2}/NDF : %e"%(fit1.GetChisquare() / fit1.GetNDF()))
-	p1.AddText("Constant: %e"%fit1.GetParameter(0))
-	p1.AddText("#mu_{1}: %e"%fit1.GetParameter(1))
-	p1.AddText("#sigma_{1}: %e"%fit1.GetParameter(2))
+	p1.AddText("Ergebnisse")
+	p1.AddText("Vor der Messung:")
+	p1.AddText("#chi^{2}/NDF : %.3f"%(fit1.GetChisquare() / fit1.GetNDF()))
+	p1.AddText("Constant: %.1e#pm%.0e"%(fit1.GetParameter(0),fit1.GetParError(0)))
+	p1.AddText("#mu_{1}: %.1f#pm%.1f"%(fit1.GetParameter(1),fit1.GetParError(1)))
+	p1.AddText("#sigma_{1}: %.1f#pm%.1f"%(fit1.GetParameter(2),fit1.GetParError(2)))
 	p1.AddText("")
-	p1.AddText("Second Peak:")
-	p1.AddText("#chi^{2}/NDF : %e"%(fit2.GetChisquare() / fit2.GetNDF()))
-	p1.AddText("Constant: %e"%fit2.GetParameter(0))
-	p1.AddText("#mu_{2}: %e"%fit2.GetParameter(1))
-	p1.AddText("#sigma_{2}: %e"%fit2.GetParameter(2))
+	p1.AddText("Nach der Messung:")
+	p1.AddText("#chi^{2}/NDF : %.3f"%(fit2.GetChisquare() / fit2.GetNDF()))
+	p1.AddText("Constant: %.1e#pm%.0e"%(fit2.GetParameter(0),fit2.GetParError(0)))
+	p1.AddText("#mu_{2}: %.1f#pm%.1f"%(fit2.GetParameter(1),fit2.GetParError(1)))
+	p1.AddText("#sigma_{2}: %.1f#pm%.1f"%(fit2.GetParameter(2),fit2.GetParError(2)))
 	p1.AddText("")
-	p1.AddText("#Delta#mu: %f"%(fit1.GetParameter(1) - fit2.GetParameter(1)))
+	p1.AddText("#Delta#mu: %.1f"%(fit1.GetParameter(1) - fit2.GetParameter(1)))
 	p1.AddText("")
-	p1.AddText("#mu_{mean} : %f" %((fit1.GetParameter(1) + fit2.GetParameter(1))/2))
+	p1.AddText("#mu_{mean} : %.1f" %((fit1.GetParameter(1) + fit2.GetParameter(1))/2))
+	p1.AddText("#sigma_{mean} : %.1f" %((fit1.GetParameter(2) + fit2.GetParameter(2))/2))
+	p1.AddText("")
 
 	fit2.SetLineColor(ROOT.kBlue)
+	fit2.SetLineWidth(3)
 	fit2.Draw("same")
 	p1.Draw();
 	
-	leg = TLegend(0.75, 0.17, .95,.35)
+	leg = TLegend(0.7, 0.78, .95,.95)
 	leg.SetFillColor(0)
 	leg.SetLineWidth(0)
-	leg.AddEntry( co1, "^{60}Co first", "f")
-	leg.AddEntry( co2, "^{60}Co last", "f")
+	leg.AddEntry( co1, "^{60}Co vor Messung", "f")
+	leg.AddEntry( co2, "^{60}Co nach Messung", "f")
 	leg.Draw()
 	
 	print "******  Background estimation: ****** \n "
@@ -160,7 +166,7 @@ def compareCo( co1, co2 ,isTime = False):
 
 # execute programs
 # compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
-compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
+#~ compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
 
 #compareCo( cotime, co2time,True )
-#compareCo( co, co2,False )
+compareCo( co, co2,False )

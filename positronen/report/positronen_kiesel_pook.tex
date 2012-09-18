@@ -213,7 +213,7 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 \end{figure}
 \subsection{Zeitnullpunkt und Zeitstabilität}
 		\begin{figure}
-		\includegraphics[width=0.8\textwidth]{../analyse/compareCo.pdf}
+		\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
 		\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen}
 		\label{fig:timepuls}
 		\end{figure}
@@ -227,7 +227,28 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 		als zusätzlich systematische Unsicherheit auf alle Zeitmessungen angenommen. Die Zeitauflösung wird durch die mittlere Breite der beiden an die 
 		Daten angepassten Gaußfunktion abgeschätzt.  
 \subsection{Vergleich der Messungen für Aluminum und Polyethylen}
-		
+	\begin{figure}
+	\includegraphics[width=1.0\textwidth]{../analyse/compareHistos.pdf}
+	\caption{Vergleich des gemessenen Zeitspektrums für Aluminium und Polyethylen (beide Spektren sind zur besseren vergleichbarkeit auf einen Flächeninhalt von 1 normiert) }
+	\label{fig:compare_signal}
+	\end{figure}
+	\begin{figure}
+	\includegraphics[width=0.5\textwidth]{../pictures/quelle_nah.jpg}
+	\caption{Nahaufnahme der genutzten Aluminiumquelle }
+	\label{fig:quelle_nah}
+	\end{figure}
+		Der Vergleich der Messungen für Aluminum und Polyethylen (siehe Abbildung \ref{fig:compare_signal}  zeigt ein zunächst unerwartetes Verhalten für 
+		die Aluminiumprobe. Auf Grund der hohen Elektronendichte im Leitungsband von Aluminium ist die Existenz eines Øre-Gap nicht zu erwarten, die 
+		enegetischen Bedingungen für die Bildung von Positronium sind also nicht gegeben. Dennoch beobachtet man ein ähnliches Verhalten wie bei 
+		Polyethylen, also eine Überlangerung von 2 unterschiedlichen charakteristischen Zerfallsszeiten. Dieses Verhalten lässt sich vermutlich durch
+		den Aufbau der genutzten Probe erklären. Wie in Abbildung \ref{fig:quelle_nah} zu erkennen ist besteht die Probe aus zwei Aluminiumscheiben
+		in deren Mitte die $^{22}$Na Quelle eingebracht ist. Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
+		in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
+		emittierten Positronen treffen also zunächst auf Aluminiumoxid bevor im inneren Teil der Probe wieder reines Aluminium vorherrscht. In Aluminiumoxid
+		ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im 
+		Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von 
+		einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließender Einfang eines Elektrons aus der Randschicht 
+		(hier kann die Probenoberfläche oder der Rand einer Probe gemeint sein) erfolgt.  
 \subsection{Bestimmung der Lebensdauern in Polyethylen}
 		
 \subsection{Globaler Fit}
@@ -239,5 +260,6 @@ Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
 \section{Diskussion}
 
  
-\section{Diskussion} 
+\bibliographystyle{plain}
+\bibliography{citebib}{}
 \end{document}
