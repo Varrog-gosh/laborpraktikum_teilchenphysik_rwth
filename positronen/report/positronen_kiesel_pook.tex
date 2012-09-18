@@ -273,7 +273,10 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 \subsection{Globaler Fit}
 Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
 \begin{align*}
-	F(t) &= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) \frac{2}{\sqrt{π}}\int_{\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)}^\infty dγ e^{-γ^2}\\
+	F(t) &= \int_{-\infty}^\infty f(T)P(t-T)dT\\
+	&= \int_0^\infty \frac{T}{τ}\exp\left( \frac{t}{τ} \right)\frac{1}{\sqrt{2π}σ}\exp\left( -\frac{(t-T-μ)^2}{2σ^2} \right)dT\\
+	&=\\
+	&= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) \frac{2}{\sqrt{π}}\int_{\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)}^\infty  e^{-γ^2}dγ\\
 	&= \frac{1}{2τ} \exp\left( \frac{2}{τ}\left( μ-t+\frac{σ^2}{τ} \right) \right) Erfc\left(\frac{1}{\sqrt{2}σ}\left( μ-\frac{2σ^2}{τ} -t \right)\right)
 \end{align*}
 \section{Diskussion}

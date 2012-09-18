@@ -112,7 +112,11 @@ def twoLinearFits( signal, ranges):
 	from math import log
 	for i in range( signal.GetXaxis().GetNbins() + 1 ):
 		signal.SetBinError( i, signal.GetBinError(i) / signal.GetBinContent(i) )
-		signal.SetBinContent( i, log( signal.GetBinContent(i) ) )
+		if signal.GetBinContent(i) > 0:
+			signal.SetBinContent( i, log( signal.GetBinContent(i) ) )
+		else:
+			signal.SetBinContent( i, log( 1e-19) )
+
 
 	for i, ran in enumerate( ranges ):
 		can = TCanvas( 'linear', "dualliniar", 700, 800 )
@@ -160,11 +164,11 @@ def globalFit( signal ):
 	signal, background: histograms
 	returns: void
 	'''
-	from ROOT import TF1,TCanvas
+	from ROOT import TF1,TCanvas, gStyle
 	from re import sub
+	gStyle.SetStatFontSize(0.06)
 	# human readable string for fit
-	f1 = 'amp * 1./( 2*tau) * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
-	f1 = 'amp * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	f1 = 'amp * exp( 1/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
 	# cast human readable sting to machine string
 	f1 = sub( 'mean', '[0]', f1 )
 	f1 = sub( 'sigma', '[1]', f1 )
@@ -180,10 +184,11 @@ def globalFit( signal ):
 	fit.SetParNames('#mu',"#sigma","#tau_{1}", "A_{1}", "#tau_{2}", "A_{2}" )
 	fit.SetParameter( 0, 4.80497e-01)
 	fit.SetParameter( 1, 3.70915e-01)
-	fit.SetParameter( 2, 9.22650e-01)
+	fit.SetParameter( 2, 4.49595e-01)
 	fit.SetParameter( 3, 2.63383e-02)
-	fit.SetParameter( 4, 4.26775e+00)
+	fit.SetParameter( 4, 2.00746e+00)
 	fit.SetParameter( 5, 1.96099e-03)
+	print fitstring
 
 
 	can = TCanvas(randomName(), 'globalFit', 1300, 800 )
@@ -191,7 +196,7 @@ def globalFit( signal ):
 	can.SetLogy()
 	signal.Fit('fit', "r")
 	fit.Draw("same")
-	raw_input()
+	can.SaveAs("globalFit.pdf")
 	can.Close()
 
 globalFit( polytime )
@@ -209,7 +214,7 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	output:
 	τ, error  in channel numbers
 	'''
-	
+
 	signal.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
 	background.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
 	t = ( signal.GetMean() - background.GetMean() ) * signal.GetBinWidth(0)
@@ -219,4 +224,4 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 
 # execute programs
 #twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
-calculateDeconvolution( poly, co, "Poly", "Co" )
+#calculateDeconvolution( poly, co, "Poly", "Co" )
