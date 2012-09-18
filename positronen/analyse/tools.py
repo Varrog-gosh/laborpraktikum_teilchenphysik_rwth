@@ -133,9 +133,7 @@ class linearRegression:
 		hPad.Draw()
 		hPad.cd()
 		self.graph.SetTitle( title )
-		xaxis_graph = self.resgraph.GetXaxis()
-		xaxis_graph.SetTitle("")
-		
+		self.resgraph.GetXaxis().SetTitle("")
 		self.graph.Draw("ap")
 
 		self.canvas.cd()

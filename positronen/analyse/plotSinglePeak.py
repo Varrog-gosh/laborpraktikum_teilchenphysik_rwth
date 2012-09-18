@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from Styles import tdrStyle
 tdrStyle()
-from ROOT import TCanvas, TH1, TF1, TGraphErrors, TPaveStats , gStyle
+from ROOT import TCanvas, TH1, TF1, TGraphErrors, gStyle
 from tools import *
 from kalibration import *
 

@@ -147,50 +147,47 @@ def twoLinearFits( signal, ranges):
 
 
 
-def globalFit( signal, background ):
+def globalFit( signal ):
 	'''
 	uses convolution fit
 	signal, background: histograms
 	returns: void
 	'''
-	from ROOT import TF1
-	gaus = TF1('mygaus', 'gaus', -2, 0.3 )
-
-	background.Fit('mygaus', 'r')
-	mean = background.GetFunction('mygaus').GetParameter(1)
-	sigma = background.GetFunction('mygaus').GetParameter(2)
-
+	from ROOT import TF1,TCanvas
 	from re import sub
-	#par: [mean, sigma, tau1, a1, tau2, a2 ]
-	#num: [ 0  , 1    , 2   , 3 , 4   , 5  ]
-	f1 = 'a * 1./( 2*tau) * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	# human readable string for fit
+	f1 = 'amp * 1./( 2*tau) * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	f1 = 'amp * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	# cast human readable sting to machine string
 	f1 = sub( 'mean', '[0]', f1 )
-	f1 = sub( 'signa', '[1]', f1 )
+	f1 = sub( 'sigma', '[1]', f1 )
+	f1 = sub( 'time', 'x', f1 )
 	f2 = f1
-	f1 = sub( 'a', '[2]', f1 )
-	f1 = sub( 'tau', '[3]', f1 )
-	f2 = sub( 'a', '[2]', f2 )
-	f2 = sub( 'tau', '[3]', f2 )
-	print f1
-	print f2
+	f1 = sub( 'tau', '[2]', f1 )
+	f1 = sub( 'amp', '[3]', f1 )
+	f2 = sub( 'tau', '[4]', f2 )
+	f2 = sub( 'amp', '[5]', f2 )
+	fitstring = f1+'+'+f2
+
+	fit = TF1("fit", fitstring, 0, 8 )
+	fit.SetParNames('#mu',"#sigma","#tau_{1}", "A_{1}", "#tau_{2}", "A_{2}" )
+	fit.SetParameter( 0, 4.80497e-01)
+	fit.SetParameter( 1, 3.70915e-01)
+	fit.SetParameter( 2, 9.22650e-01)
+	fit.SetParameter( 3, 2.63383e-02)
+	fit.SetParameter( 4, 4.26775e+00)
+	fit.SetParameter( 5, 1.96099e-03)
 
 
-	fit = TF1('myfit', ' [3] * (2*[2]) * exp(2/[2] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )+ [4]/(2*[5]) * exp(2/[5] * ( [1] - x + [2]**2/[5] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[5] - x ) )' , -2, 6 )
-	#fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , -2, 6 )
-	#fit2 = TF1("fit","myfit(0)+myfit(4)",2000,4000)
-
-	fit.SetParameter( 1, mean)
-	fit.SetParameter( 2, sigma )
-	fit.SetParameter(0, 1.9)
-	fit.SetParameter(3, 0.03)
-	fit.SetParameter(4, 0.03)
-	fit.SetParameter(5, 0.3)
-	#signal.Draw()
-	#~ fit.Draw("same")
-	signal.Fit('myfit')
+	can = TCanvas(randomName(), 'globalFit', 1300, 800 )
+	can.cd()
+	can.SetLogy()
+	signal.Fit('fit', "r")
+	fit.Draw("same")
 	raw_input()
+	can.Close()
 
-globalFit( polytime, cotime )
+globalFit( polytime )
 
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
