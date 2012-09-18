@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from Styles import tdrStyle
 tdrStyle()
-from ROOT import TCanvas, TH1, TF1, TGraphErrors
+from ROOT import TCanvas, TH1, TF1, TGraphErrors, TPaveStats , gStyle
 from tools import *
 from kalibration import *
 
@@ -12,6 +12,9 @@ def plotSinglePeak( filename = 'data/kali_montag.TKA' ):
 	can = TCanvas('singlePeak')
 	can.SetBatch()
 	can.SetCanvasSize( 1400, 800 )
+
+	gStyle.SetStatFontSize(0.07)
+
 	for peak in [16]:
 		print peak
 		hist = tkaToHist( filename, int(x[peak]) - border, int(x[peak]) + border )
