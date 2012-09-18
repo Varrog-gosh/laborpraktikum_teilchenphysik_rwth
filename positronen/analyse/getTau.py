@@ -15,9 +15,9 @@ def normedHist( name, color, func = 0):
 	else:
 		hist = tkaToTimeHist(name, func , -2, 8 )
 	hist.Scale(1./hist.Integral())
-	hist.GetYaxis().SetTitle("Normirte Eintr#ddot{a}ge")
+	hist.GetYaxis().SetTitle("Normierte Eintr#ddot{a}ge")
 	hist.SetLineColor( color )
-	hist.SetMarkerStyle( 22 + color )
+	hist.SetMarkerStyle( 23 + color )
 	hist.SetMarkerSize( 1.5 )
 	hist.SetMarkerColor( color )
 	return hist
@@ -85,125 +85,66 @@ def calculateDeconvolution( signal, background , signalname, backgroundname ):
 
 	can.SaveAs("deconvolution.pdf")
 	return d
-
 ##poly = normedHist( 'data/poly.TKA', 4 )
 ##co = normedHist( 'data/co60.TKA', 1 )
 #calculateDeconvolution( polytime, cotime, "Polyethylen", "Cobalt" )
 
 
-def FitTau(hist,background,isTime = False):
-	from ROOT import TH1D, TF1,TCanvas, TLegend
 
-	# not working now
-	background.Fit('gaus') # fit doesnot seem to care about normalization
-	# perhaps comment SetNormFactor()
-	mean = background.GetFunction('gaus').GetParameter(1)
-	sigma = background.GetFunction('gaus').GetParameter(2)
+def twoLinearFits( signal, ranges):
+	'''
+	fits two linear functions to the signal distribution
+	signal: histogram containing data
+	ranges: list of tuples. Each tuple contains minimum and maximum of fit
 
-	can = TCanvas("canvastau")
-	can.cd()
-	#~ can.SetBatch()
-	can.SetCanvasSize( 1300, 800 )
-	can.SetLogy()
-	if isTime:
-		fitRanges = [ (-2, 6.5),(3, 6.5)]
-	else:
-		fitRanges = [ (5000, 6500),(8000, 11000)]
-	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
-	if isTime:
-		hist.SetAxisRange(-2,8,"X")
-	else:
-		hist.SetAxisRange(4780,14000,"X")
-	hist.SetLineColor(4)
-	hist.SetMaximum(1)
-	hist.Draw("histC")
-	fit.SetLineWidth(3)
-	fit.SetLineColor(6)
-	hist.Fit("fit","r")
-	# par : [tau, mu, sigma,const]
-	fit2 = TF1('fit2', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) ) + [5]/(2*[4]) * exp(2/[4] * ( [1] - x + [2]**2/[4] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[4] - x ) )' ,fitRanges[0][0],fitRanges[0][1] )
-	#~ fit2 = TF1('fit2', 'expo(0)+expo(2)',fitRanges[0][0], fitRanges[0][1] )
-	
-	fit2.FixParameter(0,-1./fit.GetParameter(1))
-	fit2.FixParameter(1,mean)
-	fit2.FixParameter(2,sigma)
-	fit2.FixParameter(3,fit.GetParameter(0))
-	fit2.SetParameter(4,1.5)
-	hist.Fit("fit2","r+")
-	hist.SetStats(0)
-	
-	leg = TLegend(0.5, 0.5, .88,1.0,"NDC")
-	leg.SetFillColor(0)
-	leg.SetLineWidth(0)
-	leg.SetTextSize(0.03)
-	leg.AddEntry( fit2, "Fit 1", "l")
-	leg.AddEntry(0,"X(t|c_{i},#tau_{i}) = #frac{C_{i}}{2#tau_{i}} e^{#frac{2}{#tau}(#mu-t+#frac{#sigma^{2}}{#tau_{i}})} Erfc(#frac{1}{#sqrt{2}#sigma}(#mu-#frac{2#sigma^{2}}{#tau_{i}}-t))","")
-	leg.AddEntry(0,"Function : X(t|c_{1},#tau_{1})+X(t|c_{2},#tau_{2})+","")
-	leg.AddEntry( fit, "Fit 2", "l")
-	leg.AddEntry(0,"Function : C_{2} e^{#frac{t}{-#tau_{2}}}","")
-	leg.AddEntry(0,"C_{2}: %.4f #pm %.4f"%(fit.GetParameter(0),fit	.GetParError(0)),"")
-	leg.AddEntry(0,"#tau_{2}: %.4f #pm %.4f"%(1/fit.GetParameter(1),fit.GetParError(1)),"")
-	leg.AddEntry(0,"#chi^{2}/ NDF: %.4f "%(1/fit.GetChisquare()/fit.GetNDF()),"")
-	#~ 
-	leg.Draw()
-	can.Update()
+	returns: void, prints two pdfs
+	'''
+	from ROOT import TF1, TCanvas, TLegend, TPaveText, TLine
 
+	# take logarithm of histogram
+	from math import log
+	for i in range( signal.GetXaxis().GetNbins() + 1 ):
+		signal.SetBinError( i, signal.GetBinError(i) / signal.GetBinContent(i) )
+		signal.SetBinContent( i, log( signal.GetBinContent(i) ) )
 
-	can.SaveAs("taufit.pdf")
-	raw_input()
+	for i, ran in enumerate( ranges ):
+		can = TCanvas( 'linear', "dualliniar", 700, 800 )
+		can.SetBatch()
+		can.Divide(1,2)
+		can.cd(1)
 
+		s = signal.Clone()
+		s.GetYaxis().SetTitle('ln( Eintr#ddot{a}ge )')
+		s.SetAxisRange( ran[0] - 0.5, ran[1] + 0.5 )
+		fit = TF1('mypol1', 'pol1', ran[0], ran[1] )
+		s.Fit('mypol1','r')
+		s.SetStats(0)
+		s.Draw()
 
-def twoLinearFits( signal ):
-	from ROOT import TF1, TCanvas, TLegend, 
+		# Draw box with infos
+		func = s.GetFunction('mypol1')
+		info = TPaveText(0.5,.7, .9,.9, 'ndc')
+		info.SetFillColor(0)
+		info.SetLineColor(0)
+		info.SetShadowColor(0)
+		info.AddText( '#chi^{{2}} / NDF = {} / {}'.format(int(func.GetChisquare()), func.GetNDF()) )
+		from re import sub
+		info.AddText( '#tau = ' + sub('±', "#pm", printError(-1/func.GetParameter(1), func.GetParError(1)/(func.GetParameter(1))**2, 'ns')))
+		info.Draw()
 
-	can = TCanvas( randomName(), "dualliniar", 1300, 800 )
-	can.cd()
-	#can.SetBatch()
-	signal.Draw()
-	raw_input()
-	fit = TF1('fit', 'expo',fitRanges[1][0], fitRanges[1][1] )
-	if isTime:
-		hist.SetAxisRange(-2,8,"X")
-	else:
-		hist.SetAxisRange(4780,14000,"X")
-	hist.SetLineColor(4)
-	hist.SetMaximum(1)
-	hist.Draw("histC")
-	fit.SetLineWidth(3)
-	fit.SetLineColor(6)
-	hist.Fit("fit","r")
-	# par : [tau, mu, sigma,const]
-	fit2 = TF1('fit2', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) ) + [5]/(2*[4]) * exp(2/[4] * ( [1] - x + [2]**2/[4] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[4] - x ) )' ,fitRanges[0][0],fitRanges[0][1] )
-	#~ fit2 = TF1('fit2', 'expo(0)+expo(2)',fitRanges[0][0], fitRanges[0][1] )
-	
-	fit2.FixParameter(0,-1./fit.GetParameter(1))
-	fit2.FixParameter(1,mean)
-	fit2.FixParameter(2,sigma)
-	fit2.FixParameter(3,fit.GetParameter(0))
-	fit2.SetParameter(4,1.5)
-	hist.Fit("fit2","r+")
-	hist.SetStats(0)
-	
-	leg = TLegend(0.5, 0.5, .88,1.0,"NDC")
-	leg.SetFillColor(0)
-	leg.SetLineWidth(0)
-	leg.SetTextSize(0.03)
-	leg.AddEntry( fit2, "Fit 1", "l")
-	leg.AddEntry(0,"X(t|c_{i},#tau_{i}) = #frac{C_{i}}{2#tau_{i}} e^{#frac{2}{#tau}(#mu-t+#frac{#sigma^{2}}{#tau_{i}})} Erfc(#frac{1}{#sqrt{2}#sigma}(#mu-#frac{2#sigma^{2}}{#tau_{i}}-t))","")
-	leg.AddEntry(0,"Function : X(t|c_{1},#tau_{1})+X(t|c_{2},#tau_{2})+","")
-	leg.AddEntry( fit, "Fit 2", "l")
-	leg.AddEntry(0,"Function : C_{2} e^{#frac{t}{-#tau_{2}}}","")
-	leg.AddEntry(0,"C_{2}: %.4f #pm %.4f"%(fit.GetParameter(0),fit	.GetParError(0)),"")
-	leg.AddEntry(0,"#tau_{2}: %.4f #pm %.4f"%(1/fit.GetParameter(1),fit.GetParError(1)),"")
-	leg.AddEntry(0,"#chi^{2}/ NDF: %.4f "%(1/fit.GetChisquare()/fit.GetNDF()),"")
-	#~ 
-	leg.Draw()
-	can.Update()
+		# Compute and draw residuals, not working now
+		can.cd(2)
+		res = signal.Clone()
+		res.SetAxisRange( ran[0], ran[1] )
+		for j in range( res.GetXaxis().GetNbins() +1 ):
+			res.SetBinContent( j, res.GetBinContent(j) - func.Eval( res.GetBinCenter(j) ) )
+		res.Draw()
+		line = TLine( ran[0], 0,  ran[1] ,0)
+		line.Draw()
 
+		can.SaveAs('linearFit{}.pdf'.format(i))
+		can.Close()
 
-	can.SaveAs("taufit.pdf")
-	raw_input()
-twoLinearFits( polytime )
 
 
 def globalFit( signal, background ):
@@ -219,16 +160,37 @@ def globalFit( signal, background ):
 	mean = background.GetFunction('mygaus').GetParameter(1)
 	sigma = background.GetFunction('mygaus').GetParameter(2)
 
-	# par : [tau, mu, sigma,const]
-	fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , -2, 6 )
+	from re import sub
+	#par: [mean, sigma, tau1, a1, tau2, a2 ]
+	#num: [ 0  , 1    , 2   , 3 , 4   , 5  ]
+	f1 = 'a * 1./( 2*tau) * exp( 2/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	f1 = sub( 'mean', '[0]', f1 )
+	f1 = sub( 'signa', '[1]', f1 )
+	f2 = f1
+	f1 = sub( 'a', '[2]', f1 )
+	f1 = sub( 'tau', '[3]', f1 )
+	f2 = sub( 'a', '[2]', f2 )
+	f2 = sub( 'tau', '[3]', f2 )
+	print f1
+	print f2
+
+
+	fit = TF1('myfit', ' [3] * (2*[2]) * exp(2/[2] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )+ [4]/(2*[5]) * exp(2/[5] * ( [1] - x + [2]**2/[5] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[5] - x ) )' , -2, 6 )
+	#fit = TF1('myfit', '[3]/(2*[0]) * exp(2/[0] * ( [1] - x + [2]**2/[0] ) ) * TMath::Erfc( 1./(sqrt(2)*[2]) * ( [1] - 2*[2]**2/[0] - x ) )' , -2, 6 )
 	#fit2 = TF1("fit","myfit(0)+myfit(4)",2000,4000)
+
 	fit.SetParameter( 1, mean)
 	fit.SetParameter( 2, sigma )
-	fit.SetParameter(0, 1500)
+	fit.SetParameter(0, 1.9)
+	fit.SetParameter(3, 0.03)
+	fit.SetParameter(4, 0.03)
+	fit.SetParameter(5, 0.3)
 	#signal.Draw()
 	#~ fit.Draw("same")
 	signal.Fit('myfit')
 	raw_input()
+
+globalFit( polytime, cotime )
 
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
@@ -251,6 +213,4 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	return t, s
 
 # execute programs
-
-#FitTau(alutime,cotime,True)
-#FitTau(calculateDeconvolution( alutime, cotime ))
+#twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )

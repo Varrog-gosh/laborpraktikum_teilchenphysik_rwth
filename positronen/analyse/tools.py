@@ -7,7 +7,7 @@ def printError( value, error = 0 , unit = '', relative = False ):
 	Input: value and error or uncertainties.value
 	'''
 	not_scientific_exponents = [ -1, 0, 1, 2 ] # 30 looks nicer than 3e1
-	valid_digits = 1
+	valid_digits = 2
 
 	# cast uncertainy in value ± error
 	from uncertainties import AffineScalarFunc, Variable
@@ -27,6 +27,7 @@ def printError( value, error = 0 , unit = '', relative = False ):
 	if relative:
 		valstring = valstring + ' relative Error: ' + str( 1. * error / value )
 	print( valstring )
+	return valstring
 
 def listToUncertainty( values ):
 	'''
