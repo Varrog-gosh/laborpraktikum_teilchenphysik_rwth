@@ -15,8 +15,10 @@ def plotSinglePeak( filename = 'data/kali_montag.TKA' ):
 	for peak in [16]:
 		print peak
 		hist = tkaToHist( filename, int(x[peak]) - border, int(x[peak]) + border )
+		hist.Sumw2()
+		hist.Scale(1./hist.Integral())
+		hist.Fit('gaus')
 		hist.Draw()
-		hist.SetNormFactor(1)
 		can.Update()
 		#raw_input()
 	can.SaveAs('singlePeak.pdf')
