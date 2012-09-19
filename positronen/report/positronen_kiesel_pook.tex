@@ -233,7 +233,7 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 	\label{fig:timepuls}
 \end{figure}
 Zur Bestimmung des Zeitnullpunkt und zum überprüfen der zeitlichen Stabilität werden Messungen mit $^{60}$Co durchgeführt, dieses Cobaltisotop liefert
-beim Kaskadenzerfall in $^{60}$Co zwei zeitgleiche γ-Quanten mit Energien von $\SI{1.17}{MeV}$ und $\SI{1.33}{MeV}$. Es wird jeweils eine Messung vor Beginn
+beim Kaskadenzerfall in $^{60}$Ne zwei zeitgleiche γ-Quanten mit Energien von $\SI{1.17}{MeV}$ und $\SI{1.33}{MeV}$. Es wird jeweils eine Messung vor Beginn
 und nach der Hauptmessreihen mit $^{22}$Na durchgeführt. Die Ergebnisse beider Messungen sind in Abbildung \ref{fig:compare_co} dargestellt.
 Da von einem Zeitgleichen eintreffen beider Pulse ausgegangen wird, dient die Position des beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt. Es
 ist zu erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
@@ -241,6 +241,8 @@ Zeitdifferenz von lediglich $\SI{0.15}{ns}$. Die Änderung ist also im Rahmen de
 beiden gemessenen Peakpositionen , Kanal 4721 , als Nullpunkt für die Zeitmessungen zu benutzen. Die Veränderung des Nullpunkt wird im folgenden
 als zusätzlich systematische Unsicherheit auf alle Zeitmessungen angenommen. Die experimentelle Zeitauflösung wird durch die mittlere Breite der beiden an die
 Daten angepassten Gaußfunktion zu $\SI{0.4}{ns}$ abgeschätzt und liegt somit in der Größenordnung der theoretisch erwarteten Lebensdauern für Positronen und Positronium.
+Die Anpassung wurde zu großen Kanälen hin nur im Zentralbereich des Peak durchgeführt, da das Spektrum eine schwache langsam auslaufende Komponente beeinhaltet, 
+dieser zusätzliche Einfluss ist zwar sehr klein beinflusst aber die Güte der Anpassung negativ wenn das Anpassungsintervall über den ganzen Peak gewählt wird.
 
 \section{Bestimmung der Lebensdauern in Polyethylen}
 Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht. Das Aufgenommene Spektrum
@@ -262,6 +264,7 @@ Der Anstieg am linken Rand kommt vom Untergrund von Polyethylen für negative Ze
 	\label{fig:deconvolution}
 \end{figure}
 \subsection{Zwei lineare Anpassungen}
+\label{linearfit}
 Wir vernachlässigen zunächst
 Man sieht in Abbildung \ref{fig:deconvolution} dass das Spektrum aus zwei Eponentialfunktionen
 besteht. 
@@ -300,7 +303,24 @@ $A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
 
 
 \subsection{Centroid Shift}
+Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode
+als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensdauer aus der Verschiebung der Schwerpunkte (dem ersten Moment einer Verteilung)
+zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
+Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \ref{manual} :
+\begin{align*}
+	\tau = \frac{M^{(1)[F(t)]}{M^{(0)[F(t)]} - \frac{M^{(1)[P(t)]}{M^{(0)[P(t)]}
+\end{align*}
+Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen Flächeninhalt von 1 entspricht.
+Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
+Dazu wurden die Ergebnisse der linearen Anpassung im Ausläufer der Verteilung aus Abschnitt \ref{linearfit} benutzt und die darraus gewonnene Funktion
+vom ursprünglichen Signalspektrum subtrahiert (siehe \ref{fig:centroid}. Nach Abzug der langlebigen Komponente wird die Verteilung erneut auf eins normiert.
 
+\begin{figure}
+	\includegraphics[width=1.0\textwidth]{../analyse/centroid.pdf}
+	\caption{Zeitspektrum für Polyethylen vor und nach Abzug der langlebigen Komponente und $^{60}$Co aus gewonnene Auflösungskurve. }
+	\label{fig:compare_signal}
+\end{figure}
+ 
 \section{Bestimmung der Lebensdauern in Aluminium}
 
 \subsection{Vergleich der Messungen für Aluminum und Polyethylen}

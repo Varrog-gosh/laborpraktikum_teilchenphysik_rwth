@@ -208,25 +208,6 @@ def linear_and_centroid (signal,background):
 	
 	can.Update()
 	
-	p1 = TPaveStats(s.GetListOfFunctions().FindObject("stats"))
-
-	p1.SetX1NDC(xmin)
-	p1.SetX2NDC(xmax)
-	p1.SetY1NDC(ymin-0.2)
-	p1.SetY2NDC(ymax)
-
-	p1.AddText("Ergebnisse")
-	p1.AddText("linear Fit:")
-	p1.AddText("#chi^{2}/NDF : %.3f"%(fit1.GetChisquare() / fit1.GetNDF()))
-	p1.AddText("Constant: %.1e#pm%.0e"%(fit1.GetParameter(0),fit1.GetParError(0)))
-	p1.AddText("slope_{1}: %.1f#pm%.1f"%(fit1.GetParameter(1),fit1.GetParError(1)))
-	p1.AddText("#tau_{l}: %.1e#pm%.0e"%(-1/fit1.GetParameter(0),fit1.GetParError(0)/fit1.GetParameter(0)**2))
-	p1.AddText("")
-	
-	p1.Draw()
-	
-	can.Update()
-	
 	can.SaveAs("tailFit.pdf")
 	
 	s2 = subtractfunc (s,fit1,0.0)
@@ -240,53 +221,35 @@ def linear_and_centroid (signal,background):
 	
 	expfit = TF1('expfit', 'exp([0]+x*[1])', ranges[0][0], ranges[0][1] )
 	expfit.SetParameters(fit1.GetParameter(0),fit1.GetParameter(1))
+	expfit.SetParError(0,fit1.GetParError(0))
+	expfit.SetParError(1,fit1.GetParError(1))
 	s3 = subtractfunc(signal,expfit,0)
-	#~ for i in range( s3.GetXaxis().GetNbins() + 1 ):
-		#~ s3.SetBinError( i, s3.GetBinError(i) * exp(s3.GetBinContent(i)))
-		#~ s3.SetBinContent( i, exp( s3.GetBinContent(i) ) )
+	
 	s3.Scale(1./s3.Integral())
-	
-	tau, err_tau = centroidShift(s3,background ,-2,6)
+	print "test %e %e"%(signal.GetBinContent(142),s3.GetBinContent(142))
+	tau_ori , err_tau_ori = centroidShift(signal,background ,signal.FindBin(-2.),signal.FindBin(-6.))
+	tau, err_tau = centroidShift(s3,background ,signal.FindBin(-2.),signal.FindBin(-6.))
 
-	print "centroid shift tau_s:%e +- %e"%(tau,err_tau)
-	
-	p2 = TPaveStats()#s2.GetListOfFunctions().FindObject("stats"))
-	
-	p2.SetX1NDC(xmin)
-	p2.SetX2NDC(xmax)
-	p2.SetY1NDC(ymin)
-	p2.SetY2NDC(ymax)
-	p2.SetFillColor(0)
-	p2.SetTextSize(0.03)
-	p2.SetTextAlign(12)
-
-	p2.AddText("Ergebnisse")
-	p2.AddText("linear Fit:")
-	p2.AddText("#chi^{2}/NDF : %.3f"%(fit2.GetChisquare() / fit2.GetNDF()))
-	p2.AddText("Constant: %.1e#pm%.0e"%(fit2.GetParameter(0),fit2.GetParError(0)))
-	p2.AddText("slope: %.1f#pm%.1f"%(fit2.GetParameter(1),fit2.GetParError(1)))
-	p2.AddText("#tau_{s}: %.1e#pm%.0e"%(-1/fit2.GetParameter(0),fit2.GetParError(0)/fit2.GetParameter(0)**2))
-	p2.AddText("")
-	p2.AddText("Centroid Shift")
-	p2.AddText("#tau_{s}: %.1e#pm%.0e"%(tau,err_tau))
-	p2.AddText("")
-	p2.Draw()
+	print "centroid shift (corrected) tau_s:%e +- %e"%(tau,err_tau)
+	print "centroid shift (uncorrected) tau_s:%e +- %e"%(tau_ori,err_tau_ori)
 	
 	can.Update()
 	can.SaveAs("peakfit.pdf")
 	can.SetLogy()
-	background.SetAxisRange(-2,8,"X")
-	print "background integral %e "%background.Integral()
-	s3.SetAxisRange(-2,8,"X")
-	s3.SetMaximum(0.11)
-	gausfit1 = TF1('gaus1', 'gaus', -1,1 )
-	s3.Fit("gaus1","r")
-	gausfit2 = TF1('gaus2', 'gaus', -1,2 )
-	background.Fit("gaus2","r0")
-	print "s3 integral %e "%s3.Integral()
+	s3.SetMinimum(1.4e-6)
 	s3.Draw()
-	gausfit2.Draw("SameR")
+	signal.SetMarkerColor(8)
+	signal.Draw("same")
 	background.Draw("SAME")
+	
+	leg = TLegend(0.6, 0.68, .95,.95)
+	leg.SetFillColor(0)
+	leg.SetLineWidth(0)
+	leg.AddEntry( signal, "Polyethylen: Signal #tau_{1} und #tau_{2} ", "P")
+	leg.AddEntry( s3, "Polyethylen: Signal nur #tau_{1}", "P")
+	leg.AddEntry( background, "^{60}Co ", "P")
+	leg.Draw()
+	
 	can.SaveAs("centroid.pdf")
 
 	can.Close()
@@ -355,12 +318,27 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	return t, s
 	
 def subtractfunc (hist , func,xmin):
+	from math import sqrt
+	result = hist.Clone()
 	for i in range(hist.GetNbinsX()):
 		if (i > hist.FindBin(xmin)):
-			hist.SetBinContent( i, hist.GetBinContent(i) - func.Eval(hist.GetBinCenter(i)) )
-	return hist
+			t = hist.GetBinCenter(i)
+			c = func.GetParameter(0) 
+			e_c = func.GetParError(0)
+			a = func.GetParameter(1)
+			e_a = func.GetParError(1)
+			f = func.Eval(t)
+			e_f = f * sqrt( e_c**2 + t**2 * e_a**2 )
+			
+			result.SetBinContent( i, hist.GetBinContent(i) - f )
+			result.SetBinError(i,sqrt(hist.GetBinError(i)**2 + e_f**2))
+			#~ print "t %.1e c %.1e e_c %.1e a %.1e e_a %.1e "%(t,c,e_c,a,e_a)
+			#~ print "%d e_befor %e e_after %e func %e e_func %e"%(i,hist.GetBinError(i),result.GetBinError(i),f,e_f)
+			#~ print""
+	return result
 		
 # execute programs
-globalFit( polytime )
-twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
-calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
+#~ globalFit( polytime )
+#~ twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
+#~ calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
+linear_and_centroid(polytime,cotime)

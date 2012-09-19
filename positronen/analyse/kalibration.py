@@ -27,7 +27,7 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.cd()
 	hist.Draw("hist")
 	s = TSpectrum( 64 ) #max number of peaks
-	npeaks = s.Search( hist, 8, "", 0.005 ) # ( hist, sigma, '', threshold )
+	npeaks = s.Search( hist, 8, "hist", 0.005 ) # ( hist, sigma, '', threshold )
 	can.SaveAs('peaksToArray.pdf')
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
 	distance = 50 # minimal distance between channels
