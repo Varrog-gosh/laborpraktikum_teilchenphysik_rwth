@@ -13,6 +13,7 @@ def normedHist( name, color, func = 0):
 		hist = tkaToHist( name, 2000, 16000 )
 		hist.Rebin(50)
 	else:
+		# let's hope func is a TF1
 		hist = tkaToTimeHist(name, func , -2, 8 )
 	hist.Scale(1./hist.Integral())
 	hist.GetYaxis().SetTitle("Normierte Eintr#ddot{a}ge")
@@ -31,8 +32,9 @@ cotime = normedHist( 'data/co60.TKA', 1, func )
 
 alu = normedHist( 'data/aluminium.TKA', 2, 0 )
 poly = normedHist( 'data/poly.TKA', 4, 0 )
-co = normedHist( 'data/co60.TKA', 1, 0 )
+co = normedHist( 'data/poly.TKA', 4, 0 )
 
+#co = normedHist( 'data/co60.TKA', 1, 0 )
 #co2time = normedHist( 'data/co60_2.TKA', 12 , func )
 
 
@@ -51,10 +53,20 @@ def histToArray( histo ):
 def calculateDeconvolution( signal, background , signalname, backgroundname ):
 	'''
 	using roots deconvolution class
-	τ in chanel numbers is printed
-	a root file is created to save cpu work
+	signal: histogram containing measured signal data
+	background: usually cobalt histogramm
+	*names: names in legend for distributions
+
+	returns: void
 	'''
 	from ROOT import TH1D,TSpectrum, TF1,TCanvas,TLegend
+	for hist in [signal, background]:
+		# this is cheating
+		hist.GetXaxis().Set( hist.GetXaxis().GetNbins(), -2,8)
+		#hist.Scale(1./hist.Integral())
+		hist.SetXTitle('t [ns]')
+		hist.Rebin(2)
+		hist.GetXaxis().SetRangeUser( -20,20)
 
 	can = TCanvas( randomName(), 'Deconvolution', 1400, 800 )
 	can.cd()
@@ -79,7 +91,7 @@ def calculateDeconvolution( signal, background , signalname, backgroundname ):
 
 	for i in range( len(source) ):
 		d.SetBinContent(i + 1,source[i])
-	d.Draw("sameLhist")
+	d.Draw("same,hist")
 
 	leg = TLegend(0.6, 0.7, .95,.95)
 	leg.SetFillColor(0)
@@ -91,9 +103,6 @@ def calculateDeconvolution( signal, background , signalname, backgroundname ):
 
 	can.SaveAs("deconvolution.pdf")
 	return d
-##poly = normedHist( 'data/poly.TKA', 4 )
-##co = normedHist( 'data/co60.TKA', 1 )
-calculateDeconvolution( polytime, cotime, "Polyethylen", "Cobalt" )
 
 
 
@@ -187,7 +196,6 @@ def globalFit( signal ):
 	fit.SetParameter( 3, 2.63383e-02)
 	fit.SetParameter( 4, 2.00746e+00)
 	fit.SetParameter( 5, 1.96099e-03)
-	print fitstring
 
 
 	can = TCanvas(randomName(), 'globalFit', 1300, 800 )
@@ -221,6 +229,6 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	return t, s
 
 # execute programs
-#twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
-#globalFit( polytime )
-#calculateDeconvolution( poly, co, "Poly", "Co" )
+twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
+globalFit( polytime )
+calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )

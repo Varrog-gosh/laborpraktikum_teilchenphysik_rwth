@@ -184,8 +184,8 @@ def compareCo( co1, co2 ,isTime = False):
 
 
 # execute programs
-# compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
-#~ compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
+#compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
+#compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
 
 #compareCo( cotime, co2time,True )
-compareCo( co_timenormed, co2_timenormed,False )
+#compareCo( co_timenormed, co2_timenormed,False )
