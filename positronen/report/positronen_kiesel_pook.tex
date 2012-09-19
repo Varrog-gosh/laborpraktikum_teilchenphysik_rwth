@@ -13,7 +13,7 @@
 }}
 
 
-\graphicspath{ {../pictures/} }
+\graphicspath{ {../pictures/} {../analyse/ }
 \title{Laborpraktikum Teilchenphysik\\ Lebensdauer von Positronen im Festkörper}
 \author{Knut Kiesel\\Tobias Pook}
 \date{\today}
@@ -271,13 +271,30 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 		(hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.  
 	
 \subsection{Globaler Fit}
-Die Fitfunktion für den globalen Fit, mal schau ob das noch was wird
+Um alle Daten auf einmal zu beschreiben, wird die Faltung aus dem exponentiellen Abfall und der
+näherungsweise gaußförmigen Auflösung explizit berechnet.
+Es wird dabei von einer normierten Funktion ausgegangen.
+In der Rechnung ist $F$ die gemessene Faltung aus dem exponentiellen Abfall $f$ mit der
+Zeitkonstante $τ$ und der Auflösung $P$ mit dem Mittelwert $μ$ und Breite $σ$.
 \begin{align*}
-	F(t) &= \int_{-\infty}^\infty f(T)P(t-T)dT\\
+	F_i(t) &= \int_{-\infty}^\infty f(T)P(t-T)dT\\
 	&= \int_0^\infty \frac{1}{τ}\exp\left( \frac{T}{τ} \right)\frac{1}{\sqrt{2π}σ}\exp\left( -\frac{(t-T-μ)^2}{2σ^2} \right)dT\\
 	&= \frac{1}{2τ} \exp\left( \frac{1}{τ}\left( μ-t+\frac{σ^2}{2τ} \right) \right) \frac{2}{\sqrt{π}}\int_{\frac{1}{\sqrt{2}σ}\left( μ-\frac{σ^2}{τ} -t \right)}^\infty  e^{-γ^2}dγ\\
 	&= \frac{1}{2τ} \exp\left( \frac{1}{τ}\left( μ-t+\frac{σ^2}{2τ} \right) \right) Erfc\left(\frac{1}{\sqrt{2}σ}\left( μ-\frac{σ^2}{τ} -t \right)\right)
 \end{align*}
+Hier ist $Erfc$ die intigrierte Errorfunktion, wie sie in ROOT::TMath definiert ist. Man erhält
+wieder den gewöhnlichen Abfall, wenn man $σ=μ=0$ setzt.
+Da davon ausgegangen wird, dass dem Signal zwei exponentielle Abfälle zugrunde liegen, wird an die
+gemessene Verteilung eine Funktion der Form $F(t) = \sum_{i=1}^2 2τ_iA_i F_i(t)$ mit den Amplituden
+$A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
+
+\begin{figure}[htb]
+		\centering
+		\includegraphics[width=\textwidth]{../analyse/globalFit.pdf}
+		\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall}
+		\label{fig:globalFit}
+\end{figure}
+
 \section{Diskussion}
 
  

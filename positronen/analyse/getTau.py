@@ -33,7 +33,6 @@ alu = normedHist( 'data/aluminium.TKA', 2, 0 )
 poly = normedHist( 'data/poly.TKA', 4, 0 )
 co = normedHist( 'data/co60.TKA', 1, 0 )
 
-
 #co2time = normedHist( 'data/co60_2.TKA', 12 , func )
 
 
@@ -94,7 +93,7 @@ def calculateDeconvolution( signal, background , signalname, backgroundname ):
 	return d
 ##poly = normedHist( 'data/poly.TKA', 4 )
 ##co = normedHist( 'data/co60.TKA', 1 )
-#calculateDeconvolution( polytime, cotime, "Polyethylen", "Cobalt" )
+calculateDeconvolution( polytime, cotime, "Polyethylen", "Cobalt" )
 
 
 
@@ -199,7 +198,6 @@ def globalFit( signal ):
 	can.SaveAs("globalFit.pdf")
 	can.Close()
 
-globalFit( polytime )
 
 
 def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
@@ -224,4 +222,5 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 
 # execute programs
 #twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
+#globalFit( polytime )
 #calculateDeconvolution( poly, co, "Poly", "Co" )
