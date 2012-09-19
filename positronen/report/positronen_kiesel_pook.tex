@@ -235,16 +235,17 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 	der Gold Algorithmus \ref{gold_algo} benutzt. Hierbei wurde das gemessene Spektrum für $^{22}$Na als Faltung angenommen und das $^{60}$Co Spektrum als Responsefunktion des System
 	gewählt. Die beiden Ausgangsfunktionen und die darraus resultierende Entfaltung sind in Abbildung \ref{fig:deconvolution} dargestellt. Es ist deutlich zu erkennen, dass die 
 	Modifikation des ursprünglichen Signalspektrum durch die Auflösungsfunktion jenseits von Kanal 8000 also xx ns zu vernachlässigen ist. Da die Fortpflanzung der Fehler bei
-	der Entfaltung nicht stattfindet werden die weiteren Anpassungen an den ursprünglichen Daten druchgeführt, die durchgeführte Entfaltung zeigt jedoch
-	 , dass dieses Vorgehen gerechtfertigt ist.  
-	
+	der Entfaltung nicht stattfindet werden die Anpassungen zur langen Zerfallszeit $\tau_2$ an den ursprünglichen Daten durchgeführt, die Entfaltung zeigt jedoch, dass dieses Vorgehen gerechtfertigt ist.  
+	Um die lange Halbwertszeit $\tau_2$ zu bestimmen wird in halblogarithmischer Darstellung eine Gerade angepasst, die Zerfallszeit lässt sich dann aus dem Kehrwert der Steigung berechnen:
+	\begin{align*}
+	\tau_2 =xx\pm xx \si{ns} 
+	\end{align*}
 	\begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/deconvolution.pdf}
 	\caption{Entfaltung des Spektrum für Polyethylen}
 	\label{fig:compare_signal}
 	\end{figure}
-\subsection{Bestimmung der Lebensdauern in Polyethylen}
-	
+
 
 \subsection{Vergleich der Messungen für Aluminum und Polyethylen}
 	\begin{figure}

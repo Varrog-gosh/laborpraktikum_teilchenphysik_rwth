@@ -91,7 +91,7 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 	returns: histogram
 	'''
 	import tools
-	hist = tkaToHist(filename )
+	hist = tkaToHist(filename)
 	hist.SetTitle(';t [ns];Eintr#ddot{a}ge')
 	a = hist.GetXaxis()
 	xmin_orig = func.Eval(0 - channelShift ) - func.Eval(0)

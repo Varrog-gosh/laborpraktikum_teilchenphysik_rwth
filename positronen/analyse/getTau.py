@@ -152,7 +152,133 @@ def twoLinearFits( signal, ranges):
 		can.SaveAs('linearFit{}.pdf'.format(i))
 		can.Close()
 
+def linear_and_centroid (signal,background):
+	'''
+	fit linear functions to the tail of signal distribution
+	substract long lifetime component
+	perform second linear fit and also try centroid shift method
 
+	returns: void, prints two pdfs
+	'''
+	from ROOT import TF1, TCanvas, TLegend, TPaveText, TLine ,TPaveStats
+
+	can = TCanvas( 'linear', "Tail Anpassung", 1300, 800 )
+	#~ can.SetBatch()
+	
+
+	s = signal.Clone()
+	# take logarithm of histogram
+	from math import log,exp
+	for i in range( signal.GetXaxis().GetNbins() + 1 ):
+		s.SetBinError( i, s.GetBinError(i) / s.GetBinContent(i))
+		if s.GetBinContent(i) < 0.0:
+			content = abs(s.GetBinContent(i+1) + s.GetBinContent(i-1))/2
+		else:
+			content = s.GetBinContent(i)
+		#~ print "bin %d Content %e"%(i,s.GetBinContent(i) )
+		s.SetBinContent( i, log( content ) )
+				
+
+	ranges = [( 0.7, 2.1 ), ( 3.4, 7.0 )] 
+	
+
+	s.GetYaxis().SetTitle('ln( Eintr#ddot{a}ge )')
+	#~ s.SetAxisRange( ranges[1][0] - 0.5, ranges[1][1] + 0.5 )
+	fit1 = TF1('tail', 'pol1', ranges[1][0], ranges[1][1] )
+	s.Fit('tail','r')
+	#~ s.SetStats(1)
+	s.Draw()
+	
+	xmin = 0.75
+	xmax = 0.95
+	ymin = 0.17
+	ymax = 0.74
+	
+	can.Update()
+	
+	p1 = TPaveStats(s.GetListOfFunctions().FindObject("stats"))
+
+	p1.SetX1NDC(xmin)
+	p1.SetX2NDC(xmax)
+	p1.SetY1NDC(ymin-0.2)
+	p1.SetY2NDC(ymax)
+
+	p1.AddText("Ergebnisse")
+	p1.AddText("linear Fit:")
+	p1.AddText("#chi^{2}/NDF : %.3f"%(fit1.GetChisquare() / fit1.GetNDF()))
+	p1.AddText("Constant: %.1e#pm%.0e"%(fit1.GetParameter(0),fit1.GetParError(0)))
+	p1.AddText("slope_{1}: %.1f#pm%.1f"%(fit1.GetParameter(1),fit1.GetParError(1)))
+	p1.AddText("#tau_{l}: %.1e#pm%.0e"%(-1/fit1.GetParameter(0),fit1.GetParError(0)/fit1.GetParameter(0)**2))
+	p1.AddText("")
+	
+	p1.Draw()
+	
+	can.Update()
+	
+	can.SaveAs("tailFit.pdf")
+	
+	s2 = subtractfunc (s,fit1,0.0)
+	fit2 = TF1('peak', 'pol1', ranges[0][0], ranges[0][1] )
+	s2.Fit("peak",'r')
+	s2.SetStats(0)
+	s2.SetMinimum(0)
+	s2.Draw()
+	
+	can.Update()
+	
+	expfit = TF1('expfit', 'exp([0]+x*[1])', ranges[0][0], ranges[0][1] )
+	expfit.SetParameters(fit1.GetParameter(0),fit1.GetParameter(1))
+	s3 = subtractfunc(signal,expfit,0)
+	#~ for i in range( s3.GetXaxis().GetNbins() + 1 ):
+		#~ s3.SetBinError( i, s3.GetBinError(i) * exp(s3.GetBinContent(i)))
+		#~ s3.SetBinContent( i, exp( s3.GetBinContent(i) ) )
+	s3.Scale(1./s3.Integral())
+	
+	tau, err_tau = centroidShift(s3,background ,-2,6)
+
+	print "centroid shift tau_s:%e +- %e"%(tau,err_tau)
+	
+	p2 = TPaveStats()#s2.GetListOfFunctions().FindObject("stats"))
+	
+	p2.SetX1NDC(xmin)
+	p2.SetX2NDC(xmax)
+	p2.SetY1NDC(ymin)
+	p2.SetY2NDC(ymax)
+	p2.SetFillColor(0)
+	p2.SetTextSize(0.03)
+	p2.SetTextAlign(12)
+
+	p2.AddText("Ergebnisse")
+	p2.AddText("linear Fit:")
+	p2.AddText("#chi^{2}/NDF : %.3f"%(fit2.GetChisquare() / fit2.GetNDF()))
+	p2.AddText("Constant: %.1e#pm%.0e"%(fit2.GetParameter(0),fit2.GetParError(0)))
+	p2.AddText("slope: %.1f#pm%.1f"%(fit2.GetParameter(1),fit2.GetParError(1)))
+	p2.AddText("#tau_{s}: %.1e#pm%.0e"%(-1/fit2.GetParameter(0),fit2.GetParError(0)/fit2.GetParameter(0)**2))
+	p2.AddText("")
+	p2.AddText("Centroid Shift")
+	p2.AddText("#tau_{s}: %.1e#pm%.0e"%(tau,err_tau))
+	p2.AddText("")
+	p2.Draw()
+	
+	can.Update()
+	can.SaveAs("peakfit.pdf")
+	can.SetLogy()
+	background.SetAxisRange(-2,8,"X")
+	print "background integral %e "%background.Integral()
+	s3.SetAxisRange(-2,8,"X")
+	s3.SetMaximum(0.11)
+	gausfit1 = TF1('gaus1', 'gaus', -1,1 )
+	s3.Fit("gaus1","r")
+	gausfit2 = TF1('gaus2', 'gaus', -1,2 )
+	background.Fit("gaus2","r0")
+	print "s3 integral %e "%s3.Integral()
+	s3.Draw()
+	gausfit2.Draw("SameR")
+	background.Draw("SAME")
+	can.SaveAs("centroid.pdf")
+
+	can.Close()
+	
 
 def globalFit( signal, background ):
 	'''
@@ -215,11 +341,18 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	
 	signal.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
 	background.GetXaxis().SetRange( xmin, xmax ) # if integer -> bins, else user-range
-	t = ( signal.GetMean() - background.GetMean() ) * signal.GetBinWidth(0)
+	t = ( signal.GetMean() - background.GetMean() ) #* signal.GetBinWidth(0)
 	from math import sqrt
 	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
 	return t, s
-
+	
+def subtractfunc (hist , func,xmin):
+	for i in range(hist.GetNbinsX()):
+		if (i > hist.FindBin(xmin)):
+			hist.SetBinContent( i, hist.GetBinContent(i) - func.Eval(hist.GetBinCenter(i)) )
+	return hist
+		
 # execute programs
 #twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
-calculateDeconvolution( poly, co, "Poly", "Co" )
+#~ calculateDeconvolution( poly, co, "Poly", "Co" )
+linear_and_centroid (polytime,cotime)

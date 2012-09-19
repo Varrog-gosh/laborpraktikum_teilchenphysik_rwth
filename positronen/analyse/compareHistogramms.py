@@ -103,11 +103,13 @@ def compareCo( co1, co2 ,isTime = False):
 	else:
 		peakminus = 1500
 		peakplus = 500
+		
 	print "npeaks %d"%len(peaks)
 	fit1 = TF1('fit1', 'gaus', peaks[0]-peakminus, peaks[0]+peakplus)
 	co1.Fit("fit1","R0")
 	fit1.SetLineColor(ROOT.kCyan)
 	fit1.SetLineWidth(3)
+	co1.SetAxisRange(3000,8000,"X")
 	fit1.Draw("same")
 	bg_integral1 = co1.Integral(co1.FindBin(bgxmin),co1.FindBin(bgxmax))
 	xmin = 0.75
@@ -134,6 +136,7 @@ def compareCo( co1, co2 ,isTime = False):
 
 	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
 	peaks = bufferToSortedList(npeaks,s.GetPositionX())
+	print "number of peaks %d"%len(peaks)
 	fit2 = TF1('fit2', 'gaus', peaks[0] - peakminus, peaks[0] + peakplus)
 	co2.Fit("fit2","R0+")
 	bg_integral2 = co2.Integral(co2.FindBin(bgxmin),co2.FindBin(bgxmax))
@@ -187,5 +190,5 @@ def compareCo( co1, co2 ,isTime = False):
 # compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
 #~ compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
 
-#compareCo( cotime, co2time,True )
-compareCo( co_timenormed, co2_timenormed,False )
+compareCo( co, co2,False )
+#~ compareCo( co_timenormed, co2_timenormed,False )
