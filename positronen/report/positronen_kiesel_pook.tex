@@ -226,7 +226,7 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 	\label{fig:timepuls}
 \end{figure}
 
-\subsection{Zeitnullpunkt,Zeitstabilität und experimentelle Zeitauflösung}
+\subsection{Zeitnullpunkt,Zeitstabilität und experimentelle Zeitauflösung}\label{cap:kalibration}
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
 	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen}
@@ -262,15 +262,50 @@ Der Anstieg am linken Rand kommt vom Untergrund von Polyethylen für negative Ze
 	\label{fig:deconvolution}
 \end{figure}
 \subsection{Zwei lineare Anpassungen}
-Wir vernachlässigen zunächst
-Man sieht in Abbildung \ref{fig:deconvolution} dass das Spektrum aus zwei Eponentialfunktionen
-besteht. 
+Wir vernachlässigen zunächst die Auflösung.
+Man sieht in der logarithmischen Abbildung \ref{fig:deconvolution}, dass das Spektrum aus zwei Exponentialfunktionen
+besteht. Für die exponentielle Funktion mit der größeren Zeitkonstante vernachlässigen wir die mit
+der kleineren Zeitkonstante. Da die Verteilung der kleineren Zeitkonstante eine größere Amplitude
+hat, kann hier die Verteilung mit der längeren Zeitkonstante vernachlässigt werden, wenn auch nur
+unter großer systematischer Unsicherheit. In den beiden Bereichen in denen eine Funktion der anderen
+Vernachlässigt werden kann, wird eine Gerade an das logarithmische Spektrum angepasst. Beispielhaft
+ist das in Abbildung \ref{fig:dualLinearFit} zu sehen. Man sieht, dass die einfache Annahme
+poissonverteilter Fehler nicht ganz gerechtfertigt ist sondern wahrscheinlich auch die nicht genaue
+Zuordnung des Vielkanalanalysators zu den Kanälen oder ähnliche Effekte eine Rolle spielt, wie man
+am $χ²/\text{NDF}$ von $1.5$ bis $2$ sieht.
 \begin{figure}
 	\includegraphics[width=.5\textwidth]{linearFit0.pdf}
 	\includegraphics[width=.5\textwidth]{linearFit1.pdf}
 	\caption{Fits zur bestimmung der lebensdauer}
 	\label{fig:dualLinearFit}
 \end{figure}
+
+Da es nicht eindeutig ist, wie groß die Bereiche sind, wird die Spanne der
+Anpassung variiert und somit ein zusätzlicher Fehler auf die Zeitkonstanten bestimmt.
+Um zu überprüfen, ob die Anpassung nur die Gerade benutzt, wird darauf geachtet, das die Residuen
+kein Systematiken zeigen.
+Die Ergebnisse sind in Tabelle \ref{tab:linearPoly} dargestellt.
+\begin{table}
+	\begin{tabular}{l |l l ||l}
+			Fit& Bereich & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
+		\hline
+		\multirow{3}{*}{1} &0.6 - 1.7&  0.56377 ± 0.0023  &\multirow{3}{*}{0.5632 ± 0.0048}\\
+			 &0.6 - 1.5&  0.56876 ± 0.00282 &\\
+			 &0.8 - 2.0&  0.55716 ± 0.00245 &\\
+		\hline
+			&2.9 - 7.0& ( 1.758 ± 0.021 )&\\
+			&2.9 - 6.0& ( 1.693 ± 0.025 ) ns
+			&3.5 - 8& ( 1.923 ± 0.027 )
+
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit zwei linearen
+		Geradenanpassungen. Da die Werte nur knapp miteinander vereinbar sind, wird Mittelwert und
+	RMS für die Werte bestimmt.}
+	\label{tab:linearPoly}
+\end{table}
+
+
 
 
 \subsection{Globale Anpassung an Faltungsfunktion}
@@ -297,6 +332,34 @@ $A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
 	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall}
 	\label{fig:globalFit}
 \end{figure}
+
+Trotz den sechs freien Parametern sieht die Übereinstimmung von Anpassung und Ursprünglichem
+Histogram gut aus. Das $χ²/\text{NDF}$ ist wie auch bei den linearen Anpassungen zwischen 1.5 und 2.
+Unterschiedliche sinnvolle Anfangsbedinungen liefern das selbe Ergebnis und die Werte liegen in
+sinnvollen Bereichen, insbesonderen sind die Zerfallszeiten mit denen aus den linearen Funktionen zu
+vergleichen.
+Auch hier ändern sich die Zerfallszeiten, wenn man den Bereich der Anpassung ändert. Der negative
+Bereich wird aber explizit nicht mit einbezogen, da dort die Zeitkalibration den linearen Bereich
+verlässt (siehe Abschnitt \ref{cap:kalibration}).
+Die Ergebnisse mit mittlerem Fehler sind in Tabelle \ref{tab:globalPoly} zu finden.
+\begin{table}
+	\begin{tabular}{l |l l}
+		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
+		\hline
+		0.2 - 8.0 & 0.4434 ± 0.0059 &1.988 ± 0.028\\
+%		0.2 - 5.0 & 0.4400 ± 0.010 & 1.979 ± 0.083 \\ % zu wenig messpunkte, fehler zu groß
+		0.9 - 8.0 & 0.4225 ± 0.0042 & 1.947 ± 0.023\\
+		\hline
+		\hline
+		Mittelung & 0.433 ± 0.011 & 1.968 ± 0.021
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit einer globalen
+	Anpassungsfunktion mit variablen Bereichen. Da die Werte nicht oder nur knapp miteinander
+		vereinbar sind, wird nicht der gewichtete Mittelwert, sondern Mittelwert und RMS bestimmt.}
+	\label{tab:globalPoly}
+\end{table}
+
 
 
 \subsection{Centroid Shift}
