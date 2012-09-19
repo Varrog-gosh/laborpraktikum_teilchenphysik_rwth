@@ -32,7 +32,7 @@ cotime = normedHist( 'data/co60.TKA', 1, func )
 
 alu = normedHist( 'data/aluminium.TKA', 2, 0 )
 poly = normedHist( 'data/poly.TKA', 4, 0 )
-co = normedHist( 'data/poly.TKA', 4, 0 )
+co = normedHist( 'data/co60.TKA', 1, 0 )
 
 #co = normedHist( 'data/co60.TKA', 1, 0 )
 #co2time = normedHist( 'data/co60_2.TKA', 12 , func )
@@ -229,6 +229,6 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	return t, s
 
 # execute programs
-twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
 globalFit( polytime )
+twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
 calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
