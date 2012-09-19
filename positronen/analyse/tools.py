@@ -133,9 +133,7 @@ class linearRegression:
 		hPad.Draw()
 		hPad.cd()
 		self.graph.SetTitle( title )
-		xaxis_graph = self.resgraph.GetXaxis()
-		xaxis_graph.SetTitle("")
-		
+		self.resgraph.GetXaxis().SetTitle("")
 		self.graph.Draw("ap")
 
 		self.canvas.cd()
@@ -206,12 +204,22 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 
 
 def safeHist (hist, filename ):
+	'''
+	save Histogram to file
+	hist: histogram to be saved
+	filename: filename of output file
+
+	returns: void
+	'''
 	from ROOT import TFile
 	outputfile = TFile( filename, "RECREATE")
 	hist.Write()
 	outputfile.Close()
 
 def randomName():
+	'''
+	generates a random name consisting only of numbers
+	'''
 	from random import randint
 	from sys import maxint
 	return str(randint(0,maxint))

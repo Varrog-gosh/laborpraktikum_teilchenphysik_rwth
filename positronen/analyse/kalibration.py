@@ -25,7 +25,7 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.SetCanvasSize( 1400, 800 )
 	can.SetLogy()
 	can.cd()
-	hist.Draw()
+	hist.Draw("hist")
 	s = TSpectrum( 64 ) #max number of peaks
 	npeaks = s.Search( hist, 8, "", 0.005 ) # ( hist, sigma, '', threshold )
 	can.SaveAs('peaksToArray.pdf')
@@ -112,5 +112,5 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 	return hist
 
 # example how to call function
-func = kalibration( )
-hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )
+#func = kalibration( )
+#hist = tkaToTimeHist( 'data/aluminium.TKA', func , -2, 8 )

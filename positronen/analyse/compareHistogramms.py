@@ -136,7 +136,6 @@ def compareCo( co1, co2 ,isTime = False):
 
 	npeaks = s.Search( co2, 8, "same", 1e-4 ) # ( hist, sigma, 'drawoption', threshold )
 	peaks = bufferToSortedList(npeaks,s.GetPositionX())
-	print "number of peaks %d"%len(peaks)
 	fit2 = TF1('fit2', 'gaus', peaks[0] - peakminus, peaks[0] + peakplus)
 	co2.Fit("fit2","R0+")
 	bg_integral2 = co2.Integral(co2.FindBin(bgxmin),co2.FindBin(bgxmax))
