@@ -127,7 +127,7 @@ def twoLinearFits( signal, ranges):
 
 
 	for i, ran in enumerate( ranges ):
-		can = TCanvas( 'linear', "dualliniar", 700, 800 )
+		can = TCanvas( 'linear', "dualliniar", 700, 1000 )
 		can.SetBatch()
 		can.Divide(1,2)
 		can.cd(1)
@@ -136,6 +136,7 @@ def twoLinearFits( signal, ranges):
 		s.GetYaxis().SetTitle('ln( Eintr#ddot{a}ge )')
 		s.SetAxisRange( ran[0] - 0.5, ran[1] + 0.5 )
 		fit = TF1('mypol1', 'pol1', ran[0], ran[1] )
+		res = signal.Clone()
 		s.Fit('mypol1','r')
 		s.SetStats(0)
 		s.Draw()
@@ -148,15 +149,16 @@ def twoLinearFits( signal, ranges):
 		info.SetShadowColor(0)
 		info.AddText( '#chi^{{2}} / NDF = {} / {}'.format(int(func.GetChisquare()), func.GetNDF()) )
 		from re import sub
-		info.AddText( '#tau = ' + sub('±', "#pm", printError(-1/func.GetParameter(1), func.GetParError(1)/(func.GetParameter(1))**2, 'ns')))
+		print '&{} - {}&'.format(ran[0], ran[1]),
+		info.AddText( '#tau_{'+str(i+1)+'} = ' + sub('±', "#pm", printError(-1/func.GetParameter(1), func.GetParError(1)/(func.GetParameter(1))**2, 'ns')))
 		info.Draw()
 
 		# Compute and draw residuals, not working now
 		can.cd(2)
-		res = signal.Clone()
 		res.SetAxisRange( ran[0], ran[1] )
 		for j in range( res.GetXaxis().GetNbins() +1 ):
 			res.SetBinContent( j, res.GetBinContent(j) - func.Eval( res.GetBinCenter(j) ) )
+		res.SetYTitle('Residuen')
 		res.Draw()
 		line = TLine( ran[0], 0,  ran[1] ,0)
 		line.Draw()
@@ -255,15 +257,16 @@ def linear_and_centroid (signal,background):
 	can.Close()
 	
 
-def globalFit( signal ):
+
+def globalFit( signal, start = 0.2, stop = 9 ):
 	'''
 	uses convolution fit
 	signal, background: histograms
 	returns: void
 	'''
-	from ROOT import TF1,TCanvas, gStyle
+	from ROOT import TF1,TCanvas, gStyle, TLine
 	from re import sub
-	gStyle.SetStatFontSize(0.06)
+	gStyle.SetStatFontSize(0.09)
 	# human readable string for fit
 	f1 = 'amp * exp( 1/tau * ( mean - time + sigma**2 / (2 * tau ) ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - sigma**2/tau - time) )'
 	# cast human readable sting to machine string
@@ -277,7 +280,7 @@ def globalFit( signal ):
 	f2 = sub( 'amp', '[5]', f2 )
 	fitstring = f1+'+'+f2
 
-	fit = TF1("fit", fitstring, 0, 8 )
+	fit = TF1("fit", fitstring, start, stop )
 	fit.SetParNames('#mu',"#sigma","#tau_{1}", "A_{1}", "#tau_{2}", "A_{2}" )
 	fit.SetParameter( 0, 4.80497e-01)
 	fit.SetParameter( 1, 3.70915e-01)
@@ -287,13 +290,29 @@ def globalFit( signal ):
 	fit.SetParameter( 5, 1.96099e-03)
 
 
+
+	# draw histogram
 	can = TCanvas(randomName(), 'globalFit', 1300, 800 )
-	can.cd()
+	can.SetBatch()
+	can.Divide(1,2)
+	can.cd(1)
 	can.SetLogy()
+	res = signal.Clone()
 	signal.Fit('fit', "r")
-	fit.Draw("same")
+
+	can.cd(2)
+	# compure residuals
+	res.SetAxisRange( start, stop )
+	for j in range( res.GetXaxis().GetNbins() +1 ):
+		res.SetBinContent( j, res.GetBinContent(j) - fit.Eval( res.GetBinCenter(j) ) )
+	res.SetYTitle('Residuen')
+	res.Draw()
+	line = TLine( start, 0,  stop, 0 )
+	line.Draw()
+
 	can.SaveAs("globalFit.pdf")
 	can.Close()
+
 
 
 

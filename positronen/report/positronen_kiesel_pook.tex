@@ -188,37 +188,69 @@ anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und 
 % gate: anticoincidenz, delay var: 1.9, time: 0.9, delta_T = 10.0
 
 \section{Kalibration des Aufbaus}
-\subsection{Zeitkalibration}
+Damit mit dem Aufbau Zeitdifferenzen gemessen werden können, muss der Vielkanalanalysator kalibriert
+sowie die Zeitauflösung bestimmt werden.
+\subsection{Zeitkalibration des Vielkanalanalysators}
 Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
-mit einem Pulsgenerator Pulse mit einer Amplitude von $\SI{3}{V}$ und einer Pulsbreite von 10ns mit einer Frequenz von $\SI{1600}{Hz}$ erzeugt.
+mit einem Pulsgenerator Pulse mit einer Amplitude von $\SI{3}{V}$ und einer Pulsbreite von 10ns mit
+einer Frequenz von $\SI{1600}{Hz}$ mit einem 
+Plusgenerator\footnote{Four Channel Digital Delay/Pulse Generator, Fa. Stanford research Systems Inc. Modell DG535}
+erzeugt.
 Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude des erzeugten Puls denen aus dem Anodenausgang der Photomultiplier
 entsprechen. Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene
-CFD geleitet, die andere in eine Delayeinheit und dann in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
+CFD geleitet, die andere in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
 das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
 dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu
 zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
-Nach dem testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
-in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den MCA weiter geleitet, dieser wird während der Kalibrierung mit
+Nach dem Testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
+in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den Vielkanalanalysator weiter geleitet, dieser wird während der Kalibrierung mit
 durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $\SI{0.5}{ns}$ Schritten von $\SI{0}{ns}$ bis $\SI{12}{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum
-ist in Abbildung \ref{fig:timepuls} dargestellt. Es wird an jeden Peak im Spektrum eine Gaußfunktion angepasst, im folgenden werden die ausgewählten Zeitpunkte mit
-dem Erwartungswert $\mu$ der angepassten Verteilung assoziiert und der Fehler auf diesen Wert als Breite des Peak $\sigma$ angenommen, diese Abweichung beschriebt die elektronische
-Zeitauflösung des Experiments. Ein Beispiel für eine solche Anpassung, für einen Zeitabstand von $\SI{8}{ns}$, ist in Abbildung \ref{fig:singlePuls} dargestellt.
- Da es keine Möglichkeit gab (z.B. durch Vergleich mit einem weiteren Delay) die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
- den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die Verzögerung zu $\SI{0.075}{ns}$ abgeschätzt also
- 15\% der Verzögerungsschrittweite von $\SI{0.5}{ns}$. An die so gewonnenen Zeit-Kanal Wertepaare wird mittels linearer Regression eine Gerade angepasst, mit der im folgenden
-Kanalnummern in Zeitabstände umgerechnet werden.
+ist in Abbildung \ref{fig:pulsSpektrum} dargestellt.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
+	\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von
+		$\SI{0.5}{ns}$. Man sieht schon hier, dass die Peaks vor allem im unteren Bereich nicht
+	äquidistant sind. Die Höhe der Peaks ist nur eine Folge der Dauer, die man mit einer Einstellung
+gemessen hat und geht nicht in die Kalibration ein.}
+	\label{fig:pulsSpektrum}
+\end{figure}
+
+
+Es wird an jeden Peak  im Spektrum eine Gaußfunktion angepasst.
+Für die Anpassung wird die Erwartungswert $μ$ als Mittelwert und die elektronische Zeitauflösung $σ$
+als Fehler auf den Mittelwert genommen.
+Ein Beispiel für eine solche Anpassung, für einen Zeitabstand von $\SI{8}{ns}$, ist in Abbildung \ref{fig:singlePuls} dargestellt.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{../analyse/singlePeak.pdf}
-	\caption{Pulshöhenspektrum für einen Abstand von $\SI{8}{ns}$ zwischen den Signalen mit angepasster Gaußfunktion.}
+	\caption{Ein einzelner Puls aus Abbildung \ref{pulsSpektrum} zur genaueren Untersuchung. Der zu
+	$\SI{8}{ns}$ gehörende Peak wird durch eine Gaußfunktion gut beschrieben. Die Breite ist typisch
+	für die Peaks und liegt zwischen $5$ und $\SI{10}{ns}$.}
 	\label{fig:singlePuls}
 \end{figure}
 
+Da es keine Möglichkeit (wie zum Beispiel den Vergleich mit einem weiteren Delay) gab, die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
+ den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die
+ Verzögerung zu 15\% der Schrittweite von $\SI{0.5}{ns}$ abgeschätzt.
+ An die so gewonnenen Zeit-Kanal Wertepaare wird in Abbildung \ref{fig:kalibrationsRegression} mittels linearer Regression eine Gerade angepasst, mit der im folgenden
+Kanalnummern in Zeitabstände umgerechnet werden.
+
 \begin{figure}
 	\includegraphics[width=\textwidth]{linearRegression.pdf}
-	\caption{Lineare Regression zur Zeitkalibration des Vielkanalanalysators}
-	\label{fig:timepuls}
+	\caption{Lineare Regression zur Zeitkalibration des Vielkanalanalysators. Die Fehler auf die
+	Kanalnummern sind vernachlässigbar, da die elektronische Auflösung sehr gut ist. Die Fehler auf
+die Zeiten der Delayeinheit überwiegen immer.}
+	\label{fig:kalibrationsRegression}
 \end{figure}
+
+Da die Daten für kleine Kanalnummern nicht durch eine Gerade beschrieben werden können, wird die
+Anpassung erst ab Kanalnummer $4000$ vorgenommen.
+Das $χ²/\text{NDF}$ zeigt, dass die Fehler vernünftig eingeschätzt wurden.
+Anstatt den Fehler der Kalibration fortzupflanzen, werden die Bingrößen der Zeithistogramme so
+gewählt, dass der Kalibrationsfehler immer kleiner als der Binningfehler ist.
+Es werden auch die niedrigen Kanäle mit der Funktion kalibriert, im Wissen dass die Zeiten niedriger
+als $\SI{2}{ns}$ sehr fehlerhaft sind und nicht mit ausgewertet werden dürfen.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
@@ -226,10 +258,10 @@ Kanalnummern in Zeitabstände umgerechnet werden.
 	\label{fig:timepuls}
 \end{figure}
 
-\subsection{Zeitnullpunkt,Zeitstabilität und experimentelle Zeitauflösung}
+\subsection{Zeitnullpunktsverschiebung}\label{cap:zeitverschiebung}
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
-	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen}
+	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen.}
 	\label{fig:timepuls}
 \end{figure}
 Zur Bestimmung des Zeitnullpunkt und zum überprüfen der zeitlichen Stabilität werden Messungen mit $^{60}$Co durchgeführt, dieses Cobaltisotop liefert
@@ -264,10 +296,17 @@ Der Anstieg am linken Rand kommt vom Untergrund von Polyethylen für negative Ze
 	\label{fig:deconvolution}
 \end{figure}
 \subsection{Zwei lineare Anpassungen}
-\label{linearfit}
-Wir vernachlässigen zunächst
-Man sieht in Abbildung \ref{fig:deconvolution} dass das Spektrum aus zwei Eponentialfunktionen
-besteht. 
+Wir vernachlässigen zunächst die Auflösung.
+Man sieht in der logarithmischen Abbildung \ref{fig:deconvolution}, dass das Spektrum aus zwei Exponentialfunktionen
+besteht. Für die exponentielle Funktion mit der größeren Zeitkonstante vernachlässigen wir die mit
+der kleineren Zeitkonstante. Da die Verteilung der kleineren Zeitkonstante eine größere Amplitude
+hat, kann hier die Verteilung mit der längeren Zeitkonstante vernachlässigt werden, wenn auch nur
+unter großer systematischer Unsicherheit. In den beiden Bereichen in denen eine Funktion der anderen
+Vernachlässigt werden kann, wird eine Gerade an das logarithmische Spektrum angepasst. Beispielhaft
+ist das in Abbildung \ref{fig:dualLinearFit} zu sehen. Man sieht, dass die einfache Annahme
+poissonverteilter Fehler nicht ganz gerechtfertigt ist sondern wahrscheinlich auch die nicht genaue
+Zuordnung des Vielkanalanalysators zu den Kanälen oder ähnliche Effekte eine Rolle spielt, wie man
+am $χ²/\text{NDF}$ von $1.5$ bis $2$ sieht.
 \begin{figure}
 	\includegraphics[width=.5\textwidth]{linearFit0.pdf}
 	\includegraphics[width=.5\textwidth]{linearFit1.pdf}
@@ -275,7 +314,38 @@ besteht.
 	\label{fig:dualLinearFit}
 \end{figure}
 
+Da es nicht eindeutig ist, wie groß die Bereiche sind, wird die Spanne der
+Anpassung variiert und somit ein zusätzlicher Fehler auf die Zeitkonstanten bestimmt.
+Um zu überprüfen, ob die Anpassung nur die Gerade benutzt, wird darauf geachtet, das die Residuen
+kein Systematiken zeigen.
+Die Ergebnisse sind in Tabelle \ref{tab:linearPoly} dargestellt.
 
+\begin{table}
+	\begin{tabular}{l |l l ||l}
+			Fit& Bereich & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
+		\hline
+		\multirow{3}{*}{1} &0.6 - 1.7&  0.56377 ± 0.0023  &\multirow{3}{*}{0.5632 ± 0.0048}\\
+			 &0.6 - 1.5&  0.56876 ± 0.00282 &\\
+			 &0.8 - 2.0&  0.55716 ± 0.00245 &\\
+		\hline
+		\multirow{3}{*}{2} & 2.9 - 7.0 &  1.758 ± 0.021 &\multirow{3}{*}{1.791 ± 0.097}\\
+			&2.9 - 6.0&  1.693 ± 0.025 & \\
+			&3.5 - 8&  1.923 ± 0.027  &
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit zwei linearen
+		Geradenanpassungen. Da die Werte nicht miteinander vereinbar sind, wird der Mittelwert und
+	RMS für die Werte bestimmt.}
+	\label{tab:linearPoly}
+\end{table}
+
+Man sieht, dass der statistische Fehler von $τ_1$ kleiner als der von $τ_2$ ist, was zum einen daran
+liegt, dass für die Messung von $τ_1$ mehr Einträge benutzt werden, zum anderen die Systematik an
+den Residuen klarer an beiden Seiten erkennbar ist. Da für die Bestimmung von $τ_1$ jedoch weder der
+Untergrund noch die Verteilung von $τ_2$ abgezogen wurde, ist das Ergebnis wahrscheinlich ungenauer.
+% eigenen fehler ausdenken?
+
+\FloatBarrier
 \subsection{Globale Anpassung an Faltungsfunktion}
 Um alle Daten auf einmal zu beschreiben, wird die Faltung aus dem exponentiellen Abfall und der
 näherungsweise gaußförmigen Auflösung explizit berechnet.
@@ -301,6 +371,36 @@ $A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
 	\label{fig:globalFit}
 \end{figure}
 
+Trotz den sechs freien Parametern sieht die Übereinstimmung von Anpassung und Ursprünglichem
+Histogram gut aus. Das $χ²/\text{NDF}$ ist wie auch bei den linearen Anpassungen zwischen 1.5 und 2.
+Unterschiedliche sinnvolle Anfangsbedinungen liefern das selbe Ergebnis und die Werte liegen in
+sinnvollen Bereichen, insbesonderen sind die Zerfallszeiten mit denen aus den linearen Funktionen zu
+vergleichen.
+Auch hier ändern sich die Zerfallszeiten, wenn man den Bereich der Anpassung ändert. Der negative
+Bereich wird aber explizit nicht mit einbezogen, da dort die Zeitkalibration den linearen Bereich
+verlässt (siehe Abschnitt \ref{cap:zeitverschiebung}).
+Die Ergebnisse mit mittlerem Fehler sind in Tabelle \ref{tab:globalPoly} zu finden.
+\begin{table}
+	\begin{tabular}{l |l l}
+		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
+		\hline
+		0.2 - 8.0 & 0.4434 ± 0.0059 &1.988 ± 0.028\\
+%		0.2 - 5.0 & 0.4400 ± 0.010 & 1.979 ± 0.083 \\ % zu wenig messpunkte, fehler zu groß
+		0.9 - 8.0 & 0.4225 ± 0.0042 & 1.947 ± 0.023\\
+		\hline
+		\hline
+		Mittelung & 0.433 ± 0.011 & 1.968 ± 0.021
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit einer globalen
+	Anpassungsfunktion mit variablen Bereichen. Da die Werte nicht oder nur knapp miteinander
+		vereinbar sind, wird nicht der gewichtete Mittelwert, sondern Mittelwert und RMS bestimmt.}
+	\label{tab:globalPoly}
+\end{table}
+
+Für die Größe der Fehler gilt hier auch wieder das gleiche wie für die lineare Regression. Da für
+$τ_1$ allerdings der Untergrund sowie der Einfluss von $τ_2$ beachtet wird, ist das Ergebnis für
+$τ_1$ wahrscheinlich genauer.
 
 \subsection{Centroid Shift}
 Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode
