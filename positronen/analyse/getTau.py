@@ -168,7 +168,7 @@ def globalFit( signal ):
 	from re import sub
 	gStyle.SetStatFontSize(0.06)
 	# human readable string for fit
-	f1 = 'amp * exp( 1/tau * ( mean - time + sigma**2 / tau ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - 2*sigma**2/tau - time) )'
+	f1 = 'amp * exp( 1/tau * ( mean - time + sigma**2 / (2 * tau ) ) ) * TMath::Erfc( 1./(sqrt(2) * sigma) * ( mean - sigma**2/tau - time) )'
 	# cast human readable sting to machine string
 	f1 = sub( 'mean', '[0]', f1 )
 	f1 = sub( 'sigma', '[1]', f1 )
