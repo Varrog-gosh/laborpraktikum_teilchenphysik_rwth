@@ -421,9 +421,9 @@ $τ_1$ wahrscheinlich genauer.
 Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode
 als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensdauer aus der Verschiebung der Schwerpunkte (dem ersten Moment einer Verteilung)
 zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
-Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \ref{manual} :
+Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \ref{manual}:
 \begin{align*}
-	\tau = \frac{M^{(1)[F(t)]}{M^{(0)[F(t)]} - \frac{M^{(1)[P(t)]}{M^{(0)[P(t)]}
+	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)]}
 \end{align*}
 Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen Flächeninhalt von 1 entspricht.
 Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
@@ -437,6 +437,7 @@ vom ursprünglichen Signalspektrum subtrahiert (siehe \ref{fig:centroid}. Nach A
 \end{figure}
  
 \section{Bestimmung der Lebensdauern in Aluminium}
+Nach der Messung von Polyethylen wird für $\SI{5.3}{h}$ in Aluminium eingebettetes $^{22}$Na als Quelle benutzt.
 % messzeit? messzeit untergrund und ethylen?
 
 \subsection{Vergleich der Messungen für Aluminium und Polyethylen}
@@ -467,18 +468,51 @@ besteht die Probe aus zwei Aluminiumscheiben in deren Mitte die $^{22}$Na Quelle
 Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
 in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
 emittierten Positronen treffen also zunächst auf Aluminiumoxid bevor im inneren Teil der Probe wieder reines Aluminium vorherrscht. In Aluminiumoxid
-ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im
-Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von
+ist die Bildung von Positronium möglich \cite{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im
+Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \cite{phd_trezzi}. Man geht von
 einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließender Einfang eines Elektrons aus der Randschicht 
 (hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.
 
-Auch wenn hier anscheinend der Gleiche Effekt wie bei Polyethylen durchgeführt wird, wird die
-Analyse für Aluminium mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
+Die Analyse für Aluminium wird mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
 Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \subsection{Zwei lineare Anpassungen}
-
+\begin{table}[h]
+	\begin{tabular}{l |l l ||l}
+			Fit& Bereich $[\si{ns}]$ & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
+		\hline
+		\multirow{3}{*}{1} & 0.6 - 1.7 &  0.6193 ± 0.0027   &\multirow{3}{*}{  0.6234 ± 0.0096}\\
+	 & 0.6 - 1.5 &  0.6142 ± 0.0032   &\\
+	 & 0.8 - 2.0 &  0.6367 ± 0.003   &\\
+	 \hline
+	 \multirow{3}{*}{2}  & 2.9 - 7.0 &  1.969 ± 0.019   &\multirow{3}{*}{1.965 ± 0.074 }\\
+	 & 2.9 - 6 &  1.872 ± 0.023   &\\
+	 & 3.5 - 7.0 &  2.054 ± 0.029   &
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Aluminium mit zwei linearen
+		Geradenanpassungen. Da die Werte nicht miteinander vereinbar sind, wird der Mittelwert und
+	RMS für die Werte bestimmt.}
+	\label{tab:linearPoly}
+\end{table}
 \subsection{Globale Anpassung an Faltungsfunktion}
 
+\begin{table}[h]
+	\begin{tabular}{l |l l}
+		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
+		\hline
+0.2 - 7 &  0.4771 ± 0.0063   &  2.133 ± 0.029  \\
+0.2 - 9 &  0.4979 ± 0.005   &  2.303 ± 0.027  \\
+0.9 - 8 &  0.4958 ± 0.006   &  2.296 ± 0.028  \\
+		\hline
+		\hline
+		Mittelung & 0.4903 ± 0.0093 & 2.244 ± 0.079
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Lebensdauer von Positronen in Aluminium mit einer globalen
+	Anpassungsfunktion mit variablen Bereichen. Da die Werte nicht oder nur knapp miteinander
+		vereinbar sind, wird nicht der gewichtete Mittelwert, sondern Mittelwert und RMS bestimmt.}
+	\label{tab:globalPoly}
+\end{table}
 \subsection{Centroid Shift}
 
 \section{Diskussion}

@@ -25,7 +25,7 @@ def normedHist( name, color, func = 0):
 
 
 func = kalibration()
-alutime = normedHist( 'data/aluminium.TKA', 2, func )
+alutime = normedHist( 'data/aluminium.TKA', 3, func )
 polytime = normedHist( 'data/poly.TKA', 4, func )
 cotime = normedHist( 'data/co60.TKA', 1, func )
 
@@ -106,7 +106,7 @@ def calculateDeconvolution( signal, background , signalname, backgroundname ):
 
 
 
-def twoLinearFits( signal, ranges):
+def twoLinearFits( signal, saveAffix, ranges):
 	'''
 	fits two linear functions to the signal distribution
 	signal: histogram containing data
@@ -149,7 +149,7 @@ def twoLinearFits( signal, ranges):
 		info.SetShadowColor(0)
 		info.AddText( '#chi^{{2}} / NDF = {} / {}'.format(int(func.GetChisquare()), func.GetNDF()) )
 		from re import sub
-		print '&{} - {}&'.format(ran[0], ran[1]),
+		print ' & {} - {} & {} &\\\\'.format(ran[0], ran[1],printError(-1/func.GetParameter(1), func.GetParError(1)/(func.GetParameter(1))**2))
 		info.AddText( '#tau_{'+str(i+1)+'} = ' + sub('±', "#pm", printError(-1/func.GetParameter(1), func.GetParError(1)/(func.GetParameter(1))**2, 'ns')))
 		info.Draw()
 
@@ -163,7 +163,7 @@ def twoLinearFits( signal, ranges):
 		line = TLine( ran[0], 0,  ran[1] ,0)
 		line.Draw()
 
-		can.SaveAs('linearFit{}.pdf'.format(i))
+		can.SaveAs('linearFit{}{}.pdf'.format( saveAffix, i ) )
 		can.Close()
 
 def linear_and_centroid (signal,background):
@@ -177,7 +177,7 @@ def linear_and_centroid (signal,background):
 	from ROOT import TF1, TCanvas, TLegend, TPaveText, TLine ,TPaveStats
 
 	can = TCanvas( 'linear', "Tail Anpassung", 1300, 800 )
-	#~ can.SetBatch()
+	can.SetBatch()
 	
 
 	s = signal.Clone()
@@ -258,7 +258,7 @@ def linear_and_centroid (signal,background):
 	
 
 
-def globalFit( signal, start = 0.2, stop = 9 ):
+def globalFit( signal, saveAffix,  ranges = [(0.2, 9.0)] ):
 	'''
 	uses convolution fit
 	signal, background: histograms
@@ -279,39 +279,40 @@ def globalFit( signal, start = 0.2, stop = 9 ):
 	f2 = sub( 'tau', '[4]', f2 )
 	f2 = sub( 'amp', '[5]', f2 )
 	fitstring = f1+'+'+f2
+	defaultRes = signal.Clone()
 
-	fit = TF1("fit", fitstring, start, stop )
-	fit.SetParNames('#mu',"#sigma","#tau_{1}", "A_{1}", "#tau_{2}", "A_{2}" )
-	fit.SetParameter( 0, 4.80497e-01)
-	fit.SetParameter( 1, 3.70915e-01)
-	fit.SetParameter( 2, 4.49595e-01)
-	fit.SetParameter( 3, 2.63383e-02)
-	fit.SetParameter( 4, 2.00746e+00)
-	fit.SetParameter( 5, 1.96099e-03)
+	for i, ran in enumerate(ranges):
+		res = defaultRes.Clone()
+		fit = TF1("fit", fitstring, ran[0], ran[1] )
+		fit.SetParNames('#mu',"#sigma","#tau_{1}", "A_{1}", "#tau_{2}", "A_{2}" )
+		fit.SetParameter( 0, 4.80497e-01)
+		fit.SetParameter( 1, 3.70915e-01)
+		fit.SetParameter( 2, 4.49595e-01)
+		fit.SetParameter( 3, 2.63383e-02)
+		fit.SetParameter( 4, 2.00746e+00)
+		fit.SetParameter( 5, 1.96099e-03)
 
+		# draw histogram
+		can = TCanvas(randomName(), 'globalFit', 1300, 800 )
+		can.SetBatch()
+		can.Divide(1,2)
+		can.cd(1)
+		can.SetLogy()
+		signal.Fit('fit', "r")
 
+		can.cd(2)
+		# compure residuals
+		res.SetAxisRange( ran[0], ran[1] )
+		for j in range( res.GetXaxis().GetNbins() +1 ):
+			res.SetBinContent( j, res.GetBinContent(j) - fit.Eval( res.GetBinCenter(j) ) )
+		res.SetYTitle('Residuen')
+		res.Draw()
+		line = TLine( ran[0], 0,  ran[1], 0 )
+		line.Draw()
 
-	# draw histogram
-	can = TCanvas(randomName(), 'globalFit', 1300, 800 )
-	can.SetBatch()
-	can.Divide(1,2)
-	can.cd(1)
-	can.SetLogy()
-	res = signal.Clone()
-	signal.Fit('fit', "r")
-
-	can.cd(2)
-	# compure residuals
-	res.SetAxisRange( start, stop )
-	for j in range( res.GetXaxis().GetNbins() +1 ):
-		res.SetBinContent( j, res.GetBinContent(j) - fit.Eval( res.GetBinCenter(j) ) )
-	res.SetYTitle('Residuen')
-	res.Draw()
-	line = TLine( start, 0,  stop, 0 )
-	line.Draw()
-
-	can.SaveAs("globalFit.pdf")
-	can.Close()
+		can.SaveAs("globalFit{}{}.pdf".format(saveAffix,i))
+		print( '{} - {} & {} & {}\\\\'.format( ran[0], ran[1], printError( fit.GetParameter(2), fit.GetParError(2) ), printError( fit.GetParameter(4), fit.GetParError(4) ) ) )
+		can.Close()
 
 
 
@@ -357,7 +358,9 @@ def subtractfunc (hist , func,xmin):
 	return result
 
 # execute programs
-#globalFit( polytime )
-#twoLinearFits( polytime, [ ( 0.6, 1.7 ), ( 3.5, 8.0 ) ] )
+#globalFit( polytime, 'poly', [ (0.2,8), (0.9,8), (0.2,9) ] )
+#globalFit( alutime, 'alu', [ (0.2,7), (0.9,8), (0.2,9) ] )
+#twoLinearFits( polytime, 'poly', [ ( 0.6, 1.7 ), ( 3.5, 8.0 ) ] )
+twoLinearFits( alutime, 'alu', [ (0.6,1.7), (0.6,1.5), (0.8,2.0), (2.9,7.0), (2.9,6), (3.5,7.0) ] )
 #calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
 #linear_and_centroid(polytime,cotime)
