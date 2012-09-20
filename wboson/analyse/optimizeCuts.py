@@ -41,13 +41,15 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	print chi2min, eff, var
 
 	del datahist, gr, x, y, func
+	# to avoid unphysical values
 	if mass < masses[0] or mass > masses[-1]:
 		return 1000
 	return var
 
 def minimizeChi2( dataTree, mcTree ):
-	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
-	p0 = [ 24.38196603 , 19.59629691]
+	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2]), variable = 'mwt')
+	p0 = [ 13.4464975566,20.4083129363,1.60141760266]
+	p0 = [ 9.25914050724, 20.4546624238,1.6014176026]
 	from scipy import optimize
 	cuts = optimize.fmin_powell( chi2, p0 )
 	print cuts
