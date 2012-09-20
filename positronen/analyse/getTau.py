@@ -380,5 +380,5 @@ def subtractfunc (hist , func,xmin):
 		
 # execute programs
 #globalFit( polytime )
-twoLinearFits( polytime, [ ( 0.6, 1.7), ( 3.5, 8 ) ] )
+#twoLinearFits( polytime, [ ( 0.6, 1.7), ( 3.5, 8 ) ] )
 #calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )

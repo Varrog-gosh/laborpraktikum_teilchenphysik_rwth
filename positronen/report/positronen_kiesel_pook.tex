@@ -153,7 +153,7 @@ wird der logische 'Veto-Out' Ausgang des Start-EKD in den 'Veto-In' Eingang des 
 in den Vielkanalanalysator gegeben.
 Die EKD dienen damit auch gleichzeitig als Koinsidenzstufen.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../analyse/auswahl.pdf}
 	\caption{Das Energiespektrum von $^{22}$Na aus dem verstärktem und vorgeglätteten
@@ -207,7 +207,7 @@ in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den Vielkanalanal
 durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $\SI{0.5}{ns}$ Schritten von $\SI{0}{ns}$ bis $\SI{12}{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum
 ist in Abbildung \ref{fig:pulsSpektrum} dargestellt.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
 	\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von
 		$\SI{0.5}{ns}$. Man sieht schon hier, dass die Peaks vor allem im unteren Bereich nicht
@@ -222,7 +222,7 @@ Für die Anpassung wird die Erwartungswert $μ$ als Mittelwert und die elektroni
 als Fehler auf den Mittelwert genommen.
 Ein Beispiel für eine solche Anpassung, für einen Zeitabstand von $\SI{8}{ns}$, ist in Abbildung \ref{fig:singlePuls} dargestellt.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{../analyse/singlePeak.pdf}
 	\caption{Ein einzelner Puls aus Abbildung \ref{pulsSpektrum} zur genaueren Untersuchung. Der zu
 	$\SI{8}{ns}$ gehörende Peak wird durch eine Gaußfunktion gut beschrieben. Die Breite ist typisch
@@ -254,25 +254,40 @@ als $\SI{2}{ns}$ sehr fehlerhaft sind und nicht mit ausgewertet werden dürfen.
 
 
 \subsection{Zeitnullpunktsverschiebung}\label{cap:zeitverschiebung}
+
+Zur Bestimmung des Zeitnullpunkt und zum Überprüfen der zeitlichen Stabilität des Aufbaus werden Messungen mit
+$^{60}$Co durchgeführt.
+Dieses Cobaltisotop liefert beim Kaskadenzerfall in $^{60}$Co zwei zeitgleiche γ-Quanten mit Energien von $\SI{1.17}{MeV}$ und $\SI{1.33}{MeV}$. Es wird jeweils eine Messung vor Beginn
+und nach der Hauptmessreihen mit $^{22}$Na durchgeführt. Die Ergebnisse beider Messungen sind in Abbildung \ref{fig:compare_co} dargestellt.
+
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
 	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen.}
-	\label{fig:timepuls}
+	\label{fig:compare_co}
 \end{figure}
-Zur Bestimmung des Zeitnullpunkt und zum überprüfen der zeitlichen Stabilität werden Messungen mit $^{60}$Co durchgeführt, dieses Cobaltisotop liefert
-beim Kaskadenzerfall in $^{60}$Co zwei zeitgleiche γ-Quanten mit Energien von $\SI{1.17}{MeV}$ und $\SI{1.33}{MeV}$. Es wird jeweils eine Messung vor Beginn
-und nach der Hauptmessreihen mit $^{22}$Na durchgeführt. Die Ergebnisse beider Messungen sind in Abbildung \ref{fig:compare_co} dargestellt.
-Da von einem Zeitgleichen eintreffen beider Pulse ausgegangen wird, dient die Position des beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt. Es
-ist zu erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
-Zeitdifferenz von lediglich $\SI{0.15}{ns}$. Die Änderung ist also im Rahmen der Messgenauigkeit klein genug um den Mittelwert der
-beiden gemessenen Peakpositionen , Kanal 4721 , als Nullpunkt für die Zeitmessungen zu benutzen. Die Veränderung des Nullpunkt wird im folgenden
+
+Da von einem Zeitgleichen Eintreffen beider Pulse ausgegangen wird, dient die Position des beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt.
+Dies führt bei einer Verschiebung von $4717$ Kanälen dazu, dass der nicht-lineare Bereich der
+Kalibration nur noch für negative Zeiten benutzt wird.
+Es ist zu erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
+Zeitdifferenz von lediglich $\SI{0.15}{ns}$, verteilt auf $\SI{86}{h}$.
+Die Änderung ist also im Rahmen der Messgenauigkeit klein genug um den Mittelwert der
+beiden gemessenen Peakpositionen als Nullpunkt für die Zeitmessungen zu benutzen. Die Veränderung des Nullpunkt wird im folgenden
 als zusätzlich systematische Unsicherheit auf alle Zeitmessungen angenommen. Die experimentelle Zeitauflösung wird durch die mittlere Breite der beiden an die
 Daten angepassten Gaußfunktion zu $\SI{0.4}{ns}$ abgeschätzt und liegt somit in der Größenordnung der theoretisch erwarteten Lebensdauern für Positronen und Positronium.
+% genauerer wert für auflösung, mehr nachkommastellen
 
-\section{Bestimmung der Lebensdauern in Polyethylen}
+Bei der Anpassung der Gaußfunktion wird der rechte Ausläufer der Verteilung nicht mit
+berücksichtigt, da es noch Spuren einer anderen Verteilung enthält.
+
+% gaus + expo an co verteilung um τ zu bestimmen.
+
+
+\section{Bestimmung der Lebensdauern in Polyethylen}\label{cap:poly}
 Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht. Das Aufgenommene Spektrum
-stellt also eine Faltung von Auflösungskurve und Signal dar. Um die einzelnen Anteile beurteilen zu können wird eine Entfaltung mit dem Programmpaket ROOT durchgeführt, dabei wird
-der Gold Algorithmus \cite{gold_algo} benutzt. Hierbei wurde das gemessene Spektrum für $^{22}$Na als Faltung angenommen und das $^{60}$Co Spektrum als Responsefunktion des System
+stellt also eine Faltung von Auflösungskurve und Signal dar. Um die einzelnen Anteile beurteilen zu
+können wird eine Entfaltung eine Implementation des Gold Algorithmus\cite{gold_algo} von ROOT\cite{root} durchgeführt.
+Hierbei wurde das gemessene Spektrum für $^{22}$Na als Faltung angenommen und das $^{60}$Co Spektrum als Responsefunktion des System
 gewählt. Die beiden Ausgangsfunktionen und die daraus resultierende Entfaltung sind in Abbildung \ref{fig:deconvolution} dargestellt. Es ist deutlich zu erkennen, dass die
 Modifikation des ursprünglichen Signalspektrum durch die Auflösungsfunktion jenseits von $\SI{2}{ns}$ zu vernachlässigen ist. Da die Fortpflanzung der Fehler bei
 der Entfaltung nicht stattfindet werden die weiteren Anpassungen an den ursprünglichen Daten durchgeführt, die durchgeführte Entfaltung zeigt jedoch
@@ -303,7 +318,7 @@ am $χ²/\text{NDF}$ von $1.5$ bis $2$ sieht.
 \begin{figure}
 	\includegraphics[width=.5\textwidth]{linearFit0.pdf}
 	\includegraphics[width=.5\textwidth]{linearFit1.pdf}
-	\caption{Fits zur bestimmung der lebensdauer}
+	\caption{Anpassung von zwei Geraden zur Bestimmung der Lebensdauer von Positronen in Polyethylen}
 	\label{fig:dualLinearFit}
 \end{figure}
 
@@ -313,7 +328,7 @@ Um zu überprüfen, ob die Anpassung nur die Gerade benutzt, wird darauf geachte
 kein Systematiken zeigen.
 Die Ergebnisse sind in Tabelle \ref{tab:linearPoly} dargestellt.
 
-\begin{table}
+\begin{table}[h]
 	\begin{tabular}{l |l l ||l}
 			Fit& Bereich & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
 		\hline
@@ -373,7 +388,7 @@ Auch hier ändern sich die Zerfallszeiten, wenn man den Bereich der Anpassung ä
 Bereich wird aber explizit nicht mit einbezogen, da dort die Zeitkalibration den linearen Bereich
 verlässt (siehe Abschnitt \ref{cap:zeitverschiebung}).
 Die Ergebnisse mit mittlerem Fehler sind in Tabelle \ref{tab:globalPoly} zu finden.
-\begin{table}
+\begin{table}[h]
 	\begin{tabular}{l |l l}
 		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
 		\hline
@@ -398,34 +413,44 @@ $τ_1$ wahrscheinlich genauer.
 \subsection{Centroid Shift}
 
 \section{Bestimmung der Lebensdauern in Aluminium}
+% messzeit? messzeit untergrund und ethylen?
 
-\subsection{Vergleich der Messungen für Aluminum und Polyethylen}
-
-\begin{figure}
+\subsection{Vergleich der Messungen für Aluminium und Polyethylen}
+In Abbildung \ref{fig:compare_signal} sieht man die normierten Zeitspektrun für Aluminium und
+Polyethylen zu sehen.
+\begin{figure}[h]
 	\includegraphics[width=1.0\textwidth]{../analyse/signal+signal.pdf}
-	\caption{Vergleich des gemessenen Zeitspektrums für Aluminium und Polyethylen (beide Spektren sind zur besseren vergleichbarkeit auf einen Flächeninhalt von 1 normiert) }
+	\caption{Vergleich der normierten Zeitspektren für Aluminium und Polyethylen mit eingezeichneten Fehlerbalken.}
 	\label{fig:compare_signal}
 \end{figure}
+
+Die Histogramme sehen zwar ähnlich aus, allerdings sind sie statistisch mit einer Wahrscheinlichkeit
+kleiner als $10^{-44}$ vereinbar ($χ²/\text{NDF} = 8678/105$).
+Trotzdem ist die annähernde Übereinstimmung unerwarted. Auf Grund der hohen Elektronendichte im Leitungsband von Aluminium ist die Existenz eines Øre-Gap nicht zu erwarten, die 
+enegetischen Bedingungen für die Bildung von Positronium sind also nicht gegeben. Dennoch beobachtet man ein ähnliches Verhalten wie bei 
+Polyethylen, also eine Überlangerung von 2 unterschiedlichen charakteristischen Zerfallsszeiten. Dieses Verhalten lässt sich vermutlich durch
+den Aufbau der genutzten Probe erklären.
+Wie in Abbildung \ref{fig:quelle_nah} zu erkennen ist,
+besteht die Probe aus zwei Aluminiumscheiben in deren Mitte die $^{22}$Na Quelle eingebracht ist.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{../pictures/quelle_nah.jpg}
 	\caption{Nahaufnahme der genutzten Aluminiumquelle }
 	\label{fig:quelle_nah}
 \end{figure}
-Der Vergleich der Messungen für Aluminum und Polyethylen (siehe Abbildung \ref{fig:compare_signal}  zeigt ein zunächst unerwartetes Verhalten für 
-die Aluminiumprobe. Auf Grund der hohen Elektronendichte im Leitungsband von Aluminium ist die Existenz eines Øre-Gap nicht zu erwarten, die 
-enegetischen Bedingungen für die Bildung von Positronium sind also nicht gegeben. Dennoch beobachtet man ein ähnliches Verhalten wie bei 
-Polyethylen, also eine Überlangerung von 2 unterschiedlichen charakteristischen Zerfallsszeiten. Dieses Verhalten lässt sich vermutlich durch
-den Aufbau der genutzten Probe erklären. Wie in Abbildung \ref{fig:quelle_nah} zu erkennen ist besteht die Probe aus zwei Aluminiumscheiben
-in deren Mitte die $^{22}$Na Quelle eingebracht ist. Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
+
+
+Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
 in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
 emittierten Positronen treffen also zunächst auf Aluminiumoxid bevor im inneren Teil der Probe wieder reines Aluminium vorherrscht. In Aluminiumoxid
-ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im 
-Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von 
+ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im
+Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von
 einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließender Einfang eines Elektrons aus der Randschicht 
-(hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.  
+(hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.
 
-
+Auch wenn hier anscheinend der Gleiche Effekt wie bei Polyethylen durchgeführt wird, wird die
+Analyse für Aluminium mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
+Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \subsection{Zwei lineare Anpassungen}
 
 \subsection{Globale Anpassung an Faltungsfunktion}
@@ -433,7 +458,7 @@ einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließe
 \subsection{Centroid Shift}
 
 \section{Diskussion}
-
+% überall den fehler durch die nullpunktsverschibung von 0.15ns hinzu
 
 \bibliographystyle{plain}
 \bibliography{citebib}{}

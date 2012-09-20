@@ -98,6 +98,7 @@ def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6
 	xmax_orig = func.Eval( a.GetNbins() - channelShift ) - func.Eval( 0 )
 	a.Set( a.GetNbins(), xmin_orig, xmax_orig )
 
+	# use only reasonable values for ranges
 	if xmin < xmin_orig:
 		xmin = xmin_orig
 	if xmax > xmax_orig:
