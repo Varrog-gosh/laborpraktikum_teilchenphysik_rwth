@@ -166,7 +166,7 @@ def twoLinearFits( signal, ranges):
 		can.SaveAs('linearFit{}.pdf'.format(i))
 		can.Close()
 
-def linear_and_centroid (signal,background):
+def linear_and_centroid (signal,background,signalname):
 	'''
 	fit linear functions to the tail of signal distribution
 	substract long lifetime component
@@ -212,7 +212,7 @@ def linear_and_centroid (signal,background):
 	
 	can.SaveAs("tailFit.pdf")
 	
-	s2 = subtractfunc (s,fit1,0.0)
+	s2 = subtractfunc (s,fit1,0.0,12)
 	fit2 = TF1('peak', 'pol1', ranges[0][0], ranges[0][1] )
 	s2.Fit("peak",'r')
 	s2.SetStats(0)
@@ -225,34 +225,52 @@ def linear_and_centroid (signal,background):
 	expfit.SetParameters(fit1.GetParameter(0),fit1.GetParameter(1))
 	expfit.SetParError(0,fit1.GetParError(0))
 	expfit.SetParError(1,fit1.GetParError(1))
-	s3 = subtractfunc(signal,expfit,0)
 	
+	sxmax = 7.0
+	
+	s3 = subtractfunc(signal,expfit,0.0,sxmax)
+	
+	#~ for i in range(s3.FindBin(0),s3.FindBin(0)+15):
+		#~ print "%d e_b %e  %e"%(i,s3.GetBinError(i),1./s3.Integral()*s3.GetBinError(i))
+		#~ print "%signal d e_a %e"%(i,signal.GetBinError(i))
 	s3.Scale(1./s3.Integral())
-	print "test %e %e"%(signal.GetBinContent(142),s3.GetBinContent(142))
-	tau_ori , err_tau_ori = centroidShift(signal,background ,signal.FindBin(-2.),signal.FindBin(-6.))
-	tau, err_tau = centroidShift(s3,background ,signal.FindBin(-2.),signal.FindBin(-6.))
+	print"-------------------------------"
+	#~ for i in range(s3.FindBin(0),s3.FindBin(0)+15):
+		#~ print "%d e_a %e"%(i,s3.GetBinError(i))
+	#~ print "test %e %e"%(signal.GetBinContent(142),s3.GetBinContent(142))
+	tau_ori , err_tau_ori = centroidShift(signal,background ,signal.FindBin(-1.),signal.FindBin(sxmax))
+	tau, err_tau = centroidShift(s3,background ,signal.FindBin(-1.),signal.FindBin(sxmax))
 
 	print "centroid shift (corrected) tau_s:%e +- %e"%(tau,err_tau)
 	print "centroid shift (uncorrected) tau_s:%e +- %e"%(tau_ori,err_tau_ori)
 	
 	can.Update()
 	can.SaveAs("peakfit.pdf")
-	can.SetLogy()
-	s3.SetMinimum(1.4e-6)
-	s3.Draw()
-	signal.SetMarkerColor(8)
-	signal.Draw("same")
-	background.Draw("SAME")
+	#~ can.SetLogy()
+	#~ s3.SetMinimum(1e-6)
+	#~ t1fit = TF1("t1fit" , "expo",0.9,3.0)
+	#~ s3.Fit("t1fit","r")
+	#~ s3.Draw()
+	#~ signal.SetMarkerColor(8)
+	background.SetAxisRange(-2.,4,"X")
+	background.Scale(1./background.Integral())
+	signal.SetAxisRange(-2.,4,"X")
+	signal.SetLineWidth(3)
+	signal.Scale(1./signal.Integral())
+	background.SetLineWidth(3)
+	background.Draw("Hist")
+	signal.Draw("SAMEHIST")
+	
 	
 	leg = TLegend(0.6, 0.68, .95,.95)
 	leg.SetFillColor(0)
 	leg.SetLineWidth(0)
-	leg.AddEntry( signal, "Polyethylen: Signal #tau_{1} und #tau_{2} ", "P")
-	leg.AddEntry( s3, "Polyethylen: Signal nur #tau_{1}", "P")
-	leg.AddEntry( background, "^{60}Co ", "P")
+	leg.AddEntry( signal, "%s "%signalname, "l")
+	#~ leg.AddEntry( s3, "%s: Signal nur #tau_{1}"%signalname, "P")
+	leg.AddEntry( background, "^{60}Co ", "l")
 	leg.Draw()
 	
-	can.SaveAs("centroid.pdf")
+	can.SaveAs("centroid_%s.pdf"%signalname)
 
 	can.Close()
 	
@@ -336,21 +354,20 @@ def centroidShift( signal, background, xmin = 0, xmax  = 16000 ):
 	s = sqrt ( signal.GetRMS()**2 / ( signal.GetEntries() -1 ) + background.GetRMS()**2 / (background.GetEntries() -1 ) )
 	return t, s
 	
-def subtractfunc (hist , func,xmin):
+def subtractfunc (hist , func,xmin,xmax):
 	from math import sqrt
 	result = hist.Clone()
-	for i in range(hist.GetNbinsX()):
-		if (i > hist.FindBin(xmin)):
-			t = hist.GetBinCenter(i)
-			c = func.GetParameter(0) 
-			e_c = func.GetParError(0)
-			a = func.GetParameter(1)
-			e_a = func.GetParError(1)
-			f = func.Eval(t)
-			e_f = f * sqrt( e_c**2 + t**2 * e_a**2 )
+	for i in range(hist.FindBin(xmin),hist.FindBin(xmax)):
+		t = hist.GetBinCenter(i)
+		c = func.GetParameter(0) 
+		e_c = func.GetParError(0)
+		a = func.GetParameter(1)
+		e_a = func.GetParError(1)
+		f = func.Eval(t)
+		e_f = f * sqrt( e_c**2 + t**2 * e_a**2 )
 			
-			result.SetBinContent( i, hist.GetBinContent(i) - f )
-			result.SetBinError(i,sqrt(hist.GetBinError(i)**2 + e_f**2))
+		result.SetBinContent( i, hist.GetBinContent(i) - f )
+		result.SetBinError(i,sqrt(hist.GetBinError(i)**2 + e_f**2))
 			#~ print "t %.1e c %.1e e_c %.1e a %.1e e_a %.1e "%(t,c,e_c,a,e_a)
 			#~ print "%d e_befor %e e_after %e func %e e_func %e"%(i,hist.GetBinError(i),result.GetBinError(i),f,e_f)
 			#~ print""
@@ -360,4 +377,5 @@ def subtractfunc (hist , func,xmin):
 #~ globalFit( polytime )
 #~ twoLinearFits( polytime, [ ( 0.7, 1.8 ), ( 3.4, 7.0 ) ] )
 #~ calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
-linear_and_centroid(polytime,cotime)
+linear_and_centroid(polytime,cotime,"Polyethylen")
+#~ linear_and_centroid(alutime,cotime,"Aluminium")

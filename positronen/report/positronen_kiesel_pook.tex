@@ -252,12 +252,6 @@ gewählt, dass der Kalibrationsfehler immer kleiner als der Binningfehler ist.
 Es werden auch die niedrigen Kanäle mit der Funktion kalibriert, im Wissen dass die Zeiten niedriger
 als $\SI{2}{ns}$ sehr fehlerhaft sind und nicht mit ausgewertet werden dürfen.
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
-	\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von $\SI{0.5}{ns}$}
-	\label{fig:timepuls}
-\end{figure}
-
 \subsection{Zeitnullpunktsverschiebung}\label{cap:zeitverschiebung}
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
@@ -403,21 +397,44 @@ $τ_1$ allerdings der Untergrund sowie der Einfluss von $τ_2$ beachtet wird, is
 $τ_1$ wahrscheinlich genauer.
 
 \subsection{Centroid Shift}
-Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode
+Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode \cite{manual}
 als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensdauer aus der Verschiebung der Schwerpunkte (dem ersten Moment einer Verteilung)
 zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
-Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \ref{manual} :
+Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \cite{manual} :
 \begin{align*}
-	\tau = \frac{M^{(1)[F(t)]}{M^{(0)[F(t)]} - \frac{M^{(1)[P(t)]}{M^{(0)[P(t)]}
+	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)] = }
 \end{align*}
 Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen Flächeninhalt von 1 entspricht.
-Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
-Dazu wurden die Ergebnisse der linearen Anpassung im Ausläufer der Verteilung aus Abschnitt \ref{linearfit} benutzt und die darraus gewonnene Funktion
-vom ursprünglichen Signalspektrum subtrahiert (siehe \ref{fig:centroid}. Nach Abzug der langlebigen Komponente wird die Verteilung erneut auf eins normiert.
+%~ Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
+%~ Dazu wurden die Ergebnisse der linearen Anpassung im Ausläufer der Verteilung aus Abschnitt \ref{linearfit} benutzt und die darraus gewonnene Funktion
+%~ vom ursprünglichen Signalspektrum subtrahiert (siehe \ref{fig:centroid}).
+%~ Der Fehler jedes Bin wird mit $\sigma^{\tau_{1}}_{Bin} =\sqrt{(sigma^{\tau_{1}+\tau_{2}}_{Bin})^2+(\sigma_{f^{\tau_{1}}(t)})^2}$
+%~ bestimmt, d.h. der ursprüngliche Fehler auf jedes Bin wird quadratisch mit dem Fehler der angepassten Funktion am Binmittelpunkt addiert.
+%~ Das nach Abzug der langlebigen Komponente resultierende Spektrum wird erneut auf eins normiert. Der langlebige Anteil wird nur bis zum Zeitnullpunkt $t_0$ abgezogen, da 
+%~ dieser nur mit einer Ungenauigkeit von $\SI{0.15}{ns}$ bekannt ist wird das Intervall in diesen Grenzen variiert und die beobachtete mittlere Abweichung als systematische Unsicherheit quadratisch 
+%~ zum bisherigen Fehler addiert um die gesamte Unsicherheit auf das Ergebnis zu bestimmen (siehe Tabelle \ref{tab:centroidPoly}).
+Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns} - \SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{-4}{ns} - \SI{8}{ns}$ variiert. Dabei zeigt sich, dass
+sich die ,im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunkt des Spektrums nur bis  $t=\SI{5}{ns}$ befinden. 
 
+%~ \begin{table}
+	%~ \begin{tabular}{l |l }
+		%~ t0 [$\si{ns}$] & $τ_1 [\si{ns}]$ \\
+		%~ \hline
+		%~ -0.15 & 0.3884 ± 0.0094\\
+		 %~ 0.0  & 0.3851 ± 0.0094\\ % zu wenig messpunkte, fehler zu groß
+		 %~ 0.15 & 0.3812 ± 0.0094 \\
+		%~ \hline
+		%~ \hline
+	%~ \end{tabular}
+	%~ \centering
+	%~ \caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit der "Centroid Shift" Methode mit variablen Bereichen.}
+	%~ \label{tab:centroidPoly}
+%~ \end{table}
+Als Ergebnis der Centroid Shift-Methode für die kurzlebige Komponente ergibt sich also $τ_1 = 0.4592 \pm \SI{0.0057}{ns}$. Bei der Bewertung des Ergebnisses muss beachtet werden dass nur das 
+erste Moment der Verteilung in das Ergebnis eingeht. Der Einfluss höherer Momente und der Anteil von $τ_2$ wird also vernachlässigt, auch wenn er wahrscheinlich eher klein ist.
 \begin{figure}
-	\includegraphics[width=1.0\textwidth]{../analyse/centroid.pdf}
-	\caption{Zeitspektrum für Polyethylen vor und nach Abzug der langlebigen Komponente und $^{60}$Co aus gewonnene Auflösungskurve. }
+	\includegraphics[width=1.0\textwidth]{../analyse/centroid_Polyethylen.pdf}
+	\caption{Zeitspektrum für Polyethylen und aus $^{60}$Co gewonnene Auflösungskurve. }
 	\label{fig:compare_signal}
 \end{figure}
  
@@ -444,8 +461,8 @@ den Aufbau der genutzten Probe erklären. Wie in Abbildung \ref{fig:quelle_nah} 
 in deren Mitte die $^{22}$Na Quelle eingebracht ist. Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
 in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
 emittierten Positronen treffen also zunächst auf Aluminiumoxid bevor im inneren Teil der Probe wieder reines Aluminium vorherrscht. In Aluminiumoxid
-ist die Bildung von Positronium möglich \ref{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im 
-Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \ref{phd_trezzi}. Man geht von 
+ist die Bildung von Positronium möglich \cite{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im 
+Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \cite{phd_trezzi}. Man geht von 
 einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließender Einfang eines Elektrons aus der Randschicht 
 (hier kann die Probenoberfläche oder der Rand einer Pore gemeint sein) erfolgt.  
 
@@ -455,7 +472,7 @@ einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließe
 \subsection{Globale Anpassung an Faltungsfunktion}
 
 \subsection{Centroid Shift}
-
+Für Aluminium ergibt sich bei gleicher vorgehensweise wie bei Polyethylen $τ_1 = 0.5066 \pm 0.0089$ 
 \section{Diskussion}
 
 
