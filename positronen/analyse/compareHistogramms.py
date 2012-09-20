@@ -51,6 +51,7 @@ poly_timenormed = timenormedHist( 'data/poly.TKA', 4, 0 )
 co_timenormed = timenormedHist( 'data/co60.TKA', 1, 0 )
 co2_timenormed = timenormedHist( 'data/co60_2.TKA', 1, 0 )
 
+
 def compareHistos( signal, background, signalname, backgroundname, save ):
 	'''
 	plots two histos and save the result as pdf
@@ -72,9 +73,10 @@ def compareHistos( signal, background, signalname, backgroundname, save ):
 	leg.AddEntry( signal, signalname, "l")
 	leg.AddEntry( background, backgroundname, "l")
 	leg.Draw()
-	print 'Histogramme statistisch vereinbar mit ', signal.Chi2Test( background, 'uu,norm')
+	print 'Histogramme statistisch vereinbar mit ', signal.Chi2Test( background, 'uu,norm,p')
 	can.SaveAs( save )
 	can.Close()
+
 
 def compareCo( co1, co2 ,isTime = False):
 	import ROOT
@@ -117,8 +119,7 @@ def compareCo( co1, co2 ,isTime = False):
 	ymin = 0.17
 	ymax = 0.74
 	can.Update()
-	p1 = TPaveStats(co1.GetListOfFunctions().FindObject("stats"))	
-	#~ co1.GetListOfFunctions().Remove(p1);
+	p1 = TPaveStats(co1.GetListOfFunctions().FindObject("stats"))
 	co1.SetStats(0)
 	p1.SetX1NDC(xmin)
 	p1.SetX2NDC(xmax)
@@ -187,7 +188,7 @@ def compareCo( co1, co2 ,isTime = False):
 
 # execute programs
 # compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
-#~ compareHistos( polytime , alutime,  "Polytehylen", "Aluminium", "signal+signal.pdf")
+compareHistos( polytime , alutime,  "Polyethylen", "Aluminium", "signal+signal.pdf")
 
 compareCo( co, co2,False )
 #~ compareCo( co_timenormed, co2_timenormed,False )

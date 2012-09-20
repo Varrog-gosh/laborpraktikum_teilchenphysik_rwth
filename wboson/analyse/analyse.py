@@ -41,7 +41,7 @@ def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
 	return mass, e_mass,0.0 #wert, err_mass (stat.), err_mass (sys.)
 
 
-def Get_xs(dataTree,mcTree,variable,cut):
+def getXs(dataTree,mcTree,variable,cut):
 	#returns crosssection
 	#uses efficiency e eff = n_after_cut / n_generated
 	from math import sqrt
@@ -66,13 +66,12 @@ def Get_xs(dataTree,mcTree,variable,cut):
 	return xs,err_xs_stat,err_xs_sys
 
 def Compare_val(val,err_val_stat,err_val_sys,val_theo,err_theo):
-	#function returns how many standard deviations are between theory 
+	#function returns how many standard deviations are between theory
 	# and measurement
 	from math import sqrt
-	err_comb = sqrt(err_val_stat**2 + err_val_sys **2 )
-	d = abs(val_theo - val)
-	d_err = sqrt(err_comb+err_theo)
-	return d/d_err
+	d = 1. * abs(val_theo - val)
+	err_comb = sqrt(err_val_stat**2 + err_val_sys **2 + err_theo**2 )
+	return d/err_comb
 
 def getWeinberg (mw,err_mw_stat,err_mw_sys):
 	mz = 91.227
@@ -82,26 +81,21 @@ def getWeinberg (mw,err_mw_stat,err_mw_sys):
 	err_sin2_wein_sys = sqrt(pow(2 * mw * err_mw_sys / mz**2 ,2) + pow( 2* mw**2 * err_mz / mz**3 ,2))
 	err_sin2_wein_stat = 2. * mw * err_mw_stat / mz**2
 	return sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys
-	
-def getWwidth (mw,err_mw_stat,err_mw_sys,sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys):
-	from math import sqrt
-	alpha = 1.0/127
-	gamma = 3./4 * alpha * mw / sin2_wein
-	err_gamma_stat = 3./4*alpha * sqrt(pow(err_mw_stat / sin2_wein,2) + pow(mw * err_sin2_wein_stat / sin2_wein**2,2))
-	err_gamma_sys = 3./4*alpha * sqrt(pow(err_mw_sys / sin2_wein,2) + pow(mw * err_sin2_wein_sys / sin2_wein**2,2))
-	return gamma,err_gamma_stat,err_gamma_sys
 
-def printTheoreticalValues():
-	print '                     THEORY'
-	print 'Mass = ',
-	printError( 80.385, 0.015, 'GeV')
-	print 'sin²θ = ',
-	printError( 0.2397, 0.0013 )
-	print '               ( sollte 6% größer als unserer)'
-	print 'σ = ',
-	printError( 2.58,0.09, 'nb')
-	print 'Γ = ',
-	printError( 2.085, 0.042, 'nb')
+def getWidth (mw, err_mw_stat, err_mw_sys ):
+	from math import sqrt
+
+	# known variables
+	alpha = 1.0/128
+	mz = 91.227
+	err_mz_sys = 0.041
+
+	mr2 = ( mw/mz )**2 # mass ratios squared, often used variable
+	# do not use sin²θ here to avoid correlations
+	gamma = 3./4 * alpha * mw / (1 - mr2 )
+	err_gamma_stat = 3./4*alpha * (1 + mr2 ) / ( 1 - mr2)**2 * err_mw_stat
+	err_gamma_sys = 3./4*alpha * sqrt ( ( (1+mr2)/(1-mr2)**2 * err_mw_sys )**2 + ( 2*mr2*mw/mz/(1-mr2)**2 * err_mz_sys )**2 )
+	return gamma,err_gamma_stat,err_gamma_sys
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
@@ -125,12 +119,16 @@ if (__name__ == "__main__"):
 	cut = 'met>30&& el_et > 30'# && mwt/el_et > 1.8'
 	m, e_m,e_m_sys = getMass( dataTree, mcTree, cut, variable = 'mwt' )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
-	gamma,err_gamma_stat,err_gamma_sys = getWwidth(m, e_m, e_m_sys, sin2_wein*1.06, err_sin2_wein_stat*1.06 ,err_sin2_wein_sys*1.06)
-	print 'Mass =  ', printError(m, e_m, unit = 'GeV')
-	xs,err_xs_stat,err_xs_sys = Get_xs(dataTree,mcTree,opts.plots[0],opts.cut)
+	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
+	print 'Mass =  ',
+	printError(m, e_m, unit = 'GeV')
+	print
+	xs,err_xs_stat,err_xs_sys = getXs(dataTree,mcTree,opts.plots[0],opts.cut)
 	print "Crosssection: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
 	print "Theory Crossection: σ = %.2f \pm %.2f nb"%(2.58,0.09)
 	print "The Crossection deviates %f standard deviations from the theoretical value "%Compare_val(xs,err_xs_stat,err_xs_sys,2.58,0.09)
+
+	print
 	print 'Weinbergangle: sin²θ = %.4f \pm %.4f (stat.) \pm %.4f (sys.)'%(sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys)
 	print 'Weinbergangle (corrected): sin²θ = %.4f \pm %.4f (stat.) \pm %.4f (sys.)'%(sin2_wein*1.06,err_sin2_wein_stat*1.06,err_sin2_wein_sys*1.06)
 	print "Weinbergangle theory: sin²θ = %.4f \pm %.4f "%(0.2397, 0.0013)

@@ -12,8 +12,9 @@ def drawTau (mcTree,dataTree,variable,cut,nBins):
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	for entry in [ mcE, mcTau ]:
 		entry.Scale( 0.9 / 1164699 * 198 * 2580 )
-	print "Number of W->ev events %d"%mcE.GetEntries()
-	print "Number of W->tau+v events %d"%mcTau.GetEntries()
+	print "Number of W->eν events: %d"%mcE.GetEntries()
+	print "Number of W->τν events: %d"%mcTau.GetEntries()
+	print "Ratio: ", 1.* mcTau.GetEntries() / mcE.GetEntries()
 	from ROOT import TCanvas,THStack
 	stack = THStack ("stack","W#rightarrowe#nu")
 	c = TCanvas()
@@ -25,6 +26,8 @@ def drawTau (mcTree,dataTree,variable,cut,nBins):
 	mcTau.SetFillColor(4)
 	stack.Add(mcTau,"hist")
 	stack.Add(mcE,"hist")
+	stack.SetTitle(settings[variable]["title"] )
+	stack.SetMinimum(1)
 	stack.Draw()
 	dataHisto.Draw("sameP")
 	raw_input()

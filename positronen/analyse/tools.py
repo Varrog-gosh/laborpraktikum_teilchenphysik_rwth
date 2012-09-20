@@ -19,7 +19,7 @@ def printError( value, error = 0 , unit = '', relative = False ):
 	exponent_val = int ( format ( value, 'e').split('e')[1] )
 	value = float ( round ( value / 10**exponent ) ) * 10**exponent
 	error = float ( round ( error / 10**exponent ) ) * 10**exponent
-	valstring = "( {0} ± {1} )".format( value, error )
+	valstring = " {0} ± {1} ".format( value, error )
 	if exponent_val in not_scientific_exponents:
 		valstring = valstring + ' ' + unit
 	else:
