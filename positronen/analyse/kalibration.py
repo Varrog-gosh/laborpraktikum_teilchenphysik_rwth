@@ -27,8 +27,8 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.cd()
 	hist.Draw("hist")
 	s = TSpectrum( 64 ) #max number of peaks
-	npeaks = s.Search( hist, 8, "", 0.005 ) # ( hist, sigma, '', threshold )
-	#can.SaveAs('peaksToArray.pdf')
+	npeaks = s.Search( hist, 8, "hist", 0.005 ) # ( hist, sigma, '', threshold )
+	can.SaveAs('peaksToArray.pdf')
 	peaks = bufferToSortedList( npeaks, s.GetPositionX() )
 	distance = 50 # minimal distance between channels
 	# clear array of double peaks, which have less than distance channels distance
@@ -75,7 +75,7 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak 
 		ey.append(0.075)
 	reg = linearRegression(x, y, ex, ey, beginning)
 	reg.draw(';Kanal;t [ns]')
-	#reg.canvas.SaveAs('linearRegression.pdf')
+	reg.canvas.SaveAs('linearRegression.pdf')
 	reg.canvas.Close()
 	return reg.func
 
