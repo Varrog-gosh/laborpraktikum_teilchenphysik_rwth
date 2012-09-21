@@ -21,6 +21,7 @@ def plotSpectrum():
 
 	grenzkanaele = [ 260, 3630] # richtige kanalnummer rausfinden
 	lines = []
+	hist.SetYTitle('Eintr#ddot{a}ge')
 	hist.Draw()
 	for grenzkanal in grenzkanaele:
 		line = ROOT.TLine( grenzkanal, hist.GetMinimum(), grenzkanal, hist.GetMaximum() + 7500 )
@@ -35,12 +36,14 @@ def plotSpectrum():
 	textlevel = 1000
 	textdistance = 300
 
+	# textbox Fenster 1
 	t1  = ROOT.TPaveText( grenzkanal - textdistance - textwidth , textlevel, grenzkanal - textdistance, textlevel + textheight )
 	t1.AddText('Fenster 1')
 	t1.SetBorderSize(0)
 	t1.SetFillColor(0)
 	t1.Draw()
 
+	# textbox Fenster 2
 	t2  = ROOT.TPaveText( grenzkanal + textdistance , textlevel, grenzkanal + textdistance + textwidth, textlevel + textheight )
 	t2.AddText('Fenster 2')
 	t2.SetBorderSize(0)

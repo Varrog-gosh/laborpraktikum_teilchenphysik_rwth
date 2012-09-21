@@ -25,6 +25,7 @@ def peakToArray( filename, minKanal , maxKanal ):
 	can.SetCanvasSize( 1400, 800 )
 	can.SetLogy()
 	can.cd()
+	hist.SetYTitle('Eintr#ddot{a}ge')
 	hist.Draw("hist")
 	s = TSpectrum( 64 ) #max number of peaks
 	npeaks = s.Search( hist, 8, "hist", 0.005 ) # ( hist, sigma, '', threshold )
@@ -74,7 +75,7 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak 
 		y.append( timestep * (i + firstpeak) )
 		ey.append(0.075)
 	reg = linearRegression(x, y, ex, ey, beginning)
-	reg.draw(';Kanal;t [ns]')
+	reg.draw(';Kanalnummer;t [ns]')
 	reg.canvas.SaveAs('linearRegression.pdf')
 	reg.canvas.Close()
 	return reg.func

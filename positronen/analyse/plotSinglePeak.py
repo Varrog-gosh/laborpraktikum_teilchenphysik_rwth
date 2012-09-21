@@ -8,7 +8,8 @@ from kalibration import *
 
 def plotSinglePeak( filename = 'data/kali_montag.TKA' ):
 	x, ex = peakToArray( filename, 100, 0)
-	border = 55
+	drawBorder = 40
+	border = 22
 	can = TCanvas('singlePeak')
 	can.SetBatch()
 	can.SetCanvasSize( 1400, 800 )
@@ -17,10 +18,12 @@ def plotSinglePeak( filename = 'data/kali_montag.TKA' ):
 
 	for peak in [16]:
 		print peak
-		hist = tkaToHist( filename, int(x[peak]) - border, int(x[peak]) + border )
+		hist = tkaToHist( filename, int(x[peak]) - drawBorder, int(x[peak]) + drawBorder )
 		hist.Sumw2()
 		hist.Scale(1./hist.Integral())
-		hist.Fit('gaus')
+		func = TF1('fit',"gaus", int(x[peak]) - border, int(x[peak]) + border)
+		hist.Fit('fit', "r")
+		hist.GetFunction('fit').SetParNames('N_{max}',"#mu", "#sigma")
 		hist.Draw()
 		can.Update()
 		#raw_input()
