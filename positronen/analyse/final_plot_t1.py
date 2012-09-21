@@ -35,7 +35,7 @@ def Compare_val(val,err_val_stat,err_val_sys,val_theo,err_theo):
 
 final = TMultiGraph()
 
-canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
+canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 1000 )
 #~ canv.SetLogy()
 canv.SetBatch()
 canv.SetGridy()
@@ -176,7 +176,7 @@ print "global->centroid %.2fσ"%Compare_val(ysv[0],eysv[0],0,yrv[0],eyrv[0])
 #################################
 
 final.Draw("ap")
-final.GetYaxis().SetTitle("#tau_{1} [ns]")
+final.GetYaxis().SetTitle("#tau_{1} [ns]   ")
 final.GetYaxis().RotateTitle(False)
 final.GetXaxis().SetLimits(0.0,12.0)
 

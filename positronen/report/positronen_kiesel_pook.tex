@@ -417,7 +417,7 @@ als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensda
 zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
 Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \cite{manual} :
 \begin{align*}
-	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)] = }
+	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)] }
 \end{align*}
 Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen Flächeninhalt von 1 entspricht.
 %~ Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
@@ -428,7 +428,7 @@ Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen 
 %~ Das nach Abzug der langlebigen Komponente resultierende Spektrum wird erneut auf eins normiert. Der langlebige Anteil wird nur bis zum Zeitnullpunkt $t_0$ abgezogen, da 
 %~ dieser nur mit einer Ungenauigkeit von $\SI{0.15}{ns}$ bekannt ist wird das Intervall in diesen Grenzen variiert und die beobachtete mittlere Abweichung als systematische Unsicherheit quadratisch 
 %~ zum bisherigen Fehler addiert um die gesamte Unsicherheit auf das Ergebnis zu bestimmen (siehe Tabelle \ref{tab:centroidPoly}).
-Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns} - \SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{-4}{ns} - \SI{8}{ns}$ variiert. Dabei zeigt sich, dass
+Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns}$ bis $\SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{-4}{ns}$ bis $\SI{8}{ns}$ variiert. Dabei zeigt sich, dass
 sich die ,im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunkt des Spektrums nur bis  $t=\SI{5}{ns}$ befinden. 
 
 %~ \begin{table}
@@ -445,7 +445,7 @@ sich die ,im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunk
 	%~ \caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit der "Centroid Shift" Methode mit variablen Bereichen.}
 	%~ \label{tab:centroidPoly}
 %~ \end{table}
-Als Ergebnis der Centroid Shift-Methode für die kurzlebige Komponente ergibt sich also:
+Als Ergebnis der Centroid Shift-Methode für die kurzlebige Komponente ergibt sich:
 \begin{align*}
 	τ_1 = 0.4592 \pm \SI{0.0057}{ns}
 \end{align*}  
@@ -552,7 +552,7 @@ wird auf Grund des, in der globalen Anpassung gewonnenen, Amplitudenverhältnis 
 \begin{table}[h]
 	\begin{tabular}{|l |l |l |}
 	\hline
-	\tau_{1} & Polyethylen & Aluminium \\
+	$\tau_{1}$ & Polyethylen & Aluminium \\
 	\hline
 	\hline
 	Linearer Fit / Globaler Fit & 10.85σ & 9.96σ \\

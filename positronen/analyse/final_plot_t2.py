@@ -36,7 +36,7 @@ def Fillx (ylist,xlist,exlist,xval):
 
 final = TMultiGraph()
 
-canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 500 )
+canv = TCanvas( 'canv', 'final_plot', 200, 10, 700, 1000 )
 #~ canv.SetLogy()
 canv.SetBatch()
 canv.SetGridy()
