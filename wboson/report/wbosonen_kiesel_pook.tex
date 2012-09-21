@@ -18,6 +18,8 @@
 \def\graphheight{0.15}
 \def\graphwidth{.4}
 
+% missing transverse energy
+\newcommand{\met}{\ensuremath{\not\mathrel{E}}_T}
 \graphicspath{{../analyse/}}
 \title{Laborpraktikum Teilchenphysik\\ DØ-Experiment: Produktion und Zerfall von W-Bosonen}
 \author{Knut Kiesel\\Tobias Pook}
@@ -25,7 +27,7 @@
 
 \begin{document}
 \maketitle
-\vspace{3cm}
+\vspace{5cm}
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -35,18 +37,18 @@
 Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
 sowie den Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
 
-Dieser Versuch besteht nicht auf einem eigenen Aufbau, sondern es werden Daten des DØ-Experiments
-ausgewertet. Das DØ-Experiment ist neben dem CDF Experiment einer der beiden Hauptdetektoren des
-Tevatron Colliders. Das Tevatron ist ein Proton-Antiproton Beschleuniger, der am Fermilab in
-Illinois, USA bis 2011 betrieben wurde. Der Detektor besteht aus Silizium Trackern, Kalorimetern,
-einer Magnetspule sowie Myonenkammern.
+%Dieser Versuch besteht nicht auf einem eigenen Aufbau, sondern es werden Daten des DØ-Experiments
+%ausgewertet. Das DØ-Experiment ist neben dem CDF Experiment einer der beiden Hauptdetektoren des
+%Tevatron Colliders. Das Tevatron ist ein Proton-Antiproton Beschleuniger, der am Fermilab in
+%Illinois, USA bis 2011 betrieben wurde. Der Detektor besteht aus Silizium Trackern, Kalorimetern,
+%einer Magnetspule sowie Myonenkammern.
 
 Um den Fund des W Bosons am UA2 Experiment zu bestätigen sowie es genauer zu Untersuchen können auch
 beim DØ Experiment verschiedene Zerfallskanäle betrachtet werden. Einer von ihnen ist der Zerfall
 in ein Elektron/Positron und ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
 Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildung
 \ref{fig:feynman}.
-\begin{figure}
+\begin{figure}[h]
 \centering
 \begin{fmffile}{feymanE}
 	\begin{fmfgraph*}(\graphwidth,\graphheight)
@@ -71,9 +73,10 @@ Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildun
 	\end{fmfgraph*}
 \end{fmffile}
 \caption{Feynman Diagramm für die Erzeugung von W-Bosonen durch zwei Quarks der ersten Familie und
-Vernichtung in zwei Leptonen}
+Vernichtung in zwei Leptonen.}
 \label{fig:feynman}
 \end{figure}
+
 Den Wirkungsquerschnitt kann man mit
 \begin{align*}
 	σ = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
@@ -88,7 +91,7 @@ und
 	Γ_{ff'} = \frac{N_C}{12} \frac{α}{\sin^2θ_W}m_W
 \end{align*}
 ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
-Schwerpunktsenergie ist.
+Schwerpunktsenergie.
 Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
 top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
 \begin{align*}
@@ -100,19 +103,68 @@ Damit ergibt sich für
 	m_W^2\right)^2 + m_W^4\frac{(3+2N_C)^2}{12^2}\frac{α^2}{\sin^4θ_W}}.
 \end{align*}
 
+Über die Masse des W Bosons kann man den elektroschwachen Mischungswinkel, oder auch Weinbergwinkel
+$θ_W$ genannt, berechnen:
+\begin{align*}
+	\cosθ_W = \frac{m_W}{m_Z}
+\end{align*}
+In dem Versuch werden die Masse des Z Bosons $m_Z$ sowie die Feinstrukturkonstante $α$ als gegeben
+vorausgesetzt.
+
+\section{Bestimmung der Masse des W Bosons}
+Im Detektor kann die W Masse nicht direkt gemessen werden, sondern nur manche Tochterteilchen. In
+dem hier untersuchtem Prozess sind dies ein leichtes geladenes Lepton $e$
+\footnote{Elektron wird ab nun als Synonym für Elektron und Positron benutzt} sowie 
+ein Neutrino
+\footnote{Neutrino wird als Synonym für (Anti-)elektronneutrino benutzt} $ν$. Da die
+longitudinale Anfangsbedinungen nicht bekannt sind, werden
+nur transversale kinematische Größen betrachtet. Für die Auswertung werden Daten aus dem Kalorimeter
+denen des Trackers bevorzugt, da der Kalorimeter die kleinere Unsicherheit hat. So wird zum Beispiel
+die transversale Energie eines Elektrons/Positrons
+\begin{align*}
+	E_{T} = E\sin\left( 2\arctan\left( e^{-\eta} \right) \right)
+\end{align*}
+aus der Energie im Kalorimeter $E$ und $\eta$ berechnet, wobei $\eta$ sowohl Informationen aus
+Tracker und Kalorimeter enthält.
+Die Fehlende Transversale Energie wird komplett aus dem Kalorimeter bestimmt und berechnet sich
+durch
+\begin{align*}
+	\met = \sqrt{ {\met}^{2}_{x} + {\met}^{2}_{y}}
+\end{align*}
+wobei $\met$ als
+\begin{align*}
+	\met = \left| - \sum \vec{E}_{T} \right|
+\end{align*}
+definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird, wird $\met$ als Neutrinoenergie
+benutzt. Da nur die transversalen Komponenten von Elektron und Neutrino verwendet werden, kann auch
+nur die invariante transversale Masse der Leptonen und damit des W Bosons berechnet werden.
+\begin{align*}
+	m_T = 2E_T\met\left( 1-\cos(Δ_{e,ν}) \right)\footnotemark
+\end{align*}
+\footnotetext{Da die beobachteten transversalen Elektronenergien größer als einige $GeV$ sind, wird
+im Folgenden die Elektronmasse vernachlässigt.}
 
 
+\subsection{Beschreibung der simulierten Daten}
+Um Untergründe zu entfernen, ist es hilfreich, die gemessenen Daten mit simulierten Ereignissen zu
+vergleichen. Da die W Masse im voraus noch nicht bekannt ist, werden Ereignisse für unterschiedliche
+W Massen generiert.
+Da man den Untergrund durch $W\rightarrow τν\rightarrow eννν$ in Daten schlecht filtern kann, ist
+sind auch $τ$ Ereignisse simuliert.
+
+Die Qualität der Simulation ist aber eher durchwachsen, da gewisse Größen wie zum Beispiel der
+Abstand des Vertices zum Ursprung, der Polarwinkel $φ$ oder die Elektronisolation sehr schlecht
+beschrieben werden.
+
+\subsection{Selektion der Daten}
+\subsection{Schablonenmethode zur Bestimmung der W Masse}
+\subsection{Optimieren der Selektionskriterien}
+\subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
+
+\section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
 
 
-
-
-% m_t
-
-
-
-
-
-
+\section{Vergleich zu anderen Ergebnissen}
 
 
 
