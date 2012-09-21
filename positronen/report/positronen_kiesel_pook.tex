@@ -283,7 +283,27 @@ berücksichtigt, da es noch Spuren einer anderen Verteilung enthält.
 
 Die Anpassung wurde zu großen Kanälen hin nur im Zentralbereich des Peak durchgeführt, da das Spektrum eine schwache langsam auslaufende Komponente beeinhaltet, 
 dieser zusätzliche Einfluss ist zwar sehr klein beinflusst aber die Güte der Anpassung negativ wenn das Anpassungsintervall über den ganzen Peak gewählt wird.
-
+\subsection{Bestimmung des Untergrund}
+Der Untergrund bei den durchgeführten Messungen wurde durch Integration aller Ereignisse im Kanalbereich von 6000 bis 14000 der $^{60}$Co Messungen bestimmt. 
+In dem gewählten Bereich sind die Auswirkung der Auflösungskurve zu vernachlässigen. Da alle Messungen unterscheidliche Messzeiten besitzen wird die Anzahl
+an Untergrundereignissen auf die Messdauer normiert, berechent wird also $\frac{Ereignisse}{Kanal\cdot Zeit}$. Die Bestimmung des Untergrund wurde für beide
+ $^{60}$Co Messungen durchgeführt und anschließend gemittelt, die Ergebnisse sind in Tabelle \ref{tab:background} dargestellt. 
+ 
+ \begin{table}[h]
+	\begin{tabular}{l |l }
+		$^{60}$Co  Messung & $\frac{Ereignisse}{Kanal \cdot Zeit}$  $[\frac{1}{s}]$ \\
+		\hline
+		Vor $^{22}$Na Messreihen & $8.12 \cdot 10^{-6}$ \\
+		Nach $^{22}$Na Messreihen &$ 5.58 \cdot 10^{-6}$\\
+		\hline
+		\hline
+		Mittelung & $6.85 \cdot 10^{-6}$
+	\end{tabular}
+	\centering
+	\caption{Ergebnisse für die Untergrundbestimmung aus $^{60}$Co}
+	\label{tab:background}
+\end{table}
+ Der bestimmte Untergrund wurde im folgenden, entsprechnend der Messzeiten, von jedem Kanal der $^{22}$Na Spektren abgezogen bevor die Umrechnung von Kanälen zu Zeiten durchgeführt wird.   
 \section{Bestimmung der Lebensdauern in Polyethylen}\label{cap:poly}
 Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht. Das Aufgenommene Spektrum
 stellt also eine Faltung von Auflösungskurve und Signal dar. Um die einzelnen Anteile beurteilen zu
