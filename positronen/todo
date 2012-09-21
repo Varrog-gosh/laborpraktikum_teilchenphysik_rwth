@@ -1,1 +1,10 @@
-* in plotspetrum: check if SetBinContent (i) oder (i+1)
+fig:auswahl: y-title falsch (nicht normiert)
+schematischer schalplan: delay zwischen ta und mca fehlt!, einen langsamen und einen schnellen
+schematischer schalplan: sz statt st als abk. für szintillator?
+peaktoarray: y-title falsche (nicht normiert)
+fig:singlePuls: mean -> μ, sigma -> σ grenzen kleiner
+s. 7 mehr stellen für zeitauflösung
+lineareRegression:kalibration: y-title der residuen: Residuen x-title: kanalNUMMER
+compareCo: in der box: Einträge statt Constant
+untergrund: fehler? sind die werte vereinbar? (poissonfehler, was anzahl ereignisse?)
+centroid shift: ich verstehe die grenzen nicht: untergrenze -1 bis -4, obergrenze 7 bis 8?

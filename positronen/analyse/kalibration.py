@@ -79,7 +79,7 @@ def kalibration (filename = 'data/kali_montag.TKA', beginning = 4200, firstpeak 
 	reg.canvas.Close()
 	return reg.func
 
-def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4720.6 ):
+def tkaToTimeHist( filename , func, xmin = -20, xmax = 20, channelShift = 4717.6 ):
 	'''
 	returns kalibrated hist from TKA file
 	filename: filename of TKA file
