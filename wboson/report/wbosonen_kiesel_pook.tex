@@ -16,7 +16,7 @@
 % for fenyman graphs
 \setlength{\unitlength}{\textwidth}
 \def\graphheight{0.15}
-\def\graphwidth{.49}
+\def\graphwidth{.4}
 
 \graphicspath{{../analyse/}}
 \title{Laborpraktikum Teilchenphysik\\ DØ-Experiment: Produktion und Zerfall von W-Bosonen}
@@ -46,9 +46,8 @@ beim DØ Experiment verschiedene Zerfallskanäle betrachtet werden. Einer von ih
 in ein Elektron/Positron und ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
 Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildung
 \ref{fig:feynman}.
-
-\vspace{1cm}
-\begin{centering}
+\begin{figure}
+\centering
 \begin{fmffile}{feymanE}
 	\begin{fmfgraph*}(\graphwidth,\graphheight)
 		\fmfleft{i2,i1}
@@ -70,32 +69,37 @@ Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildun
 		\fmf{fermion,label=$e$}{o1,v2}
 		\fmf{fermion,label=$ν$}{v2,o2}
 	\end{fmfgraph*}
-	\label{fig:feynman}
 \end{fmffile}
-\end{centering}
-\vspace{1cm}
-
+\caption{Feynman Diagramm für die Erzeugung von W-Bosonen durch zwei Quarks der ersten Familie und
+Vernichtung in zwei Leptonen}
+\label{fig:feynman}
+\end{figure}
 Den Wirkungsquerschnitt kann man mit
 \begin{align*}
-	σ = \frac{1}{N_C}\int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
+	σ = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
 \end{align*}
 berechnen, wobei
 \begin{align*}
-	\hat{σ} = \frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
+	\hat{σ} = \frac{1}{N_C}\frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
 	\frac{ x_px_{\bar{p}} s Γ_W^2}{\left( x_px_{\bar{p}}s - m_W^2\right)^2 + m_W^2Γ_W^2}
 \end{align*}
 und
 \begin{align*}
-	Γ_{ff'} = \frac{N_C}{12} \frac{σ}{\sin^2θ_W}m_W
+	Γ_{ff'} = \frac{N_C}{12} \frac{α}{\sin^2θ_W}m_W
 \end{align*}
 ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
 Schwerpunktsenergie ist.
 Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
 top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
 \begin{align*}
-	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{σ}{\sin^2θ_W}m_W
+	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{α}{\sin^2θ_W}m_W
 \end{align*}
-Damit ergibt sich für den 
+Damit ergibt sich für
+\begin{align*}
+	\hat{σ} = \frac{πα²}{12\sin^4θ_W} \frac{ x_px_{\bar{p}} s }{\left( x_px_{\bar{p}}s -
+	m_W^2\right)^2 + m_W^4\frac{(3+2N_C)^2}{12^2}\frac{α^2}{\sin^4θ_W}}.
+\end{align*}
+
 
 
 
@@ -112,12 +116,12 @@ Damit ergibt sich für den
 
 
 
-\begin{figure}[htb]
-		\centering
+%\begin{figure}[htb]
+%		\centering
 %		\includegraphics[width=\textwidth]{}
-		\caption{}
-		\label{fig:}
-\end{figure}
+%		\caption{}
+%		\label{fig:}
+%\end{figure}
 
 %\bibliographystyle{plain}
 %\bibliography{citebib}{}

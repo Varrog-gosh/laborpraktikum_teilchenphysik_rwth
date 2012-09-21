@@ -378,6 +378,6 @@ def subtractfunc (hist , func,xmin,xmax):
 #globalFit( polytime, 'poly', [ (0.2,8), (0.9,8), (0.2,9) ] )
 #globalFit( alutime, 'alu', [ (0.2,7), (0.9,8), (0.2,9) ] )
 #twoLinearFits( polytime, 'poly', [ ( 0.6, 1.7 ), ( 3.5, 8.0 ) ] )
-twoLinearFits( alutime, 'alu', [ (0.6,1.7), (0.6,1.5), (0.8,2.0), (2.9,7.0), (2.9,6), (3.5,7.0) ] )
+#twoLinearFits( alutime, 'alu', [ (0.6,1.7), (0.6,1.5), (0.8,2.0), (2.9,7.0), (2.9,6), (3.5,7.0) ] )
 #calculateDeconvolution( poly, co, "Polyethylen", "Cobalt" )
-#linear_and_centroid(polytime,cotime)
+linear_and_centroid(polytime,cotime, 'Polyethylen')

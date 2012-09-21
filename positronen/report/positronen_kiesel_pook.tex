@@ -9,7 +9,7 @@
 \hypersetup{pdfinfo = {
 	Title={Versuchsprotokoll zu Positronen im Festkörper},
 	Author={Knut Kiesel, Tobias Pook},
-	Keywords={Teilchenfalle}
+	Keywords={Positronen Teufel Ananas}
 }}
 
 
@@ -417,9 +417,11 @@ als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensda
 zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
 Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \cite{manual} :
 \begin{align*}
-	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)] = }
+	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)]  } = μ_{F} -
+	μ_{P}
 \end{align*}
 Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen Flächeninhalt von 1 entspricht.
+$μ_i$ sind die Mittelwerte der Verteilungen.
 %~ Beim benutzen der Centroid Shift-Methode wurde die Signalverteilung zunächst um den Anteil der langlebigen Komponente des Positronium korrigiert.
 %~ Dazu wurden die Ergebnisse der linearen Anpassung im Ausläufer der Verteilung aus Abschnitt \ref{linearfit} benutzt und die darraus gewonnene Funktion
 %~ vom ursprünglichen Signalspektrum subtrahiert (siehe \ref{fig:centroid}).
@@ -429,7 +431,7 @@ Wobei das Teilen durch das nullte-Moment der Verteilung dem normieren auf einen 
 %~ dieser nur mit einer Ungenauigkeit von $\SI{0.15}{ns}$ bekannt ist wird das Intervall in diesen Grenzen variiert und die beobachtete mittlere Abweichung als systematische Unsicherheit quadratisch 
 %~ zum bisherigen Fehler addiert um die gesamte Unsicherheit auf das Ergebnis zu bestimmen (siehe Tabelle \ref{tab:centroidPoly}).
 Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns} - \SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{-4}{ns} - \SI{8}{ns}$ variiert. Dabei zeigt sich, dass
-sich die ,im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunkt des Spektrums nur bis  $t=\SI{5}{ns}$ befinden. 
+sich die, im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunkt des Spektrums nur bis  $t=\SI{5}{ns}$ befinden. 
 
 %~ \begin{table}
 	%~ \begin{tabular}{l |l }
@@ -457,7 +459,7 @@ erste Moment der Verteilung in das Ergebnis eingeht. Der Einfluss höherer Momen
 	\label{fig:compare_signal}
 \end{figure}
  
-\section{Bestimmung der Lebensdauern in Aluminium}
+\section{Bestimmung der Lebzoensdauern in Aluminium}
 Nach der Messung von Polyethylen wird für $\SI{5.3}{h}$ in Aluminium eingebettetes $^{22}$Na als Quelle benutzt.
 % messzeit? messzeit untergrund und ethylen?
 
@@ -534,61 +536,57 @@ Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 		vereinbar sind, wird nicht der gewichtete Mittelwert, sondern Mittelwert und RMS bestimmt.}
 	\label{tab:globalPoly}
 \end{table}
+
+\FloatBarrier
 \subsection{Centroid Shift}
-Für Aluminium ergibt sich bei gleicher vorgehensweise wie bei Polyethylen $τ_1 = 0.5066 \pm 0.0089$ 
+Für Aluminium ergibt sich bei gleicher Vorgehensweise wie bei Polyethylen $τ_1 = 0.5066 \pm 0.0089
+\si{ns}$.
 
 \section{Diskussion}
-Alle angewandten Messmethoden liefern ähnliche Ergbnisse eine grafische Zusammenfassung ist in Abbildung \ref{finalt1} und Abbildung \ref{finalt2} dargestellt. 
-Die bestimmten Fehler scheinen jedoch nicht alle systematische Unsicherheiten ausreichend abbzubilden. 
-Dies führt dazu, dass die präsentierten Ergebnisse teilweise statistisch nicht innerhalb eines $3\sigma$ Intervall
-zu einander kompatibel sind (siehe Tabelle \ref{tab:finalsigma}). Insbesondere bei der Bestimmung von $\tau_{1}$ scheint die Bestimmung über eine
-lineare Anpassung ein systematische Verschiebung zu größeren Zeiten zu besitzen, weil die Ergebnisse sowohl für Polyethylen als auch für Alumium mehr als 
-10σ von den beiden anderen Messmethoden nach oben verschoben sind, diese aber jeweils innerhalb von 3σ miteinader kompatibel sind. Bei der Bestimmung von $\tau_{2}$
-hingegen liefert die lineare Anpassung ein mit der globalen Anpassung kompatibles Ergebnis. Als Grund für die systematische Abweichung bei der 
-Bestimmung von $\tau_{1}$ wird der Einfluss der Faltung mit der Auflösungsfunktion angenommen, das Signalspektrum lässt sich hier also im Gegensatz zu längeren
-Zeiten nicht ausreichend durch das aufgenommene Spektrum approximieren. Der Einfluss der langlebigen Komponente $\tau_{2}$ auf die lineare Anpassung für $\tau_{1}$
-wird auf Grund des, in der globalen Anpassung gewonnenen, Amplitudenverhältnis als vernachlässigbar angesehen.   
-
-\begin{table}[h]
-	\begin{tabular}{|l |l |l |}
-	\hline
-	\tau_{1} & Polyethylen & Aluminium \\
-	\hline
-	\hline
-	Linearer Fit / Globaler Fit & 10.85σ & 9.96σ \\
-	\hline
-	Linearer Fit / Centroid Shift & 13.96σ & 8.92σ  \\
-	\hline
-	Globaler Fit / Centroid Shift &  2.11σ & 1.27σ \\
-	\hline
-	\end{tabular}
-
-	\vspace*{0.5cm}
-	\begin{tabular}{|l |l |l |}
-		\hline
-	\tau_{2} & Polyethylen & Aluminium\\
-	\hline
-	\hline
-	Linearer Fit / Globaler Fit\hspace*{0.37cm} & 1.78σ & 2.58σ\\
-	\hline
-	\end{tabular}
-	
-	\caption{Die Tabelle zeigt wie viele Standardabweichungen die einzelnen Messmethoden für $\tau_{1,2}$ von einander abweichen}
-	\label{tab:finalsigma}
-\end{table} 
-% überall den fehler durch die nullpunktsverschibung von 0.15ns hinzu
-\begin{figure}[h]
-	\includegraphics[width=1.0\textwidth]{../analyse/final_plot_1.pdf}
-	\caption{Zusammenfassung der Ergebnisse für $\tau_{1}$ }
-	\label{fig:finalt1}
-\end{figure}
+Alle angewandten Messmethoden liefern ähnliche Ergebnisse, eine grafische Zusammenfassung ist in den
+Abbildungen \ref{fig:finalt1} und \ref{fig:finalt2} dargestellt.
 
 \begin{figure}[h]
-	\includegraphics[width=1.0\textwidth]{../analyse/final_plot_2.pdf}
+	\includegraphics[width=.5\textwidth]{../analyse/final_plot_1.pdf}
+	\includegraphics[width=.5\textwidth]{../analyse/final_plot_2.pdf}
 	\caption{Zusammenfassung der Ergebnisse für $\tau_{2}$ }
 	\label{fig:finalt2}
 \end{figure}
 
+Die bestimmten Fehler scheinen jedoch nicht alle systematische Unsicherheiten ausreichend abzubilden.
+Dies führt dazu, dass die präsentierten Ergebnisse teilweise statistisch nicht innerhalb eines $3\sigma$ Intervall
+zu einander kompatibel sind (siehe Tabelle \ref{tab:finalsigma}). Insbesondere bei der Bestimmung von $\tau_{1}$ scheint die Bestimmung über eine
+lineare Anpassung ein systematische Verschiebung zu größeren Zeiten zu besitzen, weil die Ergebnisse
+sowohl für Polyethylen als auch für Aluminium mehr als
+$10σ$ von den beiden anderen Messmethoden nach oben verschoben sind, diese aber jeweils innerhalb von
+$3σ$ miteinander kompatibel sind.
+
+Bei der Bestimmung von $\tau_{2}$
+hingegen liefert die lineare Anpassung ein mit der globalen Anpassung kompatibles Ergebnis. Als Grund für die systematische Abweichung bei der
+Bestimmung von $\tau_{1}$ wird der Einfluss der Faltung mit der Auflösungsfunktion angenommen, das Signalspektrum lässt sich hier also im Gegensatz zu längeren
+Zeiten nicht ausreichend durch das aufgenommene Spektrum approximieren. Der Einfluss der langlebigen Komponente $\tau_{2}$ auf die lineare Anpassung für $\tau_{1}$
+wird auf Grund des, in der globalen Anpassung gewonnenen, Amplitudenverhältnis als vernachlässigbar angesehen.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c |c |c }
+	$\tau_{1}$ & Polyethylen & Aluminium \\
+	\hline
+	Linearer Fit / Globaler Fit   & 10.85σ & 9.96σ \\
+	Linearer Fit / Centroid Shift & 13.96σ & 8.92σ  \\
+	Globaler Fit / Centroid Shift &  2.11σ & 1.27σ \\
+	\end{tabular}
+
+	\vspace*{0.5cm}
+	\begin{tabular}{c |c |c }
+	$\tau_{2}$ & Polyethylen & Aluminium\\
+	\hline
+	Linearer Fit / Globaler Fit\hspace*{0.37cm} & 1.78σ & 2.58σ\\
+	\end{tabular}
+	\caption{Die Tabelle zeigt wie viele Standardabweichungen die einzelnen Messmethoden für $\tau_{1,2}$ von einander abweichen}
+	\label{tab:finalsigma}
+\end{table} 
+% überall den fehler durch die nullpunktsverschibung von 0.15ns hinzu
 \bibliographystyle{plain}
 \bibliography{citebib}{}
 \end{document}
