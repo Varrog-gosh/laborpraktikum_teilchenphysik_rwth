@@ -32,7 +32,6 @@ def compareDataMC( mcTree, dataTree, variable, cut, save = False, logmode = True
 		raw_input()
 	c.Close()
 
-
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -53,4 +52,3 @@ if (__name__ == "__main__"):
 
 	for variable in opts.plots:
 		compareDataMC( mcTree, dataTree, variable, opts.cut, opts.save, opts.logarithmic)
-
