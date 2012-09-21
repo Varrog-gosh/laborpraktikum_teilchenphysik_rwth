@@ -8,6 +8,7 @@ def efficiency( tree, cut ):
 
 
 def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
+	print  cut,
 	nBins = 20
 	firstBin = 80
 	lastBin = 90
@@ -23,33 +24,35 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 		x.append( mass )
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
 		mchist.Scale( 1./mchist.Integral() )
-		datahist.SetTitle( ';'+cut)
-		mchist.Draw("hist")
-		datahist.Draw("same, hist")
-		#raw_input()
-		prob = datahist.Chi2Test( mchist, "WW,of,uf")
-		y.append( prob )
+		#mchist.Draw("hist")
+		#datahist.Draw("same, hist")
+		chi2ndf = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf") # ndf = nBins + 1, but why?
+		y.append( chi2ndf )
+		del mchist
 	gr = TGraph(len(masses), x,y)
-	gr.SetTitle(';M_{W} [GeV];prob')
-	gr.Draw("ap")
+	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
+	#gr.Draw("ap")
 	gr.Fit('pol2','q')
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
 	chi2min = func.Eval( mass )
-	print
-	print cut
-	print 'probability: ', chi2min
-	print 'efficiency: ', efficiency( mcTree, cut )
-	#datahist.Draw("hist")
-	#mchist.Draw("hist, same")
-	return chi2min
+	eff = efficiency( mcTree, cut )
+	var = chi2min / eff
+	print chi2min, eff, var
+
+	del datahist, gr, x, y, func
+	# to avoid unphysical values
+	if mass < masses[0] or mass > masses[-1]:
+		return 1000
+	return var
 
 def minimizeChi2( dataTree, mcTree ):
-	chi2 = lambda p: -chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
-	p0 = [40, 40]
+	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2]), variable = 'mwt')
+	p0 = [ 13.4464975566,20.4083129363,1.60141760266]
+	p0 = [ 9.25914050724, 20.4546624238,1.6014176026]
 	from scipy import optimize
-	cuts = optimize.fmin_powell( chi2, p0 , xtol = 5, ftol = 0.1)
-l	print cuts
+	cuts = optimize.fmin_powell( chi2, p0 )
+	print cuts
 
 mcTree = readTree( "mc_all_new.root/MCTree" )
 dataTree = readTree( "d0_new.root/MessTree" )

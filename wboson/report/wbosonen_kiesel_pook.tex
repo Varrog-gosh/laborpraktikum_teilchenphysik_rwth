@@ -1,0 +1,128 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,uniinput,graphicx,hyperref, multirow,siunitx}
+\usepackage[section]{placeins}
+\usepackage[ngerman]{babel}
+\usepackage{feynmp}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\belowcaptionskip}{6pt}
+\hypersetup{pdfinfo = {
+	Title={Versuchsprotokoll zu Produktion und Zerfall von W-Bosonen},
+	Author={Knut Kiesel, Tobias Pook},
+	Keywords={W-Bosonen}
+}}
+
+% for fenyman graphs
+\setlength{\unitlength}{\textwidth}
+\def\graphheight{0.15}
+\def\graphwidth{.4}
+
+\graphicspath{{../analyse/}}
+\title{Laborpraktikum Teilchenphysik\\ DØ-Experiment: Produktion und Zerfall von W-Bosonen}
+\author{Knut Kiesel\\Tobias Pook}
+\date{\today}
+
+\begin{document}
+\maketitle
+\vspace{3cm}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\section{Ziel des Versuches}
+Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
+sowie den Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
+
+Dieser Versuch besteht nicht auf einem eigenen Aufbau, sondern es werden Daten des DØ-Experiments
+ausgewertet. Das DØ-Experiment ist neben dem CDF Experiment einer der beiden Hauptdetektoren des
+Tevatron Colliders. Das Tevatron ist ein Proton-Antiproton Beschleuniger, der am Fermilab in
+Illinois, USA bis 2011 betrieben wurde. Der Detektor besteht aus Silizium Trackern, Kalorimetern,
+einer Magnetspule sowie Myonenkammern.
+
+Um den Fund des W Bosons am UA2 Experiment zu bestätigen sowie es genauer zu Untersuchen können auch
+beim DØ Experiment verschiedene Zerfallskanäle betrachtet werden. Einer von ihnen ist der Zerfall
+in ein Elektron/Positron und ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
+Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildung
+\ref{fig:feynman}.
+\begin{figure}
+\centering
+\begin{fmffile}{feymanE}
+	\begin{fmfgraph*}(\graphwidth,\graphheight)
+		\fmfleft{i2,i1}
+		\fmfright{o2,o1}
+		\fmf{fermion,label=$d$}{i1,v1}
+		\fmf{fermion,label=$u$}{v1,i2}
+		\fmf{photon,label=$W^-$}{v1,v2}
+		\fmf{fermion,label=$ν$}{o1,v2}
+		\fmf{fermion,label=$e$}{v2,o2}
+	\end{fmfgraph*}
+\end{fmffile}
+\begin{fmffile}{feymanE+}
+	\begin{fmfgraph*}(\graphwidth,\graphheight)
+		\fmfleft{i2,i1}
+		\fmfright{o2,o1}
+		\fmf{fermion,label=$u$}{i1,v1}
+		\fmf{fermion,label=$d$}{v1,i2}
+		\fmf{photon,label=$W^+$}{v1,v2}
+		\fmf{fermion,label=$e$}{o1,v2}
+		\fmf{fermion,label=$ν$}{v2,o2}
+	\end{fmfgraph*}
+\end{fmffile}
+\caption{Feynman Diagramm für die Erzeugung von W-Bosonen durch zwei Quarks der ersten Familie und
+Vernichtung in zwei Leptonen}
+\label{fig:feynman}
+\end{figure}
+Den Wirkungsquerschnitt kann man mit
+\begin{align*}
+	σ = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
+\end{align*}
+berechnen, wobei
+\begin{align*}
+	\hat{σ} = \frac{1}{N_C}\frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
+	\frac{ x_px_{\bar{p}} s Γ_W^2}{\left( x_px_{\bar{p}}s - m_W^2\right)^2 + m_W^2Γ_W^2}
+\end{align*}
+und
+\begin{align*}
+	Γ_{ff'} = \frac{N_C}{12} \frac{α}{\sin^2θ_W}m_W
+\end{align*}
+ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
+Schwerpunktsenergie ist.
+Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
+top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
+\begin{align*}
+	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{α}{\sin^2θ_W}m_W
+\end{align*}
+Damit ergibt sich für
+\begin{align*}
+	\hat{σ} = \frac{πα²}{12\sin^4θ_W} \frac{ x_px_{\bar{p}} s }{\left( x_px_{\bar{p}}s -
+	m_W^2\right)^2 + m_W^4\frac{(3+2N_C)^2}{12^2}\frac{α^2}{\sin^4θ_W}}.
+\end{align*}
+
+
+
+
+
+
+
+% m_t
+
+
+
+
+
+
+
+
+
+%\begin{figure}[htb]
+%		\centering
+%		\includegraphics[width=\textwidth]{}
+%		\caption{}
+%		\label{fig:}
+%\end{figure}
+
+%\bibliographystyle{plain}
+%\bibliography{citebib}{}
+\end{document}
