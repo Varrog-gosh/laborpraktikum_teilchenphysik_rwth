@@ -148,16 +148,26 @@ nur die invariante transversale Masse der Leptonen und damit des W Bosons berech
 \footnotetext{Da die beobachteten transversalen Elektronenergien größer als einige $GeV$ sind, wird
 im Folgenden die Elektronmasse vernachlässigt.}
 
-\subsection{Beschreibungzo der simulierten Daten}
+\subsection{Beschreibung der simulierten Daten}
 Um Untergründe zu entfernen, ist es hilfreich, die gemessenen Daten mit simulierten Ereignissen zu
 vergleichen. Da die W Masse im voraus noch nicht bekannt ist, werden Ereignisse für unterschiedliche
 W Massen generiert.
-Da man den Untergrund durch $W\rightarrow τν\rightarrow eννν$ in Daten schlecht filtern kann, ist
+Da man den Untergrund durch $W\rightarrow τν\rightarrow eννν$ in Daten schlecht filtern kann,
 sind auch $τ$ Ereignisse simuliert.
 
 Die Qualität der Simulation ist aber eher durchwachsen, da gewisse Größen wie zum Beispiel der
 Abstand des Vertices zum Ursprung, der Polarwinkel $φ$ oder die Elektronisolation sehr schlecht
 beschrieben werden.
+
+\subsubsection*{Normierung der simulierten Daten}
+Die Simulierten Daten müssen um einen Vergleich mit den gemessenen Daten zu ermöglichen auf die gleiche
+integrierte Luminosität $\mathcal{L}_{int}$ normiert werden. Dazu werden die Daten nach den Vorgaben aus \cite{versuchsanleitung},
+in abhängigkeit der ursprünglich generierten Monte Carlo (\textbf{MC}) Ereignissen $N_{gen}$, mit einem Faktor:
+\begin{align*}
+	\textsl{w}= \frac{\sigma \mathcal{L}_{int}}{N_{gen}} \cdot 0.9
+\end{align*}
+skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine , im Vergleich zum realen Detektor,
+zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der MC Ereignisse berücksichtigt.
 
 \subsection{Selektion der Daten}
 Da nicht alle aufgezeichneten Ereignisse den zu untersuchendem Prozess zugrunde liegen, müssen die
@@ -201,15 +211,43 @@ Schnitten 1.4\%.
 \subsection{Templatemethode zur Bestimmung der W Masse}
 Um die W Masse zu finden, die am Besten zu den Daten passt, werden die für 
 
-
+\subsection{Bestimmung der Effizienz}
+\label{effizienz}
+Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
+$\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "wahren" W-Ereignisse nicht selektiert bzw. gemessen wurden.
+Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der
+,durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
+Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
+\begin{align*}
+	\epsilon = \frac{N_{selected}}{N_{gen}}
+\end{align*}
+Dabei werden hier die MC-Sample natürlich nicht auf die Luminosität normiert bevor die Schnitte, zur Bestimmung von $N_{selected}$, durchgeführt
+werden.   
+Es ist dabei zu beachten, dass die so berechnete Effizienz davon ausgeht das die Nachweiseffizienz für simulierte und gemessene
+Daten gleich ist. Man geht also davon aus das die Simulation die Detektoreigenschaften perfekt abbildet. Die Unterschiede in der
+Nachweiseffizienz zwischen simulation und Daten werden im Folgenden,nach Versuchsanleitung \cite{versuchsanleitung} durch einen 
+Korrekturfaktor $0.9\pm0.1$ abgeschätzt (Es handelt sich dabei um den gleichen Faktor der auch schon bei der Normierung der simulierten Daten 
+verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsicherheiten der Simulation
+beeinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehenend erklärt, eine genauere Beschreibung
+ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
+den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
+in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss"-Methode die Nachweiseffizienz bestimmen. Auf Grund
+der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 \subsection{Optimieren der Selektionskriterien}
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
-
+Der Wirkungsquerschnitt einer Reaktion lässt sich theoretisch aus der Anzahl gemessener Ereignisse und der 
+integriereten Luninosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
+muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$ bzw. hier $\epsilon \cdot corr$ 
+korregiert werden (siehe \ref{effizienz}).hierbei wird nur $corr$ als fehlerbehaftet angenommen, $\epsilon$ dagegen wegen der hohen Statistik 
+als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ lässt sich also bestimmen aus :
+\begin{align*}
+	\sigma = \frac{N_{selected}}{\epsilon \cdot corr \cdot \mathcal{L}_{int}}
+\end{align*}
 
 \section{Vergleich zu anderen Ergebnissen}
 
-%\bibliographystyle{plain}
-%\bibliography{citebib}{}
+\bibliographystyle{plain}
+\bibliography{citebib}{}
 \end{document}
