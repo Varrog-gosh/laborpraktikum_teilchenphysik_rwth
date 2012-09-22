@@ -20,16 +20,16 @@
 
 \begin{document}
 \maketitle
-\vspace{3cm}
+\vspace{1cm}
 \tableofcontents
 \thispagestyle{empty}
 \newpage
 \setcounter{page}{1}
 
 \section{Ziel des Versuches}
-Ziel des Versuches ist der Aufbau und die Inbetriebnahme einer Messstation,
+Ziel des Versuchs ist der Aufbau und die Inbetriebnahme einer Messstation,
 die in der Lage ist die Lebensdauer von Positronen in Festkörpern in der
-Größenordnung von $\SI{100}{ps}$ zu messen.
+Größenordnung von einigen $\SI{100}{ps}$ zu messen.
 
 Da die Annihilationswahrscheinlichkeit von der Energie abhängig ist,
 müssen die Positronen thermalisiert werden.
@@ -38,7 +38,9 @@ In Isolatoren oder amorphen Stoffen dauert die Abbremszeit sehr viel länger,
 sodass sich das Positron mit einem Elektron des Festkörpers zu einem Positronium verbinden können,
 wenn die Affinitäten von Elektron und Positron kleiner
 als die Affinität von Positronium und dessen Bindungsenergie ist.
-Hier gibt es zwei Möglichkeiten: Parapositronium mit entgegengesetztem Spin und Orthopositronium mit gleichgerichtetem Spin.
+Diese Bedienung  nennt man den "`Øre-Gap"'.
+Hier gibt es zwei Möglichkeiten: Parapositronium mit entgegengesetztem Spin und Orthopositronium mit
+gleichgerichtetem Spin der Leptonen.
 Orthopositronium hat eine längere Lebensdauer, weil es nur in drei Photonen zerfallen kann, was unwahrscheinlicher als der Zerfall in zwei Photonen ist.
 Durch Elektronenaustausch wandelt es sich oft in Parapositronium um, welches durch den Zerfall in zwei Photonen eine kürzere Lebenszeit hat.
 
@@ -46,30 +48,29 @@ Als Positronenquelle wird in diesem Versuch $^{22}$Na verwendet, welches beim Ze
 zuerst ein γ-Quant der Energie $\SI{1.28}{MeV}$ abgibt und dann ein Positron emittiert.
 Nach einer vom Festkörper abhängigen Zeit annihiliert das Positron unter Aussendung
 von zwei bis drei γ-Quanten mit einer Energie von $\SI{511}{keV}$.
-Durch das messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs und dem
-γ aus der Annihilation kann die Lebensdauer des Positrons bestimmt werden.
+Durch das Messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs und dem
+γ-Quant aus der Annihilation kann die Lebensdauer des Positrons bestimmt werden.
 
 
 \section{Aufbau und Durchführung}
-%Kommentare aus der Vorbesprechung:
-%	Constant Fraction Discriminator liefert logisches out bei BLD Ausgang
-%	Die Delay Einheit ändert die polarität des Signal, wenn gewünscht.
-%	Der Multi Channel Analyzer nimmt nur positive Signal ohne Offset an.
 
 Der Detektor, zu sehen in Abbildung \ref{fig:quelle},  besteht aus zwei zylindrischen Szintiallatonsdetektoren,
 welche in einem Gehäuse mit einem Photomultiplier verbaut sind.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=0.5\textwidth]{quelle2.jpg}
-		\caption{Scintilatoren mit Photomultiplier und Quelle}
+		\caption{Zwischen den beiden Szintillatoren kann man von oben die Scheibe sehen, die die
+		Quelle mit dem zu Untersuchendem Material enthält. Die Photomultiplier sind rechts und links
+		außen direkt an die Szintillatoren angeschlossen.}
 		\label{fig:quelle}
 \end{figure}
 
-Die radioaktiven Proben werden zwischen beiden Szintillatoren platziert.
-An der Katode des Photomultipliers wird  eine Spannung von von $\SI{-2}{kV}$ angelegt.
-Damit sind die Anodensignale noch nicht übersättigt.
+Die radioaktiven Proben werden zwischen beide Szintillatoren platziert.
+An der Katode des Photomultipliers wird  eine Spannung von von $\SI{-2}{kV}$ angelegt,
+somit sind die Anodensignale noch nicht übersättigt.
 Von beiden Photomultipliern wird sowohl das Anodensignal als auch das Dynodensignal, also das Signal an der letzten Dynode, abgegriffen.
-Das Dynodensignal ist ein leicht positives Signal, dessen Pulse aus stark schwankenden kleineren Pulsen besteht, trotzdem aber eine Höhe hat, die Energie abhängig ist.
+Das Dynodensignal ist ein leicht positives Signal, dessen Pulse aus stark schwankenden kleineren
+Pulsen besteht, trotzdem aber eine energieabhängige Amplitude hat.
 Das Signal wird für die Energiemessung und damit für das Gate verwendet.
 
 Das Anodensignal ist ein Puls mit negativem Ausschlag und eine der Energie entsprechenden Höhe.
@@ -77,18 +78,19 @@ Es wird für das Messen der Zeitabstände benutzt, da das Dynodensignal mit den 
 
 Es liefert für das Dynoden- und das Anodensignal jeweils ein Photomultiplier das Start und der andere das Stoppsignal.
 
-Durch die Trennung in Anodensignal und Dynodensignal kann man den Schaltkreis in zwei unabhängige Kreise unterteilen, die nur an einer Stelle wieder zusammenlaufen.
+Durch die Trennung in Anodensignal und Dynodensignal kann man den Schaltkreis in zwei unabhängige
+Kreise unterteilen, die nur am Ende im Vielkanalanalysator wieder zusammenlaufen.
 Sie werden "`schneller"' und "`langsamer"' Kreis genannt.
 
-Der Aufbau beider Schaltkreise ist in Abbildung \ref{fig:aufbau} zu sehen.
 \begin{figure}[htb]
 		\centering
 		\includegraphics[width=.5\textwidth]{aufbau.jpg}
-		\caption{Photo der elektronischen Verschaltung}
+		\caption{Crate das den langsamen (oben) und den schnellen (unten) Schaltkreis beinhaltet.}
 		\label{fig:aufbau}
 \end{figure}
 
-Links oben befindet sich die rote Spannungsquelle, daneben zwei Amplifier Analyzer mit Koinzidenzstufe\footnote{Nuclear Enterprises, Modell 4630} für Start und Stopsignal des langsamen Kreises.
+Der Aufbau beider Schaltkreise ist in Abbildung \ref{fig:aufbau} zu sehen.
+Links oben befindet sich in rot die Spannungsquelle, daneben zwei Amplifier Analyzer mit Koinzidenzstufe\footnote{Nuclear Enterprises, Modell 4630} für Start und Stopsignal des langsamen Kreises.
 Als letztes in der oberen Reihe ist das ein Quad Gate\footnote{Fa. Phillips Scientific, Modell 794} zu sehen.
 
 In der unteren Reihe umgeben zwei Differential Constant Fraction Discriminatoren\footnote{Fa. Stanford Research Systems Inc., Modell DG535} eine Delay Einheit\footnote{Fa. SEN, Modell FE290}.
@@ -99,7 +101,8 @@ Schematisch ist der Aufbau in Abbildung \ref{fig:schaltplan} zu sehen.
 		\centering
 		\includegraphics[width=1.0\textwidth]{Schaltplan_custom.pdf}
 		\caption{Schematischer Schaltplan des Aufbaus des Versuchs.
-		An den Seiten sind die Signalformen (logisch/analog) angegeben.}
+		An den Kabeln sind die Signalformen (logisch/analog) angegeben.}
+		% hier fehlt ein delay!
 		\label{fig:schaltplan}
 \end{figure}
 
@@ -121,31 +124,26 @@ damit sich das Energiespektrum im Vielkanalanalysator über möglichst alle Kan�
 Das Dynodensignal besitzt eine ausreichende Abhängigkeit zwischen Energie und Pulshöhe
 um ein (nicht kalibriertes) Energiespektrum mit Hilfe des Vielkanalanalysator aufzuzeichnen.
 
-Anschließend werden die Schwellwerte des Diskriminators im EKD so eingestellt,
-dass nur Teilchen mit einer höheren Energie als die rechten Flanke des Anhilationspeak als
-Startsignal (Fenster 2 in Abbildung \ref{fig:auswahl}) genutzt werden
-und Teilchen in einem niedrigeren Energiefenster als Stoppsignal.
-
-Wenn ein Teilchen im richtigen Energiefester ist, wird an einem Ausgang ein logisches Signal erzeugt,
-was über das Gate zusammen mit dem verstärkten Dynodensignal in den Vielkanalanalysator geleitet wird.
-
 Um eine Ober-und Untergrenze zu setzen, muss das Signal zuvor Differenziert werden,
-was auch mit diesem Gerät möglich ist\cite{linearAmplifier}.
+was auch mit diesem Gerät möglich ist\cite{linearAmplifier}. Das Differenzieren wird mit einer
+Zeitkonstanten von $1μs$ durchgeführt.
 
-Das Stopsignal soll bei einer Annihilation eines Positrons entstehen
-und deshalb eine Energie von $\SI{511}{keV}$ haben.
-In Abbildung \ref{fig:auswahl} ist dies Fenster 1.
-Zusätzlich wird eine untere Grenze bei 260±10
-eingestellt um den Untergrund durch niederenergetischer Teilchen und elektronisches Rauschen des Photomultipliers zu reduzieren.
-Die obere Grenze bei Kanal 3640±30 ist gleichzeitig die Grenze für das Startsignal,
-bei dem ein $\SI{1.28}{MeV}$ Photon erwartet wird.
-Diese Grenze ist sehr viel ungenauer,
-da das Setzen des Schwellenwerts nicht für einen steilen Abbruch des Spektrums sorgt, sondern nur für ein weiches Abfallen.
-% Time constant = 1μs
-% threshold1 = 20 window = 340
-% threshold = 350, window = 1000 (max)
-% differential mode
+Das Startsignal soll durch ein $\SI{1.28}{MeV}$ Photon ausgelöst werden, das Stopsignal von einem
+Photon der Energie $\SI{0.511}{MeV}$. Rausches der Detektoren will man wenn möglich vermeiden.
 
+Für das Stopsignal wird am EKD der Diskriminator auf einen Schwellen von 240 gestellt, was zur
+folge hat, dass nur noch Photonen jenseits der rechten Flanke des Anhilationspeaks durchgelassen
+werden. Dies entspricht Kanalnummer 3640±30 oder Fenster 2 in Abbildung \ref{fig:auswahl}. Die
+Obergrenze wird auf den maximalen Wert gestellt.
+
+Für das Startsignal wird am EKD der Diskriminator auf eine Schwelle von 20 gestellt, um das Rauschen
+bei niedrigen Energien zu entfernen. Der Wert für die Obergrenze wird auf 340 gestellt, was Fenster
+1 in Abbildung \ref{fig:auswahl} entspricht.
+Die mittlere Grenze ist ungenauer, da das Spektrum nicht klar an der Grenze abfällt sondern flach
+ausläuft.
+
+Wenn ein Teilchen im richtigen Energiebereich ist, wird an einem Ausgang ein logisches Signal erzeugt,
+was über das Gate zusammen mit dem verstärkten Dynodensignal in den Vielkanalanalysator geleitet wird.
 
 % erkläre veto-out und veto-in, was genau machen die, und warum fuktioniert das?
 Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
@@ -156,13 +154,12 @@ Die EKD dienen damit auch gleichzeitig als Koinsidenzstufen.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../analyse/auswahl.pdf}
-	\caption{Das Energiespektrum von $^{22}$Na aus dem verstärktem und vorgeglätteten
+	\caption{Das Energiespektrum von $^{22}$Na aus dem verstärktem und vorgeglättetem
 		Dynodensignal.
 		Man sieht von rechts nach links bei Kanal 10000 den Peak des $\SI{1.28}{MeV}$ Photons,
 		danach das Comptonkontinuum und bei etwa Kanal 3500 den Annihilationspeak.
-		Am linken Rand (Kanal kleiner als 260) sieht man Rauschen, das ignoriert wird.
-		Für ein Startsignal (Fenster 2) muss das ein größerer Kanal als 3630±100 angesprochen werden, 
-		für ein Stopsignal ( Fenster 1) reicht ein Kanal größer als 260±10.}
+		Für ein Startsignal (Fenster 2) muss das ein größerer Kanal als 3630±100 angesprochen werden,
+		für ein Stopsignal (Fenster 1) reicht ein Kanal größer als 260±10 und kleiner als 3630.}
 	\label{fig:auswahl}
 \end{figure}
 
@@ -171,7 +168,7 @@ Die EKD dienen damit auch gleichzeitig als Koinsidenzstufen.
 Für den schnellen Kreis wird das Anodensigal der Photomultiplier genutzt.
 Start und Stoppsignal werden zunächst in jeweils einem Constant
 Fraction Discriminator (\textbf{CFD}) weiter verarbeitet.
-Dieser erzeugt durch differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang ein von der Pulsform unabhängiges Zeitsignal erzeugt wird
+Dieser erzeugt durch Differenzieren zunächst einen bipolaren Puls aus dessen Nulldurchgang ein von der Pulsform unabhängiges Zeitsignal erzeugt wird
 und in Form eines logischen Signal ausgegeben wird, wenn eine gewisse Pulshöhenschwelle überschritten wurde.
 Um hier die Schwellen zu setzen, wird das logische Signal jeweils eines CFD über das Gate an den Vielkanalanalysator gesendet.
 Die eigentliche Energieinformation bekommt man aus der Anode.
@@ -187,31 +184,35 @@ anzupassen ist zusätzlich eine Verzögerungseinheit zwischen Time Analyzer und 
 % time analyser einstellungen:
 % gate: anticoincidenz, delay var: 1.9, time: 0.9, delta_T = 10.0
 
+%Der Multi Channel Analyzer nimmt nur positive Signal ohne Offset an.
 \section{Kalibration des Aufbaus}
 Damit mit dem Aufbau Zeitdifferenzen gemessen werden können, muss der Vielkanalanalysator kalibriert
 sowie die Zeitauflösung bestimmt werden.
 \subsection{Zeitkalibration des Vielkanalanalysators}
 Um die einzelnen Kanäle des VKA mit den entsprechenden Zeitabständen zu verknüpfen wird eine Zeitkalibration durchgeführt. Dazu werden
-mit einem Pulsgenerator Pulse mit einer Amplitude von $\SI{3}{V}$ und einer Pulsbreite von 10ns mit
-einer Frequenz von $\SI{1600}{Hz}$ mit einem 
-Plusgenerator\footnote{Four Channel Digital Delay/Pulse Generator, Fa. Stanford research Systems Inc. Modell DG535}
-erzeugt.
-Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude des erzeugten Puls denen aus dem Anodenausgang der Photomultiplier
+mit einem Pulsgenerator
+\footnote{Four Channel Digital Delay/Pulse Generator, Fa. Stanford research Systems Inc. Modell DG535}
+Pulse mit einer Amplitude von $\SI{3}{V}$ und einer Pulsbreite von 10ns mit
+einer Frequenz von $\SI{1600}{Hz}$ erzeugt.
+Es wurde mit einem Oszilloskop sichergestellt, dass Form und Amplitude der erzeugten Pulse denen aus dem Anodenausgang der Photomultiplier
 entsprechen. Das vom Pulsgenerator ausgegebene Signal wird durch ein T-Stück geteilt. Eine Abzweigung des T-Stück wird in den für das Startsignal vorgesehene
 CFD geleitet, die andere in den CFD für das Stoppsignal. Vor der eigentlichen Kalibrierung wird das Delay getestet, indem
 das Signal vor und nach dem Delay nicht durch die Constant Fraction Diskriminatoren sondern durch ein Oszilloskop abgegriffen werden. Hier lässt sich erkennen,
 dass beide Signale bei ausschalten des Delay nahezu zeitgleich ankommen und in ihrer Pulsform erhalten bleiben. Es kann also ausgeschlossen werden das es zu
 zusätzlichen Verzögerungen oder sonstige Verfälschungen des Signal durch das T-Stück und die genutzten Kabel kommt.
-Nach dem Testen des Delay wird die ursprüngliche Verschaltung wieder hergestellt und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
+Nach dem Testen des Verkabelung werden die Pulse des Pulsgenerators an die CFD weitergegeben und die zeitlichen Abstände der logischen Signale der CFDs im Time Analyzer
 in Pulshöhen umgesetzt. Die Pulse des Time Analyzer werden an den Vielkanalanalysator weiter geleitet, dieser wird während der Kalibrierung mit
-durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $\SI{0.5}{ns}$ Schritten von $\SI{0}{ns}$ bis $\SI{12}{ns}$ erhöht, das aufgezeichnete Pulshöhenspektrum
+durchgehend geöffnetem Gate betrieben. Die Verzögerung wird am Delay in $\SI{0.5}{ns}$ Schritten von $\SI{0}{ns}$ bis $\SI{12}{ns}$ erhöht
+\footnote{Das Delay hat $\SI{0.5}{ns}\cdot 2^{i}, i\in[0,5]$ zusammenschaltbaren
+Abschnitten.}
+, das aufgezeichnete Pulshöhenspektrum
 ist in Abbildung \ref{fig:pulsSpektrum} dargestellt.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{../analyse/peaksToArray.pdf}
 	\caption{Pulshöhenspektrum zur Zeitkalibration. Die Pulse haben einen Abstand von
 		$\SI{0.5}{ns}$. Man sieht schon hier, dass die Peaks vor allem im unteren Bereich nicht
-	äquidistant sind. Die Höhe der Peaks ist nur eine Folge der Dauer, die man mit einer Einstellung
+	äquidistant sind. Die Amplitude der Peaks ist nur eine Folge der Dauer, die man mit einer Einstellung
 gemessen hat und geht nicht in die Kalibration ein.}
 	\label{fig:pulsSpektrum}
 \end{figure}
@@ -224,34 +225,36 @@ Ein Beispiel für eine solche Anpassung, für einen Zeitabstand von $\SI{8}{ns}$
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{../analyse/singlePeak.pdf}
-	\caption{Ein einzelner Puls aus Abbildung \ref{pulsSpektrum} zur genaueren Untersuchung. Der zu
-	$\SI{8}{ns}$ gehörende Peak wird durch eine Gaußfunktion gut beschrieben. Die Breite ist typisch
-	für die Peaks und liegt zwischen $5$ und $\SI{10}{ns}$.}
+	\caption{Ein einzelner Puls aus Abbildung \ref{fig:pulsSpektrum} zur genaueren Untersuchung. Der zu
+	$\SI{8}{ns}$ gehörende Peak wird durch eine Gaußfunktion gut beschrieben. Das $χ²/\text{NDF}$
+	zeigt, dass die Abschätzung durch poissonverteilte Fehler nicht ganz stimmt, sondern noch andere
+	Effekte, wie zum Beispiel falsche Kanaleinordnung, eine Rolle spielen.}
 	\label{fig:singlePuls}
 \end{figure}
 
-Da es keine Möglichkeit (wie zum Beispiel den Vergleich mit einem weiteren Delay) gab, die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
- den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden waren wurde der Fehler auf die
- Verzögerung zu 15\% der Schrittweite von $\SI{0.5}{ns}$ abgeschätzt.
+Da es keine Möglichkeit (wie zum Beispiel den Vergleich mit einem weiteren Delay) gibt, die Unsicherheit auf die genutzten Verzögerungen zu bestimmen und es auch keine Angaben zu
+ den Unsicherheiten in der Betriebsanweisung des Bauteil zu finden ist, wird der Fehler auf die
+ Verzögerung zu 15\% der Schrittweite abgeschätzt.
  An die so gewonnenen Zeit-Kanal Wertepaare wird in Abbildung \ref{fig:kalibrationsRegression} mittels linearer Regression eine Gerade angepasst, mit der im folgenden
 Kanalnummern in Zeitabstände umgerechnet werden.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{linearRegression.pdf}
 	\caption{Lineare Regression zur Zeitkalibration des Vielkanalanalysators. Die Fehler auf die
-	Kanalnummern sind vernachlässigbar, da die elektronische Auflösung sehr gut ist. Die Fehler auf
-die Zeiten der Delayeinheit überwiegen immer.}
+	Kanalnummern sind kleiner als die Fehler auf die Delayeinheit, da die elektronische Auflösung sehr gut ist.
+	Beide Fehler sind im Graphen enthalten, meist aber zu klein um sie zu sehen.}
 	\label{fig:kalibrationsRegression}
 \end{figure}
 
 Da die Daten für kleine Kanalnummern nicht durch eine Gerade beschrieben werden können, wird die
 Anpassung erst ab Kanalnummer $4000$ vorgenommen.
-Das $χ²/\text{NDF}$ zeigt, dass die Fehler vernünftig eingeschätzt wurden.
+Das $χ²/\text{NDF}$ von 0.92  zeigt, dass die Fehler vernünftig eingeschätzt wurden.
 Anstatt den Fehler der Kalibration fortzupflanzen, werden die Bingrößen der Zeithistogramme so
 gewählt, dass der Kalibrationsfehler immer kleiner als der Binningfehler ist.
 Es werden auch die niedrigen Kanäle mit der Funktion kalibriert, im Wissen dass die Zeiten niedriger
 als $\SI{2}{ns}$ sehr fehlerhaft sind und nicht mit ausgewertet werden dürfen.
 
+\FloatBarrier
 \subsection{Zeitnullpunktsverschiebung}\label{cap:zeitverschiebung}
 
 Zur Bestimmung des Zeitnullpunkt und zum Überprüfen der zeitlichen Stabilität des Aufbaus werden Messungen mit
@@ -261,37 +264,36 @@ und nach der Hauptmessreihen mit $^{22}$Na durchgeführt. Die Ergebnisse beider 
 
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/compareCo.pdf}
-	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen.}
+	\caption{Gemessenes Pulshöhenspektrum für $^{60}$Co vor und nach den $^{22}$Na Messungen. Die
+	erste Messung wurde über $\SI{42}{h}$ durchgeführt, die zweite über $\SI{18}{h}$.}
 	\label{fig:compare_co}
 \end{figure}
 
-Da von einem Zeitgleichen Eintreffen beider Pulse ausgegangen wird, dient die Position des beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt.
-Dies führt bei einer Verschiebung von $4717$ Kanälen dazu, dass der nicht-lineare Bereich der
-Kalibration nur noch für negative Zeiten benutzt wird.
-Es ist zu erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
-Zeitdifferenz von lediglich $\SI{0.15}{ns}$ bei einem Messabstand von $\SI{86}{h}$.
-Die Änderung ist also im Rahmen der Messgenauigkeit klein genug um den Mittelwert der
-beiden gemessenen Peakpositionen als Nullpunkt für die Zeitmessungen zu benutzen. Die Veränderung des Nullpunkt wird im folgenden
-als zusätzlich systematische Unsicherheit auf alle Zeitmessungen angenommen. Die experimentelle Zeitauflösung wird durch die mittlere Breite der beiden an die
-Daten angepassten Gaußfunktion zu $\SI{0.4}{ns}$ abgeschätzt und liegt somit in der Größenordnung der theoretisch erwarteten Lebensdauern für Positronen und Positronium.
+Da von einem Zeitgleichen Eintreffen beider Pulse ausgegangen wird, dient die Position des
+beobachteten Peak im Pulshöhenspektrum als Zeitnullpunkt für die Kalibration.
+Dies führt bei einer Verschiebung von $4718$ Kanälen dazu, dass im nicht-lineare Bereich der
+Kalibration nur noch negative Zeiten sind, die bei der Auswertung außen vorgelassen werden.
+Es ist zu Erkennen das sich die Position des Peakmaximum während der Versuchdurchführung um 178 Kanäle verschoben hat. Diese Verschiebung entspricht einer
+Zeitdifferenz von $\SI{0.15}{ns}$ bei einem Messabstand von $\SI{86}{h}$.
+Für den Zeitnullpunkt wird der Mittelwert beider Peakmaximas genommen und die Verschiebung als
+systematische Unsicherheit auf die Zeiten genommen.
+Die experimentelle Zeitauflösung wird durch die mittlere Breite der beiden an die
+Daten angepassten Gaußfunktion zu $\SI{0.40}{ns}$ abgeschätzt und liegt somit in der Größenordnung der theoretisch erwarteten Lebensdauern für Positronen und Positronium.
 % genauerer wert für auflösung, mehr nachkommastellen
 
-Bei der Anpassung der Gaußfunktion wird der rechte Ausläufer der Verteilung nicht mit
-berücksichtigt, da es noch Spuren einer anderen Verteilung enthält.
-% gaus + expo an co verteilung um τ zu bestimmen.
-
-
-Die Anpassung wurde zu großen Kanälen hin nur im Zentralbereich des Peak durchgeführt, da das Spektrum eine schwache langsam auslaufende Komponente beeinhaltet, 
-dieser zusätzliche Einfluss ist zwar sehr klein beinflusst aber die Güte der Anpassung negativ wenn das Anpassungsintervall über den ganzen Peak gewählt wird.
-\subsection{Bestimmung des Untergrund}
+Die Anpassung wurde zu großen Kanälen hin nur im Zentralbereich des Peak durchgeführt, da das Spektrum eine schwache langsam auslaufende Komponente beinhaltet,
+dieser zusätzliche Einfluss ist zwar sehr klein, beeinflusst aber die Güte der Anpassung negativ wenn das Anpassungsintervall über den ganzen Peak gewählt wird.
+\subsection{Bestimmung des Untergrunds}
 Der Untergrund bei den durchgeführten Messungen wurde durch Integration aller Ereignisse im Kanalbereich von 6000 bis 14000 der $^{60}$Co Messungen bestimmt. 
-In dem gewählten Bereich sind die Auswirkung der Auflösungskurve zu vernachlässigen. Da alle Messungen unterscheidliche Messzeiten besitzen wird die Anzahl
-an Untergrundereignissen auf die Messdauer normiert, berechent wird also $\frac{Ereignisse}{Kanal\cdot Zeit}$. Die Bestimmung des Untergrund wurde für beide
- $^{60}$Co Messungen durchgeführt und anschließend gemittelt, die Ergebnisse sind in Tabelle \ref{tab:background} dargestellt. 
+In dem gewählten Bereich sind die Auswirkung der Auflösungskurve zu vernachlässigen. Da alle
+Messungen unterschiedliche Messzeiten besitzen wird die Anzahl
+an Untergrundereignissen auf die Messdauer normiert, berechent wird also
+$\frac{\text{Ereignisse}}{\text{Kanal}\cdot \text{Messdauer}}$. Die Bestimmung des Untergrunds wurde für beide
+ $^{60}$Co Messungen durchgeführt und anschließend gemittelt, die Ergebnisse sind in Tabelle \ref{tab:background} dargestellt.
  
  \begin{table}[h]
 	\begin{tabular}{l |l }
-		$^{60}$Co  Messung & $\frac{Ereignisse}{Kanal \cdot Zeit}$  $[\frac{1}{s}]$ \\
+		$^{60}$Co  Messung & $\frac{\text{Ereignisse}}{\text{Kanal} \cdot \text{Messdauer}} [\si{Bq}]$ \\
 		\hline
 		Vor $^{22}$Na Messreihen & $8.12 \cdot 10^{-6}$ \\
 		Nach $^{22}$Na Messreihen &$ 5.58 \cdot 10^{-6}$\\
@@ -303,16 +305,20 @@ an Untergrundereignissen auf die Messdauer normiert, berechent wird also $\frac{
 	\caption{Ergebnisse für die Untergrundbestimmung aus $^{60}$Co}
 	\label{tab:background}
 \end{table}
- Der bestimmte Untergrund wurde im folgenden, entsprechnend der Messzeiten, von jedem Kanal der $^{22}$Na Spektren abgezogen bevor die Umrechnung von Kanälen zu Zeiten durchgeführt wird.   
+ Der bestimmte Untergrund wurde im folgenden, entsprechnend der Messzeiten, von jedem Kanal der
+ $^{22}$Na Spektren abgezogen.
 \section{Bestimmung der Lebensdauern in Polyethylen}\label{cap:poly}
-Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht. Das Aufgenommene Spektrum
+Die Messungen mit $^{60}$Co haben gezeigt, dass die experimentellen Auflösungskurve eine eine Breite besitzt die dem erwarteten Signalspektrum entspricht.
+Das über $\SI{5.3}{h}$ aufgenommene Spektrum von $^{22}$Na in Polyethylen
 stellt also eine Faltung von Auflösungskurve und Signal dar. Um die einzelnen Anteile beurteilen zu
-können wird eine Entfaltung eine Implementation des Gold Algorithmus\cite{gold_algo} von ROOT\cite{root} durchgeführt.
-Hierbei wurde das gemessene Spektrum für $^{22}$Na als Faltung angenommen und das $^{60}$Co Spektrum als Responsefunktion des System
-gewählt. Die beiden Ausgangsfunktionen und die daraus resultierende Entfaltung sind in Abbildung \ref{fig:deconvolution} dargestellt. Es ist deutlich zu erkennen, dass die
+können wird die Entfaltung mithilfe der Implementation des Gold Algorithmus\cite{gold_algo} in
+ROOT\cite{root} berechnet.
+Hierbei ist das gemessene Spektrum für $^{22}$Na die Faltung und das $^{60}$Co Spektrum als die
+Auflösungsfunktion (auch Responsefunktion genannt) des System.
+Die beiden Ausgangsfunktionen und die daraus resultierende Entfaltung sind in Abbildung \ref{fig:deconvolution} dargestellt. Es ist deutlich zu erkennen, dass die
 Modifikation des ursprünglichen Signalspektrum durch die Auflösungsfunktion jenseits von $\SI{2}{ns}$ zu vernachlässigen ist. Da die Fortpflanzung der Fehler bei
-der Entfaltung nicht stattfindet werden die weiteren Anpassungen an den ursprünglichen Daten durchgeführt, die durchgeführte Entfaltung zeigt jedoch
-, dass dieses Vorgehen gerechtfertigt ist.
+der Entfaltung nicht stattfindet werden die weiteren Anpassungen an den ursprünglichen Daten
+durchgeführt. Die durchgeführte Entfaltung zeigt jedoch, dass dieses Vorgehen gerechtfertigt ist.
 
 Am Maximum weicht die berechnete Entfaltung von der Verteilung von Polythylen ab und wird steiler.
 Zusätzlich wird das Maximum nach links verschoben, was auch zu erwarten war.
@@ -327,7 +333,8 @@ Der Anstieg am linken Rand kommt vom Untergrund von Polyethylen für negative Ze
 \subsection{Zwei lineare Anpassungen}
 Wir vernachlässigen zunächst die Auflösung.
 Man sieht in der logarithmischen Abbildung \ref{fig:deconvolution}, dass das Spektrum aus zwei Exponentialfunktionen
-besteht. Für die exponentielle Funktion mit der größeren Zeitkonstante vernachlässigen wir die mit
+besteht. Für die exponentielle Funktion mit der größeren Zeitkonstante vernachlässigen wir die
+Funktion mit
 der kleineren Zeitkonstante. Da die Verteilung der kleineren Zeitkonstante eine größere Amplitude
 hat, kann hier die Verteilung mit der längeren Zeitkonstante vernachlässigt werden, wenn auch nur
 unter großer systematischer Unsicherheit. In den beiden Bereichen in denen eine Funktion der anderen
@@ -351,20 +358,20 @@ Die Ergebnisse sind in Tabelle \ref{tab:linearPoly} dargestellt.
 
 \begin{table}[h]
 	\begin{tabular}{l |l l ||l}
-			Fit& Bereich & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
+			& Bereich & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
 		\hline
-		\multirow{3}{*}{1} &0.6 - 1.7&  0.56377 ± 0.0023  &\multirow{3}{*}{0.5632 ± 0.0048}\\
+		\multirow{3}{*}{$τ_{1}$} &0.6 - 1.7&  0.56377 ± 0.0023  &\multirow{3}{*}{0.5632 ± 0.0048}\\
 			 &0.6 - 1.5&  0.56876 ± 0.00282 &\\
 			 &0.8 - 2.0&  0.55716 ± 0.00245 &\\
 		\hline
-		\multirow{3}{*}{2} & 2.9 - 7.0 &  1.758 ± 0.021 &\multirow{3}{*}{1.791 ± 0.097}\\
+		\multirow{3}{*}{$τ_2$} & 2.9 - 7.0 &  1.758 ± 0.021 &\multirow{3}{*}{1.791 ± 0.097}\\
 			&2.9 - 6.0&  1.693 ± 0.025 & \\
 			&3.5 - 8&  1.923 ± 0.027  &
 	\end{tabular}
 	\centering
 	\caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit zwei linearen
-		Geradenanpassungen. Da die Werte nicht miteinander vereinbar sind, wird der Mittelwert und
-	RMS für die Werte bestimmt.}
+		Geradenanpassungen. Da die Werte innerhalb des statistischen Fehlers nicht miteinander vereinbar sind, wird der Mittelwert und
+	RMS für die Werte bestimmt und der RMS als statistischen Fehler genommen.}
 	\label{tab:linearPoly}
 \end{table}
 
@@ -429,13 +436,15 @@ Die Ergebnisse mit mittlerem Fehler sind in Tabelle \ref{tab:globalPoly} zu find
 
 Für die Größe der Fehler gilt hier auch wieder das gleiche wie für die lineare Regression. Da für
 $τ_1$ allerdings der Untergrund sowie der Einfluss von $τ_2$ beachtet wird, ist das Ergebnis für
-$τ_1$ wahrscheinlich genauer.
+$τ_1$ wahrscheinlich genauer als das Ergebnis mit zwei linearen Fits.
 
-\subsection{Centroid Shift}
-Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die experimentelle Versuchsauflösung besitzt wird die "Centroid Shift"-Methode \cite{manual}
+\subsection{"`Centroid Shift"'}
+Da, insbesondere die kürzere Zerfallskomponente des Positronium, eine Lebensdauer kleiner als die
+experimentelle Versuchsauflösung besitzt wird die "`Centroid Shift"'-Methode \cite{versuchsanleitung}
 als mögliches Näherungsverfahren benutzt. Bei dieser Methode wird die Lebensdauer aus der Verschiebung der Schwerpunkte (dem ersten Moment einer Verteilung)
 zwischen der Auflösungskurve $P(t)$ und der Signalkurve $P(t)$ approximiert.
-Wenn also $M^{(n)[X(t)]}$ das n-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer berechnet werden mit \cite{manual} :
+Wenn also $M^{(n)}[X(t)]$ das $n$-te Moment einer Verteilung $X$ beschreibt kann die Lebensdauer
+berechnet werden mit \cite{versuchsanleitung}:
 \begin{align*}
 	\tau = \frac{M^{(1)}[F(t)]}{M^{(0)}[F(t)]} - \frac{M^{(1)}[P(t)]}{M^{(0)}[P(t)]  } = μ_{F} -
 	μ_{P}
@@ -467,12 +476,17 @@ sich die, im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunk
 	%~ \caption{Ergebnisse für die Lebensdauer von Positronen in Polyethylen mit der "Centroid Shift" Methode mit variablen Bereichen.}
 	%~ \label{tab:centroidPoly}
 %~ \end{table}
-Als Ergebnis der Centroid Shift-Methode für die kurzlebige Komponente ergibt sich:
+Als Ergebnis der Centroid Shift-Methode ergibt sich:
 \begin{align*}
-	τ_1 = 0.4592 \pm \SI{0.0057}{ns}
+	τ = 0.4592 \pm \SI{0.0057}{ns}
 \end{align*}  
-Bei der Bewertung des Ergebnisses muss beachtet werden dass nur das 
-erste Moment der Verteilung in das Ergebnis eingeht. Der Einfluss höherer Momente und der Anteil von $τ_2$ wird also vernachlässigt, auch wenn er wahrscheinlich eher klein ist.
+Bei der Bewertung des Ergebnisses muss beachtet werden dass nur das
+erste Moment der Verteilung in das Ergebnis eingeht. Der Einfluss höherer Momente und der Anteil von
+$τ_2$ wird also vernachlässigt. Da der Anteil von $τ_1$ eine höhere Amplitude hat (siehe globale
+Anpassung), ist die berechnete Zeit eher $τ_1$.
+Da hier allerdings auch negative Werte mit in die Auswertung eingeflossen sind, ist durch die
+Nichtlinearität der Kalibration eine große systematische Abweichung zu erwarten, die nicht näher
+bestimmt werden kann.
 \begin{figure}
 	\includegraphics[width=1.0\textwidth]{../analyse/centroid_Polyethylen.pdf}
 	\caption{Zeitspektrum für Polyethylen und aus $^{60}$Co gewonnene Auflösungskurve. }
@@ -481,9 +495,8 @@ erste Moment der Verteilung in das Ergebnis eingeht. Der Einfluss höherer Momen
  
 \section{Bestimmung der Lebensdauern in Aluminium}
 Nach der Messung von Polyethylen wird für $\SI{5.3}{h}$ in Aluminium eingebettetes $^{22}$Na als Quelle benutzt.
-% messzeit? messzeit untergrund und ethylen?
 
-\subsection{Vergleich der Messungen für Aluminium und Polyethylen}
+\subsection{Vergleich der Messungen von Aluminium und Polyethylen}
 In Abbildung \ref{fig:compare_signal} sieht man die normierten Zeitspektrun für Aluminium und
 Polyethylen zu sehen.
 \begin{figure}[h]
@@ -495,8 +508,8 @@ Polyethylen zu sehen.
 Die Histogramme sehen zwar ähnlich aus, allerdings sind sie statistisch mit einer Wahrscheinlichkeit
 kleiner als $10^{-44}$ vereinbar ($χ²/\text{NDF} = 8678/105$).
 Trotzdem ist die annähernde Übereinstimmung unerwarted. Auf Grund der hohen Elektronendichte im Leitungsband von Aluminium ist die Existenz eines Øre-Gap nicht zu erwarten, die 
-enegetischen Bedingungen für die Bildung von Positronium sind also nicht gegeben. Dennoch beobachtet man ein ähnliches Verhalten wie bei 
-Polyethylen, also eine Überlangerung von 2 unterschiedlichen charakteristischen Zerfallsszeiten. Dieses Verhalten lässt sich vermutlich durch
+energetischen Bedingungen für die Bildung von Positronium sind also nicht gegeben. Dennoch beobachtet man ein ähnliches Verhalten wie bei 
+Polyethylen, also eine Überlangerung von zwei unterschiedlichen charakteristischen Zerfallsszeiten. Dieses Verhalten lässt sich vermutlich durch
 den Aufbau der genutzten Probe erklären.
 Wie in Abbildung \ref{fig:quelle_nah} zu erkennen ist,
 besteht die Probe aus zwei Aluminiumscheiben in deren Mitte die $^{22}$Na Quelle eingebracht ist.
@@ -508,8 +521,8 @@ besteht die Probe aus zwei Aluminiumscheiben in deren Mitte die $^{22}$Na Quelle
 \end{figure}
 
 
-Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten verschließen der Quelle nicht
-in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
+Wenn die Verarbeitung der Aluminiumscheiben bis zum dichten Verschließen der Quelle nicht
+in Vakuum oder einer Schutzgasathmosphäre stattgefunden hat, ist ein oxidieren der äußeren Aluminiumschicht zu erwarten. Die durch das $^{22}$Na
 emittierten Positronen treffen also zunächst auf Aluminiumoxid bevor im inneren Teil der Probe wieder reines Aluminium vorherrscht. In Aluminiumoxid
 ist die Bildung von Positronium möglich \cite{PhysRevB.70.115410} hierbei spielen insbesonder Randeffekte an der Oberfläche und in Poren im
 Aluminiumoxid eine wichtige Rolle die energetischen Bedingungen für die Erzeugung von Positronium zu erzeugen \cite{phd_trezzi}. Man geht von
@@ -570,11 +583,12 @@ Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \end{table}
 
 \FloatBarrier
-\subsection{Centroid Shift}
+\subsection{"`Centroid Shift"'}
 Für Aluminium ergibt sich bei gleicher Vorgehensweise wie bei Polyethylen $τ_1 = 0.5066 \pm 0.0089
 \si{ns}$.
 
 \section{Diskussion}
+\subsection{Vergleich der Messwerte untereinander}
 Alle angewandten Messmethoden liefern ähnliche Ergebnisse, eine grafische Zusammenfassung ist in den
 Abbildung \ref{fig:finalt} dargestellt.
 
@@ -587,7 +601,7 @@ Abbildung \ref{fig:finalt} dargestellt.
 
 Die bestimmten Fehler scheinen jedoch nicht alle systematische Unsicherheiten ausreichend abzubilden.
 Dies führt dazu, dass die präsentierten Ergebnisse teilweise statistisch nicht innerhalb eines $3\sigma$ Intervall
-zu einander kompatibel sind (siehe Tabelle \ref{tab:finalsigma}). Insbesondere bei der Bestimmung von $\tau_{1}$ scheint die Bestimmung über eine
+zueinander kompatibel sind (siehe Tabelle \ref{tab:finalsigma}). Insbesondere bei der Bestimmung von $\tau_{1}$ scheint die Bestimmung über eine
 lineare Anpassung ein systematische Verschiebung zu größeren Zeiten zu besitzen, weil die Ergebnisse
 sowohl für Polyethylen als auch für Aluminium mehr als
 $10σ$ von den beiden anderen Messmethoden nach oben verschoben sind, diese aber jeweils innerhalb von
@@ -597,8 +611,10 @@ Bei der Bestimmung von $\tau_{2}$
 hingegen liefert die lineare Anpassung ein mit der globalen Anpassung kompatibles Ergebnis. Als Grund für die systematische Abweichung bei der
 Bestimmung von $\tau_{1}$ wird der Einfluss der Faltung mit der Auflösungsfunktion angenommen, das Signalspektrum lässt sich hier also im Gegensatz zu längeren
 Zeiten nicht ausreichend durch das aufgenommene Spektrum approximieren. Der Einfluss der langlebigen Komponente $\tau_{2}$ auf die lineare Anpassung für $\tau_{1}$
-wird auf Grund des, in der globalen Anpassung gewonnenen, Amplitudenverhältnis als vernachlässigbar angesehen.
+wird auf Grund des in der globalen Anpassung gewonnenen Amplitudenverhältnis als vernachlässigbar angesehen.
 
+Zum Vergleich mit anderen theoretischen Werten muss noch der Fehler von $\SI{0.15}{ns}$ durch die
+Nullpunktsverschiebung hinzugenommen werden.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c |c |c }

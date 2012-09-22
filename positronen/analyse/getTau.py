@@ -125,7 +125,6 @@ def twoLinearFits( signal, saveAffix, ranges):
 		else:
 			signal.SetBinContent( i, log( 1e-19) )
 
-
 	for i, ran in enumerate( ranges ):
 		can = TCanvas( 'linear', "dualliniar", 700, 1000 )
 		can.SetBatch()

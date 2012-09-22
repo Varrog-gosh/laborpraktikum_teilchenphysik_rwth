@@ -1,1 +1,5 @@
-* in plotspetrum: check if SetBinContent (i) oder (i+1)
+schematischer schalplan: delay zwischen ta und mca fehlt!, einen langsamen und einen schnellen
+schematischer schalplan: sz statt st als abk. für szintillator?
+compareCo: in der box: warum sind bei beiden co die anzahl einträge falsch? hab ich da was falsches progammiert?
+untergrund: fehler? sind die werte vereinbar? (poissonfehler, was anzahl ereignisse?)
+centroid shift: ich verstehe die grenzen nicht: untergrenze -1 bis -4, obergrenze 7 bis 8?
