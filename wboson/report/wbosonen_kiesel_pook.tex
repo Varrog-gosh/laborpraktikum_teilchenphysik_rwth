@@ -259,9 +259,8 @@ verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsiche
 beeinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehenend erklärt, eine genauere Beschreibung
 ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
 den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
-in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss"-Methode die Nachweiseffizienz bestimmen. Auf Grund
+in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit \& Miss"-Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
-\subsection{Optimieren der Selektionskriterien}
 \subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
 auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
@@ -289,6 +288,36 @@ auf $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch
 \end{table}
 
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
+Um die Unsicherheiten besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
+die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Templatemethode die Masse
+berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E_T$ stark korreliert
+sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.49\textwidth]{correlation.pdf}
+	\includegraphics[width=.49\textwidth]{correlationmwt_el_et>1_7.pdf}
+	\caption{Korrelation zwischen $E_T$ und $m_T$ in der Simulation und in Daten, ohne Selektion
+	(links) und mit einer Einschränkung auf das Verhältnis (rechts). Mehr zu dieser Grenze siehe
+	unten.}
+	\label{fig:correlation}
+\end{figure}
+
+
+Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
+auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt bei
+$\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $M_T$ zu $E_T$
+schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{mwt_el_et1tau.pdf}
+	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation mit
+	Selektionsgrenze.}
+	\label{fig:verhaeltnis}
+\end{figure}
+
+Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation}, und man
+erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
 Der Wirkungsquerschnitt einer Reaktion lässt sich theoretisch aus der Anzahl gemessener Ereignisse und der 
