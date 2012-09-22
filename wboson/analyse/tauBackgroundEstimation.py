@@ -49,18 +49,17 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, logmode = True, cutli
 	leg = TLegend( .8, .8, 1, 1)
 	leg.SetFillColor(0)
 	leg.SetBorderSize(0)
-	leg.AddEntry( mcTau, "W#rightarrow#tau#nu#nu#nu", "f" )
-	leg.AddEntry( mcE, "W#rightarrow e#nu", "l" )
+	leg.AddEntry( mcTau, "W #rightarrow #tau#nu#nu#nu", "f" )
+	leg.AddEntry( mcE, "W #rightarrow e#nu", "l" )
 	leg.AddEntry( dataHisto, "Daten", "lp" )
 	leg.Draw()
 
 	# draw line
-	print cutline
 	try:
 		x = float( cutline )
-		print x
-		line = TLine( x, 1, x, 1000)
+		line = TLine( x, stack.GetMinimum(), x, 1.5 * stack.GetMaximum())
 		line.SetLineColor(2)
+		line.SetLineWidth(2)
 		line.SetLineStyle(9)
 		line.Draw()
 	except:
