@@ -38,6 +38,7 @@
 \setcounter{page}{1}
 
 \section{Ziel des Versuches}
+\label{ziel}
 Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
 sowie den Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
 
@@ -82,36 +83,40 @@ Vernichtung in zwei Leptonen.}
 \end{figure}
 
 Den Wirkungsquerschnitt kann man mit
-\begin{align*}
+\begin{align}
+\label{form:xstot}
 	σ = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
-\end{align*}
+\end{align}
 berechnen, wobei
 \begin{align*}
 	\hat{σ} = \frac{1}{N_C}\frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
 	\frac{ x_px_{\bar{p}} s Γ_W^2}{\left( x_px_{\bar{p}}s - m_W^2\right)^2 + m_W^2Γ_W^2}
 \end{align*}
 und
-\begin{align*}
+\begin{align}
 	Γ_{ff'} = \frac{N_C}{12} \frac{α}{\sin^2θ_W}m_W
-\end{align*}
+\end{align}
 ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
 Schwerpunktsenergie.
 Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
 top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
 \begin{align*}
+\label{form:width}
 	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{α}{\sin^2θ_W}m_W
 \end{align*}
 Damit ergibt sich für
-\begin{align*}
+\begin{align}
+\label{form:xscms}
 	\hat{σ} = \frac{πα²}{12\sin^4θ_W} \frac{ x_px_{\bar{p}} s }{\left( x_px_{\bar{p}}s -
 	m_W^2\right)^2 + m_W^4\frac{(3+2N_C)^2}{12^2}\frac{α^2}{\sin^4θ_W}}.
-\end{align*}
+\end{align}
 
 Über die Masse des W Bosons kann man den elektroschwachen Mischungswinkel, oder auch Weinbergwinkel
 $θ_W$ genannt, berechnen:
-\begin{align*}
+\begin{align}
+	\label{form:wein}
 	\cosθ_W = \frac{m_W}{m_Z}
-\end{align*}
+\end{align}
 In dem Versuch werden die Masse des Z Bosons $m_Z$ sowie die Feinstrukturkonstante $α$ als gegeben
 vorausgesetzt.
 
@@ -160,8 +165,9 @@ Abstand des Vertices zum Ursprung, der Polarwinkel $φ$ oder die Elektronisolati
 beschrieben werden.
 
 \subsubsection*{Normierung der simulierten Daten}
-Die Simulierten Daten müssen um einen Vergleich mit den gemessenen Daten zu ermöglichen auf die gleiche
-integrierte Luminosität $\mathcal{L}_{int}$ normiert werden. Dazu werden die Daten nach den Vorgaben aus \cite{versuchsanleitung},
+Die Simulierten Daten müssen um einen Vergleich mit den gemessenen Daten zu ermöglichen auf die 
+integrierte Luminosität der Daten von $\mathcal{L}_{int}=198 \pm \SI{20}{pb^{-1}}$ normiert werden. 
+Dazu werden die Daten nach den Vorgaben aus \cite{versuchsanleitung},
 in abhängigkeit der ursprünglich generierten Monte Carlo (\textbf{MC}) Ereignissen $N_{gen}$, mit einem Faktor:
 \begin{align*}
 	\textsl{w}= \frac{\sigma \mathcal{L}_{int}}{N_{gen}} \cdot 0.9
@@ -209,6 +215,7 @@ abschätzen. Während am Anfang der Anteil der $τ$ Ereignisse noch 8.8\% beträ
 Schnitten 1.4\%.
 
 \subsection{Templatemethode zur Bestimmung der W Masse}
+\label{template}
 Um die W Masse zu finden, die am Besten zu den Daten passt, werden die für 
 
 \subsection{Bestimmung der Effizienz}
@@ -219,7 +226,7 @@ Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einsc
 ,durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
 Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
 \begin{align*}
-	\epsilon = \frac{N_{selected}}{N_{gen}}
+	\epsilon = \frac{N_{selected}}{N_{gen}} = 0.xx
 \end{align*}
 Dabei werden hier die MC-Sample natürlich nicht auf die Luminosität normiert bevor die Schnitte, zur Bestimmung von $N_{selected}$, durchgeführt
 werden.   
@@ -231,7 +238,7 @@ verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsiche
 beeinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehenend erklärt, eine genauere Beschreibung
 ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
 den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
-in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss"-Methode die Nachweiseffizienz bestimmen. Auf Grund
+in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss" Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 \subsection{Optimieren der Selektionskriterien}
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
@@ -241,12 +248,76 @@ Der Wirkungsquerschnitt einer Reaktion lässt sich theoretisch aus der Anzahl ge
 integriereten Luninosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
 muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$ bzw. hier $\epsilon \cdot corr$ 
 korregiert werden (siehe \ref{effizienz}).hierbei wird nur $corr$ als fehlerbehaftet angenommen, $\epsilon$ dagegen wegen der hohen Statistik 
-als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ lässt sich also bestimmen aus :
+als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ wurde bestimmt zu :
 \begin{align*}
-	\sigma = \frac{N_{selected}}{\epsilon \cdot corr \cdot \mathcal{L}_{int}}
+	\sigma = \frac{N_{selected}}{\epsilon \cdot corr \cdot \mathcal{L}_{int}} = xx \pm \SI{ex}{nb}
 \end{align*}
+Der berechnete Wert weicht $xx\sigma$ (hier Standardabweichungen) vom Literaturwert $\sigma_{theo}=2.58 \pm \SI{0.09}{nb}$
+\cite{versuchsanleitung} ab und ist somit innerhalb von $ 3\sigma$ mit diesem kompatibel.
+\subsection{Bestimmung des Farbfaktors}
+Der im letzten Abschnitt benutzte theoretische Wert für den Wirkungsquerschnitt geht von einem Farbfaktor von $N_{\textsl{C}}=3$ aus, die
+Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen 
+Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen für verschiedene Werte
+von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
+zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die 
+NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden.
+ Ein berechnen mit Software von theoretikern scheitert daran , dass die Vollidioten im Jahr 2012 immernoch mit
+Fortranprogammen rum hantieren!
+\subsection{Bestimmung des Weinbergwinkel}
+Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie die
+,vor der Symmetriebrechung durch den Higgsmechanismus masselosen,Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung 
+mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, direkt mit dem Masseverhältnis der massiven Eichbosonen W und Z verknüpft.
+Mit der aus \cite{versuchsanleitung} entnommenen Z-masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
+ sich fürden Weinbergwinkel:
+\begin{align*}
+	sin(\theta_{W})^{2} = 1 - cos(\theta_{W})^{2} = 1 - (\frac{m_{W}}{m_{Z}})^{2} = xx \pm \SI{ex}{nb}
+\end{align*}
+Die systematischen und statistischen Fehler auf $m_{w}$ werden zur Bestimmung des Fehler auf $sin(\theta_{W})^{2}$ quadratisch addiert.
+Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden das es sich bei \ref{form:wein} um eine
+Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des Weltmittlewert berücksichtigen noch Strahlugskorrekturen aus höheren
+Ordnungen, dieser Unterschied wird gemäß der Beschreibung in \cite{versuchsanleitung} durch einen Korrekturfaktor von $corr_{strahlung}=1.06$
+berücksichtigt. Der Vergleich von korrigiertem und Weltmittelwert 
+\begin{align*}
+	sin(\theta_{W})_{korrigiert}^{2} = xx \pm \SI{ex}{nb} \vspace{1cm} sin(\theta_{W,Welt})^{2} = xx \pm \SI{ex}{nb}
+\end{align*}
+zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $xx\sigma$ vom Literaturwert mit diesem 
+innerhalb von $3\sigma$ kompatibel ist.Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen 
+Toleranzbereich bestätigen.
+\subsection{Bestimmung der W-Zerfallsbreite}
+Die Zerfallsbreite des W-Boson wird mit Hilfe von Formel \ref{form:width} bestimmt. Für die konkrete berechnung
+ wurden $\alpha = \frac{1}{128}$ und $N_{\textsl{C}}=3$ verwendet und als fehlerfrei angenmommen, sin(\theta_{W})^{2} 
+ wird in \ref{form:width} durch $corr_{strahlung}\cdot(1-(frac{mw}{mz})^{2}$ ersetzt und die statistischen und 
+ systematischen Fehler auf m_{W} und m_{Z} werden als unabhängige Fehlerquellen für das Ergebnis fortgepflanzt. Für 
+ einen Vergleich mit den Literaturwerten muss die gemessene W-Breite nach \cite{versuchsanleitung} mit einem Korrekturfaktor
+ von $corr_{HO}=1.09 \pm 0.01$ multipliziert werden um das fehlen höherer Ordnungen in der Rechnung zu berücksichtigen, der
+ Fehler auf diesen Korrekturfaktor wurde bei der Fehlerfortpflanzung ebenfalls als zusätzliche systematisch Fehlerquelle
+ berücksichtigt.Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
+ \begin{align*}
+	Γ_{W,korrigiert} = xx \pm \SI{ex}{GeV} 
+\end{align*}
+Dieser Wert weicht $xx\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von $Γ_{W,theo} = xx \pm \SI{10}{GeV}$
+ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
+\section{Diskussion der systematischen Unsicherheiten}
+In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am beispiel vom Tevatron diskutiert 
+und mit denenan Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszusand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen 
+nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion zur Massenbestimmung genutzt \cite{Achard:2005qy}
+und hierbei die Zerfallskanäle $W+W \rightarrow qql\nu$ und $W+W \rightarrow qqqq\nu$ genutzt.  
+Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in 
+\cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
+berachtet die beide Kollidertypen betrifft:
 
-\section{Vergleich zu anderen Ergebnissen}
+\begin{itemize}
+	\item \textbf{Luminosität:} \\
+	Die integrierte Luminosität geht in beiden Experimenten als systematische Unsicherheit bei der Bestimmung der Masse des W Bosons ein
+	, die Genauigkeit mir der diese Größe bestimmt werden kann ist allerdings sehr unterschiedlich. Beim DØ Experiment wird die Luminosität
+	durch Messungen des Wirkungsquerschnitt der inklusiven tief inelastischen Proton-Antiproton bestimmt \cite{2011arXiv1106.5182P}.Dazu
+	wird ein System von Plastikszintillatoren im Winkelbereich $2.7 \leq |\eta| \leq 4.4$ verwendet. Die Genauigkeit dieses Nachweisverfahren wurde
+	im laufe der Betriebszeit von Werten $ > 10%$ bis auf $ 6.1%$ verbessert. Bei LEP konnte die Luminosität mit einer Unsicherheit von weniger
+	als $0.1%$ bestimmt werden, dazu wird der Wirkungsquerschnitt für die Bhabba-Streuung mit kleinem Winkel gemessen. Dieser QED-Prozess
+	wird durch den t-Kanal bestimmt und lässt sich theoretisch sehr genau berechnen.
+	\item \textbf{Luminosität:} \\
+	
+\end{itemize}
 
 \bibliographystyle{plain}
 \bibliography{citebib}{}
