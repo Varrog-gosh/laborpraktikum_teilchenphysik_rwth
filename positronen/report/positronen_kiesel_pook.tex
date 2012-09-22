@@ -344,8 +344,8 @@ poissonverteilter Fehler nicht ganz gerechtfertigt ist sondern wahrscheinlich au
 Zuordnung des Vielkanalanalysators zu den Kanälen oder ähnliche Effekte eine Rolle spielt, wie man
 am $χ²/\text{NDF}$ von $1.5$ bis $2$ sieht.
 \begin{figure}
-	\includegraphics[width=.5\textwidth]{linearFit0.pdf}
-	\includegraphics[width=.5\textwidth]{linearFit1.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitpoly0.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitpoly1.pdf}
 	\caption{Anpassung von zwei Geraden zur Bestimmung der Lebensdauer von Positronen in Polyethylen}
 	\label{fig:dualLinearFit}
 \end{figure}
@@ -402,8 +402,8 @@ $A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=\textwidth]{../analyse/globalFit.pdf}
-	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall}
+	\includegraphics[width=\textwidth]{../analyse/globalFitpoly2.pdf}
+	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall für Polyethylen}
 	\label{fig:globalFit}
 \end{figure}
 
@@ -493,7 +493,7 @@ bestimmt werden kann.
 	\label{fig:compare_signal}
 \end{figure}
  
-\section{Bestimmung der Lebzoensdauern in Aluminium}
+\section{Bestimmung der Lebensdauern in Aluminium}
 Nach der Messung von Polyethylen wird für $\SI{5.3}{h}$ in Aluminium eingebettetes $^{22}$Na als Quelle benutzt.
 
 \subsection{Vergleich der Messungen von Aluminium und Polyethylen}
@@ -532,6 +532,13 @@ einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließe
 Die Analyse für Aluminium wird mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
 Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \subsection{Zwei lineare Anpassungen}
+\begin{figure}
+	\includegraphics[width=.5\textwidth]{linearFitalu0.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitalu1.pdf}
+	\caption{Anpassung von zwei Geraden zur Bestimmung der Lebensdauer von Positronen in Aluminium}
+	\label{fig:dualLinearFitalu}
+\end{figure}
+
 \begin{table}[h]
 	\begin{tabular}{l |l l ||l}
 			Fit& Bereich $[\si{ns}]$ & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
@@ -551,7 +558,12 @@ Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 	\label{tab:linearPoly}
 \end{table}
 \subsection{Globale Anpassung an Faltungsfunktion}
-
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{../analyse/globalFitalu2.pdf}
+	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall für Aluminium}
+	\label{fig:globalFitalu}
+\end{figure}
 \begin{table}[h]
 	\begin{tabular}{l |l l}
 		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
@@ -578,13 +590,13 @@ Für Aluminium ergibt sich bei gleicher Vorgehensweise wie bei Polyethylen $τ_1
 \section{Diskussion}
 \subsection{Vergleich der Messwerte untereinander}
 Alle angewandten Messmethoden liefern ähnliche Ergebnisse, eine grafische Zusammenfassung ist in den
-Abbildungen \ref{fig:finalt1} und \ref{fig:finalt2} dargestellt.
+Abbildung \ref{fig:finalt} dargestellt.
 
 \begin{figure}[h]
 	\includegraphics[width=.5\textwidth]{../analyse/final_plot_1.pdf}
 	\includegraphics[width=.5\textwidth]{../analyse/final_plot_2.pdf}
-	\caption{Zusammenfassung der Ergebnisse für $\tau_{2}$ }
-	\label{fig:finalt2}
+	\caption{Zusammenfassung der Ergebnisse für $\tau_{1}$ und $\tau_{2}$  }
+	\label{fig:finalt}
 \end{figure}
 
 Die bestimmten Fehler scheinen jedoch nicht alle systematische Unsicherheiten ausreichend abzubilden.
@@ -623,6 +635,21 @@ Nullpunktsverschiebung hinzugenommen werden.
 	\label{tab:finalsigma}
 \end{table} 
 % überall den fehler durch die nullpunktsverschibung von 0.15ns hinzu
+
+\subsection{Theorievergleich}
+Die theoretischen Lebensdauern im Vakuum sind $\tau_{pPs} = \SI{125}{ps}$ für Para-Positronium und $\tau_{oPs} = \SI{142}{ns}$ für Ortho-Positronium. Diese Lebensdauern werden
+im Festkörper durch die komplizierte umgebene Ladungsverteilung modifiziert und können nur durch Messungen oder aufwendige Monte-Carlo Simulationen bestimmt werden 
+(siehe z.B. \cite{phd_trezzi} für die Beschreibung einer MC Simulation für $Al_{2}O_{3}$). Ortho-Positronium kann durch Wechselwirkung mit dem umgebenen Material in Para-Positronium konvertieren
+und zerfällt deshalb in den meissten Fällen mehrere Größenordnungen schneller als es im Vakuum erwartet wird. Die gemessene langlebige Komponente besteht also wohl hauptsächlich aus
+Ortho-Positronium das diese Konversion durchgeführt hat. Es ist also keine isolierte Aussage über die Lebensdauer von Ortho-Positronium möglich, dass Ergebnis zeigt also viel mehr eine 
+Überlagerung der Lebensdauer des Ortho-Positronium mit der mittleren Zeit bis zur Konversion. Für die Änderungen der kurzen Lebensdauer ist der Screening-Effekt des umgebenen Material auf 
+das Coulombfeld des Positronium der dominante Effekt, hierbei führt das durch das umgebene Material erzeugte Feld zu einer verminderung des Feldes im Positronium, dass führt zu einem 
+größeren mittleren Abstand zwischen beiden Konstituenten und damit auch zu einer längeren mittleren Anhillationszeit. Dem entgegen wirkt die fly-by Anhillation umgebender Elektronen mit
+dem Positron, welche die mittlere Lebensdauer wieder verkürzt. Auch wenn die Abremszeiten bis zur Anhillation für einzelne Positronen im idealen Festkörper im Bereich von nur wenigen 
+ps liegen und deshalb vernachlässigt werden, können Positronen in topologischen Deffekten im Material (Poren,Spalten etc.) deutlich länger gefangen werden und Lebensdauern von bis zu$ \SI{1}{ns}$
+erreichen \cite{theory2}, dies würde die kurzlebige Komponente zusätzlich modifizieren.
+
+
 \bibliographystyle{plain}
 \bibliography{citebib}{}
 \end{document}
