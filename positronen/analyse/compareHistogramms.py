@@ -18,6 +18,18 @@ def normedHist( name, color, func = 0):
 	hist.SetLineColor( color )
 	return hist
 
+def unnormedHist( name, color, func = 0):
+	if func == 0:
+		hist,time = tkaToHist( name, 2000, 16000 ,True)
+		hist.Rebin(50)
+	else:
+		hist = tkaToTimeHist(name, func , -2, 8 )
+	hist.GetYaxis().SetTitle("Eintr#ddot{a}ge")
+	hist.SetLineColor( color )
+	return hist
+
+
+
 def timenormedHist( name, color, func = 0):
 	if func == 0:
 		hist,time = tkaToHist( name, 2000, 16000 ,True)
@@ -42,6 +54,8 @@ polytime = normedHist( 'data/poly.TKA', 4, func )
 
 co = normedHist( 'data/co60.TKA', 1 )
 co2 = normedHist( 'data/co60_2.TKA', 12 )
+co_ori = unnormedHist( 'data/co60.TKA', 1 )
+co2_ori = unnormedHist( 'data/co60_2.TKA', 12 )
 
 cotime = normedHist( 'data/co60.TKA', 1, func )
 co2time = normedHist( 'data/co60_2.TKA', 12 , func )
@@ -77,8 +91,17 @@ def compareHistos( signal, background, signalname, backgroundname, save ):
 	can.SaveAs( save )
 	can.Close()
 
+def weighted_mean(x1,x2):
+	from math import sqrt
+	sqsum = sqrt(x1)+ sqrt(x2)
+	w1 = sqrt(x1)  / sqsum
+	w2 = sqrt(x2) / sqsum
+	print "check %f"%(w1+w2)
+	wmean = x1 * w1 + x2 * w2
+	ewmean = sqrt(w1**2 *x1 + w2**2 *x2)
+	return wmean,ewmean
 
-def compareCo( co1, co2 ,isTime = False):
+def compareCo( co1, co2 ,co1_ori,co2_ori,isTime = False):
 	import ROOT
 	from ROOT import TCanvas, TLegend,TSpectrum,TPaveStats
 	can = TCanvas("canvas")
@@ -92,7 +115,7 @@ def compareCo( co1, co2 ,isTime = False):
 	co1.SetAxisRange(2200,8000,"X")
 	co1.Draw("HISTF")
 
-	bgxmin = 6000
+	bgxmin = 7000
 	bgxmax = 14000
 
 	s = TSpectrum( 1 )
@@ -144,13 +167,13 @@ def compareCo( co1, co2 ,isTime = False):
 	p1.AddText("Ergebnisse")
 	p1.AddText("Vor der Messung:")
 	p1.AddText("#chi^{2}/NDF : %.3f"%(fit1.GetChisquare() / fit1.GetNDF()))
-	p1.AddText("Eintr#ddot{a}ge: %s"%co.GetEntries())
+	p1.AddText("Eintr#ddot{a}ge: %d"%co1_ori.Integral(co1.FindBin(3000),co1.FindBin(7000)))
 	p1.AddText("#mu_{1}: %.1f#pm%.1f"%(fit1.GetParameter(1),fit1.GetParError(1)))
 	p1.AddText("#sigma_{1}: %.1f#pm%.1f"%(fit1.GetParameter(2),fit1.GetParError(2)))
 	p1.AddText("")
 	p1.AddText("Nach der Messung:")
 	p1.AddText("#chi^{2}/NDF : %.3f"%(fit2.GetChisquare() / fit2.GetNDF()))
-	p1.AddText("Eintr#ddot{a}ge: %s"%co2.GetEntries())
+	p1.AddText("Eintr#ddot{a}ge: %d"%co2_ori.Integral(co2.FindBin(3000),co2.FindBin(7000)))
 	p1.AddText("#mu_{2}: %.1f#pm%.1f"%(fit2.GetParameter(1),fit2.GetParError(1)))
 	p1.AddText("#sigma_{2}: %.1f#pm%.1f"%(fit2.GetParameter(2),fit2.GetParError(2)))
 	p1.AddText("")
@@ -181,6 +204,7 @@ def compareCo( co1, co2 ,isTime = False):
 	print "Co1 %f events %e Events / channel"%(bg_integral1,bg1)
 	print "Co2 %f events %e Events / channel"%(bg_integral2,bg2)
 	print "Mean %e Events / channel"%(float((bg1+bg2)/2))
+	#~ print "weighted Mean %e +- %e Events / channel"%weighted_mean(bg1,bg2)
 	can.SaveAs('compareCo.pdf')
 	can.Close()
 
@@ -188,7 +212,7 @@ def compareCo( co1, co2 ,isTime = False):
 
 # execute programs
 # compareHistos( alu, co , "Aluminium", "Cobalt", "signal+background.pdf")
-compareHistos( polytime , alutime,  "Polyethylen", "Aluminium", "signal+signal.pdf")
+#~ compareHistos( polytime , alutime,  "Polyethylen", "Aluminium", "signal+signal.pdf")
 
-compareCo( co, co2,False )
-#~ compareCo( co_timenormed, co2_timenormed,False )
+compareCo( co, co2,co_ori, co2_ori,False )
+#~ compareCo(co_timenormed, co2_timenormed,co_ori, co2_ori,False )

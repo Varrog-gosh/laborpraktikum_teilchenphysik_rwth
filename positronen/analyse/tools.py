@@ -184,7 +184,10 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 	data = readFile( filename )[0]
 	time = data[0] # or data[1]
 	data = data[2:-1] #effective data
-	bg_per_channel_per_time = 6.851514e-06 # per time
+	
+	#~ bg_per_channel_per_time = 2.530414e-07 # per time alte Zahlen
+	#~ bg_per_channel_per_time = 5.628764e-07 # per time
+	bg_per_channel_per_time = 0 # per time
 	bg_per_channel = bg_per_channel_per_time * time
 	length = len( data )
 

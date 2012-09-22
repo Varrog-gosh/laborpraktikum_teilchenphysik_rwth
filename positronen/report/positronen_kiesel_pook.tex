@@ -35,8 +35,8 @@ Da die Annihilationswahrscheinlichkeit von der Energie abhängig ist,
 müssen die Positronen thermalisiert werden.
 Dies dauert bei Aluminium wenige $\si{ps}$.
 In Isolatoren oder amorphen Stoffen dauert die Abbremszeit sehr viel länger,
-sodass sich das Positron mit einem Elektron des Festkörpers zu einem Positronium verbinden können,
-wenn die Affinitäten von Elektron und Positron kleiner
+sodass sich das Positron mit einem Elektron des Festkörpers zu einem Positronium verbinden kann,
+wenn die Summe der Affinitäten des Festkörper für Elektronen und Positronen kleiner
 als die Affinität von Positronium und dessen Bindungsenergie ist.
 Diese Bedienung  nennt man den "`Øre-Gap"'.
 Hier gibt es zwei Möglichkeiten: Parapositronium mit entgegengesetztem Spin und Orthopositronium mit
@@ -46,7 +46,7 @@ Durch Elektronenaustausch wandelt es sich oft in Parapositronium um, welches dur
 
 Als Positronenquelle wird in diesem Versuch $^{22}$Na verwendet, welches beim Zerfall in $^{22}$Ne
 zuerst ein γ-Quant der Energie $\SI{1.28}{MeV}$ abgibt und dann ein Positron emittiert.
-Nach einer vom Festkörper abhängigen Zeit annihiliert das Positron unter Aussendung
+Nach einer vom Festkörper abhängigen Zeit annihiliert das Positron praktisch immer unter Aussendung
 von zwei bis drei γ-Quanten mit einer Energie von $\SI{511}{keV}$.
 Durch das Messen der Zeitdifferenz zwischen dem ersten γ-Quant des Übergangs und dem
 γ-Quant aus der Annihilation kann die Lebensdauer des Positrons bestimmt werden.
@@ -91,10 +91,11 @@ Sie werden "`schneller"' und "`langsamer"' Kreis genannt.
 
 Der Aufbau beider Schaltkreise ist in Abbildung \ref{fig:aufbau} zu sehen.
 Links oben befindet sich in rot die Spannungsquelle, daneben zwei Amplifier Analyzer mit Koinzidenzstufe\footnote{Nuclear Enterprises, Modell 4630} für Start und Stopsignal des langsamen Kreises.
-Als letztes in der oberen Reihe ist das ein Quad Gate\footnote{Fa. Phillips Scientific, Modell 794} zu sehen.
+Als letztes in der oberen Reihe ist das Quad Gate\footnote{Fa. Phillips Scientific, Modell 794} zu sehen.
 
 In der unteren Reihe umgeben zwei Differential Constant Fraction Discriminatoren\footnote{Fa. Stanford Research Systems Inc., Modell DG535} eine Delay Einheit\footnote{Fa. SEN, Modell FE290}.
-Rechts daneben befindet sich ein Time Analyser\footnote{Fa. Canberra, Modell 2043}, zwei Delaystufen\footnote{DFa. Canberra, Modell 1457} und zuletzt ein Vielkanalanalysator\footnote{Multiport II, Fa. Canberra} der auf der Rückseite mit einem Computer und dem Gate verbunden ist.
+Rechts daneben befindet sich ein Time Analyser\footnote{Fa. Canberra, Modell 2043}, zwei Delaystufen\footnote{DFa. Canberra, Modell 1457} und zuletzt ein Vielkanalanalysator\footnote{Multiport II, Fa. Canberra}
+ der auf der Rückseite mit einem Computer und dem Gate verbunden ist.
 
 Schematisch ist der Aufbau in Abbildung \ref{fig:schaltplan} zu sehen.
 \begin{figure}[htb]
@@ -147,9 +148,11 @@ was über das Gate zusammen mit dem verstärkten Dynodensignal in den Vielkanala
 
 % erkläre veto-out und veto-in, was genau machen die, und warum fuktioniert das?
 Nachdem die Fenster für Start und Stoppsignal zunächst mit dem verstärkten Dynodensignal eingestellt sind,
-wird der logische 'Veto-Out' Ausgang des Start-EKD in den 'Veto-In' Eingang des Stop-EKD gesteckt und das logische Ausgangssignal über das Gate
-in den Vielkanalanalysator gegeben.
-Die EKD dienen damit auch gleichzeitig als Koinsidenzstufen.
+wird der logische 'Veto-Out' Ausgang des Start-EKD in den 'Veto-In' Eingang des Stop-EKD gesteckt. Wenn der
+Stop-EKD innerhalb eines kurzen Zeitfenster ein logisches Signal vom Start-EKD erhällt liefert er an dem mit
+'Coinc' bezeichneten Ausgang ein logische Ausgangssignal, welches über das Gate an den Vielkanalanalysator gegeben wird.
+Die EKD dient gleichzeitig also auch als Koinzidenzstufe.
+
 
 \begin{figure}[h]
 	\centering
@@ -284,7 +287,7 @@ Daten angepassten Gaußfunktion zu $\SI{0.40}{ns}$ abgeschätzt und liegt somit 
 Die Anpassung wurde zu großen Kanälen hin nur im Zentralbereich des Peak durchgeführt, da das Spektrum eine schwache langsam auslaufende Komponente beinhaltet,
 dieser zusätzliche Einfluss ist zwar sehr klein, beeinflusst aber die Güte der Anpassung negativ wenn das Anpassungsintervall über den ganzen Peak gewählt wird.
 \subsection{Bestimmung des Untergrunds}
-Der Untergrund bei den durchgeführten Messungen wurde durch Integration aller Ereignisse im Kanalbereich von 6000 bis 14000 der $^{60}$Co Messungen bestimmt. 
+Der Untergrund bei den durchgeführten Messungen wurde durch Integration aller Ereignisse im Kanalbereich von 7000 bis 14000 der $^{60}$Co Messungen bestimmt. 
 In dem gewählten Bereich sind die Auswirkung der Auflösungskurve zu vernachlässigen. Da alle
 Messungen unterschiedliche Messzeiten besitzen wird die Anzahl
 an Untergrundereignissen auf die Messdauer normiert, berechent wird also
@@ -293,13 +296,13 @@ $\frac{\text{Ereignisse}}{\text{Kanal}\cdot \text{Messdauer}}$. Die Bestimmung d
  
  \begin{table}[h]
 	\begin{tabular}{l |l }
-		$^{60}$Co  Messung & $\frac{\text{Ereignisse}}{\text{Kanal} \cdot \text{Messdauer}} [\si{Bq}]$ \\
+		$^{60}$Co  Messung & $\frac{\text{Ereignisse}}{\text{Kanal} \cdot \text{Messdauer}} [\si{Hz}]$ \\
 		\hline
-		Vor $^{22}$Na Messreihen & $8.12 \cdot 10^{-6}$ \\
-		Nach $^{22}$Na Messreihen &$ 5.58 \cdot 10^{-6}$\\
+		Vor $^{22}$Na Messreihen & $5.77 \cdot 10^{-7}$ \\
+		Nach $^{22}$Na Messreihen &$ 5.48 \cdot 10^{-7}$\\
 		\hline
 		\hline
-		Mittelung & $6.85 \cdot 10^{-6}$
+		Mittelung & $5.63 \cdot 10^{-7}$
 	\end{tabular}
 	\centering
 	\caption{Ergebnisse für die Untergrundbestimmung aus $^{60}$Co}
@@ -459,7 +462,7 @@ $μ_i$ sind die Mittelwerte der Verteilungen.
 %~ Das nach Abzug der langlebigen Komponente resultierende Spektrum wird erneut auf eins normiert. Der langlebige Anteil wird nur bis zum Zeitnullpunkt $t_0$ abgezogen, da 
 %~ dieser nur mit einer Ungenauigkeit von $\SI{0.15}{ns}$ bekannt ist wird das Intervall in diesen Grenzen variiert und die beobachtete mittlere Abweichung als systematische Unsicherheit quadratisch 
 %~ zum bisherigen Fehler addiert um die gesamte Unsicherheit auf das Ergebnis zu bestimmen (siehe Tabelle \ref{tab:centroidPoly}).
-Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns}$ bis $\SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{-4}{ns}$ bis $\SI{8}{ns}$ variiert. Dabei zeigt sich, dass
+Für die Berechnung der Momente wurde der Bereich von $\SI{-1}{ns}$ bis $\SI{7}{ns}$ gewählt, die obere Fitgrenze wurde von $t_{max}=\SI{4}{ns}$ bis $\SI{8}{ns}$ variiert. Dabei zeigt sich, dass
 sich die, im Rahmen der Messgenauigkeit, relevante Beiträge für den Schwerpunkt des Spektrums nur bis  $t=\SI{5}{ns}$ befinden. 
 
 %~ \begin{table}
@@ -646,7 +649,7 @@ Ortho-Positronium das diese Konversion durchgeführt hat. Es ist also keine isol
 das Coulombfeld des Positronium der dominante Effekt, hierbei führt das durch das umgebene Material erzeugte Feld zu einer verminderung des Feldes im Positronium, dass führt zu einem 
 größeren mittleren Abstand zwischen beiden Konstituenten und damit auch zu einer längeren mittleren Anhillationszeit. Dem entgegen wirkt die fly-by Anhillation umgebender Elektronen mit
 dem Positron, welche die mittlere Lebensdauer wieder verkürzt. Auch wenn die Abremszeiten bis zur Anhillation für einzelne Positronen im idealen Festkörper im Bereich von nur wenigen 
-ps liegen und deshalb vernachlässigt werden, können Positronen in topologischen Deffekten im Material (Poren,Spalten etc.) deutlich länger gefangen werden und Lebensdauern von bis zu$ \SI{1}{ns}$
+ps liegen und deshalb vernachlässigt werden, können Positronen in topologischen Deffekten im Material (Poren,Spalten etc.) deutlich länger gefangen werden und Lebensdauern von bis zu $ \SI{1}{ns}$
 erreichen \cite{theory2}, dies würde die kurzlebige Komponente zusätzlich modifizieren.
 
 
