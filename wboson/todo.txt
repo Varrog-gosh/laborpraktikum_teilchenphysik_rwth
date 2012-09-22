@@ -1,0 +1,2 @@
+todo:
+Effizienz ohne Lumigewicht aus MC berechnen
