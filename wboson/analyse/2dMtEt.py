@@ -30,6 +30,7 @@ cut = ''
 
 from ROOT import TCanvas, TLegend
 can = TCanvas()
+can.SetBatch()
 can.Divide(1,2)
 can.cd(1)
 xn = 200
@@ -46,23 +47,3 @@ datahist2D.Draw("colz")
 can.SaveAs('corelation.pdf')
 can.Close()
 
-can2 = TCanvas('blub', 'title', 1400, 800 )
-can2.cd()
-mchist = createHistoFromTree( mcTree, "mwt/el_et", cut, 200,0,5 )
-datahist = createHistoFromTree( dataTree, "mwt/el_et", cut, 200,0,5 )
-datahist.Scale( 1./datahist.Integral() )
-mchist.Scale( 1./mchist.Integral() )
-mchist.SetLineColor(2)
-datahist.Draw("hist")
-datahist.SetTitle(';M_{WT}/E_{T};Eintr#ddot{a}ge')
-mchist.Draw("same,hist")
-
-leg = TLegend(0.7, .7, .95,.95)
-leg.AddEntry( datahist, "Data", "l")
-leg.AddEntry( mchist, "MonteCarlo", "l")
-leg.Draw()
-
-
-
-can2.SaveAs('CutEtMwt.pdf')
-can2.Close()
