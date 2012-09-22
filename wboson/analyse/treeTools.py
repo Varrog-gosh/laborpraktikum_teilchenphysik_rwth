@@ -59,7 +59,7 @@ def drawMCMass( tree, list ):
 
 def histo_settings():
 	return {
-			"mwt": { "title": ";M^{W}_{T} [GeV];Eintr#ddot{a}ge",
+			"mwt": { "title": ";M_{T} [GeV];Eintr#ddot{a}ge",
 					"xmin": 0,
 					"xmax": 250 },
 			"met": { "title": ";#slash{E}_{T} [GeV];Eintr#ddot{a}ge",
@@ -91,7 +91,10 @@ def histo_settings():
 					"xmax": 0.2},
 			"el_emf":{ "title": ";Fraction of Energy in Calorimeter;Eintr#ddot{a}ge",
 					"xmin": 0.96,
-					"xmax": 1}
+					"xmax": 1},
+			"mwt/el_et":{ "title": ";M_{T}/E_{T};Eintr#ddot{a}ge",
+					"xmin": 0,
+					"xmax": 3.5}
 			}
 
 def prettifySelection(selection):

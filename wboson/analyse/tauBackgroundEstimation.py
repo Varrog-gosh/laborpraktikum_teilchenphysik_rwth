@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from treeTools import *
 
-def drawTau(mcTree, dataTree, variable, cut, save = False, logmode = True, cutline = "NONE", nBins = 100 ):
+def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cutline = "NONE", nBins = 100 ):
 	settings = histo_settings()
 	xlow = settings[variable]["xmin"]
 	xhigh = settings[variable]["xmax"]
@@ -21,7 +21,7 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, logmode = True, cutli
 	from ROOT import TCanvas,THStack, TPaveText, TLegend, TLine
 	stack = THStack ("stack","W#rightarrowe#nu")
 	c = TCanvas( variable, variable, 1400, 800 )
-	if logmode:
+	if not nologmode:
 		c.SetLogy()
 	if save:
 		c.SetBatch()
@@ -49,25 +49,26 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, logmode = True, cutli
 	leg = TLegend( .8, .8, 1, 1)
 	leg.SetFillColor(0)
 	leg.SetBorderSize(0)
-	leg.AddEntry( mcTau, "W#rightarrow#tau#nu#nu#nu", "f" )
-	leg.AddEntry( mcE, "W#rightarrow e#nu", "l" )
+	leg.AddEntry( mcTau, "W #rightarrow #tau#nu#nu#nu", "f" )
+	leg.AddEntry( mcE, "W #rightarrow e#nu", "l" )
 	leg.AddEntry( dataHisto, "Daten", "lp" )
 	leg.Draw()
 
 	# draw line
-	print cutline
 	try:
 		x = float( cutline )
-		print x
-		line = TLine( x, 1, x, 1000)
+		line = TLine( x, stack.GetMinimum(), x, 1.5 * stack.GetMaximum())
 		line.SetLineColor(2)
+		line.SetLineWidth(2)
 		line.SetLineStyle(9)
 		line.Draw()
 	except:
 		pass
 
 	if save:
-		c.SaveAs( variable + cut + 'tau.pdf')
+		from re import sub
+		name = sub('/','_', variable + cut + 'tau.pdf') # problems with '/' in filename
+		c.SaveAs( name )
 	else:
 		raw_input()
 	c.Close()
@@ -78,8 +79,8 @@ if (__name__ == "__main__"):
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
 	parser.add_argument("-c", "--cut", dest="cut", default="1", help="Cuts applied to all structures" )
-	parser.add_argument("-l", "--logarithmic", action="store_true", default=True, help="Plot all distributions in logarithmic mode")
-	parser.add_argument("-s", "--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
+	parser.add_argument("--nologarithmic", action="store_true", default=False, help="Plot all distributions in logarithmic mode")
+	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default=['met', 'el_et','mwt'], nargs ="+", help="Distribution which should be plotted")
 	parser.add_argument("--cutline", default = 'NONE', help="Draw line to print")
 
@@ -92,4 +93,4 @@ if (__name__ == "__main__"):
 		opts.plots = histo_settings().keys()
 
 	for variable in opts.plots:
-		drawTau( mcTree, dataTree, variable, opts.cut, opts.save, opts.logarithmic, opts.cutline )
+		drawTau( mcTree, dataTree, variable, opts.cut, opts.save, opts.nologarithmic, opts.cutline )
