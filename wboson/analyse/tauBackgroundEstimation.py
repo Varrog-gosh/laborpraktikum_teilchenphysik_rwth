@@ -21,6 +21,7 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 	from ROOT import TCanvas,THStack, TPaveText, TLegend, TLine
 	stack = THStack ("stack","W#rightarrowe#nu")
 	c = TCanvas( variable, variable, 1400, 800 )
+	#c.Divide(1,2)
 	if not nologmode:
 		c.SetLogy()
 	if save:
@@ -64,6 +65,20 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 		line.Draw()
 	except:
 		pass
+
+	'''
+	c.cd(2)
+	from ratios import RatioGraph
+	import ROOT
+	mcE.Add(mcTau) # only for ratio graph, don't use mcE after
+	ratioGraph =  RatioGraph(dataHisto, mcE, xMin=xlow, xMax = xhigh)
+	ratioGraph.draw(ROOT.gPad, yMin=0.5, yMax=1.5, adaptiveBinning=True, errors="xy")
+	ratioGraph.hAxis.SetYTitle(' data/ mc')
+	#ratioGraph.graph.SetMarkerStyle(22)
+	#ratioGraph.graph.SetMarkerColor(1)
+	#ratioGraph.graph.SetLineColor(2)
+	#ratioGraph.oneLine.SetLineColor(0)
+	'''
 
 	if save:
 		from re import sub

@@ -93,9 +93,9 @@ berechnen, wobei
 	\frac{ x_px_{\bar{p}} s Γ_W^2}{\left( x_px_{\bar{p}}s - m_W^2\right)^2 + m_W^2Γ_W^2}
 \end{align*}
 und
-\begin{align}
+\begin{align*}
 	Γ_{ff'} = \frac{N_C}{12} \frac{α}{\sin^2θ_W}m_W
-\end{align}
+\end{align*}
 ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
 Schwerpunktsenergie.
 Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
@@ -185,8 +185,8 @@ hadronischen Jets mit einem Transversalimpuls von über $\SI{15}{GeV}$ vorkommen
 darf entlang der Strahlachse nur $\SI{60}{cm}$ vom Mittelpunkt abweichen. Diese Auswahl wird immer
 getroffen und nicht gesondert erwähnt wenn angewandt.
 
-Hierzu werden die simulierten und gemessenen Daten in Histogrammen übereinandergelegt
-und die Unterschiede durch geeignete Schnitte verringert. Ziel ist vor allem eine gute
+Hierzu werden die simulierten und gemessenen Daten in normierte Histogrammen übereinandergelegt
+und die Unterschiede durch geeignete Schnitte versucht zu verringert. Ziel ist vor allem eine gute
 Übereinstimmung in $m_T$, da daraus die Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
 wird in Abbildung \ref{fig:abschaetzung} veranschaulicht. Links oben sieht man die transversale
 invariante Masse ohne Einschränkungen. Rechts oben sieht man die Verteilung der transversalen
@@ -215,8 +215,35 @@ abschätzen. Während am Anfang der Anteil der $τ$ Ereignisse noch 8.8\% beträ
 Schnitten 1.4\%.
 
 \subsection{Templatemethode zur Bestimmung der W Masse}
-\label{template}
-Um die W Masse zu finden, die am Besten zu den Daten passt, werden die für 
+Um die W Masse zu bestimmen, wird die Template Methode benutzt.
+Die Verteilung von $m_T$ wird für jede simulierte W Masse mit den Daten verglichen und die
+Übereinstimmung der Histogramme durch die $χ²$ Methode bestimmt. Trägt man nun für jede simulierte
+Masse das $χ²/\text{NDF}$ wie in Abbildung \ref{fig:template} auf, so erhält man eine Parabel.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{template.pdf}
+	\caption{Template Methode mit den Bedingung $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{GeV}$. Die gesuchte W Masse befindet sich im Minimum der Parabel, da dort
+		das $χ²/\text{NDF}$ minimiert wird.}
+	\label{fig:template}
+\end{figure}
+% minimum bei 1
+
+Für die am Besten passende W Masse muss das $χ²/\text{NDF}$ möglichst klein sein. Man passt an den
+Graphen in Abbildung \ref{fig:template} deshalb eine Parabel an und bestimmt deren Minimum. Die
+Fehler sowie das $χ^2/\text{NDF}$ der Anpassung sind nicht von Bedeutung, da die Punkte keine
+Fehler besitzen nur ein ROOT interner Standardfehler gesetzt wird.
+
+Der Fehler auf die W Masse ergibt sich aus der Abweichung vom Minimum beim Erhöhen des
+$χ²/\text{NDF}$ um $1$.
+
+Wenn man eine Parabel der Form $a + bx + cx²$ anpasst, erhält man somit $m_w = -\frac{b}{2c} ±
+\frac{1}{\sqrt{c}}$.
+Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{GeV}$
+\begin{align*}
+	m_W =  ( 80.3 ± 0.3 ) \si{GeV}.
+\end{align*}
+
 
 \subsection{Bestimmung der Effizienz}
 \label{effizienz}
@@ -240,8 +267,63 @@ ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würd
 den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
 in denen auch Elekronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss" Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
-\subsection{Optimieren der Selektionskriterien}
+\subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
+Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
+auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
+bestimmt, die das minimale $χ²$ der Templatemethode minimieren.
+Um eine Annäherung an die triviale Lösung von zwei leeren Histogrammen zu vermeiden, wird zusätzlich
+die Effizienz maximiert. Man erhält als optimale Lösung $\met> \SI{18.1}{GeV}$ und $E_{T} >
+\SI{19.7}{GeV}$. Die W Masse ändert sich dadurch auf
+\begin{align*}
+	m_W = ( 80.53 ± 0.24 ) \si{GeV}
+\end{align*}
+und bleibt innerhalb des statistischen Fehlers. Wenn man diese Selektionsgrenzen um $\SI{5}{GeV}$
+variiert, ergeben sich die Verschiebungen in Tabelle \ref{tab:variation}, mit denen der Fehler
+auf $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch addiert werden.
+\begin{table}
+	\centering
+	\begin{tabular}{c| c c c}
+		$E_{T} \backslash \met$ & 15 & 20 & 25 \\
+		\hline
+		15 &  & 80.89 & \\
+		20 & 79.94 & 80.60 & 80.53 \\
+		25 &  & 80.19 &
+	\end{tabular}
+	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
+	\label{tab:variation}
+\end{table}
+
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
+Um die Unsicherheiten besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
+die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Templatemethode die Masse
+berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E_T$ stark korreliert
+sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.49\textwidth]{correlation.pdf}
+	\includegraphics[width=.49\textwidth]{correlationmwt_el_et>1_7.pdf}
+	\caption{Korrelation zwischen $E_T$ und $m_T$ in der Simulation und in Daten, ohne Selektion
+	(links) und mit einer Einschränkung auf das Verhältnis (rechts). Mehr zu dieser Grenze siehe
+	unten.}
+	\label{fig:correlation}
+\end{figure}
+
+
+Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
+auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt bei
+$\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $M_T$ zu $E_T$
+schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{mwt_el_et1tau.pdf}
+	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation mit
+	Selektionsgrenze.}
+	\label{fig:verhaeltnis}
+\end{figure}
+
+Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation}, und man
+erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
 Der Wirkungsquerschnitt einer Reaktion lässt sich theoretisch aus der Anzahl gemessener Ereignisse und der 

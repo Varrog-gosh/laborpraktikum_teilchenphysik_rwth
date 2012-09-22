@@ -3,15 +3,20 @@
 from treeTools import *
 from tools import *
 
-def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
+def getMass( dataTree, mcTree, cut, save, variable = 'el_et' ):
 	nBins = 20
 	firstBin = 80
 	lastBin = 90
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
 	datahist.Scale( 1./datahist.Integral() )
 
-	from ROOT import TGraph
+	from ROOT import TGraph, TCanvas
 	from array import array
+	if save:
+		can = TCanvas( randomName(), "template", 1400, 800 )
+		can.cd()
+		can.SetBatch()
+
 	x = array('d')
 	y = array('d')
 	masses = weightToMass()
@@ -26,7 +31,11 @@ def getMass( dataTree, mcTree, cut, variable = 'mwt' ):
 	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.Draw("ap")
 	gr.Fit('pol2','q')
-	raw_input()
+	gr.GetFunction('pol2').SetParNames("a", "b", "c")
+	if save:
+		can.SaveAs('template.pdf')
+	else:
+		raw_input()
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
 
@@ -103,8 +112,7 @@ if (__name__ == "__main__"):
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
 	parser.add_argument("-c", "--cut", dest="cut", default="1", help="Cuts applied to all structures" )
-	parser.add_argument("-l", "--logarithmic", dest="logarithmic", default=True, help="Plot all distributions in logarithmic mode") #not implemented yet
-	parser.add_argument("-s", "--save", dest="save", default=False, help="Plots are not drawn, but saved as pdf") #not implemented yet
+	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default=['met', 'el_et','mwt'], nargs ="+",
 			help="Distribution which should be plotted")
 
@@ -116,8 +124,9 @@ if (__name__ == "__main__"):
 	if "all" in opts.plots:
 		opts.plots = histo_settings().keys()
 
-	cut = 'met>30&& el_et > 30'# && mwt/el_et > 1.8'
-	m, e_m,e_m_sys = getMass( dataTree, mcTree, cut, variable = 'mwt' )
+	#cut = 'met>18.14&& el_et > 19.68'# && mwt/el_et > 1.8'
+	cut = 'met>18.14&& el_et > 25'
+	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, variable = 'mwt' )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
 	print 'Mass =  ',

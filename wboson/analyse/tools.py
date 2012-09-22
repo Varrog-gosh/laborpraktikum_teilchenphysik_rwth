@@ -7,7 +7,7 @@ def printError( value, error = 0 , unit = '', relative = False ):
 	Input: value and error or uncertainties.value
 	'''
 	not_scientific_exponents = [ -1, 0, 1, 2 ] # 30 looks nicer than 3e1
-	valid_digits = 1
+	valid_digits = 2
 
 	# cast uncertainy in value ± error
 	from uncertainties import AffineScalarFunc, Variable
@@ -195,3 +195,12 @@ def tkaToHist( filename , xMin = 0, xMax = 0 , giveTime = False):
 		return hist, time
 	else:
 		return hist
+
+
+def randomName():
+	'''
+	generates a random name consisting only of numbers
+	'''
+	from random import randint
+	from sys import maxint
+	return str(randint(0,maxint))

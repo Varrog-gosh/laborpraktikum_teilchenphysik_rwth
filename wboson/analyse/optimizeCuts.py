@@ -47,11 +47,13 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	return var
 
 def minimizeChi2( dataTree, mcTree ):
-	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2]), variable = 'mwt')
-	p0 = [ 13.4464975566,20.4083129363,1.60141760266]
-	p0 = [ 9.25914050724, 20.4546624238,1.6014176026]
+	#chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2]), variable = 'mwt')
+	#p0 = [ 9.25914050724, 20.4546624238,1.6014176026]
+	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
+	#p0 = [ 18.146, 19.68 ]
+	p0 = [ 30, 30 ]
 	from scipy import optimize
-	cuts = optimize.fmin_powell( chi2, p0 )
+	cuts = optimize.fmin( chi2, p0, xtol = 1)
 	print cuts
 
 mcTree = readTree( "mc_all_new.root/MCTree" )
