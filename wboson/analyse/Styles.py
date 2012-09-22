@@ -141,3 +141,4 @@ def tdrStyle():
     # tdrStyle.SetHistMinimumZero(kTRUE)
 
     tdrStyle.cd()
+    return tdrStyle
