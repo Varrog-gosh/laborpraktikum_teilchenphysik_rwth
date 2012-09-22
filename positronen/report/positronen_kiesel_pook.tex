@@ -337,8 +337,8 @@ poissonverteilter Fehler nicht ganz gerechtfertigt ist sondern wahrscheinlich au
 Zuordnung des Vielkanalanalysators zu den Kanälen oder ähnliche Effekte eine Rolle spielt, wie man
 am $χ²/\text{NDF}$ von $1.5$ bis $2$ sieht.
 \begin{figure}
-	\includegraphics[width=.5\textwidth]{linearFit0.pdf}
-	\includegraphics[width=.5\textwidth]{linearFit1.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitpoly0.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitpoly1.pdf}
 	\caption{Anpassung von zwei Geraden zur Bestimmung der Lebensdauer von Positronen in Polyethylen}
 	\label{fig:dualLinearFit}
 \end{figure}
@@ -395,8 +395,8 @@ $A_i$ angepasst. Die Ergebnisse sind in Abbildung \ref{fig:globalFit} zu sehen.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=\textwidth]{../analyse/globalFit.pdf}
-	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall}
+	\includegraphics[width=\textwidth]{../analyse/globalFitpoly2.pdf}
+	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall für Polyethylen}
 	\label{fig:globalFit}
 \end{figure}
 
@@ -519,6 +519,13 @@ einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließe
 Die Analyse für Aluminium wird mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
 Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \subsection{Zwei lineare Anpassungen}
+\begin{figure}
+	\includegraphics[width=.5\textwidth]{linearFitalu0.pdf}
+	\includegraphics[width=.5\textwidth]{linearFitalu1.pdf}
+	\caption{Anpassung von zwei Geraden zur Bestimmung der Lebensdauer von Positronen in Aluminium}
+	\label{fig:dualLinearFitalu}
+\end{figure}
+
 \begin{table}[h]
 	\begin{tabular}{l |l l ||l}
 			Fit& Bereich $[\si{ns}]$ & $τ [\si{ns}]$ & $τ_\text{ges} [\si{ns}]$ \\
@@ -538,7 +545,12 @@ Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 	\label{tab:linearPoly}
 \end{table}
 \subsection{Globale Anpassung an Faltungsfunktion}
-
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{../analyse/globalFitalu2.pdf}
+	\caption{Anpassung einer Faltung aus Gaußverteilung und exponentiellem Abfall für Aluminium}
+	\label{fig:globalFitalu}
+\end{figure}
 \begin{table}[h]
 	\begin{tabular}{l |l l}
 		Bereich [$\si{ns}$] & $τ_1 [\si{ns}]$ & $τ_2 [\si{ns}]$ \\
@@ -564,13 +576,13 @@ Für Aluminium ergibt sich bei gleicher Vorgehensweise wie bei Polyethylen $τ_1
 
 \section{Diskussion}
 Alle angewandten Messmethoden liefern ähnliche Ergebnisse, eine grafische Zusammenfassung ist in den
-Abbildungen \ref{fig:finalt1} und \ref{fig:finalt2} dargestellt.
+Abbildung \ref{fig:finalt} dargestellt.
 
 \begin{figure}[h]
 	\includegraphics[width=.5\textwidth]{../analyse/final_plot_1.pdf}
 	\includegraphics[width=.5\textwidth]{../analyse/final_plot_2.pdf}
-	\caption{Zusammenfassung der Ergebnisse für $\tau_{2}$ }
-	\label{fig:finalt2}
+	\caption{Zusammenfassung der Ergebnisse für $\tau_{1}$ und $\tau_{2}$  }
+	\label{fig:finalt}
 \end{figure}
 
 Die bestimmten Fehler scheinen jedoch nicht alle systematische Unsicherheiten ausreichend abzubilden.
@@ -607,17 +619,6 @@ wird auf Grund des, in der globalen Anpassung gewonnenen, Amplitudenverhältnis 
 	\label{tab:finalsigma}
 \end{table} 
 % überall den fehler durch die nullpunktsverschibung von 0.15ns hinzu
-\begin{figure}[h]
-	\includegraphics[width=1.0\textwidth]{../analyse/final_plot_1.pdf}
-	\caption{Zusammenfassung der Ergebnisse für $\tau_{1}$ }
-	\label{fig:finalt1}
-\end{figure}
-
-\begin{figure}[h]
-	\includegraphics[width=1.0\textwidth]{../analyse/final_plot_2.pdf}
-	\caption{Zusammenfassung der Ergebnisse für $\tau_{2}$ }
-	\label{fig:finalt2}
-\end{figure}
 
 \subsection{Theorievergleich}
 Die theoretischen Lebensdauern im Vakuum sind $\tau_{pPs} = \SI{125}{ps}$ für Para-Positronium und $\tau_{oPs} = \SI{142}{ns}$ für Ortho-Positronium. Diese Lebensdauern werden
@@ -630,7 +631,7 @@ das Coulombfeld des Positronium der dominante Effekt, hierbei führt das durch d
 größeren mittleren Abstand zwischen beiden Konstituenten und damit auch zu einer längeren mittleren Anhillationszeit. Dem entgegen wirkt die fly-by Anhillation umgebender Elektronen mit
 dem Positron, welche die mittlere Lebensdauer wieder verkürzt. Auch wenn die Abremszeiten bis zur Anhillation für einzelne Positronen im idealen Festkörper im Bereich von nur wenigen 
 ps liegen und deshalb vernachlässigt werden, können Positronen in topologischen Deffekten im Material (Poren,Spalten etc.) deutlich länger gefangen werden und Lebensdauern von bis zu$ \SI{1}{ns}$
-erreichen, dies würde die kurzlebige Komponente zusätzlich modifizieren.
+erreichen \cite{theory2}, dies würde die kurzlebige Komponente zusätzlich modifizieren.
 
 
 \bibliographystyle{plain}
