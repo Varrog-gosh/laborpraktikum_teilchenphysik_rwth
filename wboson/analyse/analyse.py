@@ -164,6 +164,7 @@ if (__name__ == "__main__"):
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
 	print 'Mass =  ',
 	printError(m, e_m, unit = 'GeV')
+	print "Mass: %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) GeV"%(m, e_m,e_m_sys)
 	print
 	xs,err_xs_stat,err_xs_sys = getXs(dataTree,mcTree,opts.plots,opts.cut)
 	print "Crosssection: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)

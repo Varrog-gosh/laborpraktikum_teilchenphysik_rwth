@@ -6,7 +6,7 @@ import numpy
 from math import *
 
 
-def extendTree( filename, treename, correction = 0 ):
+def extendTree( filename, treename, correction_et = 0 ,correction_met = 0):
 	'''
 	add certain variables to tree and save in a new file
 	filename: input filename, outputFilename will be oldfile_new.root
@@ -16,8 +16,8 @@ def extendTree( filename, treename, correction = 0 ):
 	oldfile = ROOT.TFile( filename, "update" )
 	oldtree = oldfile.Get( treename )
 	nameEnding = '_new.root'
-	if correction != 0:
-		nameEnding = '_new' + str(correction) + '.root'
+	#~ if correction_et != 0 or correction_met != 0:
+		#~ nameEnding = '_new' + str(correction_et) +'met' +str(correction_met)+ '.root'
 	newfile = ROOT.TFile( filename.split('.')[0] + nameEnding, "recreate")
 	# clone tree
 	newtree = oldtree.CloneTree(0)
@@ -43,8 +43,8 @@ def extendTree( filename, treename, correction = 0 ):
 		oldtree.GetEntry(i)
 		dz[0] = abs( oldtree.el_track_z - oldtree.met_vertex_z )
 		#et[0] = numpy.sqrt( (oldtree.el_px**2 + oldtree.el_py**2) ) # same variable as below, only not sure what is used
-		et[0] = oldtree.el_e * sin( 2*atan( exp( - oldtree.el_eta ) ) ) * ( 1 + 1.* correction / 100 )# corrections in %
-		met[0] = numpy.sqrt( oldtree.metx_calo**2 + oldtree.mety_calo**2 ) * ( 1 + 1.* correction/100 )
+		et[0] = oldtree.el_e * sin( 2*atan( exp( - oldtree.el_eta ) ) ) * ( 1 + 1.* correction_et / 100 )# corrections in %
+		met[0] = numpy.sqrt( oldtree.metx_calo**2 + oldtree.mety_calo**2 ) * ( 1 + 1.* correction_met/100 )
 		mwt[0] = numpy.sqrt( 2.0 * met[0] * et[0] * ( 1 - numpy.cos( oldtree.el_met_calo_dphi ) ) )
 		newtree.Fill()
 
@@ -62,9 +62,12 @@ def extendTree( filename, treename, correction = 0 ):
 	oldfile.Close()
 	newfile.Close()
 
-extendTree( "d0.root", "MessTree" )
-extendTree( "d0.root", "MessTree", 2 )
-extendTree( "d0.root", "MessTree", -2 )
+#~ extendTree( "d0.root", "MessTree" ,0,0)
+#~ extendTree( "d0.root", "MessTree", 2,0 )
+#~ extendTree( "d0.root", "MessTree", -2 ,0)
+#~ extendTree( "d0.root", "MessTree", 0,2 )
+extendTree( "d0.root", "MessTree", 0,-2)
+
 extendTree( "mc_all.root", "MCTree" )
-extendTree( "mc_all.root", "MCTree" , -2) # energy correction in %
-extendTree( "mc_all.root", "MCTree" , 2)
+#~ extendTree( "mc_all.root", "MCTree" , -2) # energy correction in %
+#~ extendTree( "mc_all.root", "MCTree" , 2)
