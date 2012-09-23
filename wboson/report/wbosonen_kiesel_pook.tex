@@ -342,9 +342,8 @@ Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegeben
 Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen für verschiedene Werte
 von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
 zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die 
-NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden.
- Ein berechnen mit Software von theoretikern scheitert daran , dass die Vollidioten im Jahr 2012 immernoch mit
-Fortranprogammen rum hantieren!
+NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den 
+Wirkungsquerschnitt abzuschätzen
 \subsection{Bestimmung des Weinbergwinkel}
 Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie die
 ,vor der Symmetriebrechung durch den Higgsmechanismus masselosen,Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung 
@@ -382,8 +381,8 @@ ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am beispiel vom Tevatron diskutiert 
 und mit denenan Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszusand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen 
-nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion zur Massenbestimmung genutzt \cite{Achard:2005qy}
-und hierbei die Zerfallskanäle $W+W \rightarrow qql\nu$ und $W+W \rightarrow qqqq\nu$ genutzt.  
+nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
+Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonsich) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.  
 Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in 
 \cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
 berachtet die beide Kollidertypen betrifft:
@@ -397,7 +396,20 @@ berachtet die beide Kollidertypen betrifft:
 	im laufe der Betriebszeit von Werten $ > 10%$ bis auf $ 6.1%$ verbessert. Bei LEP konnte die Luminosität mit einer Unsicherheit von weniger
 	als $0.1%$ bestimmt werden, dazu wird der Wirkungsquerschnitt für die Bhabba-Streuung mit kleinem Winkel gemessen. Dieser QED-Prozess
 	wird durch den t-Kanal bestimmt und lässt sich theoretisch sehr genau berechnen.
-	\item \textbf{Luminosität:} \\
+	\item \textbf{Elektron Energie Bestimmung:} \\
+	Abgesehen vom rein hadronischen Zerfallskanal bei LEP benutzen beide Experimente die gemesse Energie eines Elektron um die W-Masse zu bestimmen
+	Hierbei gibt es neben den limitierungen des Auflösungsvermögen noch weitere Unsicherhieten aus dem korrekten bestimmen der Energieskala.
+	Die Einflüsse dieser Fehlerquellen liegen bei LEP bei wenigen MeV und bei DØ ca. 70 MeV.
+	\item \textbf{Jet Energie Bestimmung:} \\
+	In allen Zerfallskanälen spielt die Bestimmung von Jetenergien direkt oder indirekt bei der Berechnung von \met eine wichtige Rolle. Bei der 
+	Bestimmung der Jrtenergie spielen diverse Faktoren wie die Wahl des Jet-Algorithmus,Pileup bei DØ(also Endzustände die in einer anderen Wechselwirkung
+	als der harten entstehen) und die schlechtere Energieauflösung des hadronischen Kalorimeters führen zu einer Unsicherheit auf $m_{W}$ von 
+	ca $\SI{65}{MeV}$ bei Do und $\SI{20}{MeV}$ bei LEP.
+	\item \textbf{Hintergrund:}
+	Insbesondere die Zerfallskanäle mit leptonischem Anteil besitzten, vor allem durch $\tau$ Zerfälle irreduzible Hintergründe bzw. im Fall
+	des hadronischen Zerfallskanal bei LEP eine Reihe von Untergrundprozessen mit Experimentell schwer trennbarer Signatur. DØ beziffert seine 
+	Unsicherheit auf die W Masse mit $\SI{35}{MeV}$ und LEP auf $\SI{20}{MeV}$ für den semi-leptonischen und $\SI{50}{MeV}$ für den hadronischen
+	Zerfallskanal
 	
 \end{itemize}
 
