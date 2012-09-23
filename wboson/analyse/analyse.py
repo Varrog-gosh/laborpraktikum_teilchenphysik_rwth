@@ -3,7 +3,7 @@
 from treeTools import *
 from tools import *
 
-def getMass( dataTree, mcTree, cut, save, variable = 'el_et' ):
+def getMass( dataTree, mcTree, cut, save, variable ):
 	nBins = 20
 	firstBin = 80
 	lastBin = 90
@@ -32,6 +32,20 @@ def getMass( dataTree, mcTree, cut, save, variable = 'el_et' ):
 	gr.Draw("ap")
 	gr.Fit('pol2','q')
 	gr.GetFunction('pol2').SetParNames("a", "b", "c")
+
+	# draw cut as text
+	from ROOT import TPaveText
+	text = TPaveText(0.2, 0.85, .8, .95, 'ndc')
+	text.SetFillStyle(0)
+	text.SetBorderSize(0)
+	from re import sub
+	niceVariable = sub('el_et', 'E_{T}', variable )
+	niceVariable = sub('mwt', 'm_{T}', variable )
+	text.AddText( "Benutzte Variable: " + niceVariable )
+	text.AddText( prettifySelection( cut ) )
+	text.Draw()
+
+
 	if save:
 		can.SaveAs('template.pdf')
 	else:
@@ -47,7 +61,7 @@ def getMass( dataTree, mcTree, cut, save, variable = 'el_et' ):
 	except:
 		e_mass = 0
 
-	return mass, e_mass,0.0 #wert, err_mass (stat.), err_mass (sys.)
+	return mass, e_mass, 0.5 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):
@@ -111,7 +125,7 @@ def getxsNC (xs,err_xs_stat,err_xs_sys):
 	from math import sqrt
 	xs3,exs3 = 2.58,0.09
 	eci = 0.09
-	
+
 	ci = 2./3
 	xs2 = ci * xs3
 	exs2 = sqrt(xs3**2 * ci**2 * eci**2 + ci**2 * exs3**2)
@@ -133,18 +147,15 @@ if (__name__ == "__main__"):
 	parser = ArgumentParser()
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
-	parser.add_argument("-c", "--cut", dest="cut", default="1", help="Cuts applied to all structures" )
+	parser.add_argument("-c", "--cut", dest="cut", default="met > 18.14 && el_et > 19.68", help="Cuts applied to all structures" )
 	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
-	parser.add_argument("-p", "--plots", dest="plots", default=['met', 'el_et','mwt'], nargs ="+",
-			help="Distribution which should be plotted")
+	parser.add_argument("-p", "--plots", dest="plots", default= "mwt")
 
 	opts = parser.parse_args()
 	import Styles # official cms style
 	style = Styles.tdrStyle()
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
-	if "all" in opts.plots:
-		opts.plots = histo_settings().keys()
 
 	#cut = 'met>18.14&& el_et > 19.68'# && mwt/el_et > 1.8'
 	cut = 'met>18.14&& el_et > 19.68'
@@ -154,7 +165,7 @@ if (__name__ == "__main__"):
 	print 'Mass =  ',
 	printError(m, e_m, unit = 'GeV')
 	print
-	xs,err_xs_stat,err_xs_sys = getXs(dataTree,mcTree,opts.plots[0],opts.cut)
+	xs,err_xs_stat,err_xs_sys = getXs(dataTree,mcTree,opts.plots,opts.cut)
 	print "Crosssection: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
 	print "Theory Crossection: σ = %.2f \pm %.2f nb"%(2.58,0.09)
 	print "The Crossection deviates %f standard deviations from the theoretical value "%Compare_val(xs,err_xs_stat,err_xs_sys,2.58,0.09)
