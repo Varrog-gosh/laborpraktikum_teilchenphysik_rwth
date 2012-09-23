@@ -195,7 +195,7 @@ wird in Zukunft gefordert, dass $\met > \SI{30}{GeV}$ sein muss. Im Bild links u
 Verteilung der transversalen Elektronenergie und die Grenze, ab der Daten und Simulation hier
 übereinstimmen. Zuletzt wird rechts unten wieder $m_T$ gezeigt.
 
-\begin{figure}[htb]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=.49\textwidth]{mwt1tau.pdf}
 	\includegraphics[width=.49\textwidth]{met1tau.pdf}\\
@@ -333,10 +333,11 @@ von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m
 eine W Masse von 
 
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
-Der Wirkungsquerschnitt einer Reaktion lässt sich theoretisch aus der Anzahl gemessener Ereignisse und der 
-integriereten Luninosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
-muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$ bzw. hier $\epsilon \cdot corr$ 
-korregiert werden (siehe \ref{effizienz}).hierbei wird nur $corr$ als fehlerbehaftet angenommen, $\epsilon$ dagegen wegen der hohen Statistik 
+Der Wirkungsquerschnitt einer Reaktion lässt sich aus der Anzahl gemessener Ereignisse und der
+integrierten Luminosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
+muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$ bzw. hier $\epsilon \cdot corr$
+korrigiert werden (siehe Abschnitt \ref{effizienz}).
+Hierbei wird nur $corr$ als fehlerbehaftet angenommen, $\epsilon$ dagegen wegen der hohen Statistik
 als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ wurde bestimmt zu :
 \begin{align*}
 	\sigma = \frac{N_\text{selected}}{\epsilon \cdot corr \cdot \mathcal{L}_\text{int}} = xx \pm \SI{ex}{nb}
@@ -346,27 +347,27 @@ Der berechnete Wert weicht $xx\sigma$ (hier Standardabweichungen) vom Literaturw
 
 \subsection{Bestimmung des Farbfaktors}
 Der im letzten Abschnitt benutzte theoretische Wert für den Wirkungsquerschnitt geht von einem Farbfaktor von $N_{\textsl{C}}=3$ aus, die
-Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen 
+Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen
 Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen (\textbf{pdf})für verschiedene Werte
 von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
-zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die 
-NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den 
+zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die
+NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den
 Wirkungsquerschnitt abzuschätzen:
 Mit dem von Richard J. Gonsalves et al. entwickelten Fortran Programm qt \cite{qtsite} ist es möglich totale W/Z  Wirkungsquerschnitte
- zu berechnen. Das Programm führt NLO Rechnungen aus und es kann dabei zwischen einer Reihe von pdfs gewählt werden, es wurde genau wie beim
- DØ Experiment \cite{Abachi:1996ey} das CTEQ6.1 pdf set von uns verwendet. Da es im Rahmen dieses Versuchs nicht möglich war das Programm
- soweit zu verstehen, dass der in \cite{versuchsanleitung} angegebene Wert von $\sigma$ für $N_{\textsl{C}}=3$ reproduziert werden konnte, haben
- wir uns zunächst darauf beschränkt den Einfluss auf den Wirkungsquerschnitt bei Variation innerhalb der Ergebnisse des Programms zu bestimmen.
- Dabei zeigt sich das der zunächst angenommene Zusammenhang:
-  \begin{align*}
-	  \sigma (N_{\textsl{C}}= i) = \frac{j}{i} \sigma (N_{\textsl{C}}= j) = c_{i,j} \sigma
-  \end{align*}
-in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$ 
+zu berechnen. Das Programm führt NLO Rechnungen aus und es kann dabei zwischen einer Reihe von pdfs gewählt werden, es wurde genau wie beim
+DØ Experiment \cite{Abachi:1996ey} das CTEQ6.1 pdf set von uns verwendet. Da es im Rahmen dieses Versuchs nicht möglich war das Programm
+soweit zu verstehen, dass der in \cite{versuchsanleitung} angegebene Wert von $\sigma$ für $N_{\textsl{C}}=3$ reproduziert werden konnte, haben
+wir uns zunächst darauf beschränkt den Einfluss auf den Wirkungsquerschnitt bei Variation innerhalb der Ergebnisse des Programms zu bestimmen.
+Dabei zeigt sich das der zunächst angenommene Zusammenhang:
+\begin{align*}
+	\sigma (N_{\textsl{C}}= i) = \frac{j}{i} \sigma (N_{\textsl{C}}= j) = c_{i,j} \sigma
+\end{align*}
+in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$
 ca. $4\% $. Im Folgenden werden die alternativen Wirkungsquerschnitte aus dem Literaturwert für $\sigma $ und den $c_{i,j}$ berechnet,
 wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in qt beobachteten, relativen Abweichungen behandelt wird.
- Die Abweichungen zwischen Messungund Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung 
- von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch 
- nicht innerhalb von $3\sigma$ ausgeschloßen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
+Die Abweichungen zwischen Messung und Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung
+von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch
+nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
 
 \begin{table}
 	\centering
@@ -381,13 +382,13 @@ wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in q
 	\label{tab:color}
 \end{table}
 
-     
+
 \subsection{Bestimmung des Weinbergwinkel}
-Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie die
-,vor der Symmetriebrechung durch den Higgsmechanismus masselosen,Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung 
-mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, direkt mit dem Masseverhältnis der massiven Eichbosonen W und Z verknüpft.
+Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie
+die, vor der Symmetriebrechung durch den Higgsmechanismus masselosen, Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung
+mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, direkt mit dem Massenverhältnis der massiven Eichbosonen W und Z verknüpft.
 Mit der aus \cite{versuchsanleitung} entnommenen Z-Masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
- sich für den Weinbergwinkel:
+sich für den Weinbergwinkel:
 \begin{align*}
 	sin\left(\theta_{W}\right)^{2} = 1 - cos\left(\theta_{W}\right)^{2} = 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} = xx \pm \SI{ex}{nb}
 \end{align*}
@@ -395,35 +396,35 @@ Die systematischen und statistischen Fehler auf $m_{w}$ werden zur Bestimmung de
 Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden das es sich bei \ref{form:wein} um eine
 Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des Weltmittelwert berücksichtigen noch Strahlungskorrekturen aus höheren
 Ordnungen, dieser Unterschied wird gemäß der Beschreibung in \cite{versuchsanleitung} durch einen Korrekturfaktor von $corr_{strahlung}=1.06$
-berücksichtigt. Der Vergleich von korrigiertem und Weltmittelwert 
+berücksichtigt. Der Vergleich von korrigiertem und Weltmittelwert
 \begin{align*}
 	sin(\theta_{W})_{korrigiert}^{2} = xx \pm \SI{ex}{nb} \vspace{1cm} sin(\theta_{W,Welt})^{2} = xx \pm \SI{ex}{nb}
 \end{align*}
-zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $xx\sigma$ vom Literaturwert mit diesem 
-innerhalb von $3\sigma$ kompatibel ist.Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen 
+zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $xx\sigma$ vom Literaturwert mit diesem
+innerhalb von $3\sigma$ kompatibel ist.Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen
 Toleranzbereich bestätigen.
 \subsection{Bestimmung der W-Zerfallsbreite}
-Die Zerfallsbreite des W-Boson wird mit Hilfe von Formel \ref{form:width} bestimmt. Für die konkrete berechnung
+Die Zerfallsbreite des W-Boson wird mit Hilfe von Formel \ref{form:width} bestimmt. Für die konkrete Berechnung
  wurden $\alpha = \frac{1}{128}$ und $N_{\textsl{C}}=3$ verwendet und als fehlerfrei angenommen, $sin(\theta_{W})^{2} $
- wird in \ref{form:width} durch $corr_{strahlung}\cdot(1-(\frac{mw}{mz})^{2}$ ersetzt und die statistischen und 
+ wird in \ref{form:width} durch $corr_{strahlung}\cdot(1-(\frac{mw}{mz})^{2}$ ersetzt und die statistischen und
  systematischen Fehler auf $m_{W}$ und $m_{Z}$ werden als unabhängige Fehlerquellen für das Ergebnis fortgepflanzt. Für 
  einen Vergleich mit den Literaturwerten muss die gemessene W-Breite nach \cite{versuchsanleitung} mit einem Korrekturfaktor
  von $corr_{HO}=1.09 \pm 0.01$ multipliziert werden um das fehlen höherer Ordnungen in der Rechnung zu berücksichtigen, der
  Fehler auf diesen Korrekturfaktor wurde bei der Fehlerfortpflanzung ebenfalls als zusätzliche systematisch Fehlerquelle
  berücksichtigt.Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
  \begin{align*}
-	Γ_{W,korrigiert} = xx \pm \SI{ex}{GeV} 
+	Γ_{W,korrigiert} = xx \pm \SI{ex}{GeV}
 \end{align*}
 Dieser Wert weicht $xx\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von $Γ_{W,theo} = xx \pm \SI{10}{GeV}$
 ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 \section{Diskussion der systematischen Unsicherheiten}
-In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am beispiel vom Tevatron diskutiert 
-und mit denenan Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszusand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen 
+In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
+und mit denen am Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
 nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
-Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonsich) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.  
-Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in 
+Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.
+Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in
 \cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
-berachtet die beide Kollidertypen betrifft:
+betrachtet die beide Kollidertypen betrifft:
 
 \begin{itemize}
 	\item \textbf{Luminosität:} \\

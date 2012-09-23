@@ -40,6 +40,11 @@ def chi2comparison( dataTree, mcTree, cut, variable ):
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
 	chi2min = func.Eval( mass )
 	eff = efficiency( mcTree, cut )
+	print chi2min,  eff
+	from math import sqrt
+	from tools import printError
+	print mass, func.GetParameter(2), func.GetParameter(1), func.GetParameter(0)
+	printError( mass, sqrt(1. / func.GetParameter(2)) )
 
 	# to avoid unphysical values
 	if mass < masses[0] or mass > masses[-1]:
@@ -48,7 +53,6 @@ def chi2comparison( dataTree, mcTree, cut, variable ):
 		eff = 0.5
 
 	del datahist, gr, x, y, func
-	print chi2min,  eff
 	return chi2min
 
 
@@ -69,5 +73,6 @@ def minimizeChi2( dataTree, mcTree ):
 mcTree = readTree( "mc_all_new.root/MCTree" )
 dataTree = readTree( "d0_new.root/MessTree" )
 
-minimizeChi2( dataTree, mcTree)
+#minimizeChi2( dataTree, mcTree)
 
+chi2comparison( dataTree, mcTree, "met>30 && el_et>25 &&met/el_et>1.7", "el_et" )
