@@ -106,6 +106,27 @@ def getWidth (mw, err_mw_stat, err_mw_sys ):
 	err_gamma_sys = 3./4*alpha * sqrt ( ( (1+mr2)/(1-mr2)**2 * err_mw_sys )**2 + ( 2*mr2*mw/mz/(1-mr2)**2 * err_mz_sys )**2 )
 	return gamma,err_gamma_stat,err_gamma_sys
 
+def getxsNC (xs,err_xs_stat,err_xs_sys):
+	from math import sqrt
+	xs3,exs3 = 2.58,0.09
+	eci = 0.09
+	
+	ci = 2./3
+	xs2 = ci * xs3
+	exs2 = sqrt(xs3**2 * ci**2 * eci**2 + ci**2 * exs3**2)
+	eci = 0.04
+	ci = 4./3
+	xs4 = ci * xs3
+	exs4 = sqrt(xs3**2 * ci**2 * eci**2 + ci**2 * exs3**2)
+	return [[2,3,4],[xs2,xs3,xs4],[exs2,exs3,exs4]]
+
+def CompareNC (xs,err_xs_stat,err_xs_sys):
+	theo = getxsNC(xs,err_xs_stat,err_xs_sys)
+	print "measured: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
+	for i in range(len(theo[0])):
+		print "theory: \n Nc = %d σ = %.2f \pm %.2f/ nb"%(theo[0][i],theo[1][i],theo[2][i])
+		print "%.2f standard deviations between theory and measurement"%Compare_val(xs,err_xs_stat,err_xs_sys, theo[1][i], theo[2][i])
+
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
@@ -125,7 +146,7 @@ if (__name__ == "__main__"):
 		opts.plots = histo_settings().keys()
 
 	#cut = 'met>18.14&& el_et > 19.68'# && mwt/el_et > 1.8'
-	cut = 'met>18.14&& el_et > 25'
+	cut = 'met>18.14&& el_et > 19.68'
 	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, variable = 'mwt' )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
@@ -146,3 +167,5 @@ if (__name__ == "__main__"):
 	print ""
 	print 'W-Width: Γ = %.4f \pm %.4f (stat.) \pm %.4f (sys.)'%(gamma,err_gamma_stat,err_gamma_sys)
 	print "Width deviates %f standard deviations from the theoretical value "%Compare_val(gamma,err_gamma_stat,err_gamma_sys, 2.085, 0.042)
+
+	CompareNC(xs,err_xs_stat,err_xs_sys)
