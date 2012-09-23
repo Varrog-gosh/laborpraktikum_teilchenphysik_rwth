@@ -172,7 +172,7 @@ in Abhängigkeit der Anzahl ursprünglich generierter Monte Carlo (\textbf{MC}) 
 \begin{align*}
 	\textsl{w}= \frac{\sigma \mathcal{L}_{int}}{N_{gen}} \cdot 0.9
 \end{align*}
-skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine , im Vergleich zum realen Detektor,
+skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine, im Vergleich zum realen Detektor,
 zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der MC Ereignisse berücksichtigt.
 
 \subsection{Selektion der Daten}
@@ -248,9 +248,9 @@ Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{G
 \subsection{Bestimmung der Effizienz}
 \label{effizienz}
 Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
-$\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "wahren" W-Ereignisse nicht selektiert bzw. gemessen wurden.
-Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der
-,durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
+$\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "`wahren"' W-Ereignisse nicht selektiert bzw. gemessen wurden.
+Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der,
+durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
 Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
 \begin{align*}
 	\epsilon = \frac{N_{selected}}{N_{gen}} = 0.xx
@@ -269,7 +269,7 @@ in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel
 Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 
-\subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
+\subsection{Verbessern der Selektionskriterien und Bestimmung der Fehler}
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
 auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
 bestimmt, die das minimale $χ²$ der Template Methode minimieren.
@@ -294,6 +294,17 @@ auf $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch
 	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
 	\label{tab:variation}
 \end{table}
+
+% starke abhängigkeit des fehlers von intervall von mwt /el_et
+% fehler steigt bei größeren nbins mwt: met> 37, et>35:
+% nbins fehler
+% 20	0.4
+% 100	0.88
+% 200	1.3
+% wert selbst hängt nur schwach von bereich ab
+% bei änderung der schnitte um 5: fehler ändernt sich von 0.4 -> 1.1
+% bei änderung der schnitte um 5: wert ändern sich nur um 0.1
+
 
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 Um die Unsicherheiten besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
@@ -324,7 +335,7 @@ schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 	\label{fig:verhaeltnis}
 \end{figure}
 
-Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation}, und man
+Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation} und man
 erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
 Mit den selben Selektionsgrenzen wie bei der Template Methode von $m_T$ passen die Verteilungen von
@@ -425,7 +436,7 @@ In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbes
 und mit denen am Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
 nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
 Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.
-Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in
+Die benutzten Angaben beziehen sich, soweit nicht anders angegeben, auf die Analysen in
 \cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
 betrachtet die beide Kollidertypen betrifft:
 
