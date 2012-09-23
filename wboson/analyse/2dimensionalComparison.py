@@ -25,13 +25,14 @@ def create2DHistoFromTree(tree, variable, weight, nBinsX, xmin, xmax, nBinsY, ym
 	result.SetTitle( title )
 	return result
 
-def plot2D( variable, cut ):
+def plot2D( variable, cut, save ):
 	mcTree = readTree( "mc_all_new.root/MCTree" )
 	dataTree = readTree( "d0_new.root/MessTree" )
 
 	from ROOT import TCanvas, TLegend
 	can = TCanvas( randomName(), '2d', 800, 1000 )
-	can.SetBatch()
+	if save:
+		can.SetBatch()
 	can.Divide(1,2)
 	can.cd(1)
 	xn = 200
@@ -57,15 +58,20 @@ def plot2D( variable, cut ):
 	mchist2D.Draw("colz")
 	can.cd(2)
 	datahist2D.Draw("colz")
-	from re import sub
-	can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')
+	if save:
+		from re import sub
+		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')
+	else:
+		can.Update()
+		raw_input()
 	can.Close()
 
 from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument("-c", "--cut", dest="cut", default="", help="Cuts applied to all structures" )
 parser.add_argument("-p", "--plots", default="mwt:el_et" )
+parser.add_argument("--save", action = "store_true", default=False )
 opts = parser.parse_args()
 
-plot2D( opts.plots, opts.cut )
+plot2D( opts.plots, opts.cut, opts.save )
 
