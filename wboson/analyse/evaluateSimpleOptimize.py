@@ -30,6 +30,6 @@ for i in range( len(data[0] ) ):
 		h.SetBinContent( h.FindBin( data[0][i]), h.FindBin(data[1][i]), data[2][i] )
 
 ROOT.gStyle.SetOptStat(0)
-h.SetTitle("#chi^{2}/NDF;met cut; et cut")
+h.SetTitle("#chi^{2}/NDF;#slash{E}_{T} Grenze; E_{T} Grenze")
 h.Draw("colz")
 raw_input()
