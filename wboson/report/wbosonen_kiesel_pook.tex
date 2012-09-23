@@ -310,7 +310,7 @@ sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 
 
 Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
-auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt bei
+auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt auf $E_T$ bei
 $\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $M_T$ zu $E_T$
 schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 
@@ -343,21 +343,51 @@ als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow 
 \end{align*}
 Der berechnete Wert weicht $xx\sigma$ (hier Standardabweichungen) vom Literaturwert $\sigma_{theo}=2.58 \pm \SI{0.09}{nb}$
 \cite{versuchsanleitung} ab und ist somit innerhalb von $ 3\sigma$ mit diesem kompatibel.
+
 \subsection{Bestimmung des Farbfaktors}
 Der im letzten Abschnitt benutzte theoretische Wert für den Wirkungsquerschnitt geht von einem Farbfaktor von $N_{\textsl{C}}=3$ aus, die
 Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen 
-Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen für verschiedene Werte
+Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen (\textbf{pdf})für verschiedene Werte
 von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
 zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die 
-NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden.
- Ein berechnen mit Software von theoretikern scheitert daran , dass die Vollidioten im Jahr 2012 immernoch mit
-Fortranprogammen rum hantieren!
+NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den 
+Wirkungsquerschnitt abzuschätzen:
+Mit dem von Richard J. Gonsalves et al. entwickelten Fortran Programm qt \cite{qtsite} ist es möglich totale W/Z  Wirkungsquerschnitte
+ zu berechnen. Das Programm führt NLO Rechnungen aus und es kann dabei zwischen einer Reihe von pdfs gewählt werden, es wurde genau wie beim
+ DØ Experiment \cite{Abachi:1996ey} das CTEQ6.1 pdf set von uns verwendet. Da es im Rahmen dieses Versuchs nicht möglich war das Programm
+ soweit zu verstehen, dass der in \cite{versuchsanleitung} angegebene Wert von $\sigma$ für $N_{\textsl{C}}=3$ reproduziert werden konnte, haben
+ wir uns zunächst darauf beschränkt den Einfluss auf den Wirkungsquerschnitt bei Variation innerhalb der Ergebnisse des Programms zu bestimmen.
+ Dabei zeigt sich das der zunächst angenommene Zusammenhang:
+  \begin{align*}
+	  \sigma (N_{\textsl{C}}= i) = \frac{j}{i} \sigma (N_{\textsl{C}}= j) = c_{i,j} \sigma
+  \end{align*}
+in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$ 
+ca. $4\% $. Im Folgenden werden die alternativen Wirkungsquerschnitte aus dem Literaturwert für $\sigma $ und den $c_{i,j}$ berechnet,
+wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in qt beobachteten, relativen Abweichungen behandelt wird.
+ Die Abweichungen zwischen Messungund Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung 
+ von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch 
+ nicht innerhalb von $3\sigma$ ausgeschloßen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
+
+\begin{table}
+	\centering
+	\begin{tabular}{c| c |c }
+		$N_{\textsl{C}}$ & $\sigma$ [nb] &$\Delta\sigma$ \\
+		\hline
+		2 &  $1.72 \pm 0.17$ & $2.55\sigma$ \\
+		3 &  $2.58 \pm 0.09$ & $0.75\sigma$ \\
+		4 &  $3.44 \pm 0.18$ & $1.11\sigma$ \\
+	\end{tabular}
+	\caption{Vergleich der Abweichung (in Standardabweichungen $\sigma$) von gemessenem Wirkungsquerschnitt und theoretisch erwartetem für $N_{\textsl{C}}= 2,3,4$}
+	\label{tab:color}
+\end{table}
+
+     
 \subsection{Bestimmung des Weinbergwinkel}
 Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie die
 ,vor der Symmetriebrechung durch den Higgsmechanismus masselosen,Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung 
 mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, direkt mit dem Masseverhältnis der massiven Eichbosonen W und Z verknüpft.
-Mit der aus \cite{versuchsanleitung} entnommenen Z-masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
- sich fürden Weinbergwinkel:
+Mit der aus \cite{versuchsanleitung} entnommenen Z-Masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
+ sich für den Weinbergwinkel:
 \begin{align*}
 	sin\left(\theta_{W}\right)^{2} = 1 - cos\left(\theta_{W}\right)^{2} = 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} = xx \pm \SI{ex}{nb}
 \end{align*}
@@ -389,8 +419,8 @@ ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am beispiel vom Tevatron diskutiert 
 und mit denenan Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszusand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen 
-nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion zur Massenbestimmung genutzt \cite{Achard:2005qy}
-und hierbei die Zerfallskanäle $W+W \rightarrow qql\nu$ und $W+W \rightarrow qqqq\nu$ genutzt.  
+nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
+Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonsich) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.  
 Die benutzten Angaben beziehen sich ,soweit nicht anders angegeben, auf die Analysen in 
 \cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
 berachtet die beide Kollidertypen betrifft:
@@ -404,7 +434,20 @@ berachtet die beide Kollidertypen betrifft:
 	im laufe der Betriebszeit von Werten $ > 10%$ bis auf $ 6.1%$ verbessert. Bei LEP konnte die Luminosität mit einer Unsicherheit von weniger
 	als $0.1%$ bestimmt werden, dazu wird der Wirkungsquerschnitt für die Bhabba-Streuung mit kleinem Winkel gemessen. Dieser QED-Prozess
 	wird durch den t-Kanal bestimmt und lässt sich theoretisch sehr genau berechnen.
-	\item \textbf{Luminosität:} \\
+	\item \textbf{Elektron Energie Bestimmung:} \\
+	Abgesehen vom rein hadronischen Zerfallskanal bei LEP benutzen beide Experimente die gemesse Energie eines Elektron um die W-Masse zu bestimmen
+	Hierbei gibt es neben den limitierungen des Auflösungsvermögen noch weitere Unsicherhieten aus dem korrekten bestimmen der Energieskala.
+	Die Einflüsse dieser Fehlerquellen liegen bei LEP bei wenigen MeV und bei DØ ca. 70 MeV.
+	\item \textbf{Jet Energie Bestimmung:} \\
+	In allen Zerfallskanälen spielt die Bestimmung von Jetenergien direkt oder indirekt bei der Berechnung von \met eine wichtige Rolle. Bei der 
+	Bestimmung der Jrtenergie spielen diverse Faktoren wie die Wahl des Jet-Algorithmus,Pileup bei DØ(also Endzustände die in einer anderen Wechselwirkung
+	als der harten entstehen) und die schlechtere Energieauflösung des hadronischen Kalorimeters führen zu einer Unsicherheit auf $m_{W}$ von 
+	ca $\SI{65}{MeV}$ bei DØ und $\SI{20}{MeV}$ bei LEP.
+	\item \textbf{Hintergrund:}
+	Insbesondere die Zerfallskanäle mit leptonischem Anteil besitzten, vor allem durch $\tau$ Zerfälle irreduzible Hintergründe bzw. im Fall
+	des hadronischen Zerfallskanal bei LEP eine Reihe von Untergrundprozessen mit Experimentell schwer trennbarer Signatur. DØ beziffert seine 
+	Unsicherheit auf die W Masse mit $\SI{35}{MeV}$ und LEP auf $\SI{20}{MeV}$ für den semi-leptonischen und $\SI{50}{MeV}$ für den hadronischen
+	Zerfallskanal
 	
 \end{itemize}
 
