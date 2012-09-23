@@ -59,10 +59,11 @@ def getXs(dataTree,mcTree,variable,cut):
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
 	nBins = 10 # default value
-	ngen = 1164699
+	ngen = 1164699.
 	mcHisto = createHistoFromTree( mcTree, variable, cut, nBins, xlow, xhigh )
-	n_after_cut = mcHisto.GetEntries()
+	n_after_cut = 1.*mcHisto.GetEntries()
 	eff = n_after_cut / ngen
+	print "Efficiency: %.3f" %eff
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	n_obs = dataHisto.GetEntries()
 	lumi = 198e3
