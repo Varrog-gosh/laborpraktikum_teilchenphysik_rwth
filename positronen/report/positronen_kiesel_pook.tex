@@ -535,7 +535,10 @@ einer Rückdiffusion der Positronen aus dem Material aus bei dem ein anschließe
 Die Analyse für Aluminium wird mit den gleichen Methoden wie für Polyethylen durchgeführt, wenn auch für die
 Beschreibung der Methoden auf Kapitel \ref{cap:poly} verwiesen wird.
 \subsection{Zwei lineare Anpassungen}
-Es werden in den linearen Bereichen zwei Geraden angepasst, wie man in Abbildung 
+Es werden in den linearen Bereichen zwei Geraden angepasst, wie man in Abbildung
+\ref{fig:dualLinearFitalu} sehen kann. Durch das Variieren der Anpassungsbereiche erhält man
+die Zeitkonstanten und ihre Fehler in Tabelle \ref{tab:linearAlu}, die leicht größer als die
+Zeitkonstanten bei Polyethylen sind.
 \begin{figure}
 	\includegraphics[width=.5\textwidth]{linearFitalu0.pdf}
 	\includegraphics[width=.5\textwidth]{linearFitalu1.pdf}
@@ -559,9 +562,12 @@ Es werden in den linearen Bereichen zwei Geraden angepasst, wie man in Abbildung
 	\caption{Ergebnisse für die Lebensdauer von Positronen in Aluminium mit zwei linearen
 		Geradenanpassungen. Da die Werte nicht miteinander vereinbar sind, wird der Mittelwert und
 	RMS für die Werte bestimmt.}
-	\label{tab:linearPoly}
+	\label{tab:linearAlu}
 \end{table}
+\FloatBarrier
+
 \subsection{Globale Anpassung an Faltungsfunktion}
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=\textwidth]{../analyse/globalFitalu2.pdf}
