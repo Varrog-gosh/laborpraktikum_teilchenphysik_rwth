@@ -73,10 +73,11 @@ def getXs(dataTree,mcTree,variable,cut):
 	xhigh = settings[variable]["xmax"]
 	title = settings[variable]["title"]
 	nBins = 10 # default value
-	ngen = 1164699
+	ngen = 1164699.
 	mcHisto = createHistoFromTree( mcTree, variable, cut, nBins, xlow, xhigh )
-	n_after_cut = mcHisto.GetEntries()
+	n_after_cut = 1.*mcHisto.GetEntries()
 	eff = n_after_cut / ngen
+	print "Efficiency: %.3f" %eff
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	n_obs = dataHisto.GetEntries()
 	lumi = 198e3
@@ -156,7 +157,9 @@ if (__name__ == "__main__"):
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
-	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, opts.plots )
+	#cut = 'met>18.14&& el_et > 19.68'# && mwt/el_et > 1.8'
+	cut = 'met>18.14&& el_et > 19.68'
+	m, e_m,e_m_sys = getMass( dataTree, mcTree, cut, opts.save, variable = 'mwt' )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
 	print 'Mass =  ',

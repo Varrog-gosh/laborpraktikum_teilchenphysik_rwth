@@ -148,7 +148,7 @@ definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird, wird $\met$ 
 benutzt. Da nur die transversalen Komponenten von Elektron und Neutrino verwendet werden, kann auch
 nur die invariante transversale Masse der Leptonen und damit des W Bosons berechnet werden.
 \begin{align*}
-	m_T = 2E_T\met\left( 1-\cos(Δ_{e,ν}) \right)\footnotemark
+	m_T = \sqrt{2E_T\met\left( 1-\cos(Δ_{e,ν})} \right)\hspace{0.3cm}\footnotemark
 \end{align*}
 \footnotetext{Da die beobachteten transversalen Elektronenergien größer als einige $GeV$ sind, wird
 im Folgenden die Elektronmasse vernachlässigt.}
@@ -165,10 +165,10 @@ Abstand des Vertices zum Ursprung, der Polarwinkel $φ$ oder die Elektronisolati
 beschrieben werden.
 
 \subsubsection*{Normierung der simulierten Daten}
-Die Simulierten Daten müssen um einen Vergleich mit den gemessenen Daten zu ermöglichen auf die 
+Die Simulierten Ereignisse müssen, um einen Vergleich mit den gemessenen Daten zu ermöglichen, auf die 
 integrierte Luminosität der Daten von $\mathcal{L}_{int}=198 \pm \SI{20}{pb^{-1}}$ normiert werden. 
-Dazu werden die Daten nach den Vorgaben aus \cite{versuchsanleitung},
-in abhängigkeit der ursprünglich generierten Monte Carlo (\textbf{MC}) Ereignissen $N_{gen}$, mit einem Faktor:
+Dazu werden die Monte Carlo Sample, nach den Vorgaben aus \cite{versuchsanleitung},
+in abhängigkeit der Anzahl ursprünglich generierter Monte Carlo (\textbf{MC}) Ereignisse $N_{gen}$, mit einem Faktor:
 \begin{align*}
 	\textsl{w}= \frac{\sigma \mathcal{L}_{int}}{N_{gen}} \cdot 0.9
 \end{align*}
@@ -176,7 +176,7 @@ skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine , im Verglei
 zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der MC Ereignisse berücksichtigt.
 
 \subsection{Selektion der Daten}
-Da nicht alle aufgezeichneten Ereignisse den zu untersuchendem Prozess zugrunde liegen, müssen die
+Da nicht alle aufgezeichneten Ereignisse dem zu untersuchendem Prozess zugrunde liegen, müssen die
 Daten gefiltert werden, möglichst ohne viele richtige Ereignisse zu verlieren. Es werden nur
 Elektronen betrachtet, deren Schauer wie eine elektromagnetische und nicht wie eine hadronische
 Kaskade aussieht. Zu dem Schauer muss sich auch in kleinem Abstand eine Spur im Tracker befinden.
@@ -264,8 +264,8 @@ Korrekturfaktor $0.9\pm0.1$ abgeschätzt (Es handelt sich dabei um den gleichen 
 verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsicherheiten der Simulation
 beinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehenend erklärt, eine genauere Beschreibung
 ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
-den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
-in denen auch Elektronen und Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit \& Miss" Methode die Nachweiseffizienz bestimmen. Auf Grund
+den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
+in denen auch Elekronen oder Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss" Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 \subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
@@ -350,24 +350,24 @@ Der im letzten Abschnitt benutzte theoretische Wert für den Wirkungsquerschnitt
 Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen
 Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen (\textbf{pdf})für verschiedene Werte
 von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
-zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die
-NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den
+zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die 
+NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den 
 Wirkungsquerschnitt abzuschätzen:
 Mit dem von Richard J. Gonsalves et al. entwickelten Fortran Programm qt \cite{qtsite} ist es möglich totale W/Z  Wirkungsquerschnitte
-zu berechnen. Das Programm führt NLO Rechnungen aus und es kann dabei zwischen einer Reihe von pdfs gewählt werden, es wurde genau wie beim
-DØ Experiment \cite{Abachi:1996ey} das CTEQ6.1 pdf set von uns verwendet. Da es im Rahmen dieses Versuchs nicht möglich war das Programm
-soweit zu verstehen, dass der in \cite{versuchsanleitung} angegebene Wert von $\sigma$ für $N_{\textsl{C}}=3$ reproduziert werden konnte, haben
-wir uns zunächst darauf beschränkt den Einfluss auf den Wirkungsquerschnitt bei Variation innerhalb der Ergebnisse des Programms zu bestimmen.
-Dabei zeigt sich das der zunächst angenommene Zusammenhang:
-\begin{align*}
-	\sigma (N_{\textsl{C}}= i) = \frac{j}{i} \sigma (N_{\textsl{C}}= j) = c_{i,j} \sigma
-\end{align*}
-in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$
+ zu berechnen. Das Programm führt NLO Rechnungen aus und es kann dabei zwischen einer Reihe von pdfs gewählt werden, es wurde genau wie beim
+ DØ Experiment \cite{Abachi:1996ey} das CTEQ6.1 pdf set von uns verwendet. Da es im Rahmen dieses Versuchs nicht möglich war das Programm
+ soweit zu verstehen, dass der in \cite{versuchsanleitung} angegebene Wert von $\sigma$ für $N_{\textsl{C}}=3$ reproduziert werden konnte, haben
+ wir uns zunächst darauf beschränkt den Einfluss auf den Wirkungsquerschnitt bei Variation innerhalb der Ergebnisse des Programms zu bestimmen.
+ Dabei zeigt sich das der zunächst angenommene Zusammenhang:
+  \begin{align*}
+	  \sigma (N_{\textsl{C}}= i) = \frac{j}{i} \sigma (N_{\textsl{C}}= j) = c_{i,j} \sigma
+  \end{align*}
+in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$ 
 ca. $4\% $. Im Folgenden werden die alternativen Wirkungsquerschnitte aus dem Literaturwert für $\sigma $ und den $c_{i,j}$ berechnet,
 wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in qt beobachteten, relativen Abweichungen behandelt wird.
-Die Abweichungen zwischen Messung und Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung
-von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch
-nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
+ Die Abweichungen zwischen Messungund Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung 
+ von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch 
+ nicht innerhalb von $3\sigma$ ausgeschloßen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
 
 \begin{table}
 	\centering
@@ -382,7 +382,7 @@ nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschlie�
 	\label{tab:color}
 \end{table}
 
-
+     
 \subsection{Bestimmung des Weinbergwinkel}
 Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie
 die, vor der Symmetriebrechung durch den Higgsmechanismus masselosen, Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung
@@ -451,7 +451,7 @@ betrachtet die beide Kollidertypen betrifft:
 	für den hadronischen Zerfallskanal.
 	\item \textbf{Monte Carlo Simulation}\\
 	Bei der Simulation der Messung treten neben der offensichtlichen statistischen Unsicherheit durch die Anzahl generierter Ereignsisse noch
-	theoretische Unsicherheiten insbesondere bei der phönomenologisch bestimmten berechnung der Hadronisation, bei der nicht pertubativ berechenbare
+	theoretische Unsicherheiten insbesondere bei der phänomenologisch bestimmten Berechnung der Hadronisation, bei der nicht pertubativ berechenbare
 	QCD Therme auftreten. 
 \end{itemize}
 Neben diesen gemeinsamen Unsicherheiten bei beiden Experimenten soll hier noch jeweils eine der nur für eins der Experimente relevanten
@@ -462,9 +462,20 @@ systematische Unsicherheit angeführt werden:
 	Impulsanteil der einzelnen Partonen am Gesammtimpuls des Hadron kann nicht pertubativ berechnet werdne und muss deshalb aus Messungen bestimmt
 	werden. Die sich darraus ergebnden Unsicherheiten auf die tatsächliche Schwerpunksenergie im $qq$ System der harten Wechselwirkung stellt eine
 	schwer reduzierbare limitierung der Genauigkeit dar und wirkt sich bei DØ mit einer Unsicherheit von $\SI{65}{MeV}$ auf die W-Masse aus
-	\item {Wechselwirkung der }
+	\item {Wechselwirkung der hadronischen Endzustände}
+	Die Wechselwirkung der hadronischen Endzuständen in den Jets des hadronischen Endzustand lässt sich in zwei Effekte unterteilen die jeweils
+	theoretisch noch nicht ausreichend verstanden sind: \\
+	Der Effekt der sog. "Colour reconnection" beschreibt den Austausch von Farbladungen zwischen
+	den aus dem $W\rightarrow q+\bar{q}$ Zerfall entstehenden Jets im laufe der Hadronisation und erzeugt eine Unsicherheit von $\SI{38}{MeV}$
+	und ist damit die dominierende systematische Unsicherheit für den hadronischen Zerfallskanal.\\
+	Bose Einstein Korrelationen beschreiben die Tendenz von Teilchen mit ganzzahligem Spin eine auf Quantenstatistischen Effekten beruhende Clusterung
+	durchzuführen. Dabei treten z.B. nicht nur Korrelationen zwischen identischen Teilchen wie neutralen Pionen auf sondern auch Effekte zwischen
+	unterschiedlich geladenen Pionen, da die Gesamtwellenfunktion auch Anteile einer anhillation in 2 neutrale pionen oder photonen beeinhalten, die 
+	wiederum der Bose-Einstein Korrelation unterleigen. Dise theoretischen Unsicherheit ist bei L3 mit einem Einfluss von $\SI{17}{MeV}$ auf die W-Masse
+	einer der dominaten Effekte.
 \end{itemize} 
-
+Als Ergebnis dieses Vergleich lässt sich festhalten das die systematischen Unsicherheiten an Elektron-Positron Kollidern wesentlich geringer sind als 
+bei Hadronkollidern. Die Vorteile durch die Möglichkeit die Schwerpunktsenergie und Luminosität genau zu bestimmen kann der Hadronkollider nur schwer ausgleichen.
 
 \bibliographystyle{plain}
 \bibliography{citebib}{}
