@@ -3,7 +3,7 @@
 from treeTools import *
 from tools import *
 
-data = readFile('save.dat')
+data = readFile('chi2minimization.dat')
 import ROOT
 
 xmin = min( data[0] ) -0.5
@@ -17,16 +17,17 @@ nx = data[0].count( data[0][0] )
 ny = data[1].count( data[1][0] )
 xmin = 14.5
 xmax = 45.5
-nx = int(xmin -xmax)
+nx = int(xmax -xmin)
 ymin = xmin
 ymax = xmax
 ny = nx
 
-
 h = ROOT.TH2D('blub', "name", nx, xmin, xmax, ny, ymin, ymax )
 for i in range( len(data[0] ) ):
-	if data[2][i] > 0:
-		h.SetBinContent( h.FindBin( data[0][i]), h.FindBin(data[1][i]), data[2][i]-1 )
+	if data[2][i]  > 0:
+		if data[2][i] > 1.5:
+			data[2][i] = 1.5
+		h.SetBinContent( h.FindBin( data[0][i]), h.FindBin(data[1][i]), data[2][i] )
 
 ROOT.gStyle.SetOptStat(0)
 h.SetTitle("#chi^{2}/NDF;met cut; et cut")
