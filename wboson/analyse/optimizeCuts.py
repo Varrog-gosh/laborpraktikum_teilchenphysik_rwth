@@ -7,11 +7,14 @@ def efficiency( tree, cut ):
 	return 1. * cuttree.GetEntries() / tree.GetEntries()
 
 
-def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
-	print  cut,
-	nBins = 20
+def chi2comparison( dataTree, mcTree, cut, variable ):
+	print  cut, ':   ',
+	nBins = 100
 	firstBin = 80
 	lastBin = 90
+	if variable == 'el_et':
+		firstBin  = 30
+		lastBin = 55
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
 	datahist.Scale( 1./datahist.Integral() )
 
@@ -37,22 +40,29 @@ def chi2comparison( dataTree, mcTree, cut, variable = 'mwt' ):
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
 	chi2min = func.Eval( mass )
 	eff = efficiency( mcTree, cut )
-	var = chi2min / eff
-	print chi2min, eff, var
 
-	del datahist, gr, x, y, func
 	# to avoid unphysical values
 	if mass < masses[0] or mass > masses[-1]:
-		return 1000
-	return var
+		chi2min = 3
+	if eff < 0.5:
+		eff = 0.5
+
+	del datahist, gr, x, y, func
+	print chi2min,  eff
+	return chi2min
+
 
 def minimizeChi2( dataTree, mcTree ):
-	#chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2]), variable = 'mwt')
-	#p0 = [ 9.25914050724, 20.4546624238,1.6014176026]
-	chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1]), variable = 'mwt')
-	#p0 = [ 18.146, 19.68 ]
-	p0 = [ 30, 30 ]
 	from scipy import optimize
+	variable = 'mwt'
+	variable = 'el_et'
+	if variable == 'el_et':
+		chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{} && mwt/el_et >{}".format( p[0], p[1], p[2] ), variable )
+		p0 = [ 20, 20, 1.7 ]
+	if variable == 'mwt':
+		chi2 = lambda p: chi2comparison( dataTree, mcTree, "met>{} && el_et>{}".format( p[0], p[1] ), variable )
+		p0 = [ 18.146, 19.68 ]
+		# p0 = [ 30, 30 ]
 	cuts = optimize.fmin( chi2, p0, xtol = 1)
 	print cuts
 

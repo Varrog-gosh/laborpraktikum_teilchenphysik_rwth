@@ -14,9 +14,16 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	for entry in [ mcE, mcTau ]:
 		entry.Scale( 0.9 / 1164699 * 198 * 2580 )
-	print "Number of W->eν events: %d"%mcE.GetEntries()
-	print "Number of W->τν events: %d"%mcTau.GetEntries()
-	print "Ratio: ", 1.* mcTau.GetEntries() / mcE.GetEntries()
+	#print "Number of W->eν events: %d"%mcE.GetEntries()
+	#print "Number of W->τν events: %d"%mcTau.GetEntries()
+	print "N_τ / N_e: ", 1.* mcTau.GetEntries() / mcE.GetEntries()
+
+	# normalize histograms
+	if False:
+		dataHisto.Scale( 1. / dataHisto.Integral() )
+		mcTau.Scale( 1./mcTau.Integral()*mcTau.GetEntries() / mcE.GetEntries() )
+		mcE.Scale( 1./mcE.Integral()*mcTau.GetEntries() / mcE.GetEntries() )
+
 
 	from ROOT import TCanvas,THStack, TPaveText, TLegend, TLine
 	stack = THStack ("stack","W#rightarrowe#nu")
