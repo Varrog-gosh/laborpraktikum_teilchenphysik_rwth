@@ -29,7 +29,7 @@ def chi2comparison( dataTree, mcTree, cut, variable ):
 		mchist.Scale( 1./mchist.Integral() )
 		#mchist.Draw("hist")
 		#datahist.Draw("same, hist")
-		chi2ndf = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf") # ndf = nBins + 1, but why?
+		chi2ndf = datahist.Chi2Test( mchist, "ww,p,chi2/ndf") # ndf = nBins + 1, but why?
 		y.append( chi2ndf )
 		del mchist
 	gr = TGraph(len(masses), x,y)
@@ -76,4 +76,4 @@ dataTree = readTree( "d0_new.root/MessTree" )
 
 #minimizeChi2( dataTree, mcTree)
 
-chi2comparison( dataTree, mcTree, "met>30 && el_et>25 &&met/el_et>1.7", "el_et" )
+chi2comparison( dataTree, mcTree, "met>30 && el_et>25", "mwt" )
