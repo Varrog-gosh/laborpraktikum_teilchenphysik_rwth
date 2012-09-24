@@ -16,8 +16,8 @@ def extendTree( filename, treename, correction_et = 0 ,correction_met = 0):
 	oldfile = ROOT.TFile( filename, "update" )
 	oldtree = oldfile.Get( treename )
 	nameEnding = '_new.root'
-	#~ if correction_et != 0 or correction_met != 0:
-		#~ nameEnding = '_new' + str(correction_et) +'met' +str(correction_met)+ '.root'
+	if correction_et != 0 or correction_met != 0:
+		nameEnding = '_new' + str(correction_et) +'met' +str(correction_met)+ '.root'
 	newfile = ROOT.TFile( filename.split('.')[0] + nameEnding, "recreate")
 	# clone tree
 	newtree = oldtree.CloneTree(0)
@@ -63,10 +63,10 @@ def extendTree( filename, treename, correction_et = 0 ,correction_met = 0):
 	newfile.Close()
 
 extendTree( "d0.root", "MessTree" ,0,0)
-#~ extendTree( "d0.root", "MessTree", 2,0 )
-#~ extendTree( "d0.root", "MessTree", -2 ,0)
-#~ extendTree( "d0.root", "MessTree", 0,2 )
-#~ extendTree( "d0.root", "MessTree", 0,-2)
+extendTree( "d0.root", "MessTree", 2,0 )
+extendTree( "d0.root", "MessTree", -2 ,0)
+extendTree( "d0.root", "MessTree", 0,2 )
+extendTree( "d0.root", "MessTree", 0,-2)
 
 extendTree( "mc_all.root", "MCTree" )
 #~ extendTree( "mc_all.root", "MCTree" , -2) # energy correction in %

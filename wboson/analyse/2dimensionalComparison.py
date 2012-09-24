@@ -29,7 +29,7 @@ def plot2D( variable, cut, save ):
 	mcTree = readTree( "mc_all_new.root/MCTree" )
 	dataTree = readTree( "d0_new.root/MessTree" )
 
-	from ROOT import TCanvas, TLegend
+	from ROOT import TCanvas, TLegend,TLine
 	can = TCanvas( randomName(), '2d', 800, 1000 )
 	if save:
 		can.SetBatch()
@@ -37,6 +37,14 @@ def plot2D( variable, cut, save ):
 	can.cd(1)
 	xn = 200
 	yn = 200
+	
+	line1 = TLine()
+	line2 = TLine()
+	for line in (line1,line2):
+		line.SetLineWidth(2)
+		line.SetLineStyle(9)
+		line.SetLineColor(2)
+		
 	if variable == 'mwt:el_et':
 		xmin = 10
 		xmax = 70
@@ -56,8 +64,13 @@ def plot2D( variable, cut, save ):
 	print datahist2D.GetCorrelationFactor()
 	datahist2D.SetTitle('Daten')
 	mchist2D.Draw("colz")
+	#~ line1.DrawLine(30,11,30,78)
+	#~ line2.DrawLine(11,30,78,30)
 	can.cd(2)
 	datahist2D.Draw("colz")
+
+	#~ line1.DrawLine(30,11,30,78)
+	#~ line2.DrawLine(11,30,78,30)
 	if save:
 		from re import sub
 		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')

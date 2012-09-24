@@ -268,6 +268,7 @@ und bleibt innerhalb des statistischen Fehlers.
 
 
 \subsection{Systematische Fehler bei der W-Massenbestimmung}
+\label{sysunc}
 Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
 addiert.
 \subsubsection*{Energieskala von $E_{T}$}
@@ -290,7 +291,7 @@ Wahl der transversalen Energieskala zu $0.3MeV$ bestimmt.
 \subsubsection*{Energieskala von $\met$}
 Analog zum vorherigen Abschnitt wird nun auch die fehlende transversale $\met$ um $2\%$  variiert. Die Wahl dieser Abweichung wird dadurch begründet, dass
 die Selektion hoch energetische Jets ausschließt und in der Berechnung $\met = - \sum \vec{E}_{T}$ die Unsicherheit einen dominanten Anteil spielt.
-Die Ergebnisse der Variation sind in Tabelle \ref{tabsysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
+Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
 Wahl der Energieskala der fehlenden transversalen Energieskala zu $0.3MeV$ bestimmt.
 \begin{table}[h]
 	\centering
@@ -301,8 +302,8 @@ Wahl der Energieskala der fehlenden transversalen Energieskala zu $0.3MeV$ besti
 		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
 		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
 	\end{tabular}
-	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
-	\label{tab:syset}
+	\caption{Verschiebung der fehlenden transveralen Elektronenenergieskala um $2\%$}
+	\label{tab:sysmet}
 \end{table}
 \subsubsection*{Variation der Selektionsgrenzen}
 Um den Einfluss der gewählten Selektionsgrenzen zu bestimmen, werden diese um $\SI{5}{GeV}$
@@ -332,13 +333,13 @@ W Massenbestimmung:
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{correlation_metVSel_et.pdf}
-	\caption{Grafische Darstellung der Korrelation zwischen $E_{T}$ und $\met$}
+	\caption{Grafische Darstellung der Korrelation zwischen $E_{T}$ und $\met$ mit in rot eingezeichneten Selektionsgrenzen}
 	\label{fig:etVSmet}
 \end{figure}
 
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
-Um die Unsicherheiten besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
-die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Template Methode die Masse
+Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu überprüfen wird zusätzlich
+die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Template Methode die W Masse
 berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E_T$ stark korreliert
 sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 \begin{figure}[htb]
@@ -354,7 +355,7 @@ sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 
 Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
 auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt auf $E_T$ bei
-$\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $M_T$ zu $E_T$
+$\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $m_T$ zu $E_T$
 schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 
 \begin{figure}[htb]
@@ -373,18 +374,40 @@ für $E_{T}$ eine wesentlich schwächere Übereinstimmung zwischen Daten und Sim
 im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.5\textwidth]{E_t_aftercut.pdf}
-	\includegraphics[width=0.5\textwidth]{E_t_aftercut_peak.pdf}
-	\caption{$E_{T}$ Verteilung nach der Selektion. Die gesamte Verteilung (links) und ein Zoom auf das Maximum des Peak (rechts) }
+	\includegraphics[width=1\textwidth]{E_t_aftercut.pdf}
+	\includegraphics[width=1\textwidth]{E_t_aftercut_peak.pdf}
+	\caption{$E_{T}$ Verteilung nach der Selektion. Die gesamte Verteilung (oben) und ein Zoom auf das Maximum des Peak (unten) }
 	\label{fig:etaftercut}
 \end{figure}
 
-
-Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ . Um bessere Ergebnisse zu erzielen, wird der
-noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt sich ein $χ²/\text{NDF}$
-von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
-eine W Masse von
-
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{templateet.pdf}
+	\caption{Ergebnis der Template Methode zur Bestimmung der W Masse für einen Vergleich der $E_{T}$ Verteilung}
+	\label{fig:chiet}
+\end{figure}
+Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ (siehe Abbildung \ref{fig:chiet}, d.h. der durch die Methode bestimmte statistische Fehler wird
+die tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
+wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen um das $χ²/\text{NDF}$ näher an 1 zu bringen. Die Bestimmung der systematischen Fehler erfolgt analog zu
+Abschnitt \ref{sysunc}. Es ergeben sich systematische Abweichungen von $\SI{0.1}{GeV}$ für die Wahl der Selektionsgrenzen (siehe Tabelle \ref{tab:variation_et}), $\SI{0.24}{GeV}$
+für die Variation von $\met$ und $\SI{4.1}{GeV}$ für die Variation von $E_{T}$, der Einfluss der Variation von $E_{T}$ ist wie erwartet sehr groß.
+Die Alternative Berechnung liefert für die W-Masse:
+\begin{align*}
+	m_W = ( 80.44 ± 0.28 (stat.)± 4.34 (sys.)) \si{GeV}
+\end{align*}
+Ist also im Rahmen der angegebenen Fehler mit den Ergebnissen der Template Methode für $m_{T}$ vereinbar. 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c| c c c}
+		$E_{T} \backslash \met$ & 25 & 30 & 35 \\
+		\hline
+		25 &  & 80.44 & \\
+		30 & 80.49 & 80.44 & 80.5 \\
+		35 &  & 80.63 &
+	\end{tabular}
+	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
+	\label{tab:variation_et}
+\end{table}
 \section{Bestimmung der Effizienz}
 \label{effizienz}
 Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
@@ -556,7 +579,12 @@ systematische Unsicherheit angeführt werden:
 \end{itemize}
 Als Ergebnis dieses Vergleich lässt sich festhalten das die systematischen Unsicherheiten an Elektron-Positron Kollidern wesentlich geringer sind als
 bei Hadronkollidern. Die Vorteile durch die Möglichkeit die Schwerpunktsenergie und Luminosität genau zu bestimmen kann der Hadronkollider nur schwer ausgleichen.
-
+\section{Fazit}
+Die im Rahmen dieses Versuchs bestimmten größen sind alle im Rahmen ihrer Fehler zu den aktuellen Literaturwerten kompatibel. Die abgeschätzten Fehler
+bewegen sich in der gleichen Größenordnung, wie in \cite{Abachi:1996ey}. Die ausgewerteten Daten zeigen also keine Abweichungen zur Theorie der 
+elektro-schwachen Wechselwirkung. Die Durchführung hat uns einen interessanten Einblick in die Methodik und Limitierungen der W-Massenbestimmung bei
+Hadronkollidern erlaubt. 
+keine
 \bibliographystyle{plain}
 \bibliography{citebib}{}
 \end{document}
