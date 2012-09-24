@@ -5,11 +5,16 @@ from tools import *
 
 def getMass( dataTree, mcTree, cut, save, variable ):
 	nBins = 20
-	firstBin = 80
-	lastBin = 90
+	if variable=="mwt":
+		firstBin = 80
+		lastBin = 90
+		affix = ""
+	else:
+		firstBin = 30
+		lastBin = 100
+		affix = "et"
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
 	datahist.Scale( 1./datahist.Integral() )
-
 	from ROOT import TGraph, TCanvas
 	from array import array
 	can = TCanvas( randomName(), "template", 1400, 800 )
@@ -25,7 +30,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
 		mchist.Scale( 1./mchist.Integral() )
 		datahist.SetTitle( ';'+cut)
-		chi2ndf = datahist.Chi2Test( mchist, "WW,of,uf,chi2/ndf")
+		chi2ndf = datahist.Chi2Test( mchist, "WW,chi2/ndf")
 		y.append( chi2ndf )
 	gr = TGraph(len(masses), x,y)
 	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
@@ -47,7 +52,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 
 
 	if save:
-		can.SaveAs('template.pdf')
+		can.SaveAs('template'+affix+'.pdf')
 	else:
 		can.Update()
 		raw_input()
@@ -158,7 +163,7 @@ if (__name__ == "__main__"):
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
-	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, variable = 'mwt' )
+	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, opts.plots )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
 	print 'Mass =  ',
