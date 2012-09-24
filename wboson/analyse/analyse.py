@@ -12,9 +12,9 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 
 	from ROOT import TGraph, TCanvas
 	from array import array
+	can = TCanvas( randomName(), "template", 1400, 800 )
+	can.cd()
 	if save:
-		can = TCanvas( randomName(), "template", 1400, 800 )
-		can.cd()
 		can.SetBatch()
 
 	x = array('d')
@@ -49,6 +49,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 	if save:
 		can.SaveAs('template.pdf')
 	else:
+		can.Update()
 		raw_input()
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
@@ -61,7 +62,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 	except:
 		e_mass = 0
 
-	return mass, e_mass, 0.5 #wert, err_mass (stat.), err_mass (sys.)
+	return mass, e_mass, 0.78 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):
@@ -147,7 +148,7 @@ if (__name__ == "__main__"):
 	parser = ArgumentParser()
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
-	parser.add_argument("-c", "--cut", dest="cut", default="met>25.0 && el_et > 25.0", help="Cuts applied to all structures" )
+	parser.add_argument("-c", "--cut", dest="cut", default="met > 30 && el_et > 30", help="Cuts applied to all structures" )
 	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default= "mwt")
 
@@ -177,6 +178,6 @@ if (__name__ == "__main__"):
 	print "Angle(corrected) deviates %f standard deviations from the theoretical value "%Compare_val(sin2_wein*1.06,err_sin2_wein_stat*1.06,err_sin2_wein_sys*1.06, 0.2397, 0.0013)
 	print ""
 	print 'W-Width: Γ = %.4f \pm %.4f (stat.) \pm %.4f (sys.)'%(gamma,err_gamma_stat,err_gamma_sys)
-	print "Width deviates %f standard deviations from the theoretical value "%Compare_val(gamma,err_gamma_stat,err_gamma_sys, 2.085, 0.042)
+	print "Width deviates %f standard deviations from the theoretical value "%Compare_val(gamma,err_gamma_stat,err_gamma_sys, 2.141, 0.041)
 
 	CompareNC(xs,err_xs_stat,err_xs_sys)
