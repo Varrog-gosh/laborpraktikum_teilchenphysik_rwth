@@ -270,6 +270,38 @@ Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 
 \subsection{Verbessern der Selektionskriterien und Bestimmung der Fehler}
+Da die Selektionsgrenzen recht willkürlich gesetzt werden und bis jetzt nur auf eine simulierte
+Masse optimiert werden, kann es von nutzen sein, die Bestimmung der Selektionsgrenzen zu optimieren.
+
+Da das skalieren der Simulierten Daten einen großen Fehler mit sich bringt und auch nach dem
+skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
+normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme benutzen
+muss\cite{cramer1999mathematical}.
+Beim Optimieren muss darauf geachtet werden, dass in den einzelnen Bins der Verteilung genug
+Einträge sind (mehr als 9), damit man die poissonverteilten Einträge in eine Gaußverteilung 
+übergehen und man den Fehler als Quadratwurzel der Einträge benutzen kann. Außerdem verringert man
+somit die relative Gewichtung von Bins mit zu wenig Einträgen.
+
+Eine Schwierigkeit besteht weiterhin in dem Wählen der Anzahl der Bins sowie den verwendeten
+Bereich. Im Allgemeinen steigen die Fehler auf die Masse mit der Anzahl Bins, wie man in Tabelle
+\ref{tab:massenFehlerBin} sehen kann.
+
+\begin{table}
+	\begin{tabular}{l|ccc}
+		#Bins & 20 & 100 & 200\\
+		\hline
+		$σ_M [GeV]$ & 0.40 & 0.88 & 1.3
+	\end{tabular}
+	\caption{Steigend des Fehlers der Masse mit wachsender Anzahl Bins. Hier dient $m_T$ als
+		Vergleichsgröße mit den Einschränkungen $\met>37 GeV$ und $E_{T} > 35 GeV$.}
+	\label{tab:massenFehlerBin}
+\end{table}
+
+
+
+
+
+
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
 auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
 bestimmt, die das minimale $χ²$ der Template Methode minimieren.
