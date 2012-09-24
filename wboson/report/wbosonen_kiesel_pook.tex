@@ -267,6 +267,29 @@ ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würd
 den aufgezeichneten Daten zu bestimmen. Hierfür werden meisstens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt 
 in denen auch Elekronen oder Neutrinos entstehen. Dann lässt sich z.B. mit der "Hit & Miss" Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
+\subsection{Systematische Fehler bei der W-Massenbestimmung}
+Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
+addiert.
+\subsubsection*{Energieskala von $E_{T}$}
+Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
+dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
+W Masse Erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
+Wahl der transversalen Energieskala zu $0.3MeV$ bestimmt.
+\subsubsection*{Energieskala von $MET$}
+
+\begin{table}
+	\centering
+	\begin{tabular}{c| c c c}
+		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
+		\hline
+		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
+		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
+		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
+	\end{tabular}
+	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
+	\label{tab:syset}
+\end{table}
+
 \subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
 auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
@@ -300,8 +323,8 @@ berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E
 sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.49\textwidth]{correlation_mwtVSel_et.pdf}
-	\includegraphics[width=.49\textwidth]{correlation_mwtVSel_etmwt_el_et>1_7.pdf}
+	\includegraphics[width=.49\textwidth]{correlation.pdf}
+	\includegraphics[width=.49\textwidth]{correlationmwt_el_et>1_7.pdf}
 	\caption{Korrelation zwischen $E_T$ und $m_T$ in der Simulation und in Daten, ohne Selektion
 	(links) und mit einer Einschränkung auf das Verhältnis (rechts). Mehr zu dieser Grenze siehe
 	unten.}
