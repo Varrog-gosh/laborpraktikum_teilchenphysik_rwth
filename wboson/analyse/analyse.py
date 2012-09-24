@@ -148,7 +148,7 @@ if (__name__ == "__main__"):
 	parser = ArgumentParser()
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
-	parser.add_argument("-c", "--cut", dest="cut", default="met > 25 && el_et > 25", help="Cuts applied to all structures" )
+	parser.add_argument("-c", "--cut", dest="cut", default="met > 30 && el_et > 30", help="Cuts applied to all structures" )
 	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default= "mwt")
 

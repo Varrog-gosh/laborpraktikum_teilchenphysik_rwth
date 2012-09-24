@@ -17,6 +17,8 @@
 \setlength{\unitlength}{\textwidth}
 \def\graphheight{0.15}
 \def\graphwidth{.4}
+
+% feynmf with pdflatex compability
 \DeclareGraphicsRule{*}{mps}{*}{}
 
 % missing transverse energy
@@ -120,6 +122,7 @@ $θ_W$ genannt, berechnen:
 In dem Versuch werden die Masse des Z Bosons $m_Z$ sowie die Feinstrukturkonstante $α$ als gegeben
 vorausgesetzt.
 
+
 \section{Bestimmung der Masse des W Bosons}
 Im Detektor kann die W Masse nicht direkt gemessen werden, sondern nur manche Tochterteilchen. In
 dem hier untersuchtem Prozess sind dies ein leichtes geladenes Lepton $e$
@@ -189,7 +192,8 @@ Hierzu werden die simulierten und gemessenen Daten in normierte Histogrammen üb
 und die Unterschiede durch geeignete Schnitte versucht zu verringert. Ziel ist vor allem eine gute
 Übereinstimmung in $m_T$, da daraus die Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
 wird in Abbildung \ref{fig:abschaetzung} veranschaulicht. Links oben sieht man die transversale
-invariante Masse ohne Einschränkungen. Rechts oben sieht man die Verteilung der transversalen
+invariante Masse ohne Einschränkungen. Die Verteilungen von Daten und Simulation unterscheiden sich
+noch deutlich. Rechts oben sieht man die Verteilung der transversalen
 fehlenden Energie. Da Daten und Simulation rechts der gezeichneten Linie gut übereinander stimmen,
 wird in Zukunft gefordert, dass $\met > \SI{30}{GeV}$ sein muss. Im Bild links unten sieht man die
 Verteilung der transversalen Elektronenergie und die Grenze, ab der Daten und Simulation hier
@@ -200,7 +204,7 @@ Verteilung der transversalen Elektronenergie und die Grenze, ab der Daten und Si
 	\includegraphics[width=.49\textwidth]{mwt1tau.pdf}
 	\includegraphics[width=.49\textwidth]{met1tau.pdf}\\
 	\includegraphics[width=.49\textwidth]{el_etmet>30tau.pdf}
-	\includegraphics[width=.49\textwidth]{mwtmet>30&&el_et>25tau.pdf}
+	\includegraphics[width=.49\textwidth]{mwtmet>30&&el_et>30tau.pdf}
 	\caption{Abschätzung der Selektionsgrenzen mit Vergleich von Daten und Simulation. In Blau ist
 	der $τ$ Untergrund eingezeichnet. Die Simulation wird hier mit der generierten W Masse von
 	$\SI{80.3946}{GeV}$ erzeugt.}
@@ -212,18 +216,45 @@ zerfällt nach sehr kurzer Zeit wieder in ein $e + ν_e + ν_τ$. Da man die Neu
 Messen kann sondern nur die fehlende Energie, die durch alle Neutrinos zusammen verursacht wird,
 kann man diese Ereignisse kaum Filtern, sondern muss den Untergrund über Simulationsvergleiche
 abschätzen. Während am Anfang der Anteil der $τ$ Ereignisse noch 8.8\% beträgt, sind es nach beiden
-Schnitten 1.4\%.
+Schnitten 1.1\%.
+
+Da die wahre W-Masse unbekannt ist, kann man die Schnitte noch auf andere simulierte Datensätze
+optimieren. Es folgt ein Fehler auf die Schnitte von $\SI{5}{GeV}$.
+
+Der Versuch auf die Elektronenisolation, den Abstand des Primärvertex oder ähnliche Variablen zu
+schneiden wird aufgegeben, da es dort sehr schwer ist die Simulation und die Daten übereinander zu
+bringen. Dies liegt unter anderem an der oben Beschriebenen schlechten Generation der Simulation.
+Die gewählten Schnitte sorgen für ein gutes Übereinander stimmen von Daten und Simulation, ohne dass
+die Effizient zu niedrig wird.
 
 \subsection{Template Methode zur Bestimmung der W Masse}
-Um die W Masse zu bestimmen, wird die Template Methode benutzt.
-Die Verteilung von $m_T$ wird für jede simulierte W Masse mit den Daten verglichen und die
-Übereinstimmung der Histogramme durch die $χ²$ Methode bestimmt. Trägt man nun für jede simulierte
-Masse das $χ²/\text{NDF}$ wie in Abbildung \ref{fig:template} auf, so erhält man eine Parabel.
+Zuerst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
+
+Da das skalieren der Simulierten Daten einen großen Fehler mit sich bringt und auch nach dem
+skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
+normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme benutzen
+muss\cite{cramer1999mathematical}.
+Weiterhin müssen in einem Bin genug
+Einträge sein (mehr als 9), damit man die poissonverteilten Einträge in eine Gaußverteilung 
+übergehen und man den Fehler als Quadratwurzel der Einträge benutzen kann. Außerdem verringert man
+somit die relative Gewichtung von Bins mit zu wenig Einträgen.
+
+
+
+Eine Schwierigkeit besteht weiterhin in dem Wählen der Anzahl der Bins sowie den verwendeten
+Bereich. Im Allgemeinen steigt das $χ²$ mit zunehmender Anzahl Bins. Die Anzahl der Bins wird auf
+20 gesetzt, da dort der statistische Fehler klein ist, die Struktur der Verteilung aber nicht
+verloren geht. Der Bereich wird möglichst groß gewählt, ohne dabei Bins mit weniger als 10 Einträge
+mitzunehmen.
+
+Trägt man nun für jede simulierte Masse das $χ²/\text{NDF}$ aus dem Vergleich zwischen der
+Verteilung von $m_T$ von
+Simulation und den Daten auf, erhält man wie in Abbildung \ref{fig:template} zu sehen eine Parabel.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{template.pdf}
-	\caption{Template Methode mit den Bedingung $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{GeV}$. Die gesuchte W Masse befindet sich im Minimum der Parabel, da dort
+	\caption{Template Methode mit den Bedingung $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{GeV}$. Die gesuchte W Masse befindet sich im Minimum der Parabel, da dort
 		das $χ²/\text{NDF}$ minimal ist.}
 	\label{fig:template}
 \end{figure}
@@ -234,38 +265,19 @@ Graphen in Abbildung \ref{fig:template} deshalb eine Parabel an und bestimmt der
 Fehler sowie das $χ^2/\text{NDF}$ der Anpassung sind nicht von Bedeutung, da die Punkte keine
 Fehler besitzen nur ein ROOT interner Standardfehler gesetzt wird.
 
-Der Fehler auf die W Masse ergibt sich aus der Abweichung vom Minimum beim Erhöhen des
+Da das Minimum der Parabel nahe $1$ liegt, ergibt sich der statistische Fehler der W Masse aus der Abweichung vom Minimum beim Erhöhen des
 $χ²/\text{NDF}$ um $1$.
 
 Wenn man eine Parabel der Form $a + bx + cx²$ anpasst, erhält man somit $m_w = -\frac{b}{2c} ±
 \frac{1}{\sqrt{c}}$.
-Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{GeV}$
+Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{GeV}$
 \begin{align*}
-	m_W =  ( 80.3 ± 0.3 ) \si{GeV}.
+	m_W =  ( 80.36 ± 0.25  ) \si{GeV}.
 \end{align*}
 
-\subsection{Optimieren der Selektionskriterien }
-Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
-auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
-bestimmt, die das minimale $χ²$ der Template Methode minimieren.
-Um eine Annäherung an die triviale Lösung von zwei leeren Histogrammen zu vermeiden, wird zusätzlich
-die Effizienz maximiert. Man erhält als optimale Lösung $\met> \SI{18.1}{GeV}$ und $E_{T} >
-\SI{19.7}{GeV}$. Die W Masse ändert sich dadurch auf
-\begin{align*}
-	m_W = ( 80.53 ± 0.24 ) \si{GeV}
-\end{align*}
-und bleibt innerhalb des statistischen Fehlers. 
-
-% starke abhängigkeit des fehlers von intervall von mwt /el_et
-% fehler steigt bei größeren nbins mwt: met> 37, et>35:
-% nbins fehler
-% 20	0.4
-% 100	0.88
-% 200	1.3
-% wert selbst hängt nur schwach von bereich ab
-% bei änderung der schnitte um 5: fehler ändernt sich von 0.4 -> 1.1
-% bei änderung der schnitte um 5: wert ändern sich nur um 0.1
-
+Beim Variieren der Selektionsgrenzen, des Vergleichbereichs und der Anzahl Bins ändert sich der
+eigentliche Wert der W Masse kaum, wohl aber der statistische Fehler. Er wird deshalb mit einer
+Unsicherheit von $^{+0.8}_{-0.05}\si{GeV}$ abgeschätzt.
 
 \subsection{Systematische Fehler bei der W-Massenbestimmung}
 Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
