@@ -244,54 +244,7 @@ Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{25}{G
 	m_W =  ( 80.3 ± 0.3 ) \si{GeV}.
 \end{align*}
 
-
-\subsection{Bestimmung der Effizienz}
-\label{effizienz}
-Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
-$\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "`wahren"' W-Ereignisse nicht selektiert bzw. gemessen wurden.
-Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der,
-durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
-Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
-\begin{align*}
-	\epsilon = \frac{N_{selected}}{N_{gen}} = 0.xx
-\end{align*}
-Dabei werden hier die MC-Sample natürlich nicht auf die Luminosität normiert bevor die Schnitte, zur Bestimmung von $N_{selected}$, durchgeführt
-werden.
-Es ist dabei zu beachten, dass die so berechnete Effizienz davon ausgeht das die Nachweiseffizienz für simulierte und gemessene
-Daten gleich ist. Man geht also davon aus das die Simulation die Detektoreigenschaften perfekt abbildet. Die Unterschiede in der
-Nachweiseffizienz zwischen Simulation und Daten werden im Folgenden,nach Versuchsanleitung \cite{versuchsanleitung} durch einen
-Korrekturfaktor $0.9\pm0.1$ abgeschätzt (Es handelt sich dabei um den gleichen Faktor der auch schon bei der Normierung der simulierten Daten
-verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsicherheiten der Simulation
-beinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehend erklärt, eine genauere Beschreibung
-ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
-den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt
-in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel mit der "`Hit \&
-Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
-der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
-\subsection{Systematische Fehler bei der W-Massenbestimmung}
-Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
-addiert.
-\subsubsection*{Energieskala von $E_{T}$}
-Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
-dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
-W Masse Erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
-Wahl der transversalen Energieskala zu $0.3MeV$ bestimmt.
-\subsubsection*{Energieskala von $MET$}
-
-\begin{table}
-	\centering
-	\begin{tabular}{c| c c c}
-		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
-		\hline
-		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
-		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
-		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
-	\end{tabular}
-	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
-	\label{tab:syset}
-\end{table}
-
-\subsection{Optimieren der Selektionskriterien und Fehler durch Variation der Selektionsgrenzen}
+\subsection{Optimieren der Selektionskriterien }
 Da die Selektionsgrenzen recht willkürlich gesetzt werden und die Optimierung der Selektionsschnitte
 auf andere simulierte W Massen untersucht werden sollen, werden neue Grenzen für $\met$ und $E_{T}$
 bestimmt, die das minimale $χ²$ der Template Methode minimieren.
@@ -301,21 +254,7 @@ die Effizienz maximiert. Man erhält als optimale Lösung $\met> \SI{18.1}{GeV}$
 \begin{align*}
 	m_W = ( 80.53 ± 0.24 ) \si{GeV}
 \end{align*}
-und bleibt innerhalb des statistischen Fehlers. Wenn man diese Selektionsgrenzen um $\SI{5}{GeV}$
-variiert, ergeben sich die Verschiebungen in Tabelle \ref{tab:variation}, mit denen der Fehler
-auf $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch addiert werden.
-\begin{table}
-	\centering
-	\begin{tabular}{c| c c c}
-		$E_{T} \backslash \met$ & 15 & 20 & 25 \\
-		\hline
-		15 &  & 80.89 & \\
-		20 & 79.94 & 80.60 & 80.53 \\
-		25 &  & 80.19 &
-	\end{tabular}
-	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
-	\label{tab:variation}
-\end{table}
+und bleibt innerhalb des statistischen Fehlers. 
 
 % starke abhängigkeit des fehlers von intervall von mwt /el_et
 % fehler steigt bei größeren nbins mwt: met> 37, et>35:
@@ -327,6 +266,75 @@ auf $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch
 % bei änderung der schnitte um 5: fehler ändernt sich von 0.4 -> 1.1
 % bei änderung der schnitte um 5: wert ändern sich nur um 0.1
 
+
+\subsection{Systematische Fehler bei der W-Massenbestimmung}
+Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
+addiert.
+\subsubsection*{Energieskala von $E_{T}$}
+Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
+dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
+W Masse Erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
+Wahl der transversalen Energieskala zu $0.3MeV$ bestimmt.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c| c c c}
+		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
+		\hline
+		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
+		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
+		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
+	\end{tabular}
+	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
+	\label{tab:syset}
+\end{table}
+\subsubsection*{Energieskala von $\met$}
+Analog zum vorherigen Abschnitt wird nun auch die fehlende transversale $\met$ um $2\%$  variiert. Die Wahl dieser Abweichung wird dadurch begründet, dass
+die Selektion hoch energetische Jets ausschließt und in der Berechnung $\met = - \sum \vec{E}_{T}$ die Unsicherheit einen dominanten Anteil spielt.
+Die Ergebnisse der Variation sind in Tabelle \ref{tabsysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
+Wahl der Energieskala der fehlenden transversalen Energieskala zu $0.3MeV$ bestimmt.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c| c c c}
+		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
+		\hline
+		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
+		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
+		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
+	\end{tabular}
+	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
+	\label{tab:syset}
+\end{table}
+\subsubsection*{Variation der Selektionsgrenzen}
+Um den Einfluss der gewählten Selektionsgrenzen zu bestimmen, werden diese um $\SI{5}{GeV}$
+variiert. Es ergeben sich die Verschiebungen in Tabelle \ref{tab:variation}, mit denen der systematisch Fehler
+auf die W Masse zu $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichungen quadratisch addiert werden.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c| c c c}
+		$E_{T} \backslash \met$ & 15 & 20 & 25 \\
+		\hline
+		15 &  & 80.89 & \\
+		20 & 79.94 & 80.60 & 80.53 \\
+		25 &  & 80.19 &
+	\end{tabular}
+	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
+	\label{tab:variation}
+\end{table}
+\subsubsection*{Kombination der systematischen Fehlerquellen}
+Das Berechnen des systematischen Gesamtfehler geschieht in 2 Schritten:
+die Unsicherheiten auf $E_{T}$ und $\met$ sind, wie in Abbildung \ref{fig:etVSmet} zu erkennen ist, stark korreliert (Korrelationskoeffizient $0.85$)
+und werden deshalb zunächst linear addiert. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
+als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch addiert. Damit ergibt sich als abschließendes Ergebnis der 
+W Massenbestimmung:
+\begin{align*}
+	m_W = ( 80.53 ± 0.24 (stat.) ± 0.78(sys.)) \si{GeV}
+\end{align*}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{correlation_metVSel_et.pdf}
+	\caption{Grafische Darstellung der Korrelation zwischen $E_{T}$ und $\met$}
+	\label{fig:etVSmet}
+\end{figure}
 
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 Um die Unsicherheiten besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
@@ -367,6 +375,30 @@ noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt
 von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
 eine W Masse von
 
+\section{Bestimmung der Effizienz}
+\label{effizienz}
+Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
+$\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "`wahren"' W-Ereignisse nicht selektiert bzw. gemessen wurden.
+Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der,
+durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
+Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
+\begin{align*}
+	\epsilon = \frac{N_{selected}}{N_{gen}} = 0.xx
+\end{align*}
+Dabei werden hier die MC-Sample natürlich nicht auf die Luminosität normiert bevor die Schnitte, zur Bestimmung von $N_{selected}$, durchgeführt
+werden.
+Es ist dabei zu beachten, dass die so berechnete Effizienz davon ausgeht das die Nachweiseffizienz für simulierte und gemessene
+Daten gleich ist. Man geht also davon aus das die Simulation die Detektoreigenschaften perfekt abbildet. Die Unterschiede in der
+Nachweiseffizienz zwischen Simulation und Daten werden im Folgenden,nach Versuchsanleitung \cite{versuchsanleitung} durch einen
+Korrekturfaktor $0.9\pm0.1$ abgeschätzt (Es handelt sich dabei um den gleichen Faktor der auch schon bei der Normierung der simulierten Daten
+verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsicherheiten der Simulation
+beinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehend erklärt, eine genauere Beschreibung
+ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
+den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt
+in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel mit der "`Hit \&
+Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
+der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
+
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
 Der Wirkungsquerschnitt einer Reaktion lässt sich aus der Anzahl gemessener Ereignisse und der
 integrierten Luminosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
@@ -404,7 +436,7 @@ wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in q
  von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch
  nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{c| c |c }
 		$N_{\textsl{C}}$ & $\sigma$ [nb] &$\Delta\sigma$ \\
