@@ -12,9 +12,9 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 
 	from ROOT import TGraph, TCanvas
 	from array import array
+	can = TCanvas( randomName(), "template", 1400, 800 )
+	can.cd()
 	if save:
-		can = TCanvas( randomName(), "template", 1400, 800 )
-		can.cd()
 		can.SetBatch()
 
 	x = array('d')
@@ -49,6 +49,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 	if save:
 		can.SaveAs('template.pdf')
 	else:
+		can.Update()
 		raw_input()
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
@@ -147,7 +148,7 @@ if (__name__ == "__main__"):
 	parser = ArgumentParser()
 	parser.add_argument("-m", "--mcfile", dest="mcfile", default="mc_all_new.root/MCTree", help="MC file path")
 	parser.add_argument("-d", "--datafile", dest="datafile", default="d0_new.root/MessTree", help="Data file path")
-	parser.add_argument("-c", "--cut", dest="cut", default="met > 18.14 && el_et > 19.68", help="Cuts applied to all structures" )
+	parser.add_argument("-c", "--cut", dest="cut", default="met > 25 && el_et > 25", help="Cuts applied to all structures" )
 	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default= "mwt")
 
