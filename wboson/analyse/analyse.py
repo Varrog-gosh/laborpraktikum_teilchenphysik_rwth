@@ -62,7 +62,7 @@ def getMass( dataTree, mcTree, cut, save, variable ):
 	except:
 		e_mass = 0
 
-	return mass, e_mass, 0.5 #wert, err_mass (stat.), err_mass (sys.)
+	return mass, e_mass, 0.78 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):
@@ -178,6 +178,6 @@ if (__name__ == "__main__"):
 	print "Angle(corrected) deviates %f standard deviations from the theoretical value "%Compare_val(sin2_wein*1.06,err_sin2_wein_stat*1.06,err_sin2_wein_sys*1.06, 0.2397, 0.0013)
 	print ""
 	print 'W-Width: Γ = %.4f \pm %.4f (stat.) \pm %.4f (sys.)'%(gamma,err_gamma_stat,err_gamma_sys)
-	print "Width deviates %f standard deviations from the theoretical value "%Compare_val(gamma,err_gamma_stat,err_gamma_sys, 2.085, 0.042)
+	print "Width deviates %f standard deviations from the theoretical value "%Compare_val(gamma,err_gamma_stat,err_gamma_sys, 2.141, 0.041)
 
 	CompareNC(xs,err_xs_stat,err_xs_sys)
