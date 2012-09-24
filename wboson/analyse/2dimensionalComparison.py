@@ -25,15 +25,15 @@ def create2DHistoFromTree(tree, variable, weight, nBinsX, xmin, xmax, nBinsY, ym
 	result.SetTitle( title )
 	return result
 
-def plot2D( variable, cut, save ):
+def plot2D( variable, cut, drawLines, save ):
 	mcTree = readTree( "mc_all_new.root/MCTree" )
 	dataTree = readTree( "d0_new.root/MessTree" )
 
 	from ROOT import TCanvas, TLegend,TLine
-	can = TCanvas( randomName(), '2d', 800, 1000 )
+	can = TCanvas( randomName(), '2d', 1400, 700 )
 	if save:
 		can.SetBatch()
-	can.Divide(1,2)
+	can.Divide(2,1)
 	can.cd(1)
 	xn = 200
 	yn = 200
@@ -64,13 +64,15 @@ def plot2D( variable, cut, save ):
 	print datahist2D.GetCorrelationFactor()
 	datahist2D.SetTitle('Daten')
 	mchist2D.Draw("colz")
-	#~ line1.DrawLine(30,11,30,78)
-	#~ line2.DrawLine(11,30,78,30)
+	if drawLines:
+		line1.DrawLine(30,11,30,78)
+		line2.DrawLine(11,30,78,30)
 	can.cd(2)
 	datahist2D.Draw("colz")
 
-	#~ line1.DrawLine(30,11,30,78)
-	#~ line2.DrawLine(11,30,78,30)
+	if drawLines:
+		line1.DrawLine(30,11,30,78)
+		line2.DrawLine(11,30,78,30)
 	if save:
 		from re import sub
 		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')
@@ -83,8 +85,9 @@ from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument("-c", "--cut", dest="cut", default="", help="Cuts applied to all structures" )
 parser.add_argument("-p", "--plots", default="mwt:el_et" )
+parser.add_argument("-l", "--drawLines", action = "store_true", default=False )
 parser.add_argument("--save", action = "store_true", default=False )
 opts = parser.parse_args()
 
-plot2D( opts.plots, opts.cut, opts.save )
+plot2D( opts.plots, opts.cut, opts.drawLines, opts.save )
 

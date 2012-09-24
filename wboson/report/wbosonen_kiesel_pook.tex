@@ -33,7 +33,7 @@
 
 \begin{document}
 \maketitle
-\vspace{5cm}
+\vspace{3cm}
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -181,20 +181,25 @@ Einige der Größen werden in Abbildung \ref{fig:variables} dargestellt. Man sie
 als blaues Histogram, die übrigen simulierten Daten als schwarzes Histogram und die Daten als
 Punkte. 
 \subsubsection*{Normierung der simulierten Daten}
-Die Simulierten Ereignisse müssen, um einen Vergleich mit den gemessenen Daten zu ermöglichen, auf die
+Um einen Vergleich mit den gemessenen Daten zu ermöglichen, müssen die simulierten Ereignisse auf
+die 
 integrierte Luminosität der Daten von $\mathcal{L}_{int}=198 \pm \SI{20}{pb^{-1}}$ normiert werden.
-Dazu werden die Monte Carlo Sample, nach den Vorgaben aus \cite{versuchsanleitung},
-in Abhängigkeit der Anzahl ursprünglich generierter Monte Carlo (\textbf{MC}) Ereignisse $N_{gen}$, mit einem Faktor:
+Dazu werden die simulierten Ereignisse nach den Vorgaben aus der Versuchsanleitung\cite{versuchsanleitung}
+in Abhängigkeit der Anzahl ursprünglich generierten Ereignissen$N_{gen}$ mit dem Faktor
 \begin{align*}
-	\textsl{w}= \frac{\sigma \mathcal{L}_{int}}{N_{gen}} \cdot 0.9
+	\textsl{w}= 0.9 \cdot \frac{\sigma \mathcal{L}_{int}}{N_{gen}}
 \end{align*}
-skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine, im Vergleich zum realen Detektor,
-zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der MC Ereignisse berücksichtigt.
+skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine im Vergleich zum realen Detektor
+zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der Ereignisse berücksichtigt.
 
 
 \subsection{Selektion der Daten}
-Da nicht alle aufgezeichneten Ereignisse dem zu untersuchendem Prozess zugrunde liegen, müssen die
-Daten gefiltert werden, möglichst ohne viele richtige Ereignisse zu verlieren. Es werden nur
+Da nicht in allen aufgezeichneten Ereignissen der zu untersuchendem Prozess stattfindet, müssen die
+Daten gefiltert werden, möglichst ohne viele richtige Ereignisse zu verlieren.
+Um unerwünschte Ereignisse herauszufiltern, kann man Einschränkungen auf die Qualität der Daten (zum Beispiel
+durch Isolationsschnitte) oder auf kinematische Größen festlegen.
+Die die Qualität der gemessenen Daten durch die vorselektion gut ist, werden als Basisschnitte nur
+die Schnitte der Anleitung gebraucht: Es werden nur
 Elektronen betrachtet, deren Schauer wie eine elektromagnetische und nicht wie eine hadronische
 Kaskade aussieht. Zu dem Schauer muss sich auch in kleinem Abstand eine Spur im Spurdetektor befinden.
 Die Elektronen müssen isoliert sein, in $|\eta| < 1.1$ liegen. Es dürfen in dem Ereignis keine
@@ -202,16 +207,18 @@ hadronischen Jets mit einem Transversalimpuls von über $\SI{15}{GeV}$ vorkommen
 darf entlang der Strahlachse nur $\SI{60}{cm}$ vom Mittelpunkt abweichen. Diese Auswahl wird immer
 getroffen und nicht gesondert erwähnt wenn angewandt.
 
-Hierzu werden die simulierten und gemessenen Daten in normierte Histogrammen übereinandergelegt
+Die kinematischen Schnitte werden wie folgt bestimmt:
+Die für eine bestimmte (beliebige) W-Masse simulierten und gemessenen Daten werden in normierte Histogrammen übereinandergelegt
 und die Unterschiede durch geeignete Schnitte versucht zu verringert. Ziel ist vor allem eine gute
-Übereinstimmung in $m_T$, da daraus die Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
+Übereinstimmung in $m_T$, da daraus zunächst die invariante Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
 wird in Abbildung \ref{fig:abschaetzung} veranschaulicht. Links oben sieht man die transversale
 invariante Masse ohne Einschränkungen. Die Verteilungen von Daten und Simulation unterscheiden sich
 noch deutlich. Rechts oben sieht man die Verteilung der transversalen
 fehlenden Energie. Da Daten und Simulation rechts der gezeichneten Linie gut übereinander stimmen,
 wird in Zukunft gefordert, dass $\met > \SI{30}{GeV}$ sein muss. Im Bild links unten sieht man die
-Verteilung der transversalen Elektronenergie und die Grenze, ab der Daten und Simulation hier
-übereinstimmen. Zuletzt wird rechts unten wieder $m_T$ gezeigt.
+Verteilung der transversalen Elektronenergie mit der Einschränkung auf $\met$ und die Grenze, ab der Daten und Simulation hier
+übereinstimmen. Zuletzt wird rechts unten wieder $m_T$ gezeigt. Die Übereinstimmung ist sehr viel
+besser als am Anfang, die Simulation und Daten weichen kaum voneinander ab.
 
 \begin{figure}[h]
 	\centering
@@ -220,12 +227,12 @@ Verteilung der transversalen Elektronenergie und die Grenze, ab der Daten und Si
 	\includegraphics[width=.49\textwidth]{el_etmet>30tau.pdf}
 	\includegraphics[width=.49\textwidth]{mwtmet>30&&el_et>30tau.pdf}
 	\caption{Abschätzung der Selektionsgrenzen mit Vergleich von Daten und Simulation. In Blau ist
-	der $τ$ Untergrund eingezeichnet. Die Simulation wird hier mit der generierten W Masse von
-	$\SI{80.3946}{GeV}$ erzeugt.}
+	der $τ$ Untergrund eingezeichnet. Die Simulation entspricht hier einer W Masse von
+	$\SI{80.3946}{GeV}$.}
 	\label{fig:abschaetzung}
 \end{figure}
 
-In Blau sieht man in jedem Bild Ereignisse, in denen das W ein $τ$ und ein $ν_τ$ erzeugt. Das $τ$
+In blau sieht man in jedem Bild Ereignisse, in denen das W ein $τ$ und ein $ν_τ$ erzeugt. Das $τ$
 zerfällt nach sehr kurzer Zeit wieder in ein $e + ν_e + ν_τ$. Da man die Neutrinos nicht einzeln
 Messen kann sondern nur die fehlende Energie, die durch alle Neutrinos zusammen verursacht wird,
 kann man diese Ereignisse kaum Filtern, sondern muss den Untergrund über Simulationsvergleiche
@@ -233,22 +240,24 @@ abschätzen. Während am Anfang der Anteil der $τ$ Ereignisse noch 8.8\% beträ
 Schnitten 1.1\%.
 
 Da die wahre W-Masse unbekannt ist, kann man die Schnitte noch auf andere simulierte Datensätze
-optimieren. Es folgt ein Fehler auf die Schnitte von $\SI{5}{GeV}$.
+optimieren. Die Schnitte für die anderen W Massen ändert sich ungefähr um $\SI{5}{GeV}$, somit ist
+dies unser Fehler.
 
 Der Versuch auf die Elektronenisolation, den Abstand des Primärvertex oder ähnliche Variablen zu
 schneiden wird aufgegeben, da es dort sehr schwer ist die Simulation und die Daten übereinander zu
 bringen. Dies liegt unter anderem an der oben Beschriebenen schlechten Generation der Simulation.
-Die gewählten Schnitte sorgen für ein gutes Übereinander stimmen von Daten und Simulation, ohne dass
-die Effizient zu niedrig wird.
+Die gewählten Schnitte sorgen für ein gutes Übereinander stimmen von Daten und Simulation in den
+kinematischen Größen, ohne dass die Effizient zu niedrig wird.
 
 \newpage
 \section{Bestimmung der Masse des W Bosons}
 \subsection{Template Methode zur Bestimmung der W Masse}
 Zuerst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
 
-Da das skalieren der Simulierten Daten einen großen Fehler mit sich bringt und auch nach dem
-skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
-normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme benutzen
+Da das Skalieren der simulierten Daten einen großen systematischen Fehler mit sich bringt und auch nach dem
+Skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
+normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme anstatt
+des normalen $χ²$ Test benutzen
 muss\cite{cramer1999mathematical}.
 Weiterhin müssen in einem Bin genug
 Einträge sein (mehr als 9), damit man die poissonverteilten Einträge in eine Gaußverteilung 
@@ -258,7 +267,7 @@ somit die relative Gewichtung von Bins mit zu wenig Einträgen.
 
 
 Eine Schwierigkeit besteht weiterhin in dem Wählen der Anzahl der Bins sowie den verwendeten
-Bereich. Im Allgemeinen steigt das $χ²$ mit zunehmender Anzahl Bins. Die Anzahl der Bins wird auf
+Bereich der Variable, in der man die Übereinstimmung untersucht. Im Allgemeinen steigt das $χ²$ mit zunehmender Anzahl Bins. Die Anzahl der Bins wird auf
 20 gesetzt, da dort der statistische Fehler klein ist, die Struktur der Verteilung aber nicht
 verloren geht. Der Bereich wird möglichst groß gewählt, ohne dabei Bins mit weniger als 10 Einträge
 mitzunehmen.
@@ -269,7 +278,7 @@ Simulation und den Daten auf, erhält man wie in Abbildung \ref{fig:template} zu
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1\textwidth]{template.pdf}
+	\includegraphics[width=\textwidth]{template.pdf}
 	\caption{Template Methode mit den Bedingung $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{GeV}$. Die gesuchte W Masse befindet sich im Minimum der Parabel, da dort
 		das $χ²/\text{NDF}$ minimal ist.}
 	\label{fig:template}
@@ -279,60 +288,78 @@ Simulation und den Daten auf, erhält man wie in Abbildung \ref{fig:template} zu
 Für die am Besten passende W Masse muss das $χ²/\text{NDF}$ möglichst klein sein. Man passt an den
 Graphen in Abbildung \ref{fig:template} deshalb eine Parabel an und bestimmt deren Minimum. Die
 Fehler sowie das $χ^2/\text{NDF}$ der Anpassung sind nicht von Bedeutung, da die Punkte keine
-Fehler besitzen nur ein ROOT interner Standardfehler gesetzt wird.
+Fehler besitzen nur ein ROOT interner Standardfehler gesetzt wird und die Fehler auf die
+Anpassungsvariablen zu berechnen.
 
 Da das Minimum der Parabel nahe $1$ liegt, ergibt sich der statistische Fehler der W Masse aus der Abweichung vom Minimum beim Erhöhen des
 $χ²/\text{NDF}$ um $1$.
 
-Wenn man eine Parabel der Form $a + bx + cx²$ anpasst, erhält man somit $m_w = -\frac{b}{2c} ±
+Wenn man eine Parabel der Form $a + bx + cx²$ anpasst, erhält man somit $m_W = -\frac{b}{2c} ±
 \frac{1}{\sqrt{c}}$.
 Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{GeV}$
 \begin{align*}
 	m_W =  ( 80.36 ± 0.25  ) \si{GeV}.
+	% aktuelle ausgaben von ./analyse ist nicht das gleiche
 \end{align*}
 
 Beim Variieren der Selektionsgrenzen, des Vergleichbereichs und der Anzahl Bins ändert sich der
 eigentliche Wert der W Masse kaum, wohl aber der statistische Fehler. Er wird deshalb mit einer
 Unsicherheit von $^{+0.8}_{-0.05}\si{GeV}$ abgeschätzt.
+% ist der fehler auf den fehler in ordnung?
+% wenn ja, später dazuschreiben, dass man ihn eh vernachlässigen kann, da der systemarische fehler
+% größer ist
 
-\subsection{Systematische Fehler bei der W-Massenbestimmung}
+\subsection{Systematische Fehler bei der Bestimmung der W Masse}
 \label{sysunc}
-Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler 
+Im folgenden werden die Berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler
 addiert.
 \subsubsection*{Energieskala von $E_{T}$}
 Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
 dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
-W Masse Erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
-Wahl der transversalen Energieskala zu $0.3MeV$ bestimmt.
+W Masse erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
+Wahl der transversalen Energieskala zu $\SI{0.3}{MeV}$ bestimmt.
+% du meinst sicherlich GeV???
+% bei der verschiebung von 0 stimmt das nicht mit dem ergebnis von ./analyse überein und nicht mit
+% dem was sonst da steht
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
-		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
+		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [\si{GeV}]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
 		\hline
 		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
 		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
-		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
+		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$
+		% ΔM_W braucht eine einheit
+		% von was wird die differenz gebildet? müsste da nicht 0 in der mitte stehen?
 	\end{tabular}
-	\caption{Verschiebung der transveralen Elektronenenergieskala um $2\%$}
+	\caption{Änderung der W Masse bei Verschiebung der transversalen Elektronenenergieskala um die
+	Energieunsicherheit von $2\%$.}
 	\label{tab:syset}
 \end{table}
 \subsubsection*{Energieskala von $\met$}
 Analog zum vorherigen Abschnitt wird nun auch die fehlende transversale $\met$ um $2\%$  variiert. Die Wahl dieser Abweichung wird dadurch begründet, dass
 die Selektion hoch energetische Jets ausschließt und in der Berechnung $\met = - \sum \vec{E}_{T}$ die Unsicherheit einen dominanten Anteil spielt.
-Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die 
-Wahl der Energieskala der fehlenden transversalen Energieskala zu $0.3MeV$ bestimmt.
+% falsch: wir haben hier nJets == 0 gefordert. met kommt hauptsächlich  durch die fehlenden
+% leptonenenergien oder γ energien.
+
+Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
+Wahl der Energieskala der fehlenden transversalen Energieskala zu $\SI{0.3}{MeV}$ bestimmt.
+% auch hier: einheit richtig mev ist sehr wenig
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
-		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [GeV]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
+		$\frac{\Delta E_{T}}{E_{T}}$ & $M_{W} [\si{GeV}]$ & $\Delta M_{W}$ &$\frac{\Delta M_{W}}{M_{W}}$\\
 		\hline
 		$2\%$ & $81.56\pm 0.26$ & 1.03 & $1.2\%$\\
 		$0\%$ & $80.53\pm 0.3$ & 80.60 & $0\%$ \\
-		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$ 
+		$-2\%$ & $79.56\pm 0.3$ & 80.19 &$1.2\%$
+		% auch hier gilt das gleich wie in der tabelle oben
 	\end{tabular}
-	\caption{Verschiebung der fehlenden transveralen Elektronenenergieskala um $2\%$}
+	\caption{Änderung der W Masse bei Verschiebung der fehlenden transversalen Energieskala um die
+	Energieunsicherheit von $2\%$.}
 	\label{tab:sysmet}
 \end{table}
+
 \subsubsection*{Variation der Selektionsgrenzen}
 Um den Einfluss der gewählten Selektionsgrenzen zu bestimmen, werden diese um $\SI{5}{GeV}$
 variiert. Es ergeben sich die Verschiebungen in Tabelle \ref{tab:variation}, mit denen der systematisch Fehler
@@ -340,31 +367,35 @@ auf die W Masse zu $\SI{0.5}{GeV}$ abgeschätzt wird, indem die halben Abweichun
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
-		$E_{T} \backslash \met$ & 15 & 20 & 25 \\
+		$E_{T} [\si{GeV}]$ gegen $\met [\si{GeV}]$ & 15 & 20 & 25 \\
 		\hline
 		15 &  & 80.89 & \\
 		20 & 79.94 & 80.60 & 80.53 \\
 		25 &  & 80.19 &
 	\end{tabular}
-	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
+	\caption{Änderung der W Masse bei Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$ um den
+systematischen Fehler abzuschätzen.}
 	\label{tab:variation}
 \end{table}
+
 \subsubsection*{Kombination der systematischen Fehlerquellen}
-Das Berechnen des systematischen Gesamtfehler geschieht in 2 Schritten:
+Das Berechnen des systematischen Gesamtfehler geschieht in zwei Schritten:
 die Unsicherheiten auf $E_{T}$ und $\met$ sind, wie in Abbildung \ref{fig:etVSmet} zu erkennen ist, stark korreliert (Korrelationskoeffizient $0.85$)
+% bei dem bild die schnitte anwenden, dann ist der korrelationskoeffizient noch näher bei 1
 und werden deshalb zunächst linear addiert. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
-als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch addiert. Damit ergibt sich als abschließendes Ergebnis der 
+als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch addiert. Damit ergibt sich als abschließendes Ergebnis der
 W Massenbestimmung:
 \begin{align*}
 	m_W = ( 80.32 ± 0.27 (stat.) ± 0.78(sys.)) \si{GeV}
 \end{align*}
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1\textwidth]{correlation_metVSel_et.pdf}
+	\includegraphics[width=\textwidth]{correlation_metVSel_et.pdf}
 	\caption{Grafische Darstellung der Korrelation zwischen $E_{T}$ und $\met$ mit in rot eingezeichneten Selektionsgrenzen}
 	\label{fig:etVSmet}
 \end{figure}
 
+\FloatBarrier
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu überprüfen wird zusätzlich
 die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Template Methode die W Masse
