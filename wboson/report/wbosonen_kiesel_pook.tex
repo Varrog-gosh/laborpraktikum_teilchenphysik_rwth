@@ -368,9 +368,19 @@ schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation} und man
 erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
-Mit den selben Selektionsgrenzen wie bei der Template Methode von $m_T$ passen die Verteilungen von
-Daten und Simulation der Variablen $E_T$ nicht mehr so gut. Das $χ²/\text{NDF}$ der
-Template Methode wird zu $1.9$ was relative schlecht ist. Um bessere Ergebnisse zu erzielen, wird der
+Bei Wahl der gleichen Selektionsgrenzen wie bei der Bestimmung von $m_{W}$ über $m_T$ zeigt sich
+für $E_{T}$ eine wesentlich schwächere Übereinstimmung zwischen Daten und Simulation besteht, insbesondere
+im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{E_t_aftercut.pdf}
+	\includegraphics[width=0.5\textwidth]{E_t_aftercut_peak.pdf}
+	\caption{$E_{T}$ Verteilung nach der Selektion. Die gesamte Verteilung (links) und ein Zoom auf das Maximum des Peak (rechts) }
+	\label{fig:etaftercut}
+\end{figure}
+
+
+Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ . Um bessere Ergebnisse zu erzielen, wird der
 noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt sich ein $χ²/\text{NDF}$
 von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
 eine W Masse von
@@ -457,7 +467,7 @@ mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, dire
 Mit der aus \cite{versuchsanleitung} entnommenen Z-Masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
 sich für den Weinbergwinkel:
 \begin{align*}
-	sin\left(\theta_{W}\right)^{2} = 1 - cos\left(\theta_{W}\right)^{2} = 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} = ( 0.2249 ± 0.0052 (stat.) ± 0.0151(sys.))
+	sin\left(\theta_{W}\right)^{2} = 1 - cos\left(\theta_{W}\right)^{2} = 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} \\ = ( 0.2249 ± 0.0052 (stat.) ± 0.0151(sys.))
 \end{align*}
 Die systematischen und statistischen Fehler auf $m_{w}$ werden zur Bestimmung des Fehler auf $sin(\theta_{W})^{2}$ quadratisch addiert.
 Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden das es sich bei \ref{form:wein} um eine
@@ -465,7 +475,8 @@ Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des 
 Ordnungen, dieser Unterschied wird gemäß der Beschreibung in \cite{versuchsanleitung} durch einen Korrekturfaktor von $corr_{strahlung}=1.06$
 berücksichtigt. Der Vergleich von korrigiertem und Weltmittelwert
 \begin{align*}
-	sin(\theta_{W})_{korrigiert}^{2} = ( 0.2384 ± 0.0055 (stat.) ± 0.0160(sys.)) \vspace{1cm} sin(\theta_{W,Welt})^{2} = 0.2397 \pm 0.0013
+	sin(\theta_{W})_{korrigiert}^{2} = ( 0.2384 ± 0.0055 (stat.) ± 0.0160(sys.)) \\ 
+	sin(\theta_{W})_{Welt}^{2} = 0.2397 \pm 0.0013
 \end{align*}
 zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $0.08\sigma$ vom Literaturwert mit diesem
 innerhalb von $3\sigma$ kompatibel ist.Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen
@@ -487,12 +498,12 @@ ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
-und mit denen am Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
+und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
 nicht in führender Ordnung erzeugt werden. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
 Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq\nu$(hadonisch) genutzt.
 Die benutzten Angaben beziehen sich, soweit nicht anders angegeben, auf die Analysen in
 \cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
-betrachtet die beide Kollidertypen betrifft:
+betrachtet die beide Kollidertypen betrifft: 
 
 \begin{itemize}
 	\item \textbf{Luminosität:} \\
