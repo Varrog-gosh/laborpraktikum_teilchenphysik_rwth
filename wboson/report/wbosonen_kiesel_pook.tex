@@ -44,12 +44,6 @@
 Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
 sowie den Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
 
-%Dieser Versuch besteht nicht auf einem eigenen Aufbau, sondern es werden Daten des DØ-Experiments
-%ausgewertet. Das DØ-Experiment ist neben dem CDF Experiment einer der beiden Hauptdetektoren des
-%Tevatron Colliders. Das Tevatron ist ein Proton-Antiproton Beschleuniger, der am Fermilab in
-%Illinois, USA bis 2011 betrieben wurde. Der Detektor besteht aus Silizium Trackern, Kalorimetern,
-%einer Magnetspule sowie Myonenkammern.
-
 Um den Fund des W Bosons am UA2 Experiment zu bestätigen sowie es genauer zu Untersuchen können auch
 beim DØ Experiment verschiedene Zerfallskanäle betrachtet werden. Einer von ihnen ist der Zerfall
 in ein Elektron/Positron und ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
@@ -122,13 +116,13 @@ $θ_W$ genannt, berechnen:
 In dem Versuch werden die Masse des Z Bosons $m_Z$ sowie die Feinstrukturkonstante $α$ als gegeben
 vorausgesetzt.
 
+\section{Vergleich von Simulation und Daten}
 
-\section{Bestimmung der Masse des W Bosons}
 Im Detektor kann die W Masse nicht direkt gemessen werden, sondern nur manche Tochterteilchen. In
 dem hier untersuchtem Prozess sind dies ein leichtes geladenes Lepton $e$
-\footnote{Elektron wird ab nun als Synonym für Elektron und Positron benutzt} sowie 
-ein Neutrino
-\footnote{Neutrino wird als Synonym für (Anti-)elektronneutrino benutzt} $ν$. Da die
+\footnote{Elektron wird ab nun als Synonym für Elektron und Positron benutzt} sowie
+ein Neutrino $ν$
+\footnote{Neutrino wird als Synonym für (Anti-)elektronneutrino benutzt}. Da die
 longitudinale Anfangsbedinungen nicht bekannt sind, werden
 nur transversale kinematische Größen betrachtet. Für die Auswertung werden Daten aus dem Kalorimeter
 denen des Spurdetektors bevorzugt, da der Kalorimeter die kleinere Unsicherheit hat. So wird zum Beispiel
@@ -141,32 +135,51 @@ Spurdetektor und Kalorimeter enthält.
 Die Fehlende Transversale Energie wird komplett aus dem Kalorimeter bestimmt und berechnet sich
 durch
 \begin{align*}
-	\met = \sqrt{ {\met}^{2}_{x} + {\met}^{2}_{y}}
+	\met = \sqrt{ \not\mathrel{E}^{2}_{x} + \not\mathrel{E}^{2}_{y}}
 \end{align*}
-wobei $\met$ als
+wobei $\not\mathrel{E}$ als
 \begin{align*}
-	\met = \left| - \sum \vec{E}_{T} \right|
+	\not\mathrel{E}_i = \left| - \sum E\vec{e_i} \right|
 \end{align*}
-definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird, wird $\met$ als Neutrinoenergie
+definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird sondern ohne Interaktion den
+Detektor verlässt, wird $\met$ als Neutrinoenergie
 benutzt. Da nur die transversalen Komponenten von Elektron und Neutrino verwendet werden, kann auch
 nur die invariante transversale Masse der Leptonen und damit des W Bosons berechnet werden.
 \begin{align*}
 	m_T = \sqrt{2E_T\met\left( 1-\cos(Δφ_{e,ν}) \right)}\hspace{0.3cm}\footnotemark
 \end{align*}
-\footnotetext{Da die beobachteten transversalen Elektronenergien größer als einige $GeV$ sind, wird
+\footnotetext{Da die beobachteten transversalen Elektronenergien größer als einige $\si{GeV}$ sind, wird
 im Folgenden die Elektronmasse vernachlässigt.}
 
 \subsection{Beschreibung der simulierten Daten}
 Um Untergründe zu entfernen, ist es hilfreich, die gemessenen Daten mit simulierten Ereignissen zu
 vergleichen. Da die W Masse im voraus noch nicht bekannt ist, werden Ereignisse für unterschiedliche
 W Massen generiert.
-Da man den Untergrund durch $W\rightarrow τν\rightarrow eννν$ in Daten schlecht filtern kann,
+Weil man den Untergrund durch $W\rightarrow τν_τ\rightarrow eν_τν_τν_e$ in Daten schlecht filtern kann,
 sind auch $τ$ Ereignisse simuliert.
 
 Die Qualität der Simulation ist aber eher durchwachsen, da gewisse Größen wie zum Beispiel der
 Abstand des Vertices zum Ursprung, der Polarwinkel $φ$ oder die Elektronisolation sehr schlecht
 beschrieben werden.
 
+\begin{figure}[h]
+	\centering
+	\newcommand{\halftext}{0.49\textwidth}
+	\includegraphics[width=\halftext]{eta.pdf}
+	\includegraphics[width=\halftext]{delta_phi.pdf}\\
+	\includegraphics[width=\halftext]{vertex_z.pdf}
+	\includegraphics[width=\halftext]{enengy_fraction.pdf}\\
+	\includegraphics[width=\halftext]{phi.pdf}
+	\includegraphics[width=\halftext]{isolation.pdf}\\
+	\caption{Die Verteilung der Rapidität $η$, Winkel zwischen den Leptonen $Δ\phi$, der Abstand vom Ursprung in
+	Strahlrichtung $z$, der Anteil der Energie im Kalorimeter, der Polarwinkel $\phi$ und die
+	Elektronisolation für Daten und Simulation. }
+	\label{fig:variables}
+\end{figure}
+
+Einige der Größen werden in Abbildung \ref{fig:variables} dargestellt. Man sieht die $τ$ Ereignisse
+als blaues Histogram, die übrigen simulierten Daten als schwarzes Histogram und die Daten als
+Punkte. 
 \subsubsection*{Normierung der simulierten Daten}
 Die Simulierten Ereignisse müssen, um einen Vergleich mit den gemessenen Daten zu ermöglichen, auf die
 integrierte Luminosität der Daten von $\mathcal{L}_{int}=198 \pm \SI{20}{pb^{-1}}$ normiert werden.
@@ -177,6 +190,7 @@ in Abhängigkeit der Anzahl ursprünglich generierter Monte Carlo (\textbf{MC}) 
 \end{align*}
 skaliert. Der Faktor $0.9$ beschreibt einen Korrekturterm, der eine, im Vergleich zum realen Detektor,
 zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der MC Ereignisse berücksichtigt.
+
 
 \subsection{Selektion der Daten}
 Da nicht alle aufgezeichneten Ereignisse dem zu untersuchendem Prozess zugrunde liegen, müssen die
@@ -227,6 +241,8 @@ bringen. Dies liegt unter anderem an der oben Beschriebenen schlechten Generatio
 Die gewählten Schnitte sorgen für ein gutes Übereinander stimmen von Daten und Simulation, ohne dass
 die Effizient zu niedrig wird.
 
+\newpage
+\section{Bestimmung der Masse des W Bosons}
 \subsection{Template Methode zur Bestimmung der W Masse}
 Zuerst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
 
@@ -397,6 +413,7 @@ noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt
 von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
 eine W Masse von
 
+\newpage
 \section{Bestimmung der Effizienz}
 \label{effizienz}
 Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
@@ -421,6 +438,7 @@ in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel
 Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 
+\newpage
 \section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
 Der Wirkungsquerschnitt einer Reaktion lässt sich aus der Anzahl gemessener Ereignisse und der
 integrierten Luminosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
@@ -508,6 +526,7 @@ berücksichtigt.Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
 Dieser Wert weicht $0.28\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von $Γ_{W,theo} = 2.141 \pm 0.041\si{nb}$
 ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 
+\newpage
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
 und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
