@@ -7,7 +7,7 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 	nBins = 20
 	if variable=="mwt":
 		firstBin = 60
-		lastBin = 90
+		lastBin =180
 		affix = ""
 		xmin = 79.4
 		xmax = 81.
