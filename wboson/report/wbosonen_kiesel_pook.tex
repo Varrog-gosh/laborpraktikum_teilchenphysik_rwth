@@ -81,11 +81,11 @@ Vernichtung in zwei Leptonen.}
 Den Wirkungsquerschnitt kann man mit
 \begin{align}
 \label{form:xstot}
-	σ = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}
+	σ_W = \int_0^1dx_p\int_0^1dx_{\bar{p}} \sum_{i,j} f_i(x_p)f_j(x_{\bar{p}}) \hat{σ}_W
 \end{align}
 berechnen, wobei
 \begin{align*}
-	\hat{σ} = \frac{1}{N_C}\frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
+	\hat{σ}_W = \frac{1}{N_C}\frac{12π}{m_W^2}\frac{Γ_{qq'}Γ_{eν}}{Γ^2_W}
 	\frac{ x_px_{\bar{p}} s Γ_W^2}{\left( x_px_{\bar{p}}s - m_W^2\right)^2 + m_W^2Γ_W^2}
 \end{align*}
 und
@@ -103,7 +103,7 @@ top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreit
 Damit ergibt sich für
 \begin{align}
 \label{form:xscms}
-	\hat{σ} = \frac{πα²}{12\sin^4θ_W} \frac{ x_px_{\bar{p}} s }{\left( x_px_{\bar{p}}s -
+	\hat{σ}_W = \frac{πα²}{12\sin^4θ_W} \frac{ x_px_{\bar{p}} s }{\left( x_px_{\bar{p}}s -
 	m_W^2\right)^2 + m_W^4\frac{(3+2N_C)^2}{12^2}\frac{α^2}{\sin^4θ_W}}.
 \end{align}
 
@@ -251,7 +251,7 @@ kinematischen Größen, ohne dass die Effizient zu niedrig wird.
 
 \newpage
 \section{Bestimmung der Masse des W Bosons}
-\subsection{Template Methode zur Bestimmung der W Masse}
+\subsection{Template Methode zur Bestimmung der W Masse}\label{cap:template}
 Zuerst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
 
 Da das Skalieren der simulierten Daten einen großen systematischen Fehler mit sich bringt und auch nach dem
@@ -338,13 +338,15 @@ Wahl der transversalen Energieskala zu $\SI{0.3}{MeV}$ bestimmt.
 \end{table}
 \subsubsection*{Energieskala von $\met$}
 Analog zum vorherigen Abschnitt wird nun auch die fehlende transversale $\met$ um $2\%$  variiert. Die Wahl dieser Abweichung wird dadurch begründet, dass
-die Selektion hoch energetische Jets ausschließt und in der Berechnung $\met = - \sum \vec{E}_{T}$ die Unsicherheit einen dominanten Anteil spielt.
+die Selektion hoch energetische Jets ausschließt und in der Berechnung von $\met$ die Unsicherheit
+von $E_T$ eine dominante Rolle hat.
 % falsch: wir haben hier nJets == 0 gefordert. met kommt hauptsächlich  durch die fehlenden
 % leptonenenergien oder γ energien.
 
 Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
 Wahl der Energieskala der fehlenden transversalen Energieskala zu $\SI{0.3}{MeV}$ bestimmt.
-% auch hier: einheit richtig mev ist sehr wenig
+% auch hier: einheit richtig mev ist sehr wenig, wenn mev stimmt, dann solten wir explizit erwähnen,
+% dass der fehler vernachlässigt werden kann
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
@@ -403,15 +405,15 @@ berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E
 sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.49\textwidth]{correlation_mwtVSel_et.pdf}
-	\includegraphics[width=.49\textwidth]{correlation_mwtVSel_etmwt_el_et>1_7.pdf}
+	\includegraphics[width=\textwidth]{correlation_mwtVSel_et.pdf}\\
+	\includegraphics[width=\textwidth]{correlation_mwtVSel_etmwt_el_et>1_7.pdf}
 	\caption{Korrelation zwischen $E_T$ und $m_T$ in der Simulation und in Daten, ohne Selektion
 	(links) und mit einer Einschränkung auf das Verhältnis (rechts). Mehr zu dieser Grenze siehe
 	unten.}
 	\label{fig:correlation}
 \end{figure}
 
-
+% korrelationskoeffizienten mit e_t >30 cut wäre interessanter
 Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
 auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt auf $E_T$ bei
 $\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $m_T$ zu $E_T$
@@ -425,7 +427,7 @@ schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 	\label{fig:verhaeltnis}
 \end{figure}
 
-Wenn man diesen Schnitt anwendet, erhält man die rechte Abbildung \ref{fig:correlation} und man
+Wenn man diesen Schnitt anwendet, erhält man Abbildung \ref{fig:correlation} unten und man
 erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
 Bei Wahl der gleichen Selektionsgrenzen wie bei der Bestimmung von $m_{W}$ über $m_T$ zeigt sich
@@ -433,91 +435,188 @@ für $E_{T}$ eine wesentlich schwächere Übereinstimmung zwischen Daten und Sim
 im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1\textwidth]{E_t_aftercut.pdf}
-	\includegraphics[width=1\textwidth]{E_t_aftercut_peak.pdf}
+	\includegraphics[width=.7\textwidth]{E_t_aftercut.pdf}
+	\includegraphics[width=.7\textwidth]{E_t_aftercut_peak.pdf}
 	\caption{$E_{T}$ Verteilung nach der Selektion. Die gesamte Verteilung (oben) und ein Zoom auf das Maximum des Peak (unten) }
 	\label{fig:etaftercut}
 \end{figure}
 
 
 
-%Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ . Um bessere Ergebnisse zu erzielen, wird der
-%noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt sich ein $χ²/\text{NDF}$
+%Um bessere Ergebnisse zu erzielen, wird der noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt sich ein $χ²/\text{NDF}$
 %von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
 %eine W Masse von
 
+
+
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.8\textwidth]{templateet.pdf}
+	\includegraphics[width=0.7\textwidth]{templateet.pdf}
 	\caption{Ergebnis der Template Methode zur Bestimmung der W Masse für einen Vergleich der $E_{T}$ Verteilung}
 	\label{fig:chiet}
 \end{figure}
-Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ (siehe Abbildung \ref{fig:chiet}, d.h. der durch die Methode bestimmte statistische Fehler wird
-die tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
-wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen um das $χ²/\text{NDF}$ näher an 1 zu bringen. Die Bestimmung der systematischen Fehler erfolgt analog zu
+Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ (siehe Abbildung
+\ref{fig:chiet}), dass heißt der durch die Methode bestimmte statistische Fehler wird
+die tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch nur zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
+wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen um das $χ²/\text{NDF}$ näher an 1 zu bringen.
+
+Die Bestimmung der systematischen Fehler erfolgt analog zu
 Abschnitt \ref{sysunc}. Es ergeben sich systematische Abweichungen von $\SI{0.1}{GeV}$ für die Wahl der Selektionsgrenzen (siehe Tabelle \ref{tab:variation_et}), $\SI{0.24}{GeV}$
 für die Variation von $\met$ und $\SI{4.1}{GeV}$ für die Variation von $E_{T}$, der Einfluss der Variation von $E_{T}$ ist wie erwartet sehr groß.
-Die Alternative Berechnung liefert für die W-Masse:
+Insgesamt ergibt sich für die W-Masse
 \begin{align*}
-	m_W = ( 80.44 ± 0.28 (stat.)± 4.34 (sys.)) \si{GeV}
+	m_W = ( 80.44 ± 0.28 (stat.)± 4.34 (sys.)) \si{GeV}.
 \end{align*}
-Ist also im Rahmen der angegebenen Fehler mit den Ergebnissen der Template Methode für $m_{T}$ vereinbar. 
+Das Ergebnis ist also im Rahmen der angegebenen Fehler mit den Ergebnissen der Template Methode für
+$m_{T}$ vereinbar.
+Da es allerdings sehr viel aufwendiger ist, effektive Selektionskriterien zu finden und diese dann
+instabiler sind, wird das Ergebnis von $m_T$ benutzt.
+Dennoch kann man sagen, dass das Selektieren und die anschließende Template Methode nicht nur mit
+$m_T$ funktioniert, aber mit $m_T$ die besseren Ergebnisse erzielt werden können.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
-		$E_{T} \backslash \met$ & 25 & 30 & 35 \\
+		$E_{T} [\si{GeV}]$ gegen $\met[\si{GeV}]$ & 25 & 30 & 35 \\
 		\hline
 		25 &  & 80.44 & \\
 		30 & 80.49 & 80.44 & 80.5 \\
 		35 &  & 80.63 &
 	\end{tabular}
-	\caption{Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$}
+	\caption{Änderung der W Masse bei Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$ für $E_T$
+als Vergleichsvariable.}
 	\label{tab:variation_et}
 \end{table}
 \section{Bestimmung der Effizienz}
 \label{effizienz}
-Um einen Vergleich von gemessenen bzw. simulierten Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
+Um einen Vergleich von gemessenen Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
 $\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "`wahren"' W-Ereignisse nicht selektiert bzw. gemessen wurden.
-Es handelt sich bei $\epsilon$ also um das Produkt der, durch geometrische Einschränkungen gegebene, Detektorakzeptanz und der,
-durch das Triggersystem und die gewählten Selektionsschnitte bestimmten, Selektionseffizienz. Im hier vorliegenden Fall wird die
-Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte Carlo Ereignissen bestimmt:
+Es handelt sich bei $\epsilon$ also um das Produkt der durch geometrische Einschränkungen gegebene Detektorakzeptanz und der
+durch das Triggersystem und die gewählten Selektionsschnitte bestimmten Selektionseffizienz. Im hier vorliegenden Fall wird die
+Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte-Carlo (MC) Ereignissen bestimmt:
 \begin{align*}
-	\epsilon = \frac{N_{selected}}{N_{gen}} = 0.18
+	\epsilon^\text{MC} = \frac{N^\text{MC}_\text{selektiert}}{N^\text{MC}_\text{generiert}} = 0.18
 \end{align*}
-Dabei werden hier die MC-Sample natürlich nicht auf die Luminosität normiert bevor die Schnitte, zur Bestimmung von $N_{selected}$, durchgeführt
-werden.
-Es ist dabei zu beachten, dass die so berechnete Effizienz davon ausgeht das die Nachweiseffizienz für simulierte und gemessene
-Daten gleich ist. Man geht also davon aus das die Simulation die Detektoreigenschaften perfekt abbildet. Die Unterschiede in der
-Nachweiseffizienz zwischen Simulation und Daten werden im Folgenden,nach Versuchsanleitung \cite{versuchsanleitung} durch einen
-Korrekturfaktor $0.9\pm0.1$ abgeschätzt (Es handelt sich dabei um den gleichen Faktor der auch schon bei der Normierung der simulierten Daten
-verwendet wurde), wobei der Fehler auf diesen Wert diverse systematische Unsicherheiten der Simulation
-beinhalten. Diese Unsicherheiten wurden in \cite{versuchsanleitung} leider nicht weitergehend erklärt, eine genauere Beschreibung
-ist auf Grund fehlender Daten nicht möglich. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
+Der statistische Fehler von $3.9\cdot 10^{-4}$ kann hierbei vernachlässigt werden.
+Hier müssen die generierten Daten nicht auf die Luminosität skaliert werden.
+
+Da die Simulation die Detektoreffizienz nicht exakt abbilden kann, muss die Effizienz um einen
+Faktor von $corr = 0.9±0.1$
+\footnote{Dies ist der gleiche Korrekturfaktor, der zum Skalieren der Simulierten Ereignisse benutzt
+wurde}
+korrigiert werden, sodass sich die Effizienz des Detektors zu
+\begin{align*}
+	ε = corr \cdot ε^\text{MC} = 0.162±0.016
+\end{align*}
+ergibt.
+
+Die Unsicherheit auf den Korrekturfaktor ist der überwiegende Fehler und die Zusammensetzung wird in \cite{versuchsanleitung} leider nicht weitergehend erklärt. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
 den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt
 in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel mit der "`Hit \&
 Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
 der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 
 \newpage
-\section{Bestimmung des Wirkungsquerschnitts und abgeleiteten Größen}
-Der Wirkungsquerschnitt einer Reaktion lässt sich aus der Anzahl gemessener Ereignisse und der
-integrierten Luminosität durch $N_{obs}=\sigma \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
-muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$ bzw. hier $\epsilon \cdot corr$
-korrigiert werden (siehe Abschnitt \ref{effizienz}).
-Hierbei wird nur $corr$ als fehlerbehaftet angenommen, $\epsilon$ dagegen wegen der hohen Statistik
-als fehlerfrei. Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ wurde bestimmt zu :
+\section{Bestimmung von abgeleiteten Größen}
+Aus der Masse des W Bosons und der Anzahl Ereignisse kann man andere physikalischen Größen
+bestimmen.
+\subsection{Bestimmung des Weinbergwinkel}
+Der elektroschwache Mischungswinkel (Weinbergwinkel) $\theta_{W}$ beschreibt wie die Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung mischen.
+Aus Gleichung \ref{form:wein}, mit der aus \cite{versuchsanleitung} entnommenen Z Masse
+$m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in Abschnitt \ref{cap:template} bestimmten W Masse ergibt
+sich für den Weinbergwinkel:
 \begin{align*}
-	\sigma = \frac{N_\text{selected}}{\epsilon \cdot corr \cdot \mathcal{L}_\text{int}} = ( 2.63 ± 0.01 (stat.) ± 0.39(sys.)) \si{nb}
+	\sin²\left(\theta_{W}\right) &= 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} \\
+	&=  0.2249 ± 0.0052 (stat.) ± 0.0151(sys.)
 \end{align*}
-Der berechnete Wert weicht $0.1\sigma$ (hier Standardabweichungen) vom Literaturwert $\sigma_{theo}=2.58 \pm \SI{0.09}{nb}$
-\cite{versuchsanleitung} ab und ist somit innerhalb von $ 3\sigma$ mit diesem kompatibel.
+Der systematische Fehler auf $m_{W}$ wird zur Bestimmung des Fehler auf $\sin²(\theta_{W})$ quadratisch addiert.
+Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden,
+dass es sich bei Gleichung \ref{form:wein} um eine
+Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des Weltmittelwert aber berücksichtigen noch Strahlungskorrekturen aus höheren
+Ordnungen. Dieser Unterschied ist laut der Beschreibung in \cite{versuchsanleitung} $6\%$
+Der Vergleich von korrigiertem und Weltmittelwert
+\begin{align*}
+	\sin²(\theta_{W})_\text{korrigiert} &=  0.2384 ± 0.0055 (stat.) ± 0.0160(sys.) \\
+	\sin²(\theta_{W})_\text{Welt} &= 0.2397 \pm 0.0013
+\end{align*}
+zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $0.08\sigma$ vom Literaturwert mit diesem
+ kompatibel ist. Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen
+Toleranzbereich bestätigen.
 
-\subsection{Bestimmung des Farbfaktors}
+
+\subsection{Versuch der Bestimmung des Farbfaktors}
+Um den Farbfaktor zu bestimmen, wird der Wirkungsquerschnitt der Reaktion gebraucht.
+Erlässt sich aus der Anzahl gemessener Ereignisse und der
+integrierten Luminosität durch $N_{obs}=\sigma_W \cdot \mathcal{L}_{int}$ berechnen. Im realen Experiment
+muss die Anzahl selektierter Ereignisse noch mit der Nachweiseffizienz $\epsilon$
+korrigiert werden (siehe Abschnitt \ref{effizienz}).
+Der Wirkungsquerschnitt für die Reaktion $q+\bar{q}\rightarrow W \rightarrow e+ \nu$ wird bestimmt zu:
+\begin{align*}
+	\sigma_W = \frac{N_\text{selected}}{\epsilon \cdot \mathcal{L}_\text{int}} = ( 2.63 ± 0.01 (stat.) ± 0.39(sys.)) \si{nb}
+\end{align*}
+Aus dem Vergleich mit Gleichung \ref{form:xstot} beziehungsweise \ref{form:xscms} kann man nun
+versuchen den Farbfaktor zu bestimmen. Da die Formel nicht trivial ist, insbesondere die
+Patrondichtefunktionen nicht einfach zu parametrisieren sind, muss man $N_C$ numerisch lösen.
+
+Dazu benutzen wir das von Richard J. Gonsalves et al. entwickelte Fortran Programm qt\cite{qtsite},
+müssen allerdings einige Näherungen treffen:
+\begin{itemize}
+	\item $Γ_W = (3+2N_C)Γ_{eν}$: Höhere Ordnungen der Zerfallsprozesse sowie eine Quarkmischung
+		wird ausgeschlossen, aber im Programm mit berechnet.
+	\item Die Patrondichtefunktionen sind nicht vom Farbfaktor $N_C$ abhängig. Die Funktionen stehen
+		im Programm nur als feste Wertepaare zur Verfügung und werden nicht explizit berechnet.
+	\item Die funktionale Abhängigkeit des Wirkungsquerschnitts vom Farbfaktor ändert sich nicht. Es
+		war uns leider nicht möglich alle Faktoren des komplexen Programms zu verstehen, wie zum
+		Beispiel die minimale Rapiditätsgrenze. Die berechneten Wirkungsquerschnitte sind
+		systematisch zu klein und werden linear skaliert, um eine Möglichkeit der Überprüfung mit dem gemessenen
+		Wert zu haben.
+\end{itemize}
+
+Der totale Wirkungsquerschnitt wird mit dem selben Partialdichtefunktionsset "`CTEQ6.1"' wie in der ursprünglichen
+Veröffentlichung\cite{Abachi:1996ey} berechnet. Alle NLO Subprozesse werden bei einer
+Proton-Antiproton Schwerpunktsenergie von $\SI{1960}{GeV}$ und den Literaturwerten von $m_W$ und
+$\sin²θ_W$ für verschiedene Farbfakoren berechnet
+und mit der partiellen Zerfallsbreite und einem linearen Faktor auf den gegebenen Literaturwert skaliert.
+Die Ergebnisse sind in Tabelle \ref{tab:color} zu finden.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c| c c c|c}
+		$N_{\textsl{C}}$ & $\sigma_\text{tot}$ &$σ_{W\rightarrow eν}$ & $σ_\text{scaled}[\si{nb}]$
+		& Abw. [$σ$] \\
+		\hline
+1.9 & 25.88 & 3.81 & 4.82 & 5.6 \\
+2 & 25.09 & 3.58 & 4.54 & 4.9 \\
+2.5 & 21.32 & 2.66 & 3.38 & 1.9 \\
+\hline
+3 & 18.32 & 2.04 & 2.58 & 0.1 \\
+\hline
+3.5 & 16.00 & 1.60 & 2.03 & 1.5 \\
+4 & 14.18 & 1.29 & 1.63 & 2.6 \\
+4.5 & 12.73 & 1.06 & 1.34 & 3.3 \\
+5 & 11.54 & 0.89 & 1.12 & 3.9 \\
+5.5 & 10.55 & 0.75 & 0.96 & 4.3 \\
+6 & 9.72 & 0.65 & 0.82 & 4.6 \\
+6.9 & 8.50 & 0.51 & 0.64 & 5.1 \\
+	\end{tabular}
+	\caption{Für verschiedene Farbfaktoren die totalen Wirkungsquerschnitte, die
+		Wirkungsquerschnitte in den untersuchten Kanal, die auf den in der Versuchsanleitung
+	skalierten vorgegebenen Wirkungsquerschnitt und die Abweichung der Messung von der Theorie.}
+	\label{tab:color}
+\end{table}
+
+Man sieht, dass der Wirkungsquerschnitt am Besten mit einem Farbfaktor von $N_C = 3$ übereinstimmt,
+aber auch die Farbfaktoren von 2 bis 6 nicht ausgeschlossen werden können.
+
+
+Der berechnete Wert weicht $0.1 \sigma$  vom Literaturwert $\sigma_{theo}=2.58 \pm \SI{0.09}{nb}$
+\cite{versuchsanleitung} ab und ist somit kompatibel zu diesem.
+Der hohe Fehler kommt hauptsächlich aus der Ungenauigkeit von $\mathcal{L}_\text{int}$.
+
 Der im letzten Abschnitt benutzte theoretische Wert für den Wirkungsquerschnitt geht von einem Farbfaktor von $N_{\textsl{C}}=3$ aus, die
 Messung ist mit diesem Wert für $N_{\textsl{C}}$ also kompatibel. Die angegebenen Formeln erlauben es leider nicht die Änderung des theoretischen
-Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in \ref{form:xstot} mit passenden  Partondichtefunktionen (\textbf{pdf})für verschiedene Werte
-von $N_{\textsl{C}}$ in \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
-zu den Messwerten durchzuführen.Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die
+Wirkungsquerschnitt zu berechnen. Dazu müsste das Integral in Gleichung \ref{form:xstot} mit passenden  Partondichtefunktionen (\textbf{pdf}) für verschiedene Werte
+von $N_{\textsl{C}}$ in Gleichung \ref{form:xscms} integriert werden. Selbst diese Lösung wäre nur in führender Ordnung und wohl nicht geeignet um Vergleiche
+zu den Messwerten durchzuführen. Der Wirkungsquerschnitt hängt nicht auf triviale Weise mit dem Farbfaktor zusammen, deshalb könnten wohl auch nicht die
 NLO Korrekturwerte für $N_{\textsl{C}}=3$ benutzt werden. Es wurde deshalb folgender Umweg gewählt um den Einfluss des Farbfaktors auf den
 Wirkungsquerschnitt abzuschätzen:
 Mit dem von Richard J. Gonsalves et al. entwickelten Fortran Programm qt \cite{qtsite} ist es möglich totale W/Z  Wirkungsquerschnitte
@@ -532,9 +631,9 @@ Dabei zeigt sich das der zunächst angenommene Zusammenhang:
 in ausreichender Näherung gilt. Die Abweichungen von diesem Wert betragen für den Fall $i=3 \hspace{0.2cm} j=2$ ca. $9\% $ und für $i=3 \hspace{0.2cm} j=4$
 ca. $4\% $. Im Folgenden werden die alternativen Wirkungsquerschnitte aus dem Literaturwert für $\sigma $ und den $c_{i,j}$ berechnet,
 wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in qt beobachteten, relativen Abweichungen behandelt wird.
- Die Abweichungen zwischen Messung und Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung
- von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch
- nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
+Die Abweichungen zwischen Messung und Theorie in Standardabweichungen sind in Tabelle \ref{tab:color} zu finden. Die größte Übereinstimmung
+von Theorie und Messung findet man für $N_{\textsl{C}}= 3$ mit einer Abweichung von $0.75\sigma$. Die alternativen Hypothesen können jedoch
+nicht innerhalb von $3\sigma$ ausgeschlossen werden, es ist also keine abschließende Aussage über den Wert genauen Wert von $N_{\textsl{C}}$ möglich.
 
 \begin{table}[h]
 	\centering
@@ -550,27 +649,11 @@ wobei $c_{i,j}$ mit einem relativen systematischen Fehler, entsprechend den in q
 \end{table}
 
 
-\subsection{Bestimmung des Weinbergwinkel}
-Der Weinbergwinkel $\theta_{W}$ beschreibt den elektroschwachen Mischungswinkel und beschreibt wie
-die, vor der Symmetriebrechung durch den Higgsmechanismus masselosen, Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung
-mischen. Er ist, wie in \ref{ziel} Formel \ref{form:wein} bereits erwähnt, direkt mit dem Massenverhältnis der massiven Eichbosonen W und Z verknüpft.
-Mit der aus \cite{versuchsanleitung} entnommenen Z-Masse $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in \ref{template} bestimmten W Masse ergibt
-sich für den Weinbergwinkel:
-\begin{align*}
-	sin\left(\theta_{W}\right)^{2} = 1 - cos\left(\theta_{W}\right)^{2} = 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} \\ = ( 0.2249 ± 0.0052 (stat.) ± 0.0151(sys.))
-\end{align*}
-Die systematischen und statistischen Fehler auf $m_{w}$ werden zur Bestimmung des Fehler auf $sin(\theta_{W})^{2}$ quadratisch addiert.
-Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden das es sich bei \ref{form:wein} um eine
-Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des Weltmittelwert berücksichtigen noch Strahlungskorrekturen aus höheren
-Ordnungen, dieser Unterschied wird gemäß der Beschreibung in \cite{versuchsanleitung} durch einen Korrekturfaktor von $corr_{strahlung}=1.06$
-berücksichtigt. Der Vergleich von korrigiertem und Weltmittelwert
-\begin{align*}
-	sin(\theta_{W})_{korrigiert}^{2} = ( 0.2384 ± 0.0055 (stat.) ± 0.0160(sys.)) \\ 
-	sin(\theta_{W})_{Welt}^{2} = 0.2397 \pm 0.0013
-\end{align*}
-zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $0.08\sigma$ vom Literaturwert mit diesem
-innerhalb von $3\sigma$ kompatibel ist.Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen
-Toleranzbereich bestätigen.
+
+
+\newpage
+
+
 \subsection{Bestimmung der W-Zerfallsbreite}
 Die Zerfallsbreite des W-Boson wird mit Hilfe von Formel \ref{form:width} bestimmt. Für die konkrete Berechnung
 wurden $\alpha = \frac{1}{128}$ und $N_{\textsl{C}}=3$ verwendet und als fehlerfrei angenommen, $sin(\theta_{W})^{2} $
@@ -586,7 +669,6 @@ berücksichtigt.Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
 Dieser Wert weicht $0.28\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von $Γ_{W,theo} = 2.141 \pm 0.041\si{nb}$
 ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 
-\newpage
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
 und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen

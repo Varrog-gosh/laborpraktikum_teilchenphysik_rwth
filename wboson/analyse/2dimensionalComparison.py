@@ -37,14 +37,7 @@ def plot2D( variable, cut, drawLines, save ):
 	can.cd(1)
 	xn = 200
 	yn = 200
-	
-	line1 = TLine()
-	line2 = TLine()
-	for line in (line1,line2):
-		line.SetLineWidth(2)
-		line.SetLineStyle(9)
-		line.SetLineColor(2)
-		
+
 	if variable == 'mwt:el_et':
 		xmin = 10
 		xmax = 70
@@ -57,6 +50,19 @@ def plot2D( variable, cut, drawLines, save ):
 		ymin = 9
 		ymax = 80
 		title = ';E_{T} [GeV];#slash{E}_{T} [GeV]     '
+
+	# intialize lines
+	if drawLines:
+		xcut = 30
+		ycut = 30
+		xline = TLine( xcut, ymin, xcut, ymax )
+		yline = TLine( xmin, ycut, xmax, ycut )
+
+		for line in ( xline, yline ):
+			line.SetLineWidth(2)
+			line.SetLineStyle(9)
+			line.SetLineColor(2)
+
 	mchist2D = create2DHistoFromTree( mcTree, variable, cut, xn, xmin, xmax, yn, ymin, ymax, title )
 	mchist2D.SetTitle('Simulation')
 	print mchist2D.GetCorrelationFactor()
@@ -65,14 +71,16 @@ def plot2D( variable, cut, drawLines, save ):
 	datahist2D.SetTitle('Daten')
 	mchist2D.Draw("colz")
 	if drawLines:
-		line1.DrawLine(30,11,30,78)
-		line2.DrawLine(11,30,78,30)
+		xline.Draw()
+		if variable == "met:el_et":
+			yline.Draw()
 	can.cd(2)
 	datahist2D.Draw("colz")
 
 	if drawLines:
-		line1.DrawLine(30,11,30,78)
-		line2.DrawLine(11,30,78,30)
+		xline.Draw()
+		if variable == "met:el_et":
+			yline.Draw()
 	if save:
 		from re import sub
 		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')

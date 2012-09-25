@@ -288,7 +288,6 @@ C-----------------------------------------------------------------------
       CALL setcon
       IF (ntot.EQ.1) THEN
           CALL settot (totxc,totsd,totchi)
-          PRINT *,totxc
       ENDIF
       nres=0
       IF (lscalm.OR.lscalmu) THEN
@@ -596,6 +595,7 @@ C----------------------------------------------------------------------
           ans=ans*emult
           sd=sd*emult
       ENDIF
+      PRINT *,'Total Crosssection, perhaps /2: ',ans," +- ",sd
       RETURN
       END
 C-----------------------------------------------------------------------
