@@ -343,6 +343,10 @@ von $E_T$ eine dominante Rolle hat.
 % falsch: wir haben hier nJets == 0 gefordert. met kommt hauptsächlich  durch die fehlenden
 % leptonenenergien oder γ energien.
 
+% Da steht das die Selektions'hoch energetische Jets außschliesst und deshalb die unsicherheit in met durch E_t (was bisher immer nur fürs Elektron genutzt wurde).
+% Also genau das was du sagst. Wir haben ausserdem nicht NJet == 0 gefordert sondern lediglich keinen Jet > 15GeV Transversimpuls (siehe Anhang Versuchsanleitung) 
+
+
 Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
 Wahl der Energieskala der fehlenden transversalen Energieskala zu $\SI{0.3}{MeV}$ bestimmt.
 % auch hier: einheit richtig mev ist sehr wenig, wenn mev stimmt, dann solten wir explizit erwähnen,
@@ -637,8 +641,8 @@ ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
 und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
 nicht in führender Ordnung erzeugt werden, sondern nur wie zum Beispiel in Abbildung \ref{fig:2Wfeynman}. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
-Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq\nu$ (hadonisch) genutzt.
-% wo entsteht bei der hadronischen reaktion das neutrino?
+Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq$ (hadonisch) genutzt.
+
 
 \begin{figure}[h]
 \centering
@@ -656,14 +660,9 @@ Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow 
 \caption{Feynman Diagramm für die Erzeugung von zwei W-Bosonen im LEP Kollider.}
 \label{fig:2Wfeynman}
 \end{figure}
-Die benutzten Angaben beziehen sich, soweit nicht anders angegeben, auf die Analysen in
-\cite{Abachi:1996ey} für Hadronkollider und \cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
+Die benutzten Angaben beziehen sich, soweit nicht anders angegeben, auf die Analysen 
+von DØ\cite{Abachi:1996ey} für Hadronkollider und L3\cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
 betrachtet die beide Kollidertypen betrifft:
-% zu dem ganzen absatz: macht man das mit den veröffentlichungen wirklich so:
-% "`in den [4] Zerfallskanlälen"' oder nicht lieber "` im LEP[4] Experiment wird w-> \dots
-% bestimmt"' ? 
-% ich finde es recht verwirrend, wenn die zahlen mit whitespaces rechts und link da stehen, ohne an
-% ein wort gekoppelt zu sein. alternativ auch an satzende
 
 \begin{itemize}
 	\item \textbf{Luminosität:} \\
@@ -709,6 +708,7 @@ systematische Unsicherheit angeführt werden:
 	und ist damit die dominierende systematische Unsicherheit für den hadronischen Zerfallskanal.\\
 	Bose-Einstein Korrelationen beschreiben die Tendenz von Teilchen mit ganzzahligem Spin eine auf quantenstatistischen Effekten beruhende Clusterung
 	%sagt man nicht bose-einstein kondensation?
+	%nein sagt man nicht ist was anderes -tp
 	durchzuführen. Dabei treten zum Beispiel nicht nur Korrelationen zwischen identischen Teilchen wie neutralen Pionen auf sondern auch Effekte zwischen
 	unterschiedlich geladenen Pionen, da die Gesamtwellenfunktion auch Anteile einer Annihilation in
 	zwei neutrale Pionen oder Photonen beinhalten, die
