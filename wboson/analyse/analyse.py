@@ -4,16 +4,17 @@ from treeTools import *
 from tools import *
 
 def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
-	nBins = 20
 	if variable=="mwt":
+		nBins = 30
 		firstBin = 60
-		lastBin =180
+		lastBin =110
 		affix = ""
 		xmin = 79.4
 		xmax = 81.
 	else:
+		nBins = 30
 		firstBin = 30
-		lastBin = 100
+		lastBin = 55
 		xmin= 79.8
 		xmax =81.
 		affix = "et"
@@ -36,6 +37,9 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
 		mchist.Scale( 1./mchist.Integral() )
 		datahist.SetTitle( ';'+cut)
+		'''mchist.Draw("hist")
+		datahist.Draw("same")
+		raw_input()'''
 		chi2ndf = datahist.Chi2Test( mchist, "WW,chi2/ndf")
 		y.append( chi2ndf )
 	gr = TGraph(len(masses), x,y)
