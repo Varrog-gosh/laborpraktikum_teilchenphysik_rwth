@@ -260,8 +260,8 @@ normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete
 des normalen $χ²$ Test benutzen
 muss\cite{cramer1999mathematical}.
 Weiterhin müssen in einem Bin genug
-Einträge sein (mehr als 9), damit man die poissonverteilten Einträge in eine Gaußverteilung 
-übergehen und man den Fehler als Quadratwurzel der Einträge benutzen kann. Außerdem verringert man
+Einträge sein (mehr als 9), damit man die poissonverteilten Einträge als eine Gaußverteilung nähern kann 
+und man den Fehler als Quadratwurzel der Einträge benutzen kann. Außerdem verringert man
 somit die relative Gewichtung von Bins mit zu wenig Einträgen.
 
 
@@ -312,16 +312,14 @@ vernachlässigt.
 
 \subsection{Systematische Fehler bei der Bestimmung der W Masse}
 \label{sysunc}
-Im folgenden werden die Berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler
+Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler
 addiert.
 \subsubsection*{Energieskala von $E_{T}$}
 Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
 dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
 W Masse erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
 Wahl der transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmt.
-% du meinst sicherlich GeV???
-% bei der verschiebung von 0 stimmt das nicht mit dem ergebnis von ./analyse überein und nicht mit
-% dem was sonst da steht
+
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
@@ -338,7 +336,7 @@ Wahl der transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmt.
 \subsubsection*{Energieskala von $\met$}
 Analog zum vorherigen Abschnitt wird nun auch die fehlende transversale $\met$ um $2\%$  variiert. Die Wahl dieser Abweichung wird dadurch begründet, dass
 die gewählte Selektion hoch energetische Jets ausschließt und deshalb in der Berechnung von $\met$ die Unsicherheit
-vom $E_T$ des Elektron eine dominante Rolle hat.
+auf die Transversalenergie des Elektron eine dominante Rolle hat.
 % falsch: wir haben hier nJets == 0 gefordert. met kommt hauptsächlich  durch die fehlenden
 % leptonenenergien oder γ energien.
 
@@ -430,7 +428,7 @@ schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
 Wenn man diesen Schnitt anwendet, erhält man Abbildung \ref{fig:correlation} unten und man
 erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
 
-Bei Wahl der gleichen Selektionsgrenzen wie bei der Bestimmung von $m_{W}$ über $m_T$ zeigt sich
+Bei Wahl der gleichen Selektionsgrenzen wie bei der Bestimmung von $m_{W}$ über $m_T$ zeigt sich, dass 
 für $E_{T}$ eine wesentlich schwächere Übereinstimmung zwischen Daten und Simulation besteht, insbesondere
 im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 \begin{figure}[htb]
@@ -455,7 +453,7 @@ im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 	\caption{Ergebnis der Template Methode zur Bestimmung der W Masse für einen Vergleich der $E_{T}$ Verteilung}
 	\label{fig:chiet}
 \end{figure}
-Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $5.4$ (siehe Abbildung
+Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $2.4$ (siehe Abbildung
 \ref{fig:chiet}), dass heißt der durch die Methode bestimmte statistische Fehler wird
 die tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch nur zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
 wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen um das $χ²/\text{NDF}$ näher an 1 zu bringen.

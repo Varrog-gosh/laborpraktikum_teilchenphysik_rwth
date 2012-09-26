@@ -43,11 +43,12 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 		chi2ndf = datahist.Chi2Test( mchist, "WW,chi2/ndf")
 		y.append( chi2ndf )
 	gr = TGraph(len(masses), x,y)
-	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
+	
 	
 	gr.Fit('pol2','q0',"X",78,82)
 	gr.GetFunction('pol2').SetParNames("a", "b", "c")
 	gr.GetFunction('pol2').SetRange(xmin,xmax)
+	gr.GetFunction('pol2').SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.GetFunction('pol2').Draw("RL")
 	gr.Draw("psame")
 	# draw cut as text
