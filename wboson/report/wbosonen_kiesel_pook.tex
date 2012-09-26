@@ -571,7 +571,8 @@ müssen allerdings einige Näherungen treffen:
 		wird ausgeschlossen, aber im Programm mit berechnet.
 	\item Die Patrondichtefunktionen sind nicht vom Farbfaktor $N_C$ abhängig. Die Funktionen stehen
 		im Programm nur als feste Wertepaare zur Verfügung und werden nicht explizit berechnet.
-	\item Die funktionale Abhängigkeit des Wirkungsquerschnitts vom Farbfaktor ändert sich nicht. Es
+	\item Die funktionale Abhängigkeit des Wirkungsquerschnitts vom Farbfaktor ändert sich nicht mit
+		Änderung eines noch unbekannten Parameters des Programms. Es
 		war uns leider nicht möglich alle Faktoren des komplexen Programms zu verstehen, wie zum
 		Beispiel die minimale Rapiditätsgrenze. Die berechneten Wirkungsquerschnitte sind
 		systematisch zu klein und werden linear skaliert, um eine Möglichkeit der Überprüfung mit dem gemessenen
@@ -589,8 +590,9 @@ Die Ergebnisse sind in Tabelle \ref{tab:color} zu finden.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c|c}
-		$N_{\textsl{C}}$ & $\sigma_\text{tot}$ &$σ_{W\rightarrow eν}$ & $σ_\text{scaled}[\si{nb}]$
-		& Abw. [$σ$] \\
+		$N_{\textsl{C}}$ & $\sigma_\text{tot} [\si{nb}]$ &$σ_{W\rightarrow eν}[\si{nb}]$ &
+		$σ_\text{skaliert}[\si{nb}]$
+		& Abweichung [$σ$] \\
 		\hline
 %1.9 & 25.88 & 3.81 & 4.82 & 5.6 \\
 2 & 25.09 & 3.58 & 4.54 & 4.9 \\
@@ -608,7 +610,8 @@ Die Ergebnisse sind in Tabelle \ref{tab:color} zu finden.
 	\end{tabular}
 	\caption{Für verschiedene Farbfaktoren die totalen Wirkungsquerschnitte, die
 		Wirkungsquerschnitte in den untersuchten Kanal, die auf den in der Versuchsanleitung
-	skalierten vorgegebenen Wirkungsquerschnitt und die Abweichung der Messung von der Theorie.}
+		skalierten vorgegebenen Wirkungsquerschnitt und die Abweichung der
+	Messung von der Theorie in Standardabweichungen.}
 	\label{tab:color}
 \end{table}
 
