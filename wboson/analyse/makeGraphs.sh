@@ -9,6 +9,7 @@
 ./tauBackgroundEstimation.py -p el_et -c 'met>30' --cutline 30 --save
 ./tauBackgroundEstimation.py -p mwt -c 'met>30&&el_et>30' --save
 ./analyse.py --save
+./analyse.py --save -p "el_et"
 ./tauBackgroundEstimation.py -p "mwt/el_et" --cutline 1.7 --save
 ./2dimensionalComparison.py -l -p met:el_et --save
 

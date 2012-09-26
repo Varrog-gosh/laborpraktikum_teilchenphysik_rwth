@@ -3,7 +3,10 @@
 from treeTools import *
 from tools import *
 
-def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
+def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet = False):
+	from ROOT import TGraph, TCanvas
+
+	# set histgogram setting for variables
 	if variable=="mwt":
 		nBins = 30
 		firstBin = 60
@@ -18,38 +21,52 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 		xmin= 79.8
 		xmax =81.
 		affix = "et"
-	#~ nBins2 = 4./(lastBin -firstBin)*nBins
-	#~ drawhist = createHistoFromTree(dataTree, variable, cut, nBins2, 78 , 82)
+
+	# create and scale data hist
 	datahist = createHistoFromTree(dataTree, variable, cut, nBins, firstBin, lastBin)
 	datahist.Scale( 1./datahist.Integral() )
-	from ROOT import TGraph, TCanvas
-	from array import array
-	can = TCanvas( randomName(), "template", 1400, 800 )
-	can.cd()
-	if save or quiet:
-		can.SetBatch()
 
+	from array import array
 	x = array('d')
 	y = array('d')
+
 	masses = weightToMass()
 	for i, mass in enumerate( masses ):
 		x.append( mass )
 		mchist = createHistoFromTree( mcTree, variable, 'weight['+str(i)+'] * ('+cut+')', nBins, firstBin, lastBin)
 		mchist.Scale( 1./mchist.Integral() )
 		datahist.SetTitle( ';'+cut)
-		'''mchist.Draw("hist")
-		datahist.Draw("same")
-		raw_input()'''
 		chi2ndf = datahist.Chi2Test( mchist, "WW,chi2/ndf")
 		y.append( chi2ndf )
+
+		# draw graph for comparison
+		if i == 9 and save:
+			can2 = TCanvas( randomName(), "template", 1400, 800 )
+			can2.cd()
+			can2.SetBatch()
+			mchist.Draw("hist")
+			if variable == "mwt":
+				mchist.SetTitle(";m_{T} [GeV];Normierte Eintr#ddot{a}ge")
+			if variable == "el_et":
+				mchist.SetTitle(";E_{T} [GeV];Normierte Eintr#ddot{a}ge")
+			datahist.Draw("same")
+			can2.SaveAs("chi2" + variable +'.pdf')
+			can2.Close()
+
+	# draw χ² plot
+	can = TCanvas( randomName(), "template", 1400, 800 )
+	can.cd()
+	if save or quiet:
+		can.SetBatch()
+
 	gr = TGraph(len(masses), x,y)
-	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
-	
 	gr.Fit('pol2','q0',"X",78,82)
+	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.GetFunction('pol2').SetParNames("a", "b", "c")
 	gr.GetFunction('pol2').SetRange(xmin,xmax)
 	gr.GetFunction('pol2').Draw("RL")
 	gr.Draw("psame")
+
 	# draw cut as text
 	from ROOT import TPaveText
 	text = TPaveText(0.2, 0.85, .8, .95, 'ndc')
@@ -65,7 +82,7 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 
 	if save:
 		can.SaveAs('template'+affix+'.pdf')
-	elif quiet==False:
+	elif not quiet:
 		can.Update()
 		raw_input()
 	func = gr.GetFunction('pol2')
@@ -168,7 +185,7 @@ if (__name__ == "__main__"):
 	parser.add_argument("-c", "--cut", dest="cut", default="met > 30 && el_et > 30", help="Cuts applied to all structures" )
 	parser.add_argument("--save", action="store_true", default=False, help="Plots are not drawn, but saved as pdf")
 	parser.add_argument("-p", "--plots", dest="plots", default= "mwt")
-	parser.add_argument("-q", "--quiet", dest="quiet", default= "0")
+	parser.add_argument("-q", "--quiet", action="store_true", default = False)
 
 	opts = parser.parse_args()
 	import Styles # official cms style
@@ -176,13 +193,13 @@ if (__name__ == "__main__"):
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
-	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, opts.plots ,int(opts.quiet))
+	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, opts.plots, opts.quiet )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )
-	
+
 	print "Mass: %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) GeV"%(m, e_m,e_m_sys)
 	print
-	if (int(opts.quiet) == 0):
+	if not opts.quiet:
 		xs,err_xs_stat,err_xs_sys = getXs(dataTree,mcTree,opts.plots,opts.cut)
 		print "Crosssection: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
 		print "Theory Crossection: σ = %.2f \pm %.2f nb"%(2.58,0.09)
