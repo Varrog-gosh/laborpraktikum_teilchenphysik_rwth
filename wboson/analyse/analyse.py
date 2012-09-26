@@ -80,7 +80,7 @@ def getMass( dataTree, mcTree, cut, save, variable,quiet=0 ):
 	except:
 		e_mass = 0
 
-	return mass, e_mass, 0.78 #wert, err_mass (stat.), err_mass (sys.)
+	return mass, e_mass, 1.99 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):
