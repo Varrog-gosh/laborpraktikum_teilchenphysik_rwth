@@ -165,12 +165,12 @@ beschrieben werden.
 \begin{figure}[h]
 	\centering
 	\newcommand{\halftext}{0.49\textwidth}
-	\includegraphics[width=\halftext]{eta.pdf}
-	\includegraphics[width=\halftext]{delta_phi.pdf}\\
-	\includegraphics[width=\halftext]{vertex_z.pdf}
-	\includegraphics[width=\halftext]{enengy_fraction.pdf}\\
-	\includegraphics[width=\halftext]{phi.pdf}
-	\includegraphics[width=\halftext]{isolation.pdf}\\
+	\includegraphics[width=\halftext]{manualplots/eta.pdf}
+	\includegraphics[width=\halftext]{manualplots/delta_phi.pdf}\\
+	\includegraphics[width=\halftext]{manualplots/vertex_z.pdf}
+	\includegraphics[width=\halftext]{manualplots/energyFraction.pdf}\\
+	\includegraphics[width=\halftext]{manualplots/phi.pdf}
+	\includegraphics[width=\halftext]{manualplots/isolation.pdf}\\
 	\caption{Die Verteilung der Rapidität $η$, Winkel zwischen den Leptonen $Δ\phi$, der Abstand vom Ursprung in
 	Strahlrichtung $z$, der Anteil der Energie im Kalorimeter, der Polarwinkel $\phi$ und die
 	Elektronisolation für Daten und Simulation. }
@@ -179,7 +179,7 @@ beschrieben werden.
 
 Einige der Größen werden in Abbildung \ref{fig:variables} dargestellt. Man sieht die $τ$ Ereignisse
 als blaues Histogram, die übrigen simulierten Daten als schwarzes Histogram und die Daten als
-Punkte. 
+Punkte.
 \subsubsection*{Normierung der simulierten Daten}
 Um einen Vergleich mit den gemessenen Daten zu ermöglichen, müssen die simulierten Ereignisse auf
 die 
@@ -270,7 +270,16 @@ Eine Schwierigkeit besteht weiterhin in dem Wählen der Anzahl der Bins sowie de
 Bereich der Variable, in der man die Übereinstimmung untersucht. Im Allgemeinen steigt das $χ²$ mit zunehmender Anzahl Bins. Die Anzahl der Bins wird auf
 20 gesetzt, da dort der statistische Fehler klein ist, die Struktur der Verteilung aber nicht
 verloren geht. Der Bereich wird möglichst groß gewählt, ohne dabei Bins mit weniger als 10 Einträge
-mitzunehmen.
+mitzunehmen. Das resultierende Histogram kann man in Abbildung \ref{fig:compareHistoMT}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{chi2mwt.pdf}
+	\caption{Vergleich der $m_T$ Verteilung für Simulation (Balken) und Daten (Punkte) für die
+		festgelegten Selektionsgrenzen und in dem oben ausgewählten Bereich.}
+	\label{fig:compareHistoMT}
+\end{figure}
+
 
 Trägt man nun für jede simulierte Masse das $χ²/\text{NDF}$ aus dem Vergleich zwischen der
 Verteilung von $m_T$ von
