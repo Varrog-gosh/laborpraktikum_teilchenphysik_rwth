@@ -64,6 +64,7 @@ def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet =
 	gr.SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.GetFunction('pol2').SetParNames("a", "b", "c")
 	gr.GetFunction('pol2').SetRange(xmin,xmax)
+	gr.GetFunction('pol2').SetTitle(';M_{W} [GeV];#chi^{2}/NDF')
 	gr.GetFunction('pol2').Draw("RL")
 	gr.Draw("psame")
 
