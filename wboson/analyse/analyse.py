@@ -97,7 +97,8 @@ def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet =
 	except:
 		e_mass = 0
 
-	return mass, e_mass, 1.99 #wert, err_mass (stat.), err_mass (sys.)
+	return mass, e_mass, .93 #wert, err_mass (stat.), err_mass (sys.)
+	#return mass, e_mass, 1.99 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):

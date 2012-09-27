@@ -1,2 +1,21 @@
 todo:
 Effizienz ohne Lumigewicht aus MC berechnen
+
+template-plot: warum zo ein großer range-bereich? können wir da nicht reinzoomen wie bisher?
+
+energieskalaverschiebung: tabellen sind exakt gleich, output von mwsys auch,
+werden die trees richtig erzeugt, oder warum steht da nichts im text warum die
+gleich sind?
+
+correlation zwischen el_et und met: warum wird der korrelationskoeffizient
+nach dem cut kleiner? sollte er nicht größer werden?
+Vergleiche dazu die ausgaben von:
+./2dimensionalComparison.py -c 'met>30&&el_et>30' -p met:el_et
+./2dimensionalComparison.py -p met:el_et
+
+lineare additon von korrelirten größen oder 1/2( a + b) (also den
+durchschnitt)?
+eigentlich sollte der gesamtfehler kleiner werden, wenn beide größen
+korelliert sind
+
+
