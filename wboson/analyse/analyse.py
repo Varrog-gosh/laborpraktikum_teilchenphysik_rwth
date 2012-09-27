@@ -195,6 +195,10 @@ if (__name__ == "__main__"):
 	mcTree = readTree( opts.mcfile )
 	dataTree = readTree( opts.datafile )
 
+	# set cut for el_et !!!!!!!!!!!!!!!! overwrites all!!!!!!!!!!!!!
+	if opts.plots == "el_et":
+		opts.cut = opts.cut + ' && mwt/el_et>1.9'
+
 	m, e_m,e_m_sys = getMass( dataTree, mcTree, opts.cut, opts.save, opts.plots, opts.quiet )
 	sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys = getWeinberg( m, e_m ,e_m_sys)
 	gamma,err_gamma_stat,err_gamma_sys = getWidth(m, e_m, e_m_sys )

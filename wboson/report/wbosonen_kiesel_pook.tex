@@ -392,6 +392,7 @@ W-Massenbestimmung:
 	m_W =  80.32 ± 0.27 (stat.) ± 0.98 (sys.) \si{GeV}
 \end{align*}
 \FloatBarrier
+
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu Überprüfen, wird zusätzlich
 die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Template Methode die W-Masse
@@ -406,58 +407,49 @@ sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
 	\label{fig:correlation}
 \end{figure}
 
-% korrelationskoeffizienten mit e_t >30 cut wäre interessanter
 Die Korrelationskoeffizieten sind 0.96 für die Simulation und 0.77 für die Daten. Man sieht hier
-auch deutlich einen Unterschied  zwischen Simulation und Daten, der aber mit einem Schnitt auf $E_T$ bei
-$\SI{30}{GeV}$ entfernt werden kann. Alternativ kann man auch auf das Verhältnis von $m_T$ zu $E_T$
-schneiden, wie in Abbildung \ref{fig:verhaeltnis} zu sehen ist.
+deutlich einen Unterschied  zwischen Simulation und Daten. Zur genaueren Untersuchung wird das
+Verhältnis von $m_T$ zu $E_T$ in Abbildung \ref{fig:verhaeltnis} gezeigt.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1\textwidth]{mwt_el_et1tau.pdf}
-	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation mit
-	Selektionsgrenze.}
+	\includegraphics[width=.7\textwidth]{mwt_el_etmet>30&&el_et>30tau.pdf}
+	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation für
+		$\met>\SI{30}{GeV}$ und $E_T>\SI{30}{GeV}$ und eingezeichneter Selektionsgrenze.}
 	\label{fig:verhaeltnis}
 \end{figure}
 
-Wenn man diesen Schnitt anwendet, erhält man Abbildung \ref{fig:correlation} unten und man
-erhöht den Korrelationskoeffizieten auf 0.97 für die Simulation und 0.94 für die Daten.
+Als zusätzliche Bedingung wird für die $E_T$ Verteilung gefordert, dass $m_T/E_T>1.9$ sein muss.
+Dies führt zwar zu einer kleineren Effizienz, dafür aber zu einem besseren minimalen $χ²/\text{NDF}$.
 
-Bei Wahl der gleichen Selektionsgrenzen wie bei der Bestimmung von $m_{W}$ über $m_T$ zeigt sich, dass 
-für $E_{T}$ eine wesentlich schwächere Übereinstimmung zwischen Daten und Simulation besteht, insbesondere
-im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.7\textwidth]{chi2el_et.pdf}
+	\includegraphics[width=.6\textwidth]{chi2el_et.pdf}
 	\caption{$E_{T}$ Verteilung nach der Selektion. }
 	\label{fig:etaftercut}
 \end{figure}
 
 
-
-%Um bessere Ergebnisse zu erzielen, wird der noch die oben beschriebene Selektion von $m_T/E_T < 1.7$ verwendet und es ergibt sich ein $χ²/\text{NDF}$
-%von $1.004$. Durch das optimieren der Selektionsgrenzen auf $E_T$, $\met$ und $m_T/E_T$ erhält man
-%eine W Masse von
-
-
-
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{templateet.pdf}
+	\includegraphics[width=0.6\textwidth]{templateet.pdf}
 	\caption{Ergebnis der Template Methode zur Bestimmung der W-Masse für einen Vergleich der $E_{T}$ Verteilung}
 	\label{fig:chiet}
 \end{figure}
-Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $2.4$ (siehe Abbildung
-\ref{fig:chiet}), dass heißt der durch die Methode bestimmte statistische Fehler wird
-den tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch nur zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
-wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen, um das $χ²/\text{NDF}$ näher an 1 zu bringen.
+Das minimale $χ²/\text{NDF}$ der Template Methode ist nun etwa das gleiche wie bei $m_T$ als
+Variable.
 
 Die Bestimmung der systematischen Fehler erfolgt analog zu
-Abschnitt \ref{sysunc}. Es ergeben sich systematische Abweichungen von $\SI{0.1}{GeV}$ für die Wahl der Selektionsgrenzen (siehe Tabelle \ref{tab:variation_et}), $\SI{0.24}{GeV}$
-für die Variation von $\met$ und $\SI{3.97}{GeV}$ für die Variation von $E_{T}$. Der Einfluss der Variation von $E_{T}$ ist wie erwartet sehr groß.
-Insgesamt ergibt sich für die W-Masse
+Abschnitt \ref{sysunc}. Es ergeben sich systematische Abweichungen von $\SI{0.1}{GeV}$ für die Wahl
+der Selektionsgrenzen, wobei der Fehler auf das Verhältnis von $m_T/E_T$ zu $0.05$ angenommen wird
+und den Fehler dominiert.
+Der Fehler durch die Energieunsicherheit ist $\SI{0.27}{GeV}$ für $\met$ und $\SI{2.3}{GeV}$ für
+$E_T$. Hier sind beide Unsicherheiten nicht mehr identische wie bei $m_T$ und man sieht, dass der
+von $E_T$ kommende Anteil den gesamten systematischen Fehler dominiert.
+Es ergibt sich insgesamt
+
 \begin{align*}
-	m_W = ( 80.43 ± 0.34 (stat.)± 4.21 (sys.)) \si{GeV}.
+	m_W =  80.12 ± 0.33 (stat.)± 2.28 (sys.) \si{GeV}.
 \end{align*}
 Das Ergebnis ist also im Rahmen der angegebenen Fehler mit den Ergebnissen der Template Methode für
 $m_{T}$ vereinbar.
@@ -465,19 +457,6 @@ Da es allerdings sehr viel aufwendiger ist, effektive Selektionskriterien zu fin
 instabiler sind, wird das Ergebnis von $m_T$ benutzt.
 Dennoch kann man sagen, dass das Selektieren und die anschließende Template Methode nicht nur mit
 $m_T$ funktioniert, aber mit $m_T$ die besseren Ergebnisse erzielt werden können.
-\begin{table}[h]
-	\centering
-	\begin{tabular}{c| c c c}
-		$E_{T} [\si{GeV}]$ gegen $\met[\si{GeV}]$ & 25 & 30 & 35 \\
-		\hline
-		25 &  & 80.43 & \\
-		30 & 80.46 & 80.43 & 80.49 \\
-		35 &  & 80.63 &
-	\end{tabular}
-	\caption{Änderung der W-Masse bei Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$ für $E_T$
-als Vergleichsvariable.}
-	\label{tab:variation_et}
-\end{table}
 \section{Bestimmung der Effizienz}
 \label{effizienz}
 Um einen Vergleich von gemessenen Daten mit theoretischen Werten zu ermöglichen, muss die Nachweiseffizienz
