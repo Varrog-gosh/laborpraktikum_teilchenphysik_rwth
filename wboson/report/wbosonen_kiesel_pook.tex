@@ -381,23 +381,16 @@ systematischen Fehler abzuschätzen.}
 \end{table}
 
 \subsubsection*{Kombination der systematischen Fehlerquellen}
-Das Berechnen des systematischen Gesamtfehler geschieht in zwei Schritten:
-die Unsicherheiten auf $E_{T}$ und $\met$ sind, wie in Abbildung \ref{fig:etVSmet} zu erkennen ist,
-stark korreliert (Korrelationskoeffizient $0.85$ für die Simulation)
-% bei dem bild die schnitte anwenden, dann ist der korrelationskoeffizient noch näher bei 1
-und werden deshalb zunächst linear addiert. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
-als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch addiert. Damit ergibt sich als abschließendes Ergebnis der
+Die Verschiebung in $\met$ und $E_T$ die selben Abweichungen und damit auch die selben Ergebnisse. Dies kommt durch die
+Symmetrie von $\met$ und $E_T$ in der Definition von $m_T$.
+Der gesamte Fehler für die Energieskalierung ist deshalb  gleich der Einzelfehler von $\met$ und
+$E_T$. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
+als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch
+addiert, bewirkt aber kaum eine Änderung. Damit ergibt sich als abschließendes Ergebnis der
 W-Massenbestimmung:
 \begin{align*}
-	m_W =  80.32 ± 0.27 (\text{stat.}) ± 1.99 (\text{sys.}) \si{GeV}
+	m_W =  80.32 ± 0.27 (stat.) ± 0.98 (sys.) \si{GeV}
 \end{align*}
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=\textwidth]{correlation_metVSel_et.pdf}
-	\caption{Grafische Darstellung der Korrelation zwischen $E_{T}$ und $\met$ mit in rot eingezeichneten Selektionsgrenzen}
-	\label{fig:etVSmet}
-\end{figure}
-
 \FloatBarrier
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
 Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu Überprüfen, wird zusätzlich
@@ -525,17 +518,17 @@ und der in Abschnitt \ref{cap:template} bestimmten W-Masse ergibt sich für den 
 führender Ordnung:
 \begin{align*}
 	\sin²\left(\theta_{W}\right)_\text{LO} &= 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} \\
-	&=  0.2262 ± 0.0052 (stat.) ± 0.0384(sys.)
+	&=  0.2262 ± 0.0056 (stat.) ± 0.0189(sys.)
 \end{align*}
 Der systematische Fehler auf $m_{W}$ wird zur Bestimmung des Fehlers auf $\sin²(\theta_{W})$ quadratisch addiert.
 
 Da es sich hierbei nur um ein Ergebnis erster Ordnung Störungstheorie handelt, muss man das Ergebnis
 noch mit einem Strahlungskorrekturterm von $1.06$ multiplizieren\cite{versuchsanleitung} und erhält
 \begin{align*}
-	\sin²(\theta_{W}) &=  0.2397 ± 0.0059 (stat.) ± 0.0407(sys.) \\
+	\sin²(\theta_{W}) &=  0.2397 ± 0.0059 (stat.) ± 0.0200(sys.) \\
 	\sin²(\theta_{W})_\text{Literatur} &= 0.2397 \pm 0.0013.
 \end{align*}
-Der Weinbergwinkel weicht $0.0009\sigma$ vom Literaturwert ab und ist mit diesem
+Der Weinbergwinkel weicht $0.002\sigma$ vom Literaturwert ab und ist mit diesem
  kompatibel. Die Messung kann also den bisherigen Messwert innerhalb des Fehlers bestätigen.
 
 
@@ -628,9 +621,9 @@ von $corr_{HO}=1.09 \pm 0.01$ multipliziert werden\cite{versuchsanleitung}, um d
 Fehler auf diesen Korrekturfaktor wird bei der Fehlerfortpflanzung ebenfalls als zusätzliche systematisch Fehlerquelle
 berücksichtigt. Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
 \begin{align*}
-	Γ_{W,korrigiert} =  2.079 ± 0.059 (stat.) ± 0.404(sys.) \si{GeV}
+	Γ_{W,korrigiert} =  2.079 ± 0.059 (stat.) ± 0.199(sys.) \si{GeV}
 \end{align*}
-Dieser Wert weicht $0.15\sigma$ vom Literaturwert\cite{versuchsanleitung}
+Dieser Wert weicht $0.29\sigma$ vom Literaturwert\cite{versuchsanleitung}
 $Γ_{W,theo} = 2.141 \pm 0.041\si{GeV}$
 ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 
