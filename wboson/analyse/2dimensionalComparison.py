@@ -55,10 +55,12 @@ def plot2D( variable, cut, drawLines, save ):
 	if drawLines:
 		xcut = 30
 		ycut = 30
+		ratiocut = 1.9
 		xline = TLine( xcut, ymin, xcut, ymax )
 		yline = TLine( xmin, ycut, xmax, ycut )
+		xyline = TLine( xmin, ratiocut * xmin, xmax, ratiocut * xmax)
 
-		for line in ( xline, yline ):
+		for line in ( xline, yline, xyline ):
 			line.SetLineWidth(2)
 			line.SetLineStyle(9)
 			line.SetLineColor(2)
@@ -74,6 +76,8 @@ def plot2D( variable, cut, drawLines, save ):
 		xline.Draw()
 		if variable == "met:el_et":
 			yline.Draw()
+		if variable == "mwt:el_et":
+			xyline.Draw()
 	can.cd(2)
 	datahist2D.Draw("colz")
 
@@ -81,6 +85,8 @@ def plot2D( variable, cut, drawLines, save ):
 		xline.Draw()
 		if variable == "met:el_et":
 			yline.Draw()
+		if variable == "mwt:el_et":
+			xyline.Draw()
 	if save:
 		from re import sub
 		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')
