@@ -44,11 +44,11 @@
 Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
 sowie den Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
 
-Um den Fund des W Bosons am UA2 Experiment zu bestätigen sowie es genauer zu Untersuchen können auch
-beim DØ Experiment verschiedene Zerfallskanäle betrachtet werden. Einer von ihnen ist der Zerfall
-in ein Elektron/Positron und ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
-Protonen/Antiprotonen ergibt sich der Feynmangraph in erster Ordnung in Abbildung
-\ref{fig:feynman}.
+Um den Fund des W Bosons am UA2 Experiment zu bestätigen und es genauer untersuchen zu können, werden
+beim DØ Experiment verschiedene Zerfallskanäle betrachtet. Einer von ihnen ist der Zerfall
+in ein Elektron/Positron und in ein Neutrino. Bei einer Erzeugung des W Bosons mit Valenzquarks der
+Protonen/Antiprotonen ergeben sich die in Abbildung \ref{fig:feynman} dargestellten Feynamngraphen. 
+
 \begin{figure}[h]
 \centering
 \begin{fmffile}{feymanE}
@@ -95,7 +95,7 @@ und
 ist. Dabei sind $f_i$ die Patron-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
 Schwerpunktsenergie.
 Unter der Annahme, das W kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
-top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
+top-Quark ist zu schwer, kann man über obrige Formel die gesamte Zerfallsbreite des W ausrechnen:
 \begin{align}
 \label{form:width}
 	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{α}{\sin^2θ_W}m_W
@@ -123,7 +123,7 @@ dem hier untersuchtem Prozess sind dies ein leichtes geladenes Lepton $e$
 \footnote{Elektron wird ab nun als Synonym für Elektron und Positron benutzt} sowie
 ein Neutrino $ν$
 \footnote{Neutrino wird als Synonym für (Anti-)elektronneutrino benutzt}. Da die
-longitudinale Anfangsbedinungen nicht bekannt sind, werden
+longitudinalen Anfangsbedingungen nicht bekannt sind, werden
 nur transversale kinematische Größen betrachtet. Für die Auswertung werden Daten aus dem Kalorimeter
 denen des Spurdetektors bevorzugt, da der Kalorimeter die kleinere Unsicherheit hat. So wird zum Beispiel
 die transversale Energie eines Elektrons/Positrons
@@ -141,7 +141,7 @@ wobei $\not\mathrel{E}$ als
 \begin{align*}
 	\not\mathrel{E}_i = \left| - \sum E\vec{e_i} \right|
 \end{align*}
-definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird sondern ohne Interaktion den
+definiert ist. Da das Neutrino im Detektor nicht nachgewiesen wird, sondern ohne Interaktion den
 Detektor verlässt, wird $\met$ als Neutrinoenergie
 benutzt. Da nur die transversalen Komponenten von Elektron und Neutrino verwendet werden, kann auch
 nur die invariante transversale Masse der Leptonen und damit des W Bosons berechnet werden.
@@ -153,7 +153,7 @@ im Folgenden die Elektronmasse vernachlässigt.}
 
 \subsection{Beschreibung der simulierten Daten}
 Um Untergründe zu entfernen ist es hilfreich die gemessenen Daten mit simulierten Ereignissen zu
-vergleichen. Da die W Masse im voraus noch nicht bekannt ist, werden Ereignisse für unterschiedliche
+vergleichen. Da die W Masse im Voraus noch nicht bekannt ist, werden Ereignisse für unterschiedliche
 W Massen generiert.
 Weil man den Untergrund durch $W\rightarrow τν_τ\rightarrow eν_τν_τν_e$ in Daten schlecht filtern kann,
 sind auch $τ$ Ereignisse simuliert.
@@ -194,22 +194,21 @@ zu hoch angenommene Auflösung und Nachweiseffizienz bei der Generierung der Ere
 
 
 \subsection{Selektion der Daten}
-Da nicht in allen aufgezeichneten Ereignissen der zu untersuchendem Prozess stattfindet, müssen die
+Da nicht in allen aufgezeichneten Ereignissen der zu untersuchende Prozess stattfindet, müssen die
 Daten gefiltert werden, möglichst ohne viele richtige Ereignisse zu verlieren.
 Um unerwünschte Ereignisse herauszufiltern, kann man Einschränkungen auf die Qualität der Daten (zum Beispiel
 durch Isolationsschnitte) oder auf kinematische Größen festlegen.
-Die die Qualität der gemessenen Daten durch die vorselektion gut ist, werden als Basisschnitte nur
+Die die Qualität der gemessenen Daten durch die Vorselektion gut ist, werden als Basisschnitte nur
 die Schnitte der Anleitung gebraucht: Es werden nur
 Elektronen betrachtet, deren Schauer wie eine elektromagnetische und nicht wie eine hadronische
 Kaskade aussieht. Zu dem Schauer muss sich auch in kleinem Abstand eine Spur im Spurdetektor befinden.
-Die Elektronen müssen isoliert sein, in $|\eta| < 1.1$ liegen. Es dürfen in dem Ereignis keine
+Die Elektronen müssen isoliert sein und in $|\eta| < 1.1$ liegen. Es dürfen in dem Ereignis keine
 hadronischen Jets mit einem Transversalimpuls von über $\SI{15}{GeV}$ vorkommen und der Primärvertex
 darf entlang der Strahlachse nur $\SI{60}{cm}$ vom Mittelpunkt abweichen. Diese Auswahl wird immer
-getroffen und nicht gesondert erwähnt wenn angewandt.
-
-Die kinematischen Schnitte werden wie folgt bestimmt:
-Die für eine bestimmte (beliebige) W-Masse simulierten und gemessenen Daten werden in normierte Histogrammen übereinandergelegt
-und die Unterschiede durch geeignete Schnitte versucht zu verringert. Ziel ist vor allem eine gute
+getroffen und nicht gesondert erwähnt, wenn angewandt.\\
+Die kinematischen Schnitte werden wie folgt bestimmt:\\
+Die für eine bestimmte (beliebige) W-Masse simulierten und gemessenen Daten werden in normierten Histogrammen übereinandergelegt
+und es wird versucht die Unterschiede durch geeignete Schnitte verringern. Ziel ist vor allem eine gute
 Übereinstimmung in $m_T$, da daraus zunächst die invariante Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
 wird in Abbildung \ref{fig:abschaetzung} veranschaulicht. Links oben sieht man die transversale
 invariante Masse ohne Einschränkungen. Die Verteilungen von Daten und Simulation unterscheiden sich
@@ -218,7 +217,7 @@ fehlenden Energie. Da Daten und Simulation rechts der gezeichneten Linie gut üb
 wird in Zukunft gefordert, dass $\met > \SI{30}{GeV}$ sein muss. Im Bild links unten sieht man die
 Verteilung der transversalen Elektronenergie mit der Einschränkung auf $\met$ und die Grenze, ab der Daten und Simulation hier
 übereinstimmen. Zuletzt wird rechts unten wieder $m_T$ gezeigt. Die Übereinstimmung ist sehr viel
-besser als am Anfang, die Simulation und Daten weichen kaum voneinander ab.
+besser als am Anfang, Simulation und Daten weichen kaum voneinander ab.
 
 \begin{figure}[h]
 	\centering
@@ -234,43 +233,43 @@ besser als am Anfang, die Simulation und Daten weichen kaum voneinander ab.
 
 In blau sieht man in jedem Bild Ereignisse, in denen das W ein $τ$ und ein $ν_τ$ erzeugt. Das $τ$
 zerfällt nach sehr kurzer Zeit wieder in ein $e + ν_e + ν_τ$. Da man die Neutrinos nicht einzeln
-Messen kann sondern nur die fehlende Energie, die durch alle Neutrinos zusammen verursacht wird,
-kann man diese Ereignisse kaum Filtern, sondern muss den Untergrund über Simulationsvergleiche
+messen kann, sondern nur die fehlende Energie, die durch alle Neutrinos zusammen verursacht wird,
+kann man diese Ereignisse kaum filtern, sondern muss den Untergrund über Simulationsvergleiche
 abschätzen. Während am Anfang der Anteil der $τ$ Ereignisse noch 8.8\% beträgt, sind es nach beiden
 Schnitten 1.1\%.
 
 Da die wahre W-Masse unbekannt ist, kann man die Schnitte noch auf andere simulierte Datensätze
-optimieren. Die Schnitte für die anderen W Massen ändert sich ungefähr um $\SI{5}{GeV}$, somit ist
-dies unser Fehler.
+optimieren. Die Schnitte für die anderen W Massen ändern sich ungefähr um $\SI{5}{GeV}$, somit ist
+dies unser Fehler auf die Wahl der Selektionsgrenzen.
 
 Der Versuch auf die Elektronenisolation, den Abstand des Primärvertex oder ähnliche Variablen zu
-schneiden wird aufgegeben, da es dort sehr schwer ist die Simulation und die Daten übereinander zu
+schneiden wird verworfen, da es dort sehr schwer ist Simulation und Daten zur Übereinstimmung zu
 bringen. Dies liegt unter anderem an der oben Beschriebenen schlechten Generation der Simulation.
-Die gewählten Schnitte sorgen für ein gutes Übereinander stimmen von Daten und Simulation in den
-kinematischen Größen, ohne dass die Effizient zu niedrig wird.
+Die gewählten Schnitte sorgen für eine gute Übereinstimmung stimmen von Daten und Simulation in den
+kinematischen Größen, ohne dass die Effizienz zu niedrig wird.
 
 \newpage
 \section{Bestimmung der Masse des W Bosons}
 \subsection{Template Methode zur Bestimmung der W Masse}\label{cap:template}
-Zuerst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
+Zunächst muss die Übereinstimmung von Simulation und Daten quantifiziert werden.
 
 Da das Skalieren der simulierten Daten einen großen systematischen Fehler mit sich bringt und auch nach dem
 Skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
 normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme anstatt
-des normalen $χ²$ Test benutzen
+des normalen $χ²$ Tests benutzen
 muss\cite{cramer1999mathematical}.
 Weiterhin müssen in einem Bin genug
-Einträge sein (mehr als 9), damit man die poissonverteilten Einträge als eine Gaußverteilung nähern kann 
-und man den Fehler als Quadratwurzel der Einträge benutzen kann. Außerdem verringert man
+Einträge sein (mehr als 9), damit man die poissonverteilten Einträge als eine Gaußverteilung nähern 
+und die Quadratwurzel der Einträge als Fehler benutzen kann. Außerdem verringert man
 somit die relative Gewichtung von Bins mit zu wenig Einträgen.
 
 
 
-Eine Schwierigkeit besteht weiterhin in dem Wählen der Anzahl der Bins sowie den verwendeten
+Eine Schwierigkeit besteht weiterhin in der Wahl der Anzahl der Bins sowie dem verwendeten
 Bereich der Variable, in der man die Übereinstimmung untersucht. Im Allgemeinen steigt das $χ²$ mit zunehmender Anzahl Bins. Die Anzahl der Bins wird auf
-20 gesetzt, da dort der statistische Fehler klein ist, die Struktur der Verteilung aber nicht
+30 gesetzt, da dort der statistische Fehler klein ist, die Struktur der Verteilung aber nicht
 verloren geht. Der Bereich wird möglichst groß gewählt, ohne dabei Bins mit weniger als 10 Einträge
-mitzunehmen. Das resultierende Histogram kann man in Abbildung \ref{fig:compareHistoMT}
+mitzunehmen. Das resultierende Histogramm ist in Abbildung \ref{fig:compareHistoMT} dargestellt.
 
 \begin{figure}[htb]
 	\centering
@@ -280,10 +279,10 @@ mitzunehmen. Das resultierende Histogram kann man in Abbildung \ref{fig:compareH
 	\label{fig:compareHistoMT}
 \end{figure}
 
-
-Trägt man nun für jede simulierte Masse das $χ²/\text{NDF}$ aus dem Vergleich zwischen der
-Verteilung von $m_T$ von
-Simulation und den Daten auf, erhält man wie in Abbildung \ref{fig:template} zu sehen eine Parabel.
+Für jede simulierte Masse wird das  $χ²/\text{NDF}$ für den Vergleich der $m_T$ Verteilungen
+zu den Daten berechnet. 
+Trägt man nun für jede simulierte Masse das $χ²/\text{NDF}$ gegen die Masse auf,
+erhält man, wie in Abbildung \ref{fig:template} zu sehen, eine Parabel.
 
 \begin{figure}[htb]
 	\centering
@@ -294,10 +293,10 @@ Simulation und den Daten auf, erhält man wie in Abbildung \ref{fig:template} zu
 \end{figure}
 % minimum bei 1
 
-Für die am Besten passende W Masse muss das $χ²/\text{NDF}$ möglichst klein sein. Man passt an den
+Für die am besten passende W Masse muss das $χ²/\text{NDF}$ möglichst klein sein. Man passt an den
 Graphen in Abbildung \ref{fig:template} deshalb eine Parabel an und bestimmt deren Minimum. Die
 Fehler sowie das $χ^2/\text{NDF}$ der Anpassung sind nicht von Bedeutung, da die Punkte keine
-Fehler besitzen nur ein ROOT interner Standardfehler gesetzt wird und die Fehler auf die
+Fehler besitzen, sondern nur ein ROOT interner Standardfehler gesetzt wird, um die Fehler auf die
 Anpassungsvariablen zu berechnen.
 
 Da das Minimum der Parabel nahe $1$ liegt, ergibt sich der statistische Fehler der W Masse aus der Abweichung vom Minimum beim Erhöhen des
@@ -313,7 +312,7 @@ Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{G
 
 Beim Variieren der Selektionsgrenzen, des Vergleichbereichs und der Anzahl Bins ändert sich der
 eigentliche Wert der W Masse kaum, wohl aber der statistische Fehler. Er wird deshalb mit einer
-Unsicherheit von $^{+0.8}_{-0.05}\si{GeV}$ abgeschätzt.Der Fehler auf diesen Wert wird im folgenden
+Unsicherheit von $^{+0.8}_{-0.05}\si{GeV}$ abgeschätzt. Der Fehler auf diesen Wert wird im Folgenden
 vernachlässigt.
 % ist der fehler auf den fehler in ordnung?
 % wenn ja, später dazuschreiben, dass man ihn eh vernachlässigen kann, da der systemarische fehler
@@ -321,13 +320,13 @@ vernachlässigt.
 
 \subsection{Systematische Fehler bei der Bestimmung der W Masse}
 \label{sysunc}
-Im folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler
+Im Folgenden werden die berücksichtigten systematischen Fehler bei der W Massenbestimmung quantifiziert und zu einem systematischen Gesamtfehler
 addiert.
 \subsubsection*{Energieskala von $E_{T}$}
 Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt nach \cite{Abachi:1996ey} eine relative Unsicherheit von ca. $2\%$. Um den systematischen Einfluss
-dieser Größe auf das Endergebnis zu bestimmen wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
+dieser Größe auf das Endergebnis zu bestimmen, wurden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
 W Masse erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
-Wahl der transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmt.
+Wahl der transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmen.
 
 \begin{table}[h]
 	\centering
@@ -354,7 +353,7 @@ auf die Transversalenergie des Elektron eine dominante Rolle hat.
 
 
 Die Ergebnisse der Variation sind in Tabelle \ref{tab:sysmet} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
-Wahl der Energieskala der fehlenden transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmt.
+Wahl der Energieskala der fehlenden transversalen Energieskala zu $\SI{0.98}{GeV}$ bestimmen.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{c| c c c}
@@ -382,7 +381,7 @@ auf die W Masse zu $\SI{0.35}{GeV}$ abgeschätzt wird, indem die halben Abweichu
 		30 & 80.24 & 80.25 & 80.24 \\
 		35 &  & 80.34 &
 	\end{tabular}
-	\caption{Änderung der W Masse bei Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$ um den
+	\caption{Änderung der W Masse bei Verschiebung der Selektionsgrenzen um $\SI{5}{GeV}$, um den
 systematischen Fehler abzuschätzen.}
 	\label{tab:variation}
 \end{table}
@@ -406,7 +405,7 @@ W Massenbestimmung:
 
 \FloatBarrier
 \subsection{Überprüfung der Ergebnisse durch Untersuchung einer Kontrollvariablen}
-Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu überprüfen wird zusätzlich
+Um die Unsicherheiten der Analyse von $m_{T}$ besser abschätzen zu können und das Ergebnis zu überprüfen, wird zusätzlich
 die Übereinstimmung der $E_T$ Verteilungen verglichen und daraus mit der Template Methode die W Masse
 berechnet. Eine einfache Mittelung der Werte ist nicht möglich, da $m_T$ und $E_T$ stark korreliert
 sind, wie man in Abbildung \ref{fig:correlation} sehen kann.
@@ -464,12 +463,12 @@ im Maximum des Peak (siehe Abbildung \ref{fig:etaftercut}).
 \end{figure}
 Das minimale $χ²/\text{NDF}$ der Template Methode ist in diesem Fall ca. $2.4$ (siehe Abbildung
 \ref{fig:chiet}), dass heißt der durch die Methode bestimmte statistische Fehler wird
-die tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch nur zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
-wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen um das $χ²/\text{NDF}$ näher an 1 zu bringen.
+den tatsächlichen Fehler wohl unterschätzen. Da die Berechnung für $E_{T}$ jedoch nur zur Kontrolle der Ergebnisse in $m_{T}$ benutzt werden soll,
+wird an dieser Stelle darauf verzichtet eine andere Selektion zu wählen, um das $χ²/\text{NDF}$ näher an 1 zu bringen.
 
 Die Bestimmung der systematischen Fehler erfolgt analog zu
 Abschnitt \ref{sysunc}. Es ergeben sich systematische Abweichungen von $\SI{0.1}{GeV}$ für die Wahl der Selektionsgrenzen (siehe Tabelle \ref{tab:variation_et}), $\SI{0.24}{GeV}$
-für die Variation von $\met$ und $\SI{3.97}{GeV}$ für die Variation von $E_{T}$, der Einfluss der Variation von $E_{T}$ ist wie erwartet sehr groß.
+für die Variation von $\met$ und $\SI{3.97}{GeV}$ für die Variation von $E_{T}$. Der Einfluss der Variation von $E_{T}$ ist wie erwartet sehr groß.
 Insgesamt ergibt sich für die W-Masse
 \begin{align*}
 	m_W = ( 80.43 ± 0.34 (stat.)± 4.21 (sys.)) \si{GeV}.
@@ -495,9 +494,9 @@ als Vergleichsvariable.}
 \end{table}
 \section{Bestimmung der Effizienz}
 \label{effizienz}
-Um einen Vergleich von gemessenen Daten mit theoretischen Werten zu ermöglichen muss die Nachweiseffizienz
+Um einen Vergleich von gemessenen Daten mit theoretischen Werten zu ermöglichen, muss die Nachweiseffizienz
 $\epsilon$ bestimmt werden, die angibt wieviel Prozent aller "`wahren"' W-Ereignisse nicht selektiert bzw. gemessen wurden.
-Es handelt sich bei $\epsilon$ also um das Produkt der durch geometrische Einschränkungen gegebene Detektorakzeptanz und der
+Es handelt sich bei $\epsilon$ also um das Produkt der durch geometrische Einschränkungen gegebenen Detektorakzeptanz und der
 durch das Triggersystem und die gewählten Selektionsschnitte bestimmten Selektionseffizienz. Im hier vorliegenden Fall wird die
 Effizienz durch den Quotienten der Anzahl von selektierten und generierten Monte-Carlo (MC) Ereignissen bestimmt:
 \begin{align*}
@@ -516,16 +515,16 @@ korrigiert werden, sodass sich die Effizienz des Detektors zu
 \end{align*}
 ergibt.
 
-Die Unsicherheit auf den Korrekturfaktor ist der überwiegende Fehler und die Zusammensetzung wird in \cite{versuchsanleitung} leider nicht weitergehend erklärt. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
-den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene, Resonanzen des totalen Wirkungsquerschnitt genutzt
+Die Unsicherheit auf den Korrekturfaktor ist der dominante Fehler und die Zusammensetzung wird in \cite{versuchsanleitung} leider nicht weitergehend erklärt. Im Fall einer realen Analyse würde man es wohl ohnehin vorziehen die Nachweiseffizienz aus
+den aufgezeichneten Daten zu bestimmen. Hierfür werden meistens andere, besser vermessene Resonanzen des totalen Wirkungsquerschnitts genutzt
 in denen auch Elektronen oder Neutrinos entstehen. Dann lässt sich zum Beispiel mit der "`Hit \&
-Miss"' Methode die Nachweiseffizienz bestimmen. Auf Grund
-der stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
+Miss"' Methode die Nachweiseffizienz bestimmen. Aufgrund
+des stark vorselektierten Daten-Sample war dies für diesen Versuch nicht möglich.
 
 \newpage
 \section{Bestimmung von abgeleiteten Größen}
-Aus der Masse des W Bosons und der Anzahl Ereignisse kann man andere physikalischen Größen
-bestimmen.
+Aus der Masse des W Bosons und der Anzahl Ereignisse kann man andere physikalische Größen
+der elektro-schwachen Wechselwirkung bestimmen.
 \subsection{Bestimmung des Weinbergwinkel}
 Der elektroschwache Mischungswinkel (Weinbergwinkel) $\theta_{W}$ beschreibt wie die Felder der elektroschwachen Eichbosonen nach der Symmetrieberechung mischen.
 Aus Gleichung \ref{form:wein}, mit der aus \cite{versuchsanleitung} entnommenen Z Masse
@@ -533,21 +532,21 @@ $m_{Z}=91.227 \pm \SI{0.041}{GeV}$ und der in Abschnitt \ref{cap:template} besti
 sich für den Weinbergwinkel:
 \begin{align*}
 	\sin²\left(\theta_{W}\right) &= 1 - \left(\frac{m_{W}}{m_{Z}}\right)^{2} \\
-	&=  0.2249 ± 0.0052 (stat.) ± 0.0151(sys.)
+	&=  0.2262 ± 0.0052 (stat.) ± 0.0384(sys.)
 \end{align*}
-Der systematische Fehler auf $m_{W}$ wird zur Bestimmung des Fehler auf $\sin²(\theta_{W})$ quadratisch addiert.
+Der systematische Fehler auf $m_{W}$ wird zur Bestimmung des Fehlers auf $\sin²(\theta_{W})$ quadratisch addiert.
 Für einen Vergleich mit dem aktuellen Weltmittelwert muss im Ergebnis noch berücksichtigt werden,
 dass es sich bei Gleichung \ref{form:wein} um eine
 Näherung erster Ordnung handelt. Die genaueren Berechnungen zur Bestimmung des Weltmittelwert aber berücksichtigen noch Strahlungskorrekturen aus höheren
 Ordnungen. Dieser Unterschied ist laut der Beschreibung in \cite{versuchsanleitung} $6\%$
 Der Vergleich von korrigiertem und Weltmittelwert
 \begin{align*}
-	\sin²(\theta_{W})_\text{korrigiert} &=  0.2384 ± 0.0055 (stat.) ± 0.0160(sys.) \\
+	\sin²(\theta_{W})_\text{korrigiert} &=  0.2397 ± 0.0059 (stat.) ± 0.0407(sys.) \\
 	\sin²(\theta_{W})_\text{Welt} &= 0.2397 \pm 0.0013
 \end{align*}
-zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $0.08\sigma$ vom Literaturwert mit diesem
+zeigt, dass der berechnete und korrigierte Weinbergwinkel mit einer Abweichung von $0.0009\sigma$ vom Literaturwert mit diesem
  kompatibel ist. Die Messung kann also den bisherigen Messwert innerhalb des gewählten statistischen
-Toleranzbereich bestätigen.
+Toleranzbereiches bestätigen.
 
 
 \subsection{Versuch der Bestimmung des Farbfaktors}
@@ -630,25 +629,26 @@ Für weitere Rechnungen wird der Farbfaktor $N_C = 3$ benutzt da er am Besten mi
 
 \subsection{Bestimmung der W-Zerfallsbreite}
 Die Zerfallsbreite des W-Boson wird mit Hilfe von Formel \ref{form:width} bestimmt. Für die konkrete Berechnung
-wurden $\alpha = \frac{1}{128}$ und $N_{\textsl{C}}=3$ verwendet und als fehlerfrei angenommen, $\sin(\theta_{W})^{2} $
-wird in Gleichung \ref{form:width} durch $corr_{strahlung}\cdot(1-(\frac{mw}{mz})^{2})$ ersetzt und die statistischen und
+werden $\alpha = \frac{1}{128}$ und $N_{\textsl{C}}=3$ verwendet und als fehlerfrei angenommen. In Gleichung \ref{form:width}
+wird $\sin(\theta_{W})^{2} $
+ durch $corr_{strahlung}\cdot(1-(\frac{mw}{mz})^{2})$ ersetzt und die statistischen und
 systematischen Fehler auf $m_{W}$ und $m_{Z}$ werden als unabhängige Fehlerquellen für das Ergebnis fortgepflanzt. Für 
 einen Vergleich mit den Literaturwerten muss die gemessene W-Breite nach \cite{versuchsanleitung} mit einem Korrekturfaktor
-von $corr_{HO}=1.09 \pm 0.01$ multipliziert werden um das fehlen höherer Ordnungen in der Rechnung zu berücksichtigen, der
-Fehler auf diesen Korrekturfaktor wurde bei der Fehlerfortpflanzung ebenfalls als zusätzliche systematisch Fehlerquelle
-berücksichtigt.Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
+von $corr_{HO}=1.09 \pm 0.01$ multipliziert werden, um das Fehlen höherer Ordnungen in der Rechnung zu berücksichtigen. Der
+Fehler auf diesen Korrekturfaktor wird bei der Fehlerfortpflanzung ebenfalls als zusätzliche systematisch Fehlerquelle
+berücksichtigt. Die Rechnung ergibt für die korrigierte W-Zerfallsbreite:
 \begin{align*}
-	Γ_{W,korrigiert} = ( 2.092 ± 0.054 (stat.) ± 0.161(sys.)) \si{GeV}
+	Γ_{W,korrigiert} = ( 2.079 ± 0.059 (stat.) ± 0.404(sys.)) \si{GeV}
 \end{align*}
-Dieser Wert weicht $0.28\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von
+Dieser Wert weicht $0.15\sigma$ von dem in \cite{versuchsanleitung} angegebenen Literaturwert von
 $Γ_{W,theo} = 2.141 \pm 0.041\si{GeV}$
 ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 
 \newpage
 \section{Diskussion der systematischen Unsicherheiten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
-und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist können einzelne W-Bosonen
-nicht in führender Ordnung erzeugt werden, sondern nur wie zum Beispiel in Abbildung \ref{fig:2Wfeynman}. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
+und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist, können einzelne W-Bosonen
+in führender Ordnung wird erzeugt werden, sondern nur paarweise, wie zum Beispiel in Abbildung \ref{fig:2Wfeynman} dargestellt. Deshalb wurde im LEP Experiment die W Paarproduktion in den \cite{Achard:2005qy}
 Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq$ (hadonisch) genutzt.
 
 
@@ -670,63 +670,64 @@ Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow 
 \end{figure}
 Die benutzten Angaben beziehen sich, soweit nicht anders angegeben, auf die Analysen 
 von DØ\cite{Abachi:1996ey} für Hadronkollider und L3\cite{Achard:2005qy} für Elektron-Positron Kollider. Zunächst wird der Einfluss von Unsicherheiten
-betrachtet die beide Kollidertypen betrifft:
+betrachtet, die beide Kollidertypen betrifft:
 
 \begin{itemize}
 	\item \textbf{Luminosität:} \\
-	Die integrierte Luminosität geht in beiden Experimenten als systematische Unsicherheit bei der Bestimmung der Masse des W Bosons ein,
-	die Genauigkeit mir der diese Größe bestimmt werden kann ist allerdings sehr unterschiedlich. Beim DØ Experiment wird die Luminosität
-	durch Messungen des Wirkungsquerschnitt der inklusiven tief inelastischen Proton-Antiproton Streuung bestimmt \cite{2011arXiv1106.5182P}.Dazu
-	wird ein System von Plastikszintillatoren im Winkelbereich $2.7 \leq |\eta| \leq 4.4$ verwendet. Die Genauigkeit dieses Nachweisverfahren wurde
-	im laufe der Betriebszeit von Werten $ > 10\%$ bis auf $ 6.1\%$ verbessert. Bei LEP konnte die Luminosität mit einer Unsicherheit von weniger
-	als $0.1\%$ bestimmt werden, dazu wird der Wirkungsquerschnitt für die Bhabba-Streuung mit kleinem Winkel gemessen. Dieser QED-Prozess
+	Die integrierte Luminosität geht in beiden Experimenten als systematische Unsicherheit bei der Bestimmung der Masse des W Bosons ein.
+	Die Genauigkeit mit der diese Größe bestimmt werden kann ist allerdings sehr unterschiedlich. Beim DØ Experiment wird die Luminosität
+	durch Messungen des Wirkungsquerschnitt der inklusiven tief inelastischen Proton-Antiproton Streuung bestimmt \cite{2011arXiv1106.5182P}. Dazu
+	wird ein System von Plastikszintillatoren im Winkelbereich $2.7 \leq |\eta| \leq 4.4$ verwendet. Die Genauigkeit dieses Nachweisverfahrens wurde
+	im Laufe der Betriebszeit von Werten $ > 10\%$ bis auf $ 6.1\%$ verbessert. Bei LEP konnte die Luminosität, durch Messung des 
+	Wirkungsquerschnitts für die Bhabba-Streuung mit kleinem Winkel, mit einer Unsicherheit von weniger	als $0.1\%$ bestimmt werden. Dieser QED-Prozess
 	wird durch den t-Kanal bestimmt und lässt sich theoretisch sehr genau berechnen.
 	\item \textbf{Elektron Energie Bestimmung:} \\
-	Abgesehen vom rein hadronischen Zerfallskanal bei L3 benutzen beide Experimente die gemessene Energie eines Elektron um die W-Masse zu bestimmen
-	Hierbei gibt es neben den Limitierungen des Auflösungsvermögen noch weitere Unsicherheiten aus dem korrekten bestimmen der Energieskala.
-	Die Einflüsse dieser Fehlerquellen liegen bei L3 bei wenigen MeV und bei DØ etwa 70 MeV.
+	Abgesehen vom rein hadronischen Zerfallskanal bei L3, benutzen beide Experimente die gemessene Energie eines Elektrons, um die W-Masse zu bestimmen.
+	Hierbei gibt es, neben den Limitierungen des Auflösungsvermögens, noch weitere Unsicherheiten aus dem korrekten Bestimmen der Energieskala.
+	Die Einflüsse dieser Fehlerquellen liegen bei L3 bei wenigen MeV und bei DØ etwa bei 70 MeV.
 	\item \textbf{Jet Energie Bestimmung:} \\
 	In allen Zerfallskanälen spielt die Bestimmung von Jetenergien direkt oder indirekt bei der Berechnung von $\met$ eine wichtige Rolle. Bei der
-	Bestimmung der Jetenergie spielen diverse Faktoren wie die Wahl des Jet-Algorithmus, Pileup bei DØ (also Endzustände die in einer anderen Wechselwirkung
-	als der harten entstehen) und die schlechtere Energieauflösung des hadronischen Kalorimeters führen zu einer Unsicherheit auf $m_{W}$ von
-	etwa $\SI{65}{MeV}$ bei DØ und $\SI{4}{MeV}$ bei L3.
+	Bestimmung der Jetenergie spielen diverse Faktoren eine Rolle, wie die Wahl des Jet-Algorithmus, Pileup bei DØ (also Endzustände, die in einer anderen Wechselwirkung
+	als der harten entstehen) und die schlechtere Energieauflösung des hadronischen Kalorimeters. Diese Faktoren führen zu einer Unsicherheit auf $m_{W}$ von
+	etwa $\SI{65}{MeV}$ bei DØ und $\SI{4}{MeV}$ bei L3 durch die Jetenergiebestimmung.
 	\item \textbf{Hintergrund:}\\
 	Insbesondere die Zerfallskanäle mit leptonischem Anteil besitzen, vor allem durch $\tau$ Zerfälle irreduzible Hintergründe bzw. im Fall
-	des hadronischen Zerfallskanal bei LEP eine Reihe von Untergrundprozessen mit experimentell schwer trennbarer Signatur. DØ beziffert seine
+	des hadronischen Zerfallskanal bei LEP, eine Reihe von Untergrundprozessen mit experimentell schwer trennbarer Signatur. DØ beziffert seine
 	Unsicherheit aus Hintergründen auf die W Masse mit $\SI{35}{MeV}$ und LEP auf $\SI{2}{MeV}$ für den semi-leptonischen und $\SI{7}{MeV}$
 	für den hadronischen Zerfallskanal.
 	\item \textbf{Monte Carlo Simulation}\\
-	Bei der Simulation der Messung treten neben der offensichtlichen statistischen Unsicherheit durch die Anzahl generierter Ereignisse noch
-	theoretische Unsicherheiten insbesondere bei der phänomenologisch bestimmten Berechnung der Hadronisation, bei der nicht perturbativ berechenbare
+	Bei der Simulation der Messung treten, neben der offensichtlichen statistischen Unsicherheit durch die Anzahl generierter Ereignisse, noch
+	theoretische Unsicherheiten auf, insbesondere bei der phänomenologisch bestimmten Berechnung der Hadronisation, bei der nicht perturbativ berechenbare
 	QCD Therme auftreten.
 \end{itemize}
-Neben diesen gemeinsamen Unsicherheiten bei beiden Experimenten soll hier noch jeweils eine der nur für eins der Experimente relevanten
-systematische Unsicherheit angeführt werden:
+Neben diesen gemeinsamen Unsicherheiten bei beiden Experimenten soll, hier noch jeweils eine der, nur für jeweils eins der Experimente relevanten,
+systematischen Unsicherheiten angeführt werden:
 \begin{itemize}
 	\item \textbf{Partondichtefunktion bei DØ:}\\
-	Die bei DØ kollidierenden (Anti-)Protonen sind keine elementaren Teilchen sondern bestehen aus einer Reihe von sogenannten Partonen. Der
+	Die bei DØ kollidierenden (Anti-)Protonen sind keine elementaren Teilchen, sondern bestehen aus einer Reihe von sogenannten Partonen. Der
 	Impulsanteil der einzelnen Partonen am Gesamtimpuls des Hadron kann nicht pertubativ berechnet werden und muss deshalb aus Messungen bestimmt
 	werden. Die sich daraus ergebenden Unsicherheiten auf die tatsächliche Schwerpunksenergie im $qq'$ System der harten Wechselwirkung stellt eine
-	schwer reduzierbare Limitierung der Genauigkeit dar und wirkt sich bei DØ mit einer Unsicherheit von $\SI{65}{MeV}$ auf die W-Masse aus
+	schwer reduzierbare Limitierung der Genauigkeit dar und wirkt sich bei DØ mit einer Unsicherheit von $\SI{65}{MeV}$ auf die W-Masse aus.
 	\item \textbf{Wechselwirkung der hadronischen Endzustände}\\
-	Die Wechselwirkung der hadronischen Endzuständen in den Jets des hadronischen Endzustand lässt sich in zwei Effekte unterteilen die jeweils
+	Die Wechselwirkung der hadronischen Endzustände in den Jets des hadronischen Endzustands lässt sich in zwei Effekte unterteilen, die jeweils
 	theoretisch noch nicht ausreichend verstanden sind: \\
 	Der Effekt der sogenannten "`Colour reconnection"' beschreibt den Austausch von Farbladungen zwischen
-	den aus dem $W\rightarrow q+\bar{q}$ Zerfall entstehenden Jets im laufe der Hadronisation und erzeugt eine Unsicherheit von $\SI{38}{MeV}$
+	den aus dem $W\rightarrow q+\bar{q}$ Zerfall entstehenden Jets im Laufe der Hadronisation. Er erzeugt eine Unsicherheit von $\SI{38}{MeV}$
 	und ist damit die dominierende systematische Unsicherheit für den hadronischen Zerfallskanal.\\
-	Bose-Einstein Korrelationen beschreiben die Tendenz von Teilchen mit ganzzahligem Spin eine auf quantenstatistischen Effekten beruhende Clusterung
+	\\
+	Bose-Einstein Korrelationen beschreiben die Tendenz von Teilchen mit ganzzahligem Spin eine, auf quantenstatistischen Effekten beruhende, Clusterung
 	%sagt man nicht bose-einstein kondensation?
 	%nein sagt man nicht ist was anderes -tp
-	durchzuführen. Dabei treten zum Beispiel nicht nur Korrelationen zwischen identischen Teilchen wie neutralen Pionen auf sondern auch Effekte zwischen
-	unterschiedlich geladenen Pionen, da die Gesamtwellenfunktion auch Anteile einer Annihilation in
-	zwei neutrale Pionen oder Photonen beinhalten, die
-	wiederum der Bose-Einstein Korrelation unterlegen. Diese theoretischen Unsicherheit ist bei L3 mit einem Einfluss von $\SI{17}{MeV}$ auf die W-Masse
+	durchzuführen. Dabei treten zum Beispiel nicht nur Korrelationen zwischen identischen Teilchen wie neutralen Pionen auf, sondern auch Effekte zwischen
+	unterschiedlichen Teilchen wie geladenen Pionen. Die Gesamtwellenfunktion der geladenen Pionen enthällt auch Anteile einer Annihilation in
+	zwei neutrale Pionen oder Photonen. Diese unterliegen	wiederum der Bose-Einstein Korrelationen.
+	 Diese theoretische Unsicherheit ist bei L3, mit einem Einfluss von $\SI{17}{MeV}$ auf die W-Masse,
 	einer der dominanten Effekte.
 \end{itemize}
-Als Ergebnis dieses Vergleich lässt sich festhalten das die systematischen Unsicherheiten an Elektron-Positron Kollidern wesentlich geringer sind als
-bei Hadronkollidern. Die Vorteile durch die Möglichkeit die Schwerpunktsenergie und Luminosität genau zu bestimmen kann der Hadronkollider nur schwer ausgleichen.
+Als Ergebnis dieses Vergleiches lässt sich festhalten, dass die systematischen Unsicherheiten an Elektron-Positron Kollidern wesentlich geringer sind als
+bei Hadronkollidern. Die Vorteile, durch die Möglichkeit die Schwerpunktsenergie der Wechselwirkung und die Luminosität im Elektron-Positron Kollider genau zu bestimmen, kann der Hadronkollider nur schwer ausgleichen.
 \section{Fazit}
-Die im Rahmen dieses Versuchs bestimmten größen sind alle im Rahmen ihrer Fehler zu den aktuellen Literaturwerten kompatibel. Die abgeschätzten Fehler
+Die bestimmten Größen sind alle, im Rahmen ihrer Fehler, zu den aktuellen Literaturwerten kompatibel. Die abgeschätzten Fehler
 bewegen sich in der gleichen Größenordnung, wie in \cite{Abachi:1996ey}. Die ausgewerteten Daten zeigen also keine Abweichungen zur Theorie der 
 elektro-schwachen Wechselwirkung. Die Durchführung hat uns einen interessanten Einblick in die Methodik und Limitierungen der W-Massenbestimmung bei
 Hadronkollidern erlaubt.
