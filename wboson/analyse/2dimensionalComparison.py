@@ -1,8 +1,8 @@
 #! /usr/bin/env python2
 # -*- coding: utf-8 -*-
-from treeTools import *
+from treeTools import * # own functions
 from tools import randomName
-import Styles
+import Styles # official cms-style
 style = Styles.tdrStyle()
 style.SetPadRightMargin(0.1)
 style.SetOptTitle()
@@ -25,7 +25,15 @@ def create2DHistoFromTree(tree, variable, weight, nBinsX, xmin, xmax, nBinsY, ym
 	result.SetTitle( title )
 	return result
 
+
+
 def plot2D( variable, cut, drawLines, save ):
+	'''
+	variable: should be 'mwt:el_et' or 'met:el_et', for others borders are not defined
+	cut: cutstring
+	drawLines: boolean (cuts defined below are drawn)
+	save: boolean (save to pdf)
+	'''
 	mcTree = readTree( "mc_all_new.root/MCTree" )
 	dataTree = readTree( "d0_new.root/MessTree" )
 
@@ -35,9 +43,12 @@ def plot2D( variable, cut, drawLines, save ):
 		can.SetBatch()
 	can.Divide(2,1)
 	can.cd(1)
+
+	# number of bins
 	xn = 200
 	yn = 200
 
+	# currently only two settings are implemented
 	if variable == 'mwt:el_et':
 		xmin = 10
 		xmax = 70
@@ -65,12 +76,9 @@ def plot2D( variable, cut, drawLines, save ):
 			line.SetLineStyle(9)
 			line.SetLineColor(2)
 
+	# draw simulation
 	mchist2D = create2DHistoFromTree( mcTree, variable, cut, xn, xmin, xmax, yn, ymin, ymax, title )
 	mchist2D.SetTitle('Simulation')
-	print mchist2D.GetCorrelationFactor()
-	datahist2D = create2DHistoFromTree( dataTree, variable, cut, xn, xmin, xmax, yn, ymin, ymax, title )
-	print datahist2D.GetCorrelationFactor()
-	datahist2D.SetTitle('Daten')
 	mchist2D.Draw("colz")
 	if drawLines:
 		xline.Draw()
@@ -78,15 +86,23 @@ def plot2D( variable, cut, drawLines, save ):
 			yline.Draw()
 		if variable == "mwt:el_et":
 			xyline.Draw()
-	can.cd(2)
-	datahist2D.Draw("colz")
 
+	# draw data
+	can.cd(2)
+	datahist2D = create2DHistoFromTree( dataTree, variable, cut, xn, xmin, xmax, yn, ymin, ymax, title )
+	datahist2D.SetTitle('Daten')
+	datahist2D.Draw("colz")
 	if drawLines:
 		xline.Draw()
 		if variable == "met:el_et":
 			yline.Draw()
 		if variable == "mwt:el_et":
 			xyline.Draw()
+
+	# Output on shell
+	print 'Correlation for simulated '+variable+': ', mchist2D.GetCorrelationFactor()
+	print 'Correlation for generated '+variable+': ', datahist2D.GetCorrelationFactor()
+
 	if save:
 		from re import sub
 		can.SaveAs('correlation_' + sub(':','VS',variable) + sub( '\.', "_",sub('/',"_",cut)) + '.pdf')
@@ -95,6 +111,8 @@ def plot2D( variable, cut, drawLines, save ):
 		raw_input()
 	can.Close()
 
+
+# entry point
 from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument("-c", "--cut", dest="cut", default="", help="Cuts applied to all structures" )

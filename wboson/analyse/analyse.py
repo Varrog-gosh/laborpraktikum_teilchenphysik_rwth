@@ -4,6 +4,16 @@ from treeTools import *
 from tools import *
 
 def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet = False):
+	'''
+	calculates the mass and error for certain cut and variable
+	dataTree, mcTree: ROOT trees
+	cut: cutstring
+	save: boolean (save plots as pdf)
+	variable: 'mwt' or 'el_et'
+	quiet: (boolean) print output or not
+
+	returns best fitting mass, statistical error, systematical error
+	'''
 	from ROOT import TGraph, TCanvas
 
 	# set histgogram setting for variables
@@ -39,7 +49,7 @@ def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet =
 		chi2ndf = datahist.Chi2Test( mchist, "WW,chi2/ndf")
 		y.append( chi2ndf )
 
-		# draw graph for comparison
+		# draw graph for comparison, only for one specific simulated mass (here = 9)
 		if i == 9 and save:
 			can2 = TCanvas( randomName(), "template", 1400, 800 )
 			can2.cd()
@@ -68,7 +78,7 @@ def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet =
 	gr.GetFunction('pol2').Draw("RL")
 	gr.Draw("psame")
 
-	# draw cut as text
+	# draw cutstring  as TPaveText
 	from ROOT import TPaveText
 	text = TPaveText(0.2, 0.85, .8, .95, 'ndc')
 	text.SetFillStyle(0)
@@ -80,25 +90,22 @@ def getMass( dataTree, mcTree, cut = '', save = False, variable = "mwt", quiet =
 	text.AddText( prettifySelection( cut ) )
 	text.Draw()
 
-
 	if save:
 		can.SaveAs('template'+affix+'.pdf')
 	elif not quiet:
 		can.Update()
 		raw_input()
+
+	# calcuate mass and minimal χ²
 	func = gr.GetFunction('pol2')
 	mass = -func.GetParameter(1) / (2 * func.GetParameter(2))
-
 	chi2min = func.Eval( mass )
 	offset = 1 # how much χ² should change for error
 	from math import sqrt
-	try:
-		e_mass = sqrt( 1.* offset / func.GetParameter(2) )
-	except:
-		e_mass = 0
+	e_mass = sqrt( 1.* offset / func.GetParameter(2) )
 
+	# the last variable (systematic error) is hard coded and determined by mwsys.sh
 	return mass, e_mass, .98 #wert, err_mass (stat.), err_mass (sys.)
-	#return mass, e_mass, 1.99 #wert, err_mass (stat.), err_mass (sys.)
 
 
 def getXs(dataTree,mcTree,variable,cut):
@@ -126,6 +133,7 @@ def getXs(dataTree,mcTree,variable,cut):
 	err_xs_sys = xs * sqrt(1/ngen + 1/n_after_cut + pow(err_corr/corr,2) + pow(err_lumi/lumi,2))
 	return xs,err_xs_stat,err_xs_sys
 
+
 def Compare_val(val,err_val_stat,err_val_sys,val_theo,err_theo):
 	#function returns how many standard deviations are between theory
 	# and measurement
@@ -133,6 +141,7 @@ def Compare_val(val,err_val_stat,err_val_sys,val_theo,err_theo):
 	d = 1. * abs(val_theo - val)
 	err_comb = sqrt(err_val_stat**2 + err_val_sys **2 + err_theo**2 )
 	return d/err_comb
+
 
 def getWeinberg (mw,err_mw_stat,err_mw_sys):
 	mz = 91.227
@@ -142,6 +151,7 @@ def getWeinberg (mw,err_mw_stat,err_mw_sys):
 	err_sin2_wein_sys = sqrt(pow(2 * mw * err_mw_sys / mz**2 ,2) + pow( 2* mw**2 * err_mz / mz**3 ,2))
 	err_sin2_wein_stat = 2. * mw * err_mw_stat / mz**2
 	return sin2_wein,err_sin2_wein_stat,err_sin2_wein_sys
+
 
 def getWidth (mw, err_mw_stat, err_mw_sys ):
 	from math import sqrt
@@ -158,6 +168,7 @@ def getWidth (mw, err_mw_stat, err_mw_sys ):
 	err_gamma_sys = 3./4*alpha * sqrt ( ( (1+mr2)/(1-mr2)**2 * err_mw_sys )**2 + ( 2*mr2*mw/mz/(1-mr2)**2 * err_mz_sys )**2 )
 	return gamma,err_gamma_stat,err_gamma_sys
 
+
 def getxsNC (xs,err_xs_stat,err_xs_sys):
 	from math import sqrt
 	xs3,exs3 = 2.58,0.09
@@ -172,12 +183,14 @@ def getxsNC (xs,err_xs_stat,err_xs_sys):
 	exs4 = sqrt(xs3**2 * ci**2 * eci**2 + ci**2 * exs3**2)
 	return [[2,3,4],[xs2,xs3,xs4],[exs2,exs3,exs4]]
 
+
 def CompareNC (xs,err_xs_stat,err_xs_sys):
 	theo = getxsNC(xs,err_xs_stat,err_xs_sys)
 	print "measured: σ = %.2f \pm %.2f/ (stat.) \pm %.2f (sys.) nb"%(xs,err_xs_stat,err_xs_sys)
 	for i in range(len(theo[0])):
 		print "theory: \n Nc = %d σ = %.2f \pm %.2f/ nb"%(theo[0][i],theo[1][i],theo[2][i])
 		print "%.2f standard deviations between theory and measurement"%Compare_val(xs,err_xs_stat,err_xs_sys, theo[1][i], theo[2][i])
+
 
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser

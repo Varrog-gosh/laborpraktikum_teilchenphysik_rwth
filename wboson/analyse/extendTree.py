@@ -11,6 +11,8 @@ def extendTree( filename, treename, correction_et = 0 ,correction_met = 0):
 	add certain variables to tree and save in a new file
 	filename: input filename, outputFilename will be oldfile_new.root
 	treename: treename of file, will not be changed
+	correction_et/met: energy correction in %, eg. 2 or -2
+
 	output: void
 	'''
 	oldfile = ROOT.TFile( filename, "update" )
@@ -51,19 +53,16 @@ def extendTree( filename, treename, correction_et = 0 ,correction_met = 0):
 		else :
 			isTau[0] = 1
 
-		# output to see working flow
-		#if i%10000000:
-			#print int( 100. * i / nEntries )
-
 	# save and close
 	newtree.AutoSave()
 	oldfile.Close()
 	newfile.Close()
 
-#extendTree( "d0.root", "MessTree",  0,  0 )
+# computes new trees
+extendTree( "d0.root", "MessTree",  0,  0 )
 extendTree( "d0.root", "MessTree",  2,  0 ) # et up
 extendTree( "d0.root", "MessTree", -2,  0 ) # et down
 extendTree( "d0.root", "MessTree",  0,  2 ) # met up
 extendTree( "d0.root", "MessTree",  0, -2 ) # met down
 
-#extendTree( "mc_all.root", "MCTree" )
+extendTree( "mc_all.root", "MCTree" )

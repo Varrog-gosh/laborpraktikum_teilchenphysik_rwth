@@ -1,11 +1,17 @@
 #! /usr/bin/env python2
 # -*- coding: utf-8 -*-
+from treeTools import * #own functions
 from Styles import tdrStyle
 tdrStyle()
 
-from treeTools import *
 
 def drawMCMass( tree, list ):
+	'''
+	draws different simulated mass distributions
+	list: list containing integers from 0-18
+
+	returns: void ( histgram will be saved )
+	'''
 	masses = weightToMass()
 	from ROOT import TCanvas,TLegend
 	can = TCanvas()
@@ -32,4 +38,5 @@ def drawMCMass( tree, list ):
 	can.SaveAs('diffenentMcMasses.pdf')
 	can.Close()
 
+# entry point
 drawMCMass( readTree( "mc_all_new.root/MCTree" ) , [0,9,18] )

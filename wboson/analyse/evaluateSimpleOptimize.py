@@ -1,5 +1,13 @@
 #! /usr/bin/env python2
 # -*- coding: utf-8 -*-
+
+###########################################################
+
+# this simple script evaluates the data generated with simpleOptimize.py
+# and draws a 2d plot
+
+###########################################################
+
 from treeTools import *
 from tools import *
 

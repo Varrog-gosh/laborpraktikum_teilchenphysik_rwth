@@ -1,5 +1,13 @@
 #! /usr/bin/env python2
 # -*- coding: utf-8 -*-
+
+############################################################
+
+# this script computes the values of χ² minimization brute force for many cuts
+# and save the result as *txt
+
+############################################################
+
 from treeTools import *
 
 def chi2comparison( dataTree, mcTree, cut, variable ):
@@ -46,6 +54,7 @@ def minimizeChi2( dataTree, mcTree ):
 mcTree = readTree( "mc_all_new.root/MCTree" )
 dataTree = readTree( "d0_new.root/MessTree" )
 
+# entry point
 minimizeChi2( dataTree, mcTree)
 
 

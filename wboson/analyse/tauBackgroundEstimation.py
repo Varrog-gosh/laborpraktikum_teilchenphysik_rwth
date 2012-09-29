@@ -14,16 +14,7 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 	dataHisto = createHistoFromTree( dataTree, variable, cut, nBins, xlow, xhigh )
 	for entry in [ mcE, mcTau ]:
 		entry.Scale( 0.9 / 1164699 * 198 * 2580 )
-	#print "Number of W->eν events: %d"%mcE.GetEntries()
-	#print "Number of W->τν events: %d"%mcTau.GetEntries()
 	print "N_τ / N_e: ", 1.* mcTau.GetEntries() / mcE.GetEntries()
-
-	# normalize histograms
-	if False:
-		dataHisto.Scale( 1. / dataHisto.Integral() )
-		mcTau.Scale( 1./mcTau.Integral()*mcTau.GetEntries() / mcE.GetEntries() )
-		mcE.Scale( 1./mcE.Integral()*mcTau.GetEntries() / mcE.GetEntries() )
-
 
 	from ROOT import TCanvas,THStack, TPaveText, TLegend, TLine
 	stack = THStack ("stack","W#rightarrowe#nu")
@@ -73,20 +64,6 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 	except:
 		pass
 
-	'''
-	c.cd(2)
-	from ratios import RatioGraph
-	import ROOT
-	mcE.Add(mcTau) # only for ratio graph, don't use mcE after
-	ratioGraph =  RatioGraph(dataHisto, mcE, xMin=xlow, xMax = xhigh)
-	ratioGraph.draw(ROOT.gPad, yMin=0.5, yMax=1.5, adaptiveBinning=True, errors="xy")
-	ratioGraph.hAxis.SetYTitle(' data/ mc')
-	#ratioGraph.graph.SetMarkerStyle(22)
-	#ratioGraph.graph.SetMarkerColor(1)
-	#ratioGraph.graph.SetLineColor(2)
-	#ratioGraph.oneLine.SetLineColor(0)
-	'''
-
 	if save:
 		from re import sub
 		name = sub('/','_', variable + cut + 'tau.pdf') # problems with '/' in filename
@@ -95,6 +72,9 @@ def drawTau(mcTree, dataTree, variable, cut, save = False, nologmode = True, cut
 		raw_input()
 	c.Close()
 
+
+
+# entry point
 if (__name__ == "__main__"):
 	from argparse import ArgumentParser
 	parser = ArgumentParser()
