@@ -43,6 +43,8 @@
 \label{ziel}
 Bei diesem Versuch werden aus Daten des DØ Detektors die Masse und die Zerfallsbreite des W-Bosons
 sowie der Wirkungsquerschnitt zur Erzeugung und anschließendem Zerfall in zwei Leptonen bestimmt.
+Mit diesen Größen werden der elektroschwache Mischungswinkel berechnet und die Anzahl möglicher
+Farbladungen $N_C$ eingeschränkt.
 
 Um den Fund des W-Bosons am UA2 Experiment zu bestätigen und es genauer untersuchen zu können, werden
 beim DØ Experiment verschiedene Zerfallskanäle betrachtet. Einer von ihnen ist der Zerfall
@@ -95,7 +97,7 @@ und
 ist. Dabei sind $f_i$ die Parton-Dichte-Funktionen, $N_C$ die Anzahl an Farben und $\sqrt{s}$ die
 Schwerpunktsenergie.
 Unter der Annahme, das W-kann nur in drei Leptonfamilien und zwei Quarkfamilien zerfallen (das
-top-Quark ist zu schwer, kann man über obrige Formel die gesamte Zerfallsbreite des W-ausrechnen:
+top-Quark ist zu schwer), kann man über obrige Formel die gesamte Zerfallsbreite des W-ausrechnen:
 \begin{align}
 \label{form:width}
 	Γ_W = 3Γ_{eν} + 2Γ_{ud}  = \frac{ 3+2N_C}{12} \frac{α}{\sin^2θ_W}m_W
@@ -129,7 +131,7 @@ denen des Spurdetektors bevorzugt, da der Kalorimeter eine kleinere Unsicherheit
 So wird zum Beispiel die fehlende transversale Energie eines Ereignisses mit
 \begin{align*}
 	\met = \sqrt{ \not\mathrel{E}^{2}_{x} + \not\mathrel{E}^{2}_{y}} \text{ mit }
-	\not\mathrel{E}_i = \left| - \sum E\vec{e_i} \right|
+	\not\mathrel{E}_i = \left| - \sum <\vec{E},\vec{e_i}> \right|
 \end{align*}
 berechnet. Da das Neutrino im Detektor nicht nachgewiesen wird, sondern ohne Interaktion den
 Detektor verlässt, wird $\met$ als Neutrinoenergie
@@ -137,7 +139,7 @@ benutzt. Die transversale Energie eines Elektrons/Positrons
 \begin{align*}
 	E_{T} = E\sin\left( 2\arctan\left( e^{-\eta} \right) \right)
 \end{align*}
-wird aus der Energie im Kalorimeter $E$ und $\eta$ berechnet, wobei $\eta$ sowohl Informationen aus
+wird aus der Energie im Kalorimeter $E$ und der Pseudorapidität $\eta$ berechnet, wobei $\eta$ sowohl Informationen aus
 Spurdetektor und Kalorimeter enthält.
 Da nur die transversalen Komponenten von Elektron und Neutrino verwendet werden, kann auch
 nur die invariante transversale Masse der Leptonen und damit des W-Bosons berechnet werden.
@@ -154,7 +156,7 @@ W-Massen generiert, wie man in Abbildung \ref{fig:differentW} sehen kann.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{diffenentMcMasses.pdf}
+	\includegraphics[width=0.8\textwidth]{diffenentMcMasses.pdf}
 	\caption{Die Verteilungen der W-Massen, die den Simulationen zu Grunde liegen. Es sind die
 	maximal, minimale und mittlere W-Masse dargestellt.}
 	\label{fig:differentW}
@@ -189,7 +191,7 @@ beschrieben werden.
 Einige der Größen werden in Abbildung \ref{fig:variables} dargestellt. Man sieht die $τ$ Ereignisse
 als blaues Histogram, die übrigen simulierten Daten als schwarzes Histogram und die Daten als
 Punkte. Die Daten wurden bereits grob selektiert. Man sieht, dass die Daten und die Simulation an
-vielen Stellen abweichen. Hierzu gibt es zwei Gründe: Die Simulation beschreibt die Wirklichkeit
+vielen Stellen abweichen. Hierfür gibt es zwei mögliche Gründe: Die Simulation beschreibt die Wirklichkeit
 oder den Detektor nicht exakt, oder die Daten beinhalten nicht nur die zu untersuchenden Ereignisse,
 sondern auch anderen Untergrund. Kaum einer dieser Größen erlaubt das Trennen der $τ$ Ereignisse vom
 Signal.
@@ -221,7 +223,7 @@ darf entlang der Strahlachse nur $\SI{60}{cm}$ vom Mittelpunkt abweichen.
 
 Die kinematischen Schnitte werden wie folgt bestimmt:
 Die für eine bestimmte (beliebige) W-Masse simulierten und gemessenen Daten werden in normierten Histogrammen übereinandergelegt
-und es wird versucht die Unterschiede durch geeignete Schnitte verringern. Ziel ist vor allem eine gute
+und es wird versucht die Unterschiede durch geeignete Schnitte zu verringern. Ziel ist vor allem eine gute
 Übereinstimmung in $m_T$, da daraus zunächst die invariante Masse bestimmt wird. Die Abschätzung von Selektionsgrenzen
 wird in Abbildung \ref{fig:abschaetzung} veranschaulicht. Links oben sieht man die transversale
 invariante Masse ohne Einschränkungen. Die Verteilungen von Daten und Simulation unterscheiden sich
@@ -268,10 +270,10 @@ Da das Skalieren der simulierten Daten einen großen systematischen Fehler mit s
 Skalieren die gesamten Ereigniszahlen stark voneinander abweichen, ist es nötig, die Histogramme zu
 normieren. Dies wiederum hat zur Folge, dass man den $χ²$ Test für gewichtete Histogramme anstatt
 des normalen $χ²$ Tests benutzen
-muss\cite{cramer1999mathematical}.
+muss \cite{cramer1999mathematical}.
 Weiterhin müssen in einem Bin genug
 Einträge sein (mehr als 9), damit man die poissonverteilten Einträge als eine Gaußverteilung nähern
-und die Quadratwurzel der Einträge als Fehler benutzen kann\cite{ROOT:TH1}. Außerdem verringert man
+und die Quadratwurzel der Einträge als Fehler benutzen kann \cite{ROOT:TH1}. Außerdem verringert man
 somit die relative Gewichtung von Bins mit zu wenig Einträgen.
 
 Eine Schwierigkeit besteht weiterhin in der Wahl der Anzahl der Bins sowie dem verwendeten
@@ -323,10 +325,10 @@ Damit ergibt sich mit den Schnitten $\met > \SI{30}{GeV}$ und $E_{T} > \SI{30}{G
 Im Folgenden werden die systematischen Fehler der W-Massen quantifiziert und zu einem systematischen
 Gesamtfehler addiert.
 \subsubsection*{Energieskala von $E_{T}$}
-Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt eine relative Unsicherheit von ca. $2\%$\cite{Abachi:1996ey}. Um den systematischen Einfluss
+Die Bestimmung der Skala der Transversalenergie des Elektrons besitzt eine relative Unsicherheit von ca. $2\%$ \cite{Abachi:1996ey}. Um den systematischen Einfluss
 dieser Größe auf das Endergebnis zu bestimmen, werden alle $E_{T}$ Werte entsprechend dieser relativen Unsicherheit nach oben und unten variiert und die
 W-Masse erneut bestimmt. Die Abweichungen sind in Tabelle \ref{tab:syset} zusammengefasst. Damit lässt sich der mittlere systematische Fehler durch die
-Wahl der transversalen Energieskala durch $\frac12(Δm_W^+ + Δm_W^-)$ zu $\SI{0.98}{GeV}$ bestimmen.
+Wahl der transversalen Energieskala durch $\frac12(|Δm_W^+| + |Δm_W^-|)$ zu $\SI{0.98}{GeV}$ bestimmen.
 
 \begin{table}[h]
 	\centering
@@ -389,10 +391,10 @@ systematischen Fehler abzuschätzen.}
 \end{table}
 
 \subsubsection*{Kombination der systematischen Fehlerquellen}
-Die Verschiebung in $\met$ und $E_T$ die selben Abweichungen und damit auch die selben Ergebnisse. Dies kommt durch die
+Die Verschiebung in $\met$ und $E_T$ ergibt die selben Abweichungen und damit auch die selben Ergebnisse. Dies kommt durch die
 Symmetrie von $\met$ und $E_T$ in der Definition von $m_T$.
-Der gesamte Fehler für die Energieskalierung ist deshalb  gleich der Einzelfehler von $\met$ und
-$E_T$. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
+Der gesamte Fehler für die Energieskalierung wird deshalb als der Einzelfehler von $\met$ und
+$E_T$ abgeschätzt. Die Unsicherheit durch die Wahl der Selektionsgrenzen wird (auch wenn das sicherlich nicht ganz korrekt ist)
 als unabhängig angesehen und zu dem gemeinsamen Fehler der Energieskalenbestimmung quadratisch
 addiert, bewirkt aber kaum eine Änderung. Damit ergibt sich als abschließendes Ergebnis der
 W-Massenbestimmung:
@@ -421,9 +423,10 @@ Verhältnis von $m_T$ zu $E_T$ in Abbildung \ref{fig:verhaeltnis} gezeigt.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.7\textwidth]{mwt_el_etmet>30&&el_et>30tau.pdf}
-	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation für
-		$\met>\SI{30}{GeV}$ und $E_T>\SI{30}{GeV}$ und eingezeichneter Selektionsgrenze.}
+	\includegraphics[width=.8\textwidth]{mwt_el_etmet>0&&el_et>0tau.pdf}
+	\includegraphics[width=.8\textwidth]{mwt_el_etmet>30&&el_et>30tau.pdf}
+	\caption{Vergleich der Verteilungen von $m_T/E_T$ zwischen Daten und Simulation ohne kinematische Schnitte (oben) und
+		mit Selektionsgrenzen $\met>\SI{30}{GeV}$ und $E_T>\SI{30}{GeV}$ (unten)}
 	\label{fig:verhaeltnis}
 \end{figure}
 
@@ -432,7 +435,7 @@ Dies führt zwar zu einer kleineren Effizienz, dafür aber zu einem besseren min
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.6\textwidth]{chi2el_et.pdf}
+	\includegraphics[width=.8\textwidth]{chi2el_et.pdf}
 	\caption{$E_{T}$ Verteilung nach der Selektion. }
 	\label{fig:etaftercut}
 \end{figure}
@@ -440,7 +443,7 @@ Dies führt zwar zu einer kleineren Effizienz, dafür aber zu einem besseren min
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.6\textwidth]{templateet.pdf}
+	\includegraphics[width=0.8\textwidth]{templateet.pdf}
 	\caption{Ergebnis der Template Methode zur Bestimmung der W-Masse für einen Vergleich der $E_{T}$ Verteilung}
 	\label{fig:chiet}
 \end{figure}
@@ -453,16 +456,17 @@ der Selektionsgrenzen, wobei der Fehler auf das Verhältnis von $m_T/E_T$ zu $0.
 und den Fehler dominiert.
 Der Fehler durch die Energieunsicherheit ist $\SI{0.27}{GeV}$ für $\met$ und $\SI{2.3}{GeV}$ für
 $E_T$. Hier sind beide Unsicherheiten nicht mehr identische wie bei $m_T$ und man sieht, dass der
-von $E_T$ kommende Anteil den gesamten systematischen Fehler dominiert.
+von $E_T$ kommende Anteil den gesamten systematischen Fehler dominiert, da beide Größen korreliert sind
+werden sie zunächst linear zu einem Gesamtfehler der Energieskala addiert bevor sie quadratisch mit dem Selektionsfehler addiert werden.
 Es ergibt sich insgesamt
 
 \begin{align*}
-	m_W =  80.12 ± 0.33 (stat.)± 2.28 (sys.) \si{GeV}.
+	m_W =  80.12 ± 0.33 (stat.)± 2.57 (sys.) \si{GeV}.
 \end{align*}
 Das Ergebnis ist also im Rahmen der angegebenen Fehler mit den Ergebnissen der Template Methode für
 $m_{T}$ vereinbar.
 Da es allerdings sehr viel aufwendiger ist, effektive Selektionskriterien zu finden und diese dann
-instabiler sind, wird das Ergebnis von $m_T$ benutzt.
+instabiler sind, wird das Ergebnis von $m_T$ im Folgenden benutzt.
 Dennoch kann man sagen, dass das Selektieren und die anschließende Template Methode nicht nur mit
 $m_T$ funktioniert, aber mit $m_T$ die besseren Ergebnisse erzielt werden können.
 \section{Bestimmung der Effizienz}
@@ -507,14 +511,14 @@ führender Ordnung:
 	&=  0.2262 ± 0.0056 (stat.) ± 0.0189(sys.)
 \end{align*}
 Der systematische Fehler auf $m_{W}$ wird zur Bestimmung des Fehlers auf $\sin²(\theta_{W})$ quadratisch addiert.
-
-Da es sich hierbei nur um ein Ergebnis erster Ordnung Störungstheorie handelt, muss man das Ergebnis
-noch mit einem Strahlungskorrekturterm von $1.06$ multiplizieren\cite{versuchsanleitung} und erhält
+Da die, zur Berechnung genutzte, Formel nur die führende Ordnung der störungstheoretischen Rechnung beschreibt,
+muss man das Ergebnis
+noch mit einem Strahlungskorrekturterm von $1.06$ multiplizieren \cite{versuchsanleitung} und erhält
 \begin{align*}
 	\sin²(\theta_{W}) &=  0.2397 ± 0.0059 (stat.) ± 0.0200(sys.) \\
 	\sin²(\theta_{W})_\text{Literatur} &= 0.2397 \pm 0.0013.
 \end{align*}
-Der Weinbergwinkel weicht $0.002\sigma$ vom Literaturwert ab und ist mit diesem
+Der Weinbergwinkel weicht lediglich $0.002\sigma$ vom Literaturwert ab und ist mit diesem
  kompatibel. Die Messung kann also den bisherigen Messwert innerhalb des Fehlers bestätigen.
 
 
@@ -532,7 +536,7 @@ Aus dem Vergleich mit Gleichung \ref{form:xstot} beziehungsweise \ref{form:xscms
 versuchen den Farbfaktor zu bestimmen. Da die Formel nicht trivial ist, insbesondere die
 Parton-Dichte-Funktionen nicht einfach zu parametrisieren sind, muss man $N_C$ numerisch lösen.
 
-Dazu benutzen wir das von Richard J. Gonsalves et al. entwickelte Fortran Programm qt\cite{qtsite},
+Dazu benutzen wir das von Richard J. Gonsalves et al. entwickelte Fortran Programm qt \cite{qtsite},
 müssen allerdings einige Näherungen treffen:
 \begin{itemize}
 	\item $Γ_W = (3+2N_C)Γ_{eν}$: Höhere Ordnungen der Zerfallsprozesse sowie eine Quarkmischung
@@ -548,7 +552,7 @@ müssen allerdings einige Näherungen treffen:
 \end{itemize}
 
 Der totale Wirkungsquerschnitt wird mit dem selben Partialdichtefunktionsset "`CTEQ6.1"' wie in der ursprünglichen
-Veröffentlichung\cite{Abachi:1996ey} berechnet. Alle NLO Subprozesse werden bei einer
+Veröffentlichung \cite{Abachi:1996ey} berechnet. Alle NLO Subprozesse werden bei einer
 Proton-Antiproton Schwerpunktsenergie von $\SI{1960}{GeV}$ und den Literaturwerten von $m_W$ und
 $\sin²θ_W$ für verschiedene Farbfakoren berechnet
 und mit der partiellen Zerfallsbreite $1/(2N_C +3)$ und einem linearen Faktor auf den gegebenen
@@ -617,7 +621,7 @@ ab und ist somit innerhalb von $3\sigma$ mit diesem vereinbar.
 \section{Diskussion der systematischen Unsicherheiten in anderen Experimenten}
 In diesem Abschnitt werden die systematischen Unsicherheiten bei der W-Massenbestimmung an Hadronkollidern am Beispiel vom Tevatron diskutiert
 und mit denen an Elektron-Positron Kollidern am Beispiel von LEP verglichen. Da der Anfangszustand bei $e^{+}+e^{-}$ Kollisionen neutral ist, können einzelne W-Bosonen
-in führender Ordnung wird erzeugt werden, sondern nur paarweise, wie zum Beispiel in Abbildung \ref{fig:2Wfeynman} dargestellt. Deshalb wurde im LEP Experiment die W-Paarproduktion in den \cite{Achard:2005qy}
+in führender Ordnung nicht erzeugt werden, sondern nur paarweise, wie zum Beispiel in Abbildung \ref{fig:2Wfeynman} dargestellt. Deshalb wurde im LEP Experiment die W-Paarproduktion in den \cite{Achard:2005qy}
 Zerfallskanälen $W+W \rightarrow qql\nu$ (semileptonisch) und $W+W \rightarrow qqqq$ (hadonisch) genutzt.
 
 
